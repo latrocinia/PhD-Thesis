@@ -1,0 +1,36 @@
+Protein interactions underlie most of the complexities encountered in the cell. 
+They play a determining role in processes ranging from protein translation to muscle contraction. 
+Numerous diseases are the result of mutations at the interface of protein complexes \cite[Joerger2007, Lage2014] (Joerger and Fersht, 2007; Lage, 2014). 
+For a thorough and fundamental understanding of these processes and rational drug design, knowledge of these interactions and interfaces at an atomic level is of paramount importance \cite[Wells2007, Nero2014](Wells and McClendon, 2007; Nero et al., 2014). 
+Unfortunately, the number of available high-resolution structures of protein complexes determined by either X-ray crystallography or NMR spectroscopy remains rather sparse compared to the size of the interactome \cite[Mosca2013, Petrey2014] (Mosca et al., 2013; Petrey and Honig, 2014).
+
+Cryo-electron microscopy (cryo-EM) is a technique capable of imaging large biomolecular complexes in their native hydrated state \cite[Orlova2011](Orlova and Saibil, 2011). 
+The resolution is, however, usually limited to such extend that a direct atomic view of the interface is out of the question. 
+In order to remedy this, cryo-EM data are often combined with high-resolution atomic structures \cite[Esquivel-Rodriguez2013](Esquivel-Rodríguez and Kihara, 2013). 
+The simplest and most common way of building macromolecular assemblies into cryo-EM maps is by manual fitting of atomic structures using dedicated graphics software \cite[Baker1996, Goddard2007](Baker and Johnson, 1996; Goddard and Huang, 2007). 
+A more objective but less used method is full exhaustive search rigid body fitting, for which a plethora of software has been developed as reviewed in Esquivel-Rodríguez and Kihara (2013). 
+Still, as the resolution decreases, placement of subunits becomes ambiguous, and more models need to be sampled and/or additional data incorporated into the modeling to generate sensible models. 
+
+Protein-protein docking is in principle well suited for this task \cite[Moreira2010, Huang2014](Moreira et al., 2010; Huang et al., 2014), since it naturally samples a large number of conformations and can take into account additional sources of information for scoring and/or for driving the docking process \cite[Karaca2013, Rodrigues2014](Karaca and Bonvin, 2013; Rodrigues and Bonvin, 2014). 
+Several docking programs have incorporated cryo-EM data into their work flow. 
+MultiFit automatically segments the cryo-EM density using a Gaussian mixture model to deduce anchors, subsequently docking the components of the complex onto the anchors \cite[Lasker2010](Lasker et al., 2010). 
+EMLZerD uses the cryo-EM data to score the models using 3D Zernike descriptors \cite[Esquivel-Rodriguez2012](Esquivel-Rodríguez and Kihara, 2012). 
+A recent approach has been implemented in ATTRACT-EM \cite[deVries2012](de Vries and Zacharias, 2012), which represents the cryo-EM data by a Gaussian mixture model and fits the subunits into the map in a procedure reminiscent of Kawabata's approach \cite[Kawabata2008](Kawabata, 2008); the resulting models are then refined. 
+Most of these methods, however, separate the use of the cryo-EM data from the use of other sources of information: 
+They first fit the structures in the density and only afterwards might take into account the physico-chemical properties (energetics) of the interface. 
+Furthermore, they usually do not actively use additional orthogonal information that may be available, such as for example mutagenesis or mass-spectrometry cross-link data. 
+
+Only few approaches have been published that can incorporate a variety of data \cite[Alber2008](Alber et al., 2008), one of which is the Integrative Modeling Platform (IMP) developed in the Sali group, which has the capability of integrating among others cryo-EM data \cite[Topf2008, Schneidman-Duhovny2012, Velazquez-Muriel2012] (Topf et al. 2008; Schneidman-Duhovny et al. 2012; Velázquez-Muriel et al. 2012). 
+Another approach is our in-house data-driven docking software HADDOCK \cite[Dominguez2003, deVries2010a](Dominguez et al., 2003, De Vries et al., 2010a), which is already capable of actively using information from various sources, such as mutagenesis, NMR H/D exchange and cross-links data to name only a few. 
+In addition, it is able to deal with multiple subunits \cite[Karaca2010](Karaca et al., 2010), can handle proteins, peptides \cite[Trellet2013](Trellet et al., 2013), DNA \cite[vanDijk2006](van Dijk, 2006) and RNA complexes and any combination thereof. 
+HADDOCK leveraged its unique ability to combine multiple structural data into the modeling process to implement powerful strategies to deal with large domain conformational changes \cite[Karaca2011](Karaca and Bonvin, 2011). 
+Here we describe how we have incorporated cryo-EM data into HADDOCK, such that the density is actively used as an additional energy term during docking, scoring and flexible refinement. 
+These cryo-EM restraints can be combined with all other already available sources of information and restraints supported in HADDOCK. 
+We first report on the optimization and benchmarking of our method on 17 complexes from the protein-protein docking benchmark 4.0 \cite[Hwang2010](Hwang et al., 2010) using simulated data of 10, 15 and 20Å, and a multi-component symmetrical complex. 
+Then we demonstrate its applicability on five cases using available experimental data for two ribosome complexes, based on 9.8Å \cite[Guo2011](Guo et al., 2011) and 13.5Å \cite[Boehringer2012](Boehringer et al., 2012) data; 
+two virus-antibody complexes using 8.5Å \cite[McCraw2012](McCraw et al., 2012) and 21Å \cite[Wang2013](Wang et al., 2013) resolution data; 
+and a symmetric pentamer using 16Å negative stain data \cite[Dauden2013](Daudén et al., 2013). 
+In several cases additional interface information is included based on mutagenesis data and the biology of the system. 
+The resulting models have high quality interfaces without the clashes usually found in manually fitted models, revealing new details of the interactions.
+
+\externalfigure[figure1]
