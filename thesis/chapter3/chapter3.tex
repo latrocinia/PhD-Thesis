@@ -4,13 +4,15 @@
 % setup everything
 \environment layout
 \environment figures
-\setupbibtex[database={references}]
+
+\setupbibtex[database={references}, sort=author]
 \setuppublications[alternative=apa]
+\def\inlinecite{\cite[left=, right=]}
 
 \chapter{Integrative modeling of biomolecular complexes: HADDOCKing with cryo-EM data}
 
 \section{Introduction}
-\input introduction
+%\input introduction
 
 \section{Results and discussion}
 \input results-and-discussion
@@ -19,7 +21,7 @@
 %\input conclusion
 
 \section{Experimental procedures}
-%\input experimental-procedures
+\input experimental-procedures
 
 \section{Supplementary information}
 %\input supplementary-information

@@ -259,7 +259,6 @@
   pages = {16998--17007},
   number = {23},
   month = {Jun},
-  __markedentry = {[gydo:]},
   abstract = {During bacteriophage morphogenesis DNA is translocated into a preformed
 	prohead by the complex formed by the portal protein, or connector,
 	plus the terminase, which are located at an especial prohead vertex.
@@ -347,6 +346,50 @@
   pmid = {20718048},
   timestamp = {2014.07.01},
   url = {http://dx.doi.org/10.1002/prot.22814}
+}
+
+@ARTICLE{deVries2007,
+  author = {{de Vries}, Sjoerd J. and {van Dijk}, Aalt D J. and Krzeminski, Mickaël
+	and {van Dijk}, Mark and Thureau, Aurelien and Hsu, Victor and Wassenaar,
+	Tsjerk and Bonvin, Alexandre M J J.},
+  title = {HADDOCK versus HADDOCK: new features and performance of HADDOCK2.0
+	on the CAPRI targets.},
+  journal = {Proteins},
+  year = {2007},
+  volume = {69},
+  pages = {726--733},
+  number = {4},
+  month = {Dec},
+  __markedentry = {[gydo:6]},
+  abstract = {Here we present version 2.0 of HADDOCK, which incorporates considerable
+	improvements and new features. HADDOCK is now able to model not only
+	protein-protein complexes but also other kinds of biomolecular complexes
+	and multi-component (N > 2) systems. In the absence of any experimental
+	and/or predicted information to drive the docking, HADDOCK now offers
+	two additional ab initio docking modes based on either random patch
+	definition or center-of-mass restraints. The docking protocol has
+	been considerably improved, supporting among other solvated docking,
+	automatic definition of semi-flexible regions, and inclusion of a
+	desolvation energy term in the scoring scheme. The performance of
+	HADDOCK2.0 is evaluated on the targets of rounds 4-11, run in a semi-automated
+	mode using the original information we used in our CAPRI submissions.
+	This enables a direct assessment of the progress made since the previous
+	versions. Although HADDOCK performed very well in CAPRI (65\% and
+	71\% success rates, overall and for unbound targets only, respectively),
+	a substantial improvement was achieved with HADDOCK2.0.},
+  doi = {10.1002/prot.21723},
+  institution = {Bijvoet Center for Biomolecular Research, Science Faculty, Utrecht
+	University, 3584CH, Utrecht, The Netherlands.},
+  keywords = {Algorithms; Automation; Computational Biology, methods; Computer Simulation;
+	Crystallography, X-Ray, methods; Databases, Protein; Genomics; Models,
+	Statistical; Protein Binding; Protein Conformation; Protein Interaction
+	Mapping; Proteins, chemistry; Proteomics, methods; Software},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {gydo},
+  pmid = {17803234},
+  timestamp = {2015.04.09},
+  url = {http://dx.doi.org/10.1002/prot.21723}
 }
 
 @ARTICLE{deVries2010a,
@@ -1322,7 +1365,7 @@
   pages = {180--194},
   number = {1},
   month = {Apr},
-  __markedentry = {[gydo:6]},
+  __markedentry = {[gydo:]},
   abstract = {Models of macromolecular assemblies are essential for a mechanistic
 	description of cellular processes. Such models are increasingly obtained
 	by fitting atomic-resolution structures of components into a density
@@ -1526,6 +1569,65 @@
   pmid = {24072820},
   timestamp = {2014.02.03},
   url = {http://dx.doi.org/10.1126/science.1238724}
+}
+
+@ARTICLE{Navaza2002,
+  author = {Navaza, J. and Lepault, J. and Rey, F. A. and Alvarez-Rúa, C. and
+	Borge, J.},
+  title = {On the fitting of model electron densities into EM reconstructions:
+	a reciprocal-space formulation.},
+  journal = {Acta Crystallogr D Biol Crystallogr},
+  year = {2002},
+  volume = {58},
+  pages = {1820--1825},
+  number = {Pt 10 Pt 2},
+  month = {Oct},
+  abstract = {A fast method for fitting model electron densities into EM reconstructions
+	is presented. The methodology was inspired by the molecular-replacement
+	technique, adapted to take into account phase information and the
+	symmetry imposed during the EM reconstruction. Calculations are performed
+	in reciprocal space, which enables the selection of large volumes
+	of the EM maps, thus avoiding the bias introduced when defining the
+	boundaries of the target density.},
+  file = {Navaza2002a.pdf:Navaza2002a.pdf:PDF},
+  institution = {LVMS, CNRS-GIF, 91198 Gif-sur-Yvette, France. jorge.navaza@gv.cnrs-gif.fr},
+  keywords = {Image Processing, Computer-Assisted; Microscopy, Electron, methods;
+	Models, Molecular; Molecular Conformation; Sensitivity and Specificity},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {gydo},
+  pii = {S0907444902013707},
+  pmid = {12351826},
+  printed = {True},
+  review = {X-ray structures are fit into an electron map by use of a reciprocal
+	space score: the quadratic misfit is minimized, which is "strictly
+	equivalent to maximazing the correlation coefficient". Though, as
+	argued in Wriggers2001a, it - me thinks - does not use phase information.
+	
+	
+	
+	Q=Sigma | Fem - labda * Fmod |^2 / Sigma |Fem|^2
+	
+	
+	The initial placement of the subunits is done visually or with the
+	help of a phased translation function. I dont know what the latter
+	means. 
+	
+	
+	The protocol minimizes the quadratic misfit by sequential refinement
+	of the subunits, so one unit is allowed to move while the others
+	are fixed. This is somewhat reminiscnet of what happens in CNS according
+	to my insight now. 
+	
+	
+	
+	The package is called URO.
+	
+	
+	Probably not so usefull in itself since it is not fully automatic,
+	though the principle is the same as using rigid body refinement in
+	CNS I guess, so in that way it is eluminating.},
+  timestamp = {2012.03.16}
 }
 
 @ARTICLE{Nero2014,
