@@ -18,19 +18,20 @@ Secondly, the distance restraints approach falls within the original philosophy 
 In the case of binary complexes, the optimal orientation of the complex with respect to the density still needs to be determined since the centroid-based docking allows for rotational ambiguity. 
 Therefore, we perform a fine rotational search of the complex around the axis formed by the line joining the centroids and score each orientation using the cross correlation value between the model and the map. 
 The orientation corresponding to the highest cross correlation value is further refined using a rigid body energy minimization where the energy consists of the non-bonded interaction terms of classical force fields (intermolecular van der Waals and electrostatic energies) and an added cross correlation potential. 
-Typically 10000 solutions are generated at the rigid-body docking stage. All calculations are performed with CNS (Crystallography and NMR System) \cite[Brunger2007] (see Experimental Procedure section for details).
+Typically 10000 solutions are generated at the rigid-body docking stage. 
+All calculations are performed with CNS (Crystallography and NMR System) \cite[Brunger2007] (see Experimental Procedure section for details).
 
 After the rigid body stage, the generated solutions are scored with the HADDOCK-EM-it0 score, 
 which correspond to the original HADDOCK score (see \in{Eq.}[eq:haddock-it0]) complemented with a local cross correlation-based energy (see Experimental Procedures, Eq. \in[eq:haddock-em-it0]-\in[eq:haddock-em-itw]). 
 The 400 best scoring models are then refined using the standard HADDOCK refinement protocol with an additional correlation-based potential to further fit the chains into the density, while reckoning with the energetics of the system. 
 
 \placefigure[top][fig:it0-protocol]
-{Representation of the rigid-body docking protocol in HADDOCK-EM. (A) Simulated 15Å cryo-EM data of the 7CEI complex. (B) The density with centroids (grey spheres) representing the approximate center of mass (COM) of each subunit. (C) Initial docking setup in HADDOCK. Distance restraints are defined between the COM of chain A (light-grey) and B (dark-grey) of 7CEI and their corresponding centroids. (D) An initial complex is formed after a rigid body energy minimization (EM). (E) The position of the subunits is approximately correct, but their orientation in the cryo-EM map should still be determined. (F) A fine rotational search is performed around the axis that is formed by the line joining the two centroids. The orientation with the highest cross correlation value is chosen. (G) A final rigid body EM is performed now directly against the cryo-EM data using a cross correlation-based potential without the centroid-based distance restraints.}
-{\externalfigure[fig:it0-protocol][factor=max]}
+{\getbuffer[cap:it0-protocol]}
+{\externalfigure[fig:it0-protocol]}
 
 \placefigure[top][fig:it0-results]
-{}
-{\externalfigure[fig:it0-results]}%[factor=max]}
+{\getbuffer[cap:it0-results]}
+{\externalfigure[fig:it0-results]}
 
 \subsection{Impact of cryo-EM data in the rigid body docking stage}
 
@@ -63,7 +64,7 @@ Thus, our approach is robust against centroid placement errors up to at least 7�
 \subsection{Impact of cryo-EM data on the scoring of rigid body docking solutions}
 
 \placefigure[top][fig:impact-refinement]
-{}
+{\getbuffer[cap:impact-refinement]}
 {\externalfigure[fig:impact-refinement]}
 
 To incorporate the cryo-EM data into the scoring function, we supplemented the original HADDOCK score with a local cross correlation (LCC) energy term (HADDOCK-EM score). 
@@ -86,7 +87,7 @@ As such, the correlation value only has meaning in a comparative setting, urging
 \subsection{Effect of cryo-EM data on the flexible refinement stage}
 
 \placefigure[top][fig:1884-docking]
-{}
+{\getbuffer[cap:1884-docking]}
 {\externalfigure[fig:1884-docking]}
 
 Next we investigated the impact of incorporating cryo-EM restraints on the flexible refinement stage of HADDOCK. 
@@ -115,11 +116,11 @@ Applying HADDOCK-EM resulted in 15 clusters, with the best scoring cluster conta
 \subsection{Integrative modeling of KsgA with rRNA using 13.5Å cryo-EM data}
 
 \placefigure[top][fig:2017-current]
-{}
+{\getbuffer[cap:2017-current]}
 {\externalfigure[fig:2017-current]}
 
 \placefigure[top][fig:2017-haddock]
-{}
+{\getbuffer[cap:2017-haddock]}
 {\externalfigure[fig:2017-haddock]}
 
 As a more realistic example, we applied HADDOCK-EM to model the binding of KsgA, a methyltransferase, to the 30S maturing E. coli ribosome. 
@@ -142,7 +143,7 @@ Coincidentally, these newly identified residues are also highly conserved, corro
 \subsection{Modeling virus-antibody complexes using 8.5Å and 21Å cryo-EM data}
 
 \placefigure[top][fig:virus-haddock]
-{}
+{\getbuffer[cap:virus-haddock]}
 {\externalfigure[fig:virus-haddock]}
 
 To show the diverse range of systems that can be handled with HADDOCK, we applied our protocol on the adeno-associated virus 2 and immature Dengue virus complexed with antibodies for which 8.5Å and 21Å cryo-EM data and deposited models (3J1S and 3J42) are available, respectively.
@@ -157,13 +158,13 @@ Inspecting the interface of the best scoring HADDOCK model again shows favorable
 \subsection{Symmetrical multibody docking with cryo-EM data}
 
 \placefigure[top][fig:symmetry-protocol-and-results]
-{}
+{\getbuffer[cap:symmetry-protocol-and-results]}
 {\externalfigure[fig:symmetry-protocol-and-results]}
 
 HADDOCK is capable of using symmetry restraints to drive the docking of symmetrical assemblies. 
 In order to combine symmetry and cryo-EM restraints the rigid body docking protocol was slightly modified compared to non-symmetric complexes, with as main difference the initial placement of the subunits (\in{Figure}{A}[fig:symmetry-protocol-and-results], Experimental Procedures). 
 We tested HADDOCK-EM with symmetry on the cyclic pentamer of the trypsin inhibitor (1B0C, \in{Figure}{A}[fig:symmetry-protocol-and-results]). 
-The ab initio mode of HADDOCK with C5 symmetry restraints results in two acceptable solutions after the refinement stage, with the best solution having an i-RMSD of 3.2Å compared to the 1b0c structure. 
+The ab initio mode of HADDOCK with C5 symmetry restraints results in two acceptable solutions after the refinement stage, with the best solution having an i-RMSD of 3.2Å compared to the 1B0C-structure. 
 Adding cryo-EM data results in an increased number of acceptable solutions of 54, 400 and 400 when using 20Å, 15Å and 10Å resolution data, respectively, with the best models having i-RMSDs of 1.6, 1.0 and 0.7Å (\in{Figure}{B}[fig:symmetry-protocol-and-results]). 
 Using higher resolution data also results in more compact clusters, i.e. the distribution of i-RMSD values is reduced. 
 When using 10Å data only a single near-native cluster is observed. At 20Å resolution, multiple clusters appear and require the HADDOCK-EM score to discriminate the near-native cluster, which indeed has the best (lowest) HADDOCK-EM score. 

@@ -3,12 +3,18 @@
 \product thesis
 
 \definepapersize[ThesisPrintSize][width=17cm, height=24cm]
-\definepapersize[ThesisTypesetSize][width=13cm, height=18.6cm]
-%\setuppapersize[ThesisTypesetSize]%[ThesisPrintSize]
-\setuppapersize[ThesisPrintSize]%[ThesisPrintSize]
+\setuppapersize[ThesisPrintSize]
 
-\setuplayout[location=middle]
+\setuplayout[location=middle, width=13.0cm, height=18.6cm, 
+             topspace=2.7cm, bottomspace=2.7cm, margin=2.0cm, 
+             header=0.0cm, footer=1cm]
+
 \setuppagenumbering[alternative=doublesided, location=right]
-\setupexternalfigures[factor=max, directory=figures]
+
+\setupexternalfigures[factor=broad, directory=figures]
+
+\setupcaptions[style=small]
+
+\def\caption#1#2{{\bf #1} #2}
 
 \stopenvironment
