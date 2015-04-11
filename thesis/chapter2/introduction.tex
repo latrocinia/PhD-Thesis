@@ -1,0 +1,80 @@
+Determining the architecture of large macromolecular complexes is of
+considerable interest to understand their function and mechanisms.  Classical
+high-resolution methods such as X-ray crystallography and NMR-spectroscopy
+might, however, struggle in doing that for large complexes that might be too
+flexible to crystallize or too large for peak assignment because of spectral
+overlap in NMR. 
+Cryo-electron microscopy (cryo-EM) is quickly becoming the method of choice to
+gain structural insight into the nature of such large macromolecular
+assemblies.  Especially with recent advances in detector technology and
+improved software and algorithms, the resolution of cryo-EM density maps is
+steadily increasing, occasionally at the point where models can be build in the
+density ab initio \cite[Bai2015]. 
+Still, for the bulk of the determined structures the level of detail is too low
+to routinely allow this and additional information is required to build an
+atomic representation of the system \cite[Villa2014].
+
+Typically, cryo-EM data are complemented with known high-resolution three
+dimensional (3D) models determined either experimentally or via homology
+modeling.  These represent the pieces of the density puzzle that should all be
+fitted together in the map. 
+The first step in the high-resolution modeling process is placing the subunits
+as rigid entities at the correct position in the density.  This is often done
+manually using graphics software, most notably UCSF Chimera using its
+fit-in-map function \cite[Pettersen2004].
+This is unfortunate as it is subjective and can lead to over-interpretation of
+the density map, as there is no objective scoring function to give an
+indication of the goodness-of-fit.  This is especially problematic if flexible
+fitting is applied afterwards, since for the refinement to make sense the
+subunit should be located in a local minimum, else it might drift away from its
+initial position during the process.
+To this purpose a plethora of automatic rigid body fitting software has been
+developed \cite[Esquivel-Rodriguez2013].  
+A major class among those is the cross-correlation based
+programs, which are often combined with a full-exhaustive six dimensional (6D)
+grid search of the three translational and three rotational degrees of freedom
+\cite[Volkmann1999, Roseman2000, Chacon2002, Kovacs2003, Wu2003, Garzon2007,
+Hrabe2012, Hoang2013].
+This leads to a thorough and objective analysis of all possible solutions to
+locate the global cross-correlation minimum.
+
+The first full-exhaustive cross-correlation based software was published by
+\cite[authoryear][Volkmann1999].
+The approach was further developed by \cite[authoryear][Chacon2002]
+using the Fast Fourier Transform (FFT) algorithm in combination
+with the cross-correlation theorem, which decreases the computational
+complexity of the search.
+In addition, they applied a Laplace pre-filter on the density and search
+object, significantly extending the applicable resolution range. 
+\cite[authoryear][Roseman2000] introduced the more sensitive local cross-correlation (LCC) score to fit
+subunits instead of whole complexes in the density.
+\cite[authoryear][Wu2003] acknowledged the problem of overlapping densities of neighboring
+subunits at lower resolutions and developed a core-weighted (CW)
+cross-correlation score to minimize this effect by biasing the weight of
+density toward the core of the search object.  Recently,
+\cite[authoryear][Hoang2013]
+implemented a GPU-hardware-accelerated version based on FFT techniques to
+calculate the LCC score, building on the earlier work by
+\cite[authoryear][Roseman2003].
+
+Here we report on further developments in cross-correlation based rigid body
+fitting.  In the Methods section, we first shortly describe the essence of
+exhaustive cross-correlation based fitting and introduce a new
+cross-correlation function that combines the core-weighted approach of \cite[author][Wu2003]
+with the LCC, demonstrating how it can be calculated using FFTs.
+Furthermore, to decrease the time required to perform a full exhaustive search
+we use the optimal rotation sets developed by \cite[authoryear][Karney2007] and decrease the size
+of the density by automatically resampling the data, if possible, and trimming
+padded regions.  In the Results section, we investigate the sensitivity of the
+newly developed scoring function by automatically fitting the subunits of the
+80S D. melanogaster ribosome \cite[Anger2013].
+Lastly, we present a performance comparison against other fitting software
+using the GroEL/GroES system with experimental data \cite[Ranson2001].
+
+We implemented our approach in a Python software package called PowerFit, which
+can run on multi-core CPU machines and can be GPU-accelerated using the OpenCL
+framework.  PowerFit has been tested on Linux, MacOSX and Windows operating
+systems and is Free Software.
+The source code with detailed installation instructions and application
+examples can be found at https://github.com/haddocking/powerfit.
+

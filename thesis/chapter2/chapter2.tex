@@ -1,5 +1,31 @@
-\startcomponent chapter2
 
-\product thesis
+\startcomponent chapter3
+
+% setup everything
+\environment layout
+\environment figures
+\environment tables
+
+\def\powerfit{{\it powerfit}}
+
+\setupbibtex[database={references}, sort=author]
+
+\chapter{Fast and sensitive rigid-body fitting into cryo-EM density maps with PowerFit}
+
+\section{Introduction}
+\input introduction
+
+\section{Methods}
+\input methods
+
+\section{Results}
+%\input results
+
+\section{Conclusion}
+\input conclusion
+
+\section{References}
+%\input references
+\placepublications[criterium=all]
 
 \stopcomponent

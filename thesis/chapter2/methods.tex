@@ -1,0 +1,240 @@
+\subsection{State of the art of rigid body cross-correlation based fitting}
+
+The goal of cross-correlation rigid body fitting is to determine the three
+translational and three rotational degrees of freedom of the model that
+optimize the cross-correlation score between the high-resolution model and the
+density. To this end, the model is first blurred to the resolution of the
+cryo-EM data to properly calculate the goodness-of-fit. It should be noted
+that, although the notion of the exact resolution of a cryo-EM density is still
+a matter of debate and can actually be anisotropic, the reported resolution of
+the data is usually sufficient for fitting purposes. This blurred model is then
+fitted by performing a systematic, full-exhaustive search of the 6D space and
+saving locations corresponding to high cross-correlation values. Predictably,
+the problems with this approach are sensitivity of the scoring function and
+speed of the search.  The sensitivity of the global cross-correlation score as
+originally used by \cite[authoryear][Volkmann1999] is often compromised as, typically,
+subunits instead of the whole complex are fitted into the density. To make
+things worse, at lower resolution the local densities of neighboring subunits
+are overlapping, resulting in systemic noise mainly at the edges of the search
+model. To overcome the first problem, \cite[authoryear][Roseman2000] introduced the local
+cross-correlation function, which effectively is the cross-correlation
+normalized under the running footprint of the shape of the model. This
+localizes the score to only the region of interest, making the fitting of
+subunits feasible. As for the effect of overlapping densities of neighboring
+subunits, this can be minimized by biasing the density toward the core of the
+search object. \cite[authoryear][Wu2003] incorporated this concept by calculating the
+core-index of each voxel of the search object, where the core-index is a
+measure for how far the voxel is from an edge. To further enhance the
+sensitivity of the scoring function, a Laplace pre-filter can be applied to the
+cryo-EM density and search object \cite[Chacon2002]. Originally combined with the global
+cross-correlation, it was recently shown that combining it with the LCC further
+extends the applicable resolution range \cite[Hoang2013]. 
+
+To increase the efficiency of the search and minimize computational costs, the
+main innovation was the use of the cross-correlation theorem in combination
+with FFTs. By discretizing the model density on a grid with the same voxel
+spacing and size as the cryo-EM grid, a translational scan can be performed
+using the FFT-accelerated approach. This reduces the computational complexity
+from $N^2$ to $N \log\left(N\right)$, where $N$ is the total number of voxels of the cryo-EM data.
+After each translational scan, the model density is rotated and the process is
+repeated until a pre-set rotational sampling density is achieved, meaning that
+the time required for a search depends linearly on the number of rotations
+sampled. The rotation step can be accelerated by directly rotating the density
+of the search object instead of repeatedly rotating the high-resolution model
+and blurring it afterwards. The GPU-architecture especially is suited for this
+task as tri-linear interpolation can be done with high-efficiency \cite[Hoang2013].
+
+\subsection{Increasing the sensitivity by combining the LCC with the core-weighted approach}
+
+Originally the core-weighted procedure was combined with the global
+cross-correlation, which significantly extended the resolution range in which a
+subunit could be successfully fitted into the density. The same procedure is
+expected to also improve the sensitivity of the better performing LCC.
+Combining the two approaches results in what we defined here as the
+core-weighted LCC (CW-LCC) scoring function: 
+
+\placeformula[eq:cw-lcc]
+\startformula
+\text{CW-LCC} = \frac{1}{N} 
+\frac{\sum_i^N \left( w_i\rho_c - \overline{\rho_c^w} \right) \cdot \left( w_i\rho_o - \overline{\rho^w_o} \right)}
+{\sigma_c^w \sigma_o^w}
+\stopformula
+
+where the summation is over all the $N$ voxels that are within a distance of
+half the resolution of any atom of the search object indexed by $i$, $w_i$ is the
+core-index of voxel $i$, $\rho_c$ and $\rho_o$ are the intensities of the search object and
+the cryo-EM density at voxel $i$, respectively, $\overline{\rho_c^w}$ and $\overline{\rho_o^w}$ are the
+core-weighted density average for the search object and the local cryo-EM
+density, respectively. They are given by $\overline{\rho_x^w} = 1/N \sum_i^N w_i \rho_x$. $\sigma_c^w$
+and $\sigma_o^w$ correspond to the core-weighted density standard deviation given by
+$\sigma_x^w = \sqrt{\left( \overline{\rho_x^w} \right)^2 - \overline{\left( \rho_x^w \right)^2}}$
+with $\overline{\left( \rho_x^w \right)^2} = 1/N \sum_i^N\left( w_i \rho_x\right)^2$. 
+The CW-LCC reduces to the regular LCC by
+setting $w_i = 1$. The Laplace pre-filtered scoring function is defined by
+performing the mapping $\rho_x \to \nabla^2\rho_x$ in \in{Eq.}[eq:cw-lcc]. In order to calculate the CW-LCC
+we first need to define the core-index of each voxel.  
+
+\subsubsection{Determining the core-index $w_i$}
+
+The core-index is a measure for how close a voxel is to the core of the density
+of the subunit that is being fitted. We calculate the core-index by
+progressively eroding a binary mask of the search object and summing each
+eroded mask together, see \in{Figure}{A}[fig:core-index_resampling-trimming]
+for a 2D example. This guarantees that voxels at the surface have a low
+core-index value, while voxels deeply buried get a higher value, even for
+complex shapes.  
+
+\placefigure[top][fig:core-index_resampling-trimming]
+{\getbuffer[cap:core-index_resampling-trimming]}
+{\externalfigure[fig:core-index_resampling-trimming]}
+
+\subsubsection{Using Fourier techniques to calculate the CW-LCC}
+
+Starting from \in{Eq.}[eq:cw-lcc] and following in the spirit of
+\cite[authoryear][Roseman2003], we can normalize the core-weighted density $w_i
+\rho_c$ of the template by setting $\overline{\rho_c^w} = 0$ and $\sigma_c^w =
+1$, which simplifies \in{Eq.}[eq:cw-lcc] to
+
+\placeformula[eq:cw-lcc-simplified]
+\startformula
+\text{CW-LCC} = \frac{1}{N}
+\frac{\sum_i^N \rho_c^n \cdot w_i\rho_o}
+{\sqrt{\left( \overline{\rho_o^w} \right)^2 - \overline{\left( \rho_o^w \right)^2}}}
+\stopformula
+
+where $\rho_c^n$ indicates the normalized core-weighted density. This leaves
+three terms to be determined: the nominator, which we refer to as the
+core-weighted global cross-correlation (CW-GCC); the square of the average
+core-weighted density, $\left(\overline{\rho_o^w}\right)^2$, and the average of
+the squared core-weighted density, $\overline{\left( \rho_o^w\right)^2}$, of
+the cryo-EM data. These can be
+calculated using FFTs as follows 
+
+\placeformula[eq:cw-gcc]
+\startformula
+\text{CW-GCC} = \mathcal{F}^{-1} \left[ \mathcal{F} \left( w \rho_c^n \right)^* \times \mathcal{F}\left( \rho_o \right) \right]
+\stopformula
+
+\placeformula[eq:square-average]
+\startformula
+\left( \overline{\rho_o^w} \right)^2 = \mathcal{F}^{-1} \left[ \mathcal{F} \left( w \right)^* \times \mathcal{F}\left( \rho_o \right) \right]
+\stopformula
+
+\placeformula[eq:average-squared]
+\startformula
+\overline{\left(\rho_o^w \right)^2} = \mathcal{F}^{-1} \left[ 
+\mathcal{F} \left( w^2 \right)^* \times \mathcal{F}\left( \rho_o^2 \right) \right]
+\stopformula
+
+where $\mathcal{F}$ and $\mathcal{F}^{-1}$ are the Fast Fourier transform and
+its inverse, respectively, $^*$ is the complex conjugate operator, $\times$ is the
+element wise multiplication operator, $w$ is the core-weighted mask, $\rho_c$ and $\rho_o$
+are the calculated and experimental densities, respectively. In \in{Eq.}[eq:cw-gcc] it is
+the search object that is multiplied with the core-weighted mask, instead of
+the cryo-EM density. It is this trick which allows the CW-GCC to be calculated
+using FFTs. Note that even though there are 9 Fourier transforms required to
+calculate the CW-LCC, only 6 need to be calculated for every orientation
+sampled, as the 3 Fourier transforms of the cryo-EM data can be calculated just
+once before the search. So the FFT-accelerated CW-LCC effectively costs only
+one Fourier transform more than the regular LCC \cite[Hoang2013].
+
+\subsection{Speeding up the search}
+
+\subsubsection{Using optimized rotation sets to limit rotational degeneracy}
+
+Since the computational complexity of the exhaustive search depends linearly on
+the number of rotations sampled, optimizing and limiting rotational degeneracy
+is important for an efficient search. However, sampling rotations or
+orientations in a systematic and efficient manner is a non-trivial exercise. As
+such, the number of orientations that are sampled to guarantee a certain
+rotational sampling density can differ widely. For example, COLORES uses
+proportional Euler angles \cite[Chacon2002], while gEMFitter performs an icosahedral
+tessellation to generate rotations \cite[Hoang2013], resulting in 1264 and 900 orientations
+sampled for a coarse 24° search, and 119664 and 92160 for a fine 5° search,
+respectively. 
+
+In our implementation, we make use of the optimal rotation sets
+determined by \cite[authoryear][Karney2007], originally developed for solid state NMR. These sets
+were pre-calculated by enclosing the hypersphere of unit quaternions and
+require only 648 orientations for a 20.83° search and 70728 orientations at a
+4.71° sampling rate. This is an enhancement of the sampling efficiency of at
+least a factor of 1.3 compared to gEMFitter, while offering a denser rotational
+sampling interval.
+
+\subsubsection{Decreasing the map size by resampling and trimming the density}
+
+In addition to the number of rotations sampled, the computational complexity of
+the search scales with $N \log\left( N \right)$ where $N$ is the number of
+voxels of the data.
+This is the major determinant for the computational resources required.
+Limiting the density size is thus key to limiting the time required for a
+search. Cryo-EM data are often oversampled with respect to their resolution
+incurring a significant computational cost to perform an exhaustive search.
+Because neighboring voxel intensities will be highly correlated, resampling the
+cryo-EM data will not affect the scoring sensitivity significantly. However, as
+there is still signal after the resolution cutoff, resampling the cryo-EM data
+to Nyquist rate will introduce aliasing effects and image distortions.
+Therefore, we choose to resample the cryo-EM map to a default rate of 2 times
+Nyquist, i.e. the data are resampled such that the voxel spacing is 1/4th of
+the resolution, allowing for a safe buffer to minimize aliasing effects. 
+
+In addition to that, cryo-EM data are usually generously padded with voxels
+containing only noise. It is not uncommon for the padding to increase the
+number of voxels in each direction by a factor of 2 or more. This comes at a
+considerable cost when performing an exhaustive search as the number of voxels
+grows by a factor of 8 or more. To eliminate the computational cost incurred by
+this padding, we trim the padded voxels. The effect of resampling and trimming
+is shown in \in{Figure}{B}[fig:core-index_resampling-trimming] on a slice of
+the GroEL/GroES complex (EMD-1046). 
+
+\subsection{Implementation and availability}
+
+We implemented our methods in a Python package named PowerFit that comes with a
+command line tool eponymously named \powerfit. A flowchart of the \powerfit\
+algorithm is shown in \in{Figure}[fig:powerfit-flowchart]. It requires as input
+a PDB structure, a cryo-EM map and its resolution. Optional parameters are the
+rotational sampling density (default=10.83°), whether to resample and/or trim
+the density and use the Laplace pre-filter and/or core-weighted procedure, and
+the number of PDBs that should be written to file after the search. In
+addition, the number of CPU processors available to the search can be specified
+or whether the computations should be off-loaded to the GPU. 
+
+\placefigure[top][fig:powerfit-flowchart]
+{\getbuffer[cap:powerfit-flowchart]}
+{\externalfigure[fig:powerfit-flowchart]}
+
+After invoking \powerfit, the software will first try to resample the cryo-EM
+map to 2 times Nyquist rate and then trim it. A density of the search object
+(the 3D structure) is constructed by a Gaussian convolution where the standard
+deviation is a function of the resolution. Also, a binary mask is computed out
+the structure, where voxels within half a resolution distance from any atom in
+the model are set to 1 and otherwise 0. Both the search object density and mask
+are discretized on grids of equal sizes and spacing as the cryo-EM density map
+to allow for an FFT-accelerated search. The Laplace pre-filter is applied on
+the cryo-EM and template densities, if requested. A core-weighted mask is
+calculated from the initial binary mask using the procedure described above.
+The data necessary for the search are offloaded to the GPU if requested. The
+template and mask are rotated using tri-linear interpolation, where texture
+memory acceleration as described by Hoang et al. is used when possible. For
+each rotation sampled, a translational correlation scan is performed using
+FFTs. The rotational solution with the highest score is saved at every grid
+position. This continues until the requested rotational sampling density is
+achieved. At the end, the grid, which contains at each position the highest
+found cross correlation score for all sampled rotations, is segmented using a
+3D watershed algorithm \cite[Volkmann2002] in order to remove redundant solutions. The
+location of each maximum together with its correlation score and corresponding
+rotation are written to file as well as the corresponding PDB coordinates of
+the top $N$ solutions (where $N$ is a user-defined parameter). 
+
+PowerFit is written in the Python language (Python2.7) and requires the NumPy,
+SciPy and Cython packages. The CPU version can be further accelerated by
+installing the FFTW3.3 library together with pyFFTW. To offload the
+computationally intense search to the GPU, we used the OpenCL framework
+together with the clFFT library, a high-performance FFT library for OpenCL.
+Python bindings were available through the pyopencl and gpyfft packages.
+PowerFit is licensed under the MIT license and can be downloaded from
+http://www.github.com/haddocking/powerfit together with instructions on how to
+install and use it. It has been successfully tested on Linux, MacOSX and
+Windows systems and its GPU-accelerated version can run on both AMD and NVIDIA
+GPUs, minimizing vendor lock-in.
+
