@@ -1,0 +1,69 @@
+\startbuffer[cap:benchmark]
+\caption{Description of the complexes in the benchmark}
+{The 17 protein-protein complexes used during the optimization and benchmarking of HADDOCK-EM. 
+The complexes were taken from the protein-protein docking benchmark 4.0 \cite[Hwang2010].}
+\stopbuffer
+
+
+\startbuffer[tab:benchmark]
+\startlocalfootnotes
+\bTABLE
+\bTR \bTD PDB Code \eTD \bTD Category\footnote{The category of the complex: E = Enzyme/Inhibitor or Enzyme/Substrate; A = Antibody/Antigen; O = Others.} 
+\eTD \bTD Difficulty\footnote{The difficulty of the complex according to CAPRI standard}
+\eTD \bTD i-RMSD\footnote{i-RMSD: RMSD of Cα atoms of interface residues calculated after finding the best superposition of bound and unbound interfaces}
+\eTD \bTD Residues A \eTD \bTD Residues B \eTD \eTR
+\bTR \bTD 1AVX     \eTD \bTD E        \eTD \bTD Easy       \eTD \bTD 0.47   \eTD \bTD 233        \eTD \bTD 176        \eTD \eTR
+\bTR \bTD 2OUL     \eTD \bTD E        \eTD \bTD Easy       \eTD \bTD 0.53   \eTD \bTD 241        \eTD \bTD 110        \eTD \eTR
+\bTR \bTD 1AY7     \eTD \bTD E        \eTD \bTD Easy       \eTD \bTD 0.54   \eTD \bTD  96        \eTD \bTD  89        \eTD \eTR
+\bTR \bTD 4CPA     \eTD \bTD E        \eTD \bTD Easy       \eTD \bTD 0.62   \eTD \bTD 307        \eTD \bTD  39        \eTD \eTR
+\bTR \bTD 1AHW     \eTD \bTD A        \eTD \bTD Easy       \eTD \bTD 0.69   \eTD \bTD 428        \eTD \bTD 206        \eTD \eTR
+\bTR \bTD 7CEI     \eTD \bTD E        \eTD \bTD Easy       \eTD \bTD 0.70   \eTD \bTD 130        \eTD \bTD  87        \eTD \eTR
+\bTR \bTD 2OOB     \eTD \bTD O        \eTD \bTD Easy       \eTD \bTD 0.85   \eTD \bTD  41        \eTD \bTD  71        \eTD \eTR
+\bTR \bTD 2FD6     \eTD \bTD A        \eTD \bTD Easy       \eTD \bTD 1.07   \eTD \bTD 428        \eTD \bTD 279        \eTD \eTR
+\bTR \bTD 1AK4     \eTD \bTD O        \eTD \bTD Easy       \eTD \bTD 1.33   \eTD \bTD 164        \eTD \bTD 137        \eTD \eTR
+\bTR \bTD 1B6C     \eTD \bTD O        \eTD \bTD Easy       \eTD \bTD 1.96   \eTD \bTD 329        \eTD \bTD 107        \eTD \eTR
+\bTR \bTD 1BGX     \eTD \bTD A        \eTD \bTD Medium     \eTD \bTD 1.48   \eTD \bTD 822        \eTD \bTD 423        \eTD \eTR
+\bTR \bTD 1R6Q     \eTD \bTD O        \eTD \bTD Medium     \eTD \bTD 1.67   \eTD \bTD 141        \eTD \bTD  89        \eTD \eTR
+\bTR \bTD 1M10     \eTD \bTD E        \eTD \bTD Medium     \eTD \bTD 2.10   \eTD \bTD 266        \eTD \bTD 207        \eTD \eTR
+\bTR \bTD 1ACB     \eTD \bTD E        \eTD \bTD Medium     \eTD \bTD 2.26   \eTD \bTD 245        \eTD \bTD  70        \eTD \eTR
+\bTR \bTD 1JK9     \eTD \bTD O        \eTD \bTD Hard       \eTD \bTD 2.51   \eTD \bTD 220        \eTD \bTD 153        \eTD \eTR
+\bTR \bTD 1BKD     \eTD \bTD O        \eTD \bTD Hard       \eTD \bTD 2.86   \eTD \bTD 479        \eTD \bTD 166        \eTD \eTR
+\bTR \bTD 1JMO     \eTD \bTD O        \eTD \bTD Hard       \eTD \bTD 3.21   \eTD \bTD 385        \eTD \bTD 280        \eTD \eTR
+\eTABLE
+\placelocalfootnotes
+\stoplocalfootnotes
+\stopbuffer
+
+
+\startbuffer[cap:benchmark-quality]
+\caption{i-RMSD values of the best generated complex after the rigid-body docking (it0) and final water refinement (itw) stages.}
+{The quality in terms of i-RMSD values of the best solution generated after it0 and itw stages is given for each complex at the three cryo-EM density resolutions.
+The i-RMSD is calculated by fitting the solution on the backbone atoms of the residues involved in intermolecular contacts in the native complex within a cutoff of 10Å. 
+}
+\stopbuffer
+
+
+\startbuffer[tab:benchmark-quality]
+\bTABLE
+%\bTR \bTD[nr=3] PDB \eTD \bTD[nc=6] i-RMSD of best solution (Å) \eTD \eTR
+\bTR \bTD[nr=2] PDB \eTD  \bTD[nc=2] 20Å data  \eTD       \bTD[nc=2] 15Å data  \eTD         \bTD[nc=2] 10Å data \eTD \eTR
+\bTR \bTD It0  \eTD \bTD   Itw  \eTD \bTD   It0  \eTD \bTD   Itw  \eTD \bTD   It0  \eTD \bTD   Itw   \eTD \eTR
+\bTR \bTD 1AVX \eTD \bTD   1.32 \eTD \bTD   1.20 \eTD \bTD   1.04 \eTD \bTD   0.84 \eTD \bTD   0.96  \eTD \bTD  0.67 \eTD \eTR 
+\bTR \bTD 2OUL \eTD \bTD   0.68 \eTD \bTD   0.89 \eTD \bTD   0.66 \eTD \bTD   0.70 \eTD \bTD   0.66  \eTD \bTD  0.63 \eTD \eTR
+\bTR \bTD 1AY7 \eTD \bTD   1.45 \eTD \bTD   1.05 \eTD \bTD   0.75 \eTD \bTD   0.73 \eTD \bTD   0.72  \eTD \bTD  0.66 \eTD \eTR
+\bTR \bTD 4CPA \eTD \bTD   1.55 \eTD \bTD   1.53 \eTD \bTD   1.48 \eTD \bTD   1.24 \eTD \bTD   1.44  \eTD \bTD  0.94 \eTD \eTR
+\bTR \bTD 1AHW \eTD \bTD   1.70 \eTD \bTD   1.05 \eTD \bTD   1.09 \eTD \bTD   1.03 \eTD \bTD   1.04  \eTD \bTD  0.91 \eTD \eTR
+\bTR \bTD 7CEI \eTD \bTD   1.51 \eTD \bTD   1.50 \eTD \bTD   1.14 \eTD \bTD   0.91 \eTD \bTD   1.01  \eTD \bTD  0.78 \eTD \eTR
+\bTR \bTD 2OOB \eTD \bTD   2.85 \eTD \bTD   4.04 \eTD \bTD   2.73 \eTD \bTD   2.31 \eTD \bTD   1.06  \eTD \bTD  0.97 \eTD \eTR
+\bTR \bTD 2FD6 \eTD \bTD   1.71 \eTD \bTD   1.36 \eTD \bTD   1.71 \eTD \bTD   1.17 \eTD \bTD   1.62  \eTD \bTD  1.13 \eTD \eTR
+\bTR \bTD 1AK4 \eTD \bTD   2.58 \eTD \bTD   2.58 \eTD \bTD   1.93 \eTD \bTD   1.54 \eTD \bTD   1.93  \eTD \bTD  1.22 \eTD \eTR
+\bTR \bTD 1B6C \eTD \bTD   2.89 \eTD \bTD   2.33 \eTD \bTD   2.78 \eTD \bTD   2.09 \eTD \bTD   2.71  \eTD \bTD  1.88 \eTD \eTR
+\bTR \bTD 1BGX \eTD \bTD   6.95 \eTD \bTD   5.42 \eTD \bTD   5.65 \eTD \bTD   4.07 \eTD \bTD   6.29  \eTD \bTD  4.85 \eTD \eTR
+\bTR \bTD 1R6Q \eTD \bTD   2.41 \eTD \bTD   2.74 \eTD \bTD   1.91 \eTD \bTD   1.68 \eTD \bTD   1.83  \eTD \bTD  1.26 \eTD \eTR
+\bTR \bTD 1M10 \eTD \bTD   4.55 \eTD \bTD   3.81 \eTD \bTD   4.48 \eTD \bTD   3.20 \eTD \bTD   4.47  \eTD \bTD  2.82 \eTD \eTR
+\bTR \bTD 1ACB \eTD \bTD   3.00 \eTD \bTD   2.73 \eTD \bTD   2.80 \eTD \bTD   2.45 \eTD \bTD   2.86  \eTD \bTD  2.43 \eTD \eTR
+\bTR \bTD 1JK9 \eTD \bTD   3.04 \eTD \bTD   2.83 \eTD \bTD   2.84 \eTD \bTD   2.37 \eTD \bTD   2.83  \eTD \bTD  2.32 \eTD \eTR
+\bTR \bTD 1BKD \eTD \bTD   4.56 \eTD \bTD   4.21 \eTD \bTD   4.43 \eTD \bTD   3.82 \eTD \bTD   4.37  \eTD \bTD  3.62 \eTD \eTR
+\bTR \bTD 1JMO \eTD \bTD   4.66 \eTD \bTD   4.55 \eTD \bTD   4.35 \eTD \bTD   4.20 \eTD \bTD   4.51  \eTD \bTD  4.23 \eTD \eTR
+\eTABLE
+\stopbuffer

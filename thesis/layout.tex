@@ -14,7 +14,11 @@
 \setupexternalfigures[factor=broad, directory=figures]
 
 \setupcaptions[style=small]
+\setupcaption[table][location=top]
 
 \def\caption#1#2{{\bf #1} #2}
+
+\setuppublications[alternative=apa]
+\def\inlinecite{\cite[left=, right=]}
 
 \stopenvironment

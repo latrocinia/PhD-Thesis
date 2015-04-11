@@ -37,8 +37,12 @@ The 400 best scoring models are then refined using the standard HADDOCK refineme
 
 Since the HADDOCK protocol consists of several stages (rigid body docking and scoring (it0), and flexible refinement stages in vacuum (it1) and explicit solvent (itw)), we will separately discuss the impact of incorporation of cryo-EM data on each stage. 
 We investigated the use of 10, 15 and 20Å simulated cryo-EM data on a benchmark consisting of 17 complexes taken from the protein-protein docking benchmark 4.0 \cite[Hwang2010].
-These complexes consist of 10 easy, 4 medium and 3 hard cases (based on the degree of conformational changes taking place upon complex formation) and are listed in Table 1. 
+These complexes consist of 10 easy, 4 medium and 3 hard cases (based on the degree of conformational changes taking place upon complex formation) and are listed in \in{Table}[tab:benchmark].
 Even though the complexes in the benchmark are significantly smaller than what can be imaged by cryo-EM, their use is still justified to optimize our protocol and investigate the limits of using density data during the docking.
+
+\placetable[top][tab:benchmark]
+{\getbuffer[cap:benchmark]}
+{\getbuffer[tab:benchmark]}
 
 As a reference to assess the performance of using cryo-EM data in the it0-stage, we used the ab initio mode of HADDOCK (HADDOCK-CM), which uses center of mass distance restraints between molecules to drive the docking \cite[Karaca2013].
 We investigated two different performance indices at this stage, namely the interfacial quality of the best-generated solution, or interface RMSD (i-RMSD) as defined by the CAPRI standards \cite[Janin2003], 
@@ -99,10 +103,13 @@ The average i-RMSD improvements between it1 and itw are modest: 0.04Å, 0.05Å a
 So the bulk of the improvement is gained during the it1-stage, which was also previously noted (see Figure 2 in \cite[deVries2007]). 
 The maximal improvement observed with cryo-EM restraints is about two times larger than what was previously observed in an analysis of our CAPRI predictions. 
 This substantial improvement is also reflected in the increased number of acceptable solutions after the refinement for each complex (Table S1). 
-The number of cases with at least one acceptable increases from 13 for 20Å resolution data to 15 for the 15Å and 10Å resolution data (Table 2). 
+The number of cases with at least one acceptable increases from 13 for 20Å resolution data to 15 for the 15Å and 10Å resolution data (\in{Table}[tab:benchmark-quality]). 
 The resulting models are ultimately re-scored using the itw-HADDOCK-EM score (\in{Eq.}[eq:haddock-em-itw]). 
 The enrichment of models in the top 400, 10 and 1 compared to HADDOCK-CM are given in Table S3.
 
+\placetable[top][tab:benchmark-quality]
+{\getbuffer[cap:benchmark-quality]}
+{\getbuffer[tab:benchmark-quality]}
 
 \subsection{Docking two ribosomal proteins using experimental 9.8Å cryo-EM data}
 
