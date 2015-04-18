@@ -1,0 +1,95 @@
+\startbuffer[cap:fitting-performance]
+\caption{}{Fitting performance on the GroEL/GroES complex of the Laplace
+pre-filter local cross correlation (L) and core-weighted LCC (CW)
+score.}
+\stopbuffer
+
+\startbuffer[tab:fitting-performance]
+\setupTABLE[width=broad, align=middle, frame=off]
+\setupTABLE[c][1][width=8em]
+\setupTABLE[r][1, 4][topframe=on]
+\setupTABLE[r][5][bottomframe=on]
+\bTABLE[align=middle]
+\bTABLEhead
+\bTR \bTD[nr=3] \eTD \bTD[nc=6] Average RMSD of fitted subunits (Å) \eTD \eTR
+\bTR \bTD[nc=2] Trans \eTD \bTD[nc=2] Cis \eTD \bTD[nc=2] GroES \eTD \eTR
+%\bTR \bTD \eTD \bTD L-LCC \eTD \bTD L-CW-LCC \eTD \bTD L-LCC \eTD \bTD L-CW-LCC \eTD \bTD L-LCC \eTD \bTD L-CW-LCC \eTD \eTR
+\bTR \bTD L \eTD \bTD CW \eTD \bTD L \eTD \bTD CW \eTD \bTD L \eTD \bTD CW \eTD \eTR
+\eTABLEhead
+\bTABLEbody
+\bTR \bTD Resampled \eTD \bTD 5.5 \eTD \bTD 5.2 \eTD \bTD 7.6 \eTD \bTD 7.3 \eTD \bTD 4.4 \eTD \bTD 4.4 \eTD \eTR
+\bTR \bTD Full map \eTD \bTD 2.9 \eTD \bTD 3.4 \eTD \bTD 4.6 \eTD \bTD 3.8 \eTD \bTD 4.6 \eTD \bTD 4.2 \eTD \eTR
+\eTABLEbody
+\eTABLE
+\stopbuffer
+
+
+\startbuffer[cap:time-required-lcc]
+\caption{}
+{Time required for a coarse (20.81°) and fine (4.71°) rotational search on the
+GroEL/GroES complex using the local cross-correlation score.}
+\stopbuffer
+
+\startbuffer[tab:time-required-lcc]
+\setupTABLE[width=broad, frame=off]
+\setupTABLE[r][1, 3][topframe=on]
+\setupTABLE[r][5][bottomframe=on]
+\bTABLE[align=middle]
+\bTR \bTD[nr=2]  \eTD \bTD[nc=2] Coarse \eTD \bTD[nc=2] Fine \eTD \eTR
+\bTR \bTD CPU \eTD \bTD GPU \eTD \bTD CPU \eTD \bTD  GPUe \eTD \eTR
+\bTR \bTD Full map \eTD \bTD 3m 32s  \eTD \bTD 18s \eTD \bTD 6h 23m  \eTD \bTD 23m 50s \eTD \eTR
+\bTR \bTD Trimmed  \eTD \bTD 58s     \eTD \bTD 7s  \eTD \bTD 1h 37m  \eTD \bTD 3m 54s  \eTD \eTR
+\bTR \bTD T + R    \eTD \bTD 10s     \eTD \bTD 4s  \eTD \bTD 13m 6s  \eTD \bTD 1m 6s   \eTD \eTR
+\eTABLE
+\stopbuffer
+
+
+\startbuffer[cap:timing-comparison]
+\caption{}
+{Timing comparison between powerfit and gEMfitter using a fine rotational search on the GroEL/GroES complex.}
+\stopbuffer
+
+\startbuffer[tab:timing-comparison]
+\setupTABLE[width=broad, frame=off]
+\setupTABLE[r][1, 3][topframe=on]
+\setupTABLE[r][4][bottomframe=on]
+\bTABLE[align=center]
+\bTR \bTD \eTD \bTD[nc=2] CPU \eTD \bTD[nc=2] GPU \eTD \eTR
+\bTR \bTD \eTD \bTD gEMfitter \eTD \bTD \powerfit \eTD \bTD gEMfitter \eTD \bTD \powerfit \eTD \eTR
+\bTR \bTD Full map \eTD \bTD 5h 48m \eTD \bTD 6h 23m \eTD \bTD 11m \eTD \bTD 25m 48s \eTD \eTR
+\bTR \bTD Resampled \eTD \bTD 38m 2s \eTD \bTD 41m 25s \eTD \bTD - \eTD \bTD 1m 40s \eTD \eTR
+\eTABLE
+\stopbuffer
+
+
+\startbuffer[cap:additional-complexes]
+\caption{}
+{Additional complexes fitted with powerfit by performing a fine rotational
+search (4.71°) using the four scoring functions (LCC = local cross correlation;
+CW-LCC = core-weighted LCC; L-LCC; Laplace pre-filtered LCC; L-CW-LCC = Laplace
+pre-filtered CW-LCC).}
+\stopbuffer
+
+\startbuffer[tab:additional-complexes]
+\setupTABLE[width=fit, frame=off]
+\setupTABLE[bottomframe=on]
+\setupTABLE[4, 5, 6][2, 3, 4, 6, 7, 8, 10, 11, 12][bottomframe=off]
+\setupTABLE[r][1][topframe=on]
+\bTABLE[align={center, lohi}]
+\bTR \bTD EMDB \eTD \bTD Resolution (Å) \eTD \bTD PDB \eTD \bTD Score \eTD \bTD RMSD (Å) \eTD \bTD Rank \eTD \eTR
+\bTR \bTD[nr=4] 2325 \eTD \bTD[nr=4] 8.9 \eTD \bTD[nr=4] 3ZPZ:O \eTD \bTD LCC \eTD \bTD 1.7 \eTD \bTD 1 -- 7 \eTD \eTR
+\bTR \bTD CW-LCC \eTD \bTD 1.9 \eTD \bTD 1 -- 7 \eTD \eTR
+\bTR \bTD L-LCC \eTD \bTD 1.7 \eTD \bTD 1 -- 7 \eTD \eTR
+\bTR \bTD L-CW-LCC \eTD \bTD 1.5 \eTD \bTD 1 -- 7 \eTD \eTR
+%
+\bTR \bTD[nr=4] 1884 \eTD \bTD[nr=4] 9.8 \eTD \bTD[nr=4] 2YKR:W \eTD \bTD LCC \eTD \bTD 2.5 \eTD \bTD 1 \eTD \eTR
+\bTR \bTD CW-LCC \eTD \bTD 3.0 \eTD \bTD 2 \eTD \eTR
+\bTR \bTD L-LCC \eTD \bTD 2.2 \eTD \bTD 1 \eTD \eTR
+\bTR \bTD L-CW-LCC \eTD \bTD 2.2 \eTD \bTD 1 \eTD \eTR
+%
+\bTR \bTD[nr=4] 2017 \eTD \bTD[nr=4] 13.5 \eTD \bTD[nr=4] 4ADV:V \eTD \bTD LCC \eTD \bTD 60.8 \eTD \bTD 1 \eTD \eTR
+\bTR \bTD CW-LCC \eTD \bTD 1.3 \eTD \bTD 1 \eTD \eTR
+\bTR \bTD L-LCC \eTD \bTD 5.9 \eTD \bTD 1 \eTD \eTR
+\bTR \bTD L-CW-LCC \eTD \bTD 4.7 \eTD \bTD 3 \eTD \eTR
+\eTABLE
+\stopbuffer

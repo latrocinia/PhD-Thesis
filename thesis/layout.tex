@@ -11,12 +11,19 @@
 
 \setuppagenumbering[alternative=doublesided, location=right]
 
+% figures
 \setupexternalfigures[factor=broad, directory=figures]
 
+% tables
+
+% captions
 \setupcaptions[style=small]
 \setupcaption[table][location=top]
-
 \def\caption#1#2{{\bf #1} #2}
+
+% references
+\def\infigure#1[#2]{\in{Figure}{#1}[#2]}
+\def\intable[#1]{\in{Table}[#1]}
 
 \setuppublications[alternative=apa]
 \def\inlinecite{\cite[left=, right=]}

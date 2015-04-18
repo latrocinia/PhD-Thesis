@@ -1,0 +1,180 @@
+\subsection{Scoring sensitivity of the core-weighted LCC}
+
+To test the scoring sensitivity of the CW-LCC, we used PowerFit to fit each
+subunit of the 80S D. melanogaster ribosome \cite[Anger2013] independently in
+the density at different resolutions. To this end, we simulated cryo-EM data
+from a deposited model (4V6W) from 6Å to 30Å resolution in 1Å increments. The
+cryo-EM data were created using a Python script based on the molmap function in
+UCSF Chimera. Subsequently, we fitted each subunit using the LCC and CW-LCC
+score and also together with the Laplace pre-filter (L-LCC and L-CW-LCC)
+resulting in four different scoring functions. As there are 86 subunits in the
+assembly, we performed 8600 exhaustive searches in total (86 subunits $\times$
+25 resolutions $\times$ 4 different scores). The voxel spacing of the simulated
+data was 1/4th of the resolution with a maximum of 4Å using a rotational
+sampling density of 20.83° (648 rotations). We defined a fit as successful if
+the positional RMSD of a solution in the top 10 was smaller than 8Å compared to
+the reference structure (4V6W), which is a reasonable 2 voxel spacing away from
+the correct solution at 16Å resolution and lower. Since we were testing the
+sensitivity of the scoring function, the orientation of the correct model was
+used during each search. The results of the scoring comparison are shown in
+\infigure{B}[fig:ribosome-results].
+
+\placefigure[top][fig:ribosome-results]
+{\getbuffer[cap:ribosome-results]}
+{\externalfigure[fig:ribosome-results]}
+
+All four scoring functions can fit all subunits correctly in the density at 6Å
+and 7Å resolution. However, the performance of the LCC begins to decrease after
+8Å resolution and the number of successful cases drops markedly up to 18Å
+resolution, to further only decrease. The CW-LCC score performs significantly
+better, only starting to drop at 10Å resolution. After that, it follows a
+similar pattern as the LCC with a quick drop first and a more stable region in
+the end. The core-weighted approach extends the applicable resolution range of
+the LCC by a respectable 3Å. The scoring functions combined with the Laplace
+pre-filter are evidently performing better. The L-LCC score is almost 100\%
+successful up to 12Å resolution. The success rate drops at lower resolutions,
+though not as fast as the LCC and CW-LCC score and follows a rather linear
+trend, which is in contrast with the other scoring methods. The best performing
+score is the L-CW-LCC as expected. It is capable of fitting all subunits up to
+a resolution of 12Å and is near-perfect up to 15Å resolution. Similar to the
+L-LCC score, the success rate drops linearly up to 30Å resolution. 
+
+This analysis demonstrates that including both the Laplace pre-filter and the
+core-weighted approach results in the most sensitive scoring function. The
+Laplace pre-filter seems to have the largest impact, changing the drop rate of
+the curve to a linear one, while the inclusion of the core-weighted approach
+results in a right shift of the curve.
+
+
+\subsection{Fitting performance of \powerfit}
+
+\subsubsection{Fitting subunits in the GroEL/GroES complex}
+
+As an experimental test case for \powerfit, we used the GroEL/GroES complex
+(EMD-1046, \infigure{}[fig:GroEL-GroES] 4) \cite[Ranson2001], which has been
+used in the cryo-EM modeling challenge and makes comparison with other software
+possible \cite[Pintilie2012, Hoang2013]. The crystal structure of GroEL/GroES
+(1GRU) was used as a reference. We fitted a subunit of the trans, cis rings of
+GroEL and the whole GroES ring (as with other software attempts, fitting
+individual subunits of GroES was not successful \cite[Hoang2013]) independently
+in the density, using the four different scoring functions, with and without
+resampling. The rotational sampling density was set at 4.71°. For the cis and
+trans rings we took the top 7 best scoring fits and calculated the average RMSD
+to the 1GRU reference structure; for the GroES ring we took the best fit only.
+The results are shown in \intable[tab:fitting-performance].
+
+\placetable[top][tab:fitting-performance]
+{\getbuffer[cap:fitting-performance]}
+{\getbuffer[tab:fitting-performance]}
+
+The LCC score was not capable of fitting any subunit properly as was noted
+earlier \cite[Hoang2013]. In case of the GroES lid, it actually places it
+upside-down in the density. The CW-LCC is more successful in this respect, and
+properly fits the GroES ring at the top of the density with an RMSD of 7.4Å
+using the full map and 4.4Å when using the resampled map. However, it still
+fails to accurately fit the trans and cis subunits in the density. In general,
+the Laplace pre-filter scoring functions are capable of fitting all subunits
+successfully in the density, with no significant difference in accuracy
+considering the resolution of the data. As expected, the accuracy lowers when
+we resample the map to two times Nyquist, though the difference is less than
+one voxel spacing; when refitting the top 7 solutions using one translational
+scan in the fitted orientation with the regular voxel spacing, similar results
+are obtained, but at a markedly lower computational cost (see next section).
+The fitting results from \powerfit\ (RMSD of 3.4, 3.8 and 4.2Å) are competitive
+compared to previous published ones: gEMfitter reported an RMSD of 2.8, 4.0 and
+5.3Å for the trans, cis and GroES ring \cite[Hoang2013], respectively, and
+Segger 3.1, 5.1 and 6.0Å \cite[Pintilie2010].
+
+
+\placefigure[top][fig:GroEL-GroES]
+{\getbuffer[cap:GroEL-GroES]}
+{\externalfigure[fig:GroEL-GroES]}
+
+\subsubsection{Timing comparison of \powerfit}
+
+We also investigated the effect of trimming and resampling the density on the
+time required to perform a run. As the Laplace pre-filter only needs to be
+applied once, the timings of the regular and Laplacian scores are similar. We
+therefore only show times for the L-LCC and L-CW-LCC scores. The results of the
+timing runs are shown in \intable[tab:time-required-lcc].
+
+
+Running a coarse 20.81° rotational search can be done in a few minutes, even on
+a single processor with a map size of $128 \times 128 \times 128$ voxels.
+However, for a fine rotational sampling density of 4.71° an exhaustive search
+already requires more than 6 hours. Using a GPU (NVIDIA Geforce GTX680) to
+accelerate the search reduces the time required to approximately 30 minutes.
+When trimming the density before the search, which in the GroEL/GroES case
+reduces the map size to $72 \times 72 \times 90$, the time required for a fine
+search drops to ~ 1.5 to 2 hours on a single processor and only 5 minutes on a
+GPU. It should be emphasized that trimming the map does not have any impact on
+the search accuracy and thus should always be applied for a faster search.
+Further minimizing the map size by resampling the density results in $36 \times
+36 \times 45$ voxels, and only requires 15 minutes on a single CPU and 1 to 2
+minutes on a GPU. Thus, we advise to always use the trimming option and start a
+search using the resampled option. The resulting solutions can than be refitted
+using a single translational scan on the non-resampled map for an optimal speed
+to accuracy trade-off.
+
+\placetable[top][tab:time-required-lcc]
+{\getbuffer[cap:time-required-lcc]}
+{\getbuffer[tab:time-required-lcc]}
+
+We compared the fitting times of \powerfit\ against another GPU-accelerated rigid
+body fitting software gEMfitter \cite[Hoang2013]. The results are shown in
+\intable[tab:timing-comparison]. Running gEMfitter using a 5° rotational sampling density (92160
+orientations) with the L-LCC scoring functions, requires 5 hours and 48 minutes
+against 6 hours and 23 minutes for \powerfit, without any of the simplifications
+introduced here, on a single processor (Intel Core i7-3632QM). As the bulk of
+the time is spent on computing FFTs, the difference in performance might be
+found in the fact that the gEMfitter binary has been compiled with the
+mkl-library and \powerfit\ with GCC. gEMfitter also has a resampling option,
+which reduces the running time to 38 minutes. Only applying the resampling
+option reduces the running time for \powerfit\ to 41 minutes, and combined with
+trimming the running time drops further to ~13 minutes using the same L-LCC
+scoring function. We could not properly compare the GPU-accelerated version of
+gEMfitter against \powerfit\ as the provided gEMfitter binary runs only on Ubuntu
+systems with NVIDIA GPUs and was not at the authors’ disposal. However, the
+gEMfitter article reports 11 minutes running time using a NVIDIA C2075 GPU,
+which is significantly shorter than \powerfit\ without trimming and resampling.
+With the latter two options turned on, the \powerfit\ timings drop to close to 1
+minute on a GTX680 GPU card.  Again, since the bulk of the time is spent on
+computing FFTs, the difference probably arises in the efficiency of the FFT
+implementation: the CUDA FFT implementation is specifically optimized for
+NVIDIA GPUs while the clFFT implementation is mainly optimized for AMD
+architecture, but runs on all OpenCL supported architectures. So there is a
+choice between performance versus portability, although, with trimming and
+resampling enabled, \powerfit\ is still faster. 
+
+\placetable[top][tab:timing-comparison]
+{\getbuffer[cap:timing-comparison]}
+{\getbuffer[tab:timing-comparison]}
+
+
+\subsubsection{Additional complexes fitted with \powerfit}
+
+To validate our approach further, we applied \powerfit\ on three additional cases
+in the resolution range of 8.9 to 13.5Å (\intable[tab:additional-complexes],
+\infigure{}[fig:additional-cases]). EMDB entry 2325 is another GroEL/GroES
+complex, but at a considerably higher resolution of 8.9Å compared to the 1046
+density \cite[Chen2013]. The increased level of detail allowed to fit each
+GroES subunit independently in the map, irrespective of the scoring function
+used, with the correct 7 fits found in the top 7. The other two cases are
+ribosomes with a GTPase \cite[Guo2011] and methyltransferase
+\cite[Boehringer2012] bound to it, subunits with comparable size. For entry
+1884 with a reported resolution of 9.8Å, the RsgA GTPase was correctly fitted
+in the density by all four scoring functions and was found within the top 2
+best scoring solutions. The ribosome map 2017 with the bound KsgA
+methyltransferase has a somewhat lower resolution of 13.5Å. In this case, the
+LCC was incapable of correctly fitting the subunit in the density. The other
+scoring functions placed the subunit properly in the map, with the correct fit
+found within the top 3 best scoring solutions.
+
+\placetable[top][tab:additional-complexes]
+{\getbuffer[cap:additional-complexes]}
+{\getbuffer[tab:additional-complexes]}
+
+\placefigure[top][fig:additional-cases]
+{\getbuffer[cap:additional-cases]}
+{\externalfigure[fig:additional-cases]}
+

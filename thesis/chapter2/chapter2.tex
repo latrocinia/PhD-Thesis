@@ -3,9 +3,9 @@
 
 % setup everything
 \environment layout
-\environment figures
-\environment tables
 
+\input figures
+\input tables
 \def\powerfit{{\it powerfit}}
 
 \setupbibtex[database={references}, sort=author]
@@ -19,13 +19,12 @@
 \input methods
 
 \section{Results}
-%\input results
+\input results
 
 \section{Conclusion}
 \input conclusion
 
 \section{References}
-%\input references
 \placepublications[criterium=all]
 
 \stopcomponent
