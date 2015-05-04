@@ -1,0 +1,36 @@
+
+\startcomponent chapter5
+
+\environment layout
+\environment chapter5/figures
+\environment chapter5/tables
+
+\define[0]\rvdW{r_{\text{vdW}}}
+
+\setupbibtex[database={chapter5/references}, sort=author]
+
+\Chapter{DisVis: Visualizing the Accessible Interaction Space of
+Distance-Restrained Biomolecular Complexes}
+
+
+\Section{Introduction}
+
+\input chapter5/introduction
+
+
+\input chapter5/methods
+
+
+\Section{Examples}
+
+\input chapter5/examples
+
+
+\Section{Conclusions}
+
+\input chapter5/conclusions
+
+\Subject{References}
+\placepublications[criterium=all]
+
+\stopcomponent

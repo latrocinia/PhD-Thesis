@@ -1,0 +1,41 @@
+To illustrate the capabilities of \disvis, we applied it on two systems, using
+MS cross-links data (see the Supplementary Information for details). A fine
+rotational search (5.27°, 53256 orientations) was performed using default
+values. First we investigated the accessible interaction space of two chains of
+the RNA polymerase II complex of S. cerevisiae (1WCM, chain A and E) for which
+6 BS3 cross-links were available \cite[Chen2010, Kahraman2013].
+The allowed distance was set between 0 and 30Å (Cβ – Cβ) for every restraint.
+Two false-positive restraints were added with a distance in the crystal
+structure of 35.7 (FP1) and 42.2Å (FP2) to test whether these violating
+restraintsthey could be identified. Applying disvis shows that none of the
+18.9×109 complexes sampled are consistent with all 8 restraints, though a small
+number are conforming to 7 cross-links (9716 complexes). For the latter, only
+restraint FP2 is violated. The accessible interaction space consistent with at
+least 6 restraints is less than 0.03\% of the full interaction space (Figure 1).
+The density clearly indicates the position of the E-chain. Interestingly, both
+false-positive restraints are violated in 100\% of the complexes consistent with
+at least 6 restraints; in contrast, the highest violation percentage of a
+correct cross-link is only 0.1\%. Thus, a high-violation percentage is an
+indication of a false-positive restraint. 
+
+Secondly, we applied disvis on two proteins of the 26S proteasome of S. pombe,
+PRE5 (O14250) and PUP2 (Q9UT97), with 7 cross-links available (Leitner et al.,
+2014). The acceptable distances for the adipic acid dihydrazide (ADH) and
+zero-length (ZL) cross-links were set to 23 and 26Å (Cα - Cα), respectively, as
+95\% of distances found in a benchmark were shorter \cite[Leitner2014]. The
+PRE5-PUP2 complex is significantly smaller than the previous example with the
+full interaction space consisting of 6.9×109 complexes. Still, the accessible
+interaction space consistent with all 7 restraints is heavily reduced to less
+than 0.04\% of the full interaction space. The accessible interaction space of
+the PUP2 chain with respect to PRE5 is overlapping with its center of mass
+deduced from a homology model (Figure S1). 
+
+The computation for those two examples took 74m and 27m on 16 AMD Opteron 6344
+processors and 76m and 19m on an NVIDIA GeForce GTX 680 GPU, respectively.
+However, by increasing the voxel spacing to 2Å and using a coarser rotational
+search (9.72°, 7416 orientations) rather similar results can be obtained in
+only 19m and 8m, respectively, on a single processor (cf. Table S2 and S4 for
+example). It should further be noted that the bulk of the time is spent on
+computing the FFTs and a negligible part on computing the consistent distance
+restraint space (Table S11).
+

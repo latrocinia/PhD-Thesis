@@ -2,7 +2,10 @@
 
 \product thesis
 
+\usemodule[units]
+
 \definepapersize[ThesisPrintSize][width=17cm, height=24cm]
+
 \setuppapersize[ThesisPrintSize]
 
 \setuplayout[location=middle, width=13.0cm, height=18.6cm, 
@@ -10,6 +13,15 @@
              header=0.0cm, footer=1cm]
 
 \setuppagenumbering[alternative=doublesided, location=right]
+
+% heads
+\definehead[Chapter][chapter]
+
+\definehead[Section][section]
+
+\definehead[SubSection][subsection]
+
+\definehead[Subject][subject]
 
 % figures
 \setupexternalfigures[factor=broad, directory=figures]
@@ -22,10 +34,15 @@
 \def\caption#1#2{{\bf #1} #2}
 
 % references
-\def\infigure#1[#2]{\in{Figure}{#1}[#2]}
-\def\intable[#1]{\in{Table}[#1]}
+\definereferenceformat[infigure][left=Figure]
+\definereferenceformat[intable][left=Table]
+%\def\infigure#1[#2]{\in{Figure}{#1}[#2]}
+%\def\intable[#1]{\in{Table}[#1]}
 
 \setuppublications[alternative=apa]
 \def\inlinecite{\cite[left=, right=]}
+
+% shortcuts
+\define[0]\disvis{\emph{disvis}}
 
 \stopenvironment
