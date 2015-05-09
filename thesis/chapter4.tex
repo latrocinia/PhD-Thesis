@@ -1,0 +1,32 @@
+
+\startcomponent chapter3
+
+% setup everything
+\environment layout
+
+\input chapter4/figures
+\input chapter4/tables
+
+\setupbibtex[database={chapter4/references}, sort=author]
+
+\Chapter{Integrative modeling of biomolecular complexes: HADDOCKing with cryo-EM data}
+
+\Section{Introduction}
+\input chapter4/introduction
+
+\Section{Results and discussion}
+\input chapter4/results-and-discussion
+
+\Section{Conclusion}
+\input chapter4/conclusion
+
+\Section{Experimental procedures}
+\input chapter4/experimental-procedures
+
+\Section{Supplementary information}
+%\input supplementary-information
+
+\Subject{References}
+\placepublications[criterium=all]
+
+\stopcomponent
