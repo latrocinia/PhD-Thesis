@@ -1,0 +1,9 @@
+Residue chain A | Residue-chain-E | Cross-linker†  | Distance-in-complex-(Å)‡
+1003    | 166     |BS3     |12.5
+129     | 161     |BS3     |19.8
+129     | 171     |BS3     |12.9
+15      | 171     |BS3     |19.6
+934     | 201     |BS3     |21.8
+938     | 201     |BS3     |15.1
+180     | 122     |Virtual |35.7
+1092    | 152     |Virtual |42.2

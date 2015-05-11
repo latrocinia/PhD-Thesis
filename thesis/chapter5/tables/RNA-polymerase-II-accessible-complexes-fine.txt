@@ -1,0 +1,10 @@
+Number of consistent restraints (N) |    Number of accessible complexes consistent with exactly N restraints  |   Fraction of accessible complexes consistent with exactly N restraints |  Number of accessible complexes consistent with at least N restraints |   Fraction of accessible complexes consistent with at least N restraints
+0   |    16570457037   |  0.8749 | 18940752204 |    1.0000
+1   |    1392884181    |  0.0735 | 2370295166  |    0.1251
+2   |    678488947     |  0.0358 | 977410985   |    0.0516
+3   |    206270378     |  0.0109 | 298922038   |    0.0158
+4   |    74963882      |  0.0040 | 92651659    |    0.0049
+5   |    12515339      |  0.0007 | 17687776    |    0.0009
+6   |    5162720       |  0.0003 | 5172437     |    0.0003
+7   |    9716          |  0.0000 | 9716        |    0.0000
+8   |    0             |  0.0000 | 0           |    0.0000

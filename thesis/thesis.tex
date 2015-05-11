@@ -4,10 +4,10 @@
 
 \startfrontmatter
 
-\Chapter{Table of Contents}
+\chapter{Table of Contents}
 \placelist[Chapter][criterium=all]
 
-%\component titlepage
+%\component frontmatter
 \stopfrontmatter
 
 \startbodymatter
@@ -17,23 +17,26 @@
 \component chapter4
 \component chapter5
 %\component chapter6
-
-\chapter{References}
-
-\placepublications[criterium=all]
 \stopbodymatter
 
 \startbackmatter
+\Chapter{References}
+\placepublications[criterium=all]
+
 \Chapter{Summary}
+%\input summary
 
 \Chapter{Samenvatting}
+%\input samenvatting
 
 \Chapter{Acknowledgements}
+%\input acknowledgements
 
 \Chapter{Publications}
+%\input publications
 
 \Chapter{Curriculum Vitae}
-
+%\input curriculum-vitae
 
 \stopbackmatter
 
