@@ -1,4 +1,4 @@
-\subsection{Generation of simulated cryo-EM maps}
+\SubSection{Generation of simulated cryo-EM maps}
 
 For the generation of the simulated cryo-EM maps we wrote a Python script based on the molmap function in UCSF Chimera. 
 The resulting density is described by:
@@ -13,7 +13,7 @@ This definition of the standard deviation ensures that the magnitudes of the Fou
 The extent of the Gaussian kernel was four times the standard deviation and the voxel spacing one-fourth of the resolution. 
 An example of a resulting 10, 15 and 20Å map is given in Figure S4.
 
-\subsection{HADDOCK protocol}
+\SubSection{HADDOCK protocol}
 
 HADDOCK has been described in details in previous work \cite[Dominguez2003, deVries2010].
 Its docking protocol consists of three stages: an initial rigid body docking stage (it0), a semi-flexible refinement stage using simulated annealing in torsion-angle space (it1) and a final flexible refinement stage in explicit water (itw). 
@@ -47,7 +47,7 @@ $E_{desolv}$ an empirical desolvation energy \cite[Fernandez-Recio2004]
 and BSA is the buried surface area in Å$^2$.  
 The energies are calculated with an 8.5Å cutoff based on OPLS parameters \cite[Jorgensen1988].
 
-\subsection{HADDOCK-EM protocol}
+\SubSection{HADDOCK-EM protocol}
 
 As HADDOCK uses CNS (Crystallography and NMR System) \cite[Brunger2007] as computational engine, 
 all crystallographic tools and energy function available in CNS are available to HADDOCK. 
@@ -123,7 +123,7 @@ Other minor requirements are that the number of voxels in each dimension of the 
 For the latter two tasks, Python scripts are included in the HADDOCK distribution. 
 Finally, the time required for a HADDOCK-EM run decreases with decreasing map size, since this speeds up the calculations of the FFTs.
 
-\subsection{Optimizing and benchmarking HADDOCK-EM}
+\SubSection{Optimizing and benchmarking HADDOCK-EM}
 
 The HADDOCK-EM protocol relies on the optimization of two parameters for the docking, namely the force constant for the centroid based distance restraints and the weight for the cross correlation energy term. 
 In addition, the weight factors of the LCC term in the it0 and itw-HADDOCK score need to be determined. 
@@ -144,7 +144,7 @@ To investigate the sensitivity of the protocol to incorrectly placed centroids, 
 Each centroid was moved in a random direction by taking a random point on the unit sphere with a displacement of 3, 5 and 7Å. 
 The solutions were analyzed as explained above.
 
-\subsection{HADDOCK-EM with symmetry}
+\SubSection{HADDOCK-EM with symmetry}
 
 To leverage Cn-symmetry in cyclical symmetric complexes a few adjustments were made to the non-symmetric HADDOCK-EM protocol (Figure 8A). 
 The main difference is in the initial placement of the subunits in the it0-stage. 
@@ -162,7 +162,7 @@ Typically 10000 models are generated.
 They are scored with the it0-HADDOCK-EM and 400 models are refined in the it1 and itw stage. 
 The refinement protocol is similar to the non-symmetric HADDOCK-EM protocol, but with added symmetry restraints.
 
-\subsection{Modeling protein S7 and S19 of the 30S E. coli ribosome}
+\SubSection{Modeling protein S7 and S19 of the 30S E. coli ribosome}
 
 For the 30S E. coli ribosome the cryo-EM data were downloaded from the EMDB (EMD-1884) with its corresponding fitted PDB file (2YKR). 
 The density belonging to the interacting ribosomal proteins S7 and S19, was masked out as follows. 
@@ -173,7 +173,7 @@ We followed the standard HADDOCK-EM protocol as described above using ambiguous 
 During the docking 10000 models were generated in it0 and the top 400 best scoring solutions were refined in it1 and itw. 
 The solutions were clustered using a cutoff of 7.5Å and the i-RMSDs were calculated against the 2YKR-model, using ProFit 
 
-\subsection{Modeling the interaction of KsgA with the 16S rRNA of the 30S E. coli ribosome}
+\SubSection{Modeling the interaction of KsgA with the 16S rRNA of the 30S E. coli ribosome}
 
 In order to model the interaction of KsgA with the 16S rRNA of the 30S E. coli ribosome, we downloaded the 13.5Å cryo-EM map from the EMDB (EMD-2017) with its corresponding fitted PDB file (4ADV). 
 Since the 16S rRNA chain can be unambiguously placed in the cryo-EM map, we used the 16S rRNA as it was fitted and kept the chain fixed during the it0 stage. 
@@ -193,7 +193,7 @@ The water refinement stage was skipped since full molecular dynamics simulations
 During the refinement, additional unambiguous distance restraints were used to keep helix-45 in its place, since it was disconnected from the main chain but does take part in the interaction. 
 The i-RMSDs of the refined models were calculated against the current 4ADV-model.
 
-\subsection{Modeling the adeno-associated virus-2 complexed with antibody}
+\SubSection{Modeling the adeno-associated virus-2 complexed with antibody}
 
 For the adeno-associated virus-2 in complex with antibody A20 the 8.5Å resolution cryo-EM data were obtained from the EMDB (EMD-5424) together with the fitted PDB (3J1S). 
 As the resolution allows an unambiguous rigid body fit of both the capsid protein and the anti-body, the centroids were determined by calculating the COM of each chain in the 3J1S-model. 
@@ -201,7 +201,7 @@ Residues within 5Å distance of the other interacting chain were used as active 
 To speed-up the calculation, the density within a 50Å shell was masked out. 
 I-RMSDs were calculated using 3J1S as a reference. 
 
-\subsection{Modeling the interaction between Dengue virus and 2H2 antibody}
+\SubSection{Modeling the interaction between Dengue virus and 2H2 antibody}
 
 Cryo-EM data of 21Å resolution were downloaded from the EMDB (EMD-5674) and its current model (3J42). 
 For docking, the antibody was taken from the current model, while for the envelope-prM complex the original model was used (3C5X), since the envelope protein-prM complex in 3J42 did not have any side-chains. 
@@ -210,7 +210,7 @@ Residues within 5Å of the other chain in the 3J42 model were used as active res
 The i-RMSDs were calculated using the 3J42 model as a reference. 
 A step-by-step protocol for setting up the docking run and all parameters involved are given in the Supplemental Information.
 
-\subsection{Modeling the large terminase complex}
+\SubSection{Modeling the large terminase complex}
 
 The 16Å resolution negative stain data were obtained from the EMDB (EMD-2355) together with its deposited model (4bij). 
 Centroids were determined by calculating the COM of each subunit in the 4BIJ-model. 

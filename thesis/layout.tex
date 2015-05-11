@@ -3,6 +3,7 @@
 \product thesis
 
 \usemodule[units]
+\usemodule[bibtex]
 
 \definepapersize[ThesisPrintSize][width=17cm, height=24cm]
 
@@ -20,11 +21,19 @@
 \definehead[Section][section]
 
 \definehead[SubSection][subsection]
+\definehead[Subsubsection][subsubsection]
 
 \definehead[Subject][subject]
 
+% table of contents
+\definelist[Chapter, Section, SubSection, Subsubsection]
+%\definecombinedlist[toc][Chapter]
+
+
+
+
 % figures
-\setupexternalfigures[factor=broad, directory=figures]
+%\setupexternalfigures[factor=broad, directory=figures]
 
 % tables
 
@@ -34,15 +43,15 @@
 \define[2]\caption{{\bf #1} #2}
 
 % references
-\definereferenceformat[infigure][left=Figure]
-\definereferenceformat[intable][left=Table]
-%\def\infigure#1[#2]{\in{Figure}{#1}[#2]}
-%\def\intable[#1]{\in{Table}[#1]}
-
-\setuppublications[alternative=apa]
-\def\inlinecite{\cite[left=, right=]}
+\definereferenceformat[infigure][left=Figure ]
+\definereferenceformat[intable][left=Table ]
 
 % shortcuts
 \define[0]\disvis{\emph{disvis}}
+
+% bibtex
+\setuppublications[alternative=apa]
+\setupbibtex[database={chapter2/references,chapter4/references,chapter5/references}, sort=author]
+\def\inlinecite{\cite[left=, right=]}
 
 \stopenvironment

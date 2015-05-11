@@ -1,4 +1,4 @@
-\subsection{State of the art of rigid body cross-correlation based fitting}
+\SubSection{State of the art of rigid body cross-correlation based fitting}
 
 The goal of cross-correlation rigid body fitting is to determine the three
 translational and three rotational degrees of freedom of the model that
@@ -44,7 +44,7 @@ of the search object instead of repeatedly rotating the high-resolution model
 and blurring it afterwards. The GPU-architecture especially is suited for this
 task as tri-linear interpolation can be done with high-efficiency \cite[Hoang2013].
 
-\subsection{Increasing the sensitivity by combining the LCC with the core-weighted approach}
+\SubSection{Increasing the sensitivity by combining the LCC with the core-weighted approach}
 
 Originally the core-weighted procedure was combined with the global
 cross-correlation, which significantly extended the resolution range in which a
@@ -74,7 +74,7 @@ setting $w_i = 1$. The Laplace pre-filtered scoring function is defined by
 performing the mapping $\rho_x \to \nabla^2\rho_x$ in \in{Eq.}[eq:cw-lcc]. In order to calculate the CW-LCC
 we first need to define the core-index of each voxel.  
 
-\subsubsection{Determining the core-index $w_i$}
+\Subsubsection{Determining the core-index $w_i$}
 
 The core-index is a measure for how close a voxel is to the core of the density
 of the subunit that is being fitted. We calculate the core-index by
@@ -88,7 +88,7 @@ complex shapes.
 {\getbuffer[cap:core-index_resampling-trimming]}
 {\externalfigure[fig:core-index_resampling-trimming]}
 
-\subsubsection{Using Fourier techniques to calculate the CW-LCC}
+\Subsubsection{Using Fourier techniques to calculate the CW-LCC}
 
 Starting from \in{Eq.}[eq:cw-lcc] and following in the spirit of
 \cite[authoryear][Roseman2003], we can normalize the core-weighted density $w_i
@@ -139,9 +139,9 @@ sampled, as the 3 Fourier transforms of the cryo-EM data can be calculated just
 once before the search. So the FFT-accelerated CW-LCC effectively costs only
 one Fourier transform more than the regular LCC \cite[Hoang2013].
 
-\subsection{Speeding up the search}
+\SubSection{Speeding up the search}
 
-\subsubsection{Using optimized rotation sets to limit rotational degeneracy}
+\Subsubsection{Using optimized rotation sets to limit rotational degeneracy}
 
 Since the computational complexity of the exhaustive search depends linearly on
 the number of rotations sampled, optimizing and limiting rotational degeneracy
@@ -162,7 +162,7 @@ require only 648 orientations for a 20.83° search and 70728 orientations at a
 least a factor of 1.3 compared to gEMFitter, while offering a denser rotational
 sampling interval.
 
-\subsubsection{Decreasing the map size by resampling and trimming the density}
+\Subsubsection{Decreasing the map size by resampling and trimming the density}
 
 In addition to the number of rotations sampled, the computational complexity of
 the search scales with $N \log\left( N \right)$ where $N$ is the number of
@@ -188,7 +188,7 @@ this padding, we trim the padded voxels. The effect of resampling and trimming
 is shown in \in{Figure}{B}[fig:core-index_resampling-trimming] on a slice of
 the GroEL/GroES complex (EMD-1046). 
 
-\subsection{Implementation and availability}
+\SubSection{Implementation and availability}
 
 We implemented our methods in a Python package named PowerFit that comes with a
 command line tool eponymously named \powerfit. A flowchart of the \powerfit\

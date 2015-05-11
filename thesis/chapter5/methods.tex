@@ -14,6 +14,8 @@
 \define[0]\redais{{\bf A}_{R, \text{red.}}}
 \define[0]\dmin{d_{\text{min}}}
 \define[0]\dmax{d_{\text{max}}}
+\define[0]\boldV{{\bf V}}
+\define[0]\boldP{{\bf P}}
 
 \Section{Methods}
 
@@ -31,21 +33,21 @@ where \m{\rvdW} is the combined van der Waals radius of the two atoms \m{\rvdW^i
 the volume of interaction is above- and the volume of clashes below threshold
 values (300 and 200\Angstrom\high{3} by default, respectively). 
 
-fter every translational scan, all conformations that comply with each
-estraint are determined. Next, disvis counts the number of accessible
-tatescomplexes consistent with each number of restraints, as well as which
-estraints are violated. This is repeated until the rotational sampling density
-eaches a pre-set value (default 9.72\Deg, 7416 orientations). During the
-otational search, disvis stores the maximum number of consistent restraints
-ound at every scanned position of the ligand’s center of mass, which
-ltimately results in a discrete ‘density’ map. The output thus consists of the
-um of accessible interaction statescomplexes complying with each number of
-estraints, a percentage of how often each restraint is violated, and a
-iscrete-valued density map.
+after every translational scan, all conformations that comply with each
+restraint are determined. Next, disvis counts the number of accessible
+complexes consistent with each number of restraints, as well as which
+restraints are violated. This is repeated until the rotational sampling density
+reaches a pre-set value (default 9.72\Deg, 7416 orientations). During the
+rotational search, disvis stores the maximum number of consistent restraints
+found at every scanned position of the ligand’s center of mass, which
+ultimately results in a discrete ‘density’ map. The output thus consists of the
+sum of accessible interaction statescomplexes complying with each number of
+restraints, a percentage of how often each restraint is violated, and a
+discrete-valued density map.
 
-e implemented DisVis in Python2.7, using the OpenCL framework to offload
-omputations to the GPU. The code can be downloaded freely from
-ttps://github.com/haddocking/disvis together with documentation and examples.
+We implemented DisVis in Python2.7, using the OpenCL framework to offload
+computations to the GPU. The code can be downloaded freely from
+https://github.com/haddocking/disvis together with documentation and examples.
 
 \SubSection{Calculating the accessible interaction space of two interaction
 macromolecules}
@@ -69,7 +71,7 @@ projected onto a grid with equal voxel spacing as the fixed chain to allow for
 FFT-accelerated translational scans during the search.
 
 After the creation of the search objects, we identify clashes and interactions
-as a function of rotation $R$ as follows
+as a function of rotation \m{R} as follows
 
 \placeformula[eq:clashing-volume]
 \startformula
@@ -83,13 +85,13 @@ as a function of rotation $R$ as follows
 \right)\right)^* \times \mathcal{F} \left( {\bf F}_{\text{inter}} \right) \right]
 \stopformula
 
-where the cross-correlation theorem has been used to calculate ${\bf C}$ and
-${\bf I}$, the spaces that represent the volume of clashes and interactions at
-every grid position in \Angstrom\high{3}, respectively; $\mathcal{F}$ and
-$\mathcal{F}^{-1}$ represent the FFT operator and its inverse, respectively; \high{*}
-is the complex conjugate operator, and $\times$ the elementwise multiplication
-operator; ${\bf S}$ is the shape of the scanning chain, and ${\bf
-F}_{\text{core}}$ and ${\bf F}_{\text{inter}}$ are the core and interaction
+where the cross-correlation theorem has been used to calculate \m{\boldC} and
+\m{\boldI}, the spaces that represent the volume of clashes and interactions at
+every grid position in \Angstrom\high{3}, respectively; \m{\mathcal{F}} and
+\m{\mathcal{F}^{-1}} represent the FFT operator and its inverse, respectively; \high{*}
+is the complex conjugate operator, and \m{\times} the elementwise multiplication
+operator; \m{\boldS} is the shape of the scanning chain, and \m{{\bf
+F}_{\text{core}}} and \m{{\bf F}_{\text{inter}}} are the core and interaction
 shapes of the fixed chain, respectively.
 
 To determine whether a conformation is a plausible complex its clashing volume
@@ -100,6 +102,7 @@ size. The accessible interaction space per translational space is then given by
 \startformula
 {\bf A}_R \left( \rvec \right) = \startmathcases
 \NC \text{if}\ \boldC_R \left(\rvec \right) \leq \Cmax\ \text{and}\ \boldI_R\left(\rvec \right) \geq \Imin:  \MC 1 \NR
+\NC \NC \NR
 \NC \text{else:} \MC 0 \NR
 \stopmathcases
 \stopformula
@@ -121,11 +124,11 @@ thus given by
 
 \placeformula[eq:accessible-states]
 \startformula
-N_A = \sum_{\bf P} w_R \sum_{x, y, z} {\bf A}_R\left( x, y, z \right)
+N_A = \sum_{\boldP} w_R \sum_{x, y, z} {\bf A}_R\left( x, y, z \right)
 \stopformula
 
 where \m{w_R} is the weight factor for the specific orientation/rotation, the first
-summation is over all rotations \m{\bf P}, and the second summation over all grid
+summation is over all rotations \m{\boldP}, and the second summation over all grid
 coordinates.
 
 
@@ -195,42 +198,110 @@ conforming to distant restraint \m{n}. The value found at a specific coordinate 
 \m{\redais} represents the number of conforming distance restraints at that
 location in space. The restraints are defined in a separate text file as input
 for disvis in the following format
-%
-%where <chain-1>, <resi-1> and <atomname-1> are the chainID, residue number, and
-%atom name of the fixed chain, respectively; <chain-2>, <resi-2> and
-%<atomname-2> are the chainID, residue number, and atom name of the scanning
-%chain; and <min-dis> and<max-dis> are the minimal and maximal distance of the
-%restraints in angstrom, respectively. As an example, the line
-%
-%would put a restraint between the CA-atom of residue 18 of chain A of the fixed
-%model and the CB-atom of residue 27 of the F chain of the scanning model that
-%should be longer of equal to 10\Angstrom\ and shorter or equal to 20\Angstrom.
 
-%\SubSection{Quantifying and visualizing the accessible interaction space}
-%
-%To quantify the accessible interaction space consistent with a certain number
-%of distance restraints, the number of occurrences that 𝑨!,  red. is equal to
-%the number of compliant restraints is counted. The accessible interaction space
-%is visualized by outputting the maximum value found during the rotational
-%search at every grid position, thus given by
-%
-%The resulting ‘density’ is written to file in MRC format and represents the
-%position of the center of mass of the scanning chain relative to the fixed
-%chain. These files can straightforwardly opened with molecular visualization
-%programs, such as PyMol and UCSF Chimera. With this information, interesting
-%regions of high- density can then be sampled more thoroughly. Also,
-%false-positive restraints can be identified if the exhaustive search does not
-%result in a region where all restraints of the cross-links are obeyed. In
-%addition, for each complex that is consistent with at least one restraint, all
-%restraints that are violated are calculated and stored during the search. This
-%ultimately results in a violation matrix where every row represents the number
-%of consistent restraints 𝑁 and every column indicates how often a specific
-%restraint is violated for complexes consistent with at least 𝑁 restraints (e.g.
-%Table S3). Lastly, to give the user an indication which restraints are most
-%likely to be false-positives, the z-score is calculated for each restraint
-%based on the violation matrix given by
-%
-%where 𝑣! is the column average of the violation matrix of restraint 𝑖, and 𝑣
-%and 𝜎 are the average and standard deviation of the violation matrix. Disvis
-%reports restraints with a z-score higher than 1.0 explicitly.
-%
+
+where <chain-1>, <resi-1> and <atomname-1> are the chainID, residue number, and
+atom name of the fixed chain, respectively; <chain-2>, <resi-2> and
+<atomname-2> are the chainID, residue number, and atom name of the scanning
+chain; and <min-dis> and<max-dis> are the minimal and maximal distance of the
+restraints in angstrom, respectively. As an example, the line
+
+would put a restraint between the CA-atom of residue 18 of chain A of the fixed
+model and the CB-atom of residue 27 of the F chain of the scanning model that
+should be longer of equal to 10\Angstrom\ and shorter or equal to 20\Angstrom.
+
+\SubSection{Quantifying and visualizing the accessible interaction space}
+
+To quantify the accessible interaction space consistent with a certain number
+of distance restraints, the number of occurrences that \m{\redais} is equal to
+the number of compliant restraints is counted. The accessible interaction space
+is visualized by outputting the maximum value found during the rotational
+search at every grid position, thus given by
+
+\placeformula[eq:vizualization]
+\startformula
+\boldV \left( x, y, z \right) = \max\left{ \redais\left(x, y, z \right): R \in \boldP \right}
+\stopformula
+
+The resulting ‘density’ is written to file in MRC format and represents the
+position of the center of mass of the scanning chain relative to the fixed
+chain. These files can straightforwardly opened with molecular visualization
+programs, such as PyMol and UCSF Chimera. With this information, interesting
+regions of high- density can then be sampled more thoroughly. Also,
+false-positive restraints can be identified if the exhaustive search does not
+result in a region where all restraints of the cross-links are obeyed. In
+addition, for each complex that is consistent with at least one restraint, all
+restraints that are violated are calculated and stored during the search. This
+ultimately results in a violation matrix where every row represents the number
+of consistent restraints 𝑁 and every column indicates how often a specific
+restraint is violated for complexes consistent with at least \m{N} restraints (e.g.
+Table S3). Lastly, to give the user an indication which restraints are most
+likely to be false-positives, the z-score is calculated for each restraint
+based on the violation matrix given by
+
+\placeformula[eq:z-score]
+\startformula
+Z = \frac{v_i - \bar{v}}{\sigma}
+\stopformula
+
+where \m{v_i} is the column average of the violation matrix of restraint \m{i},
+and \m{\bar{v}} and \m{\sigma} are the average and standard deviation of the
+violation matrix. {\emph{Disvis}} reports restraints with a z-score higher
+than 1.0 explicitly.
+
+
+\SubSection{Implementation details}
+
+We implemented DisVis in Python2.7 using the NumPy \cite[Walt2011] and Cython
+packages \cite[Behnel2011]. The OpenCL framework \cite[Stone2010] was used to
+offload the computations to the GPU. Python bindings were available through the
+pyopencl package \cite[Klockner2012]. We used the high-performance clFFT
+library (https://github.com/clMathLibraries/clFFT) together with gpyfft for
+Python bindings (https://github.com/geggo/gpyfft) to calculate the FFT’s.
+Computations were performed on AMD Opteron 6344 CPU processors and on an AMD
+Radeon HD 7730M and NVIDIA GeForce GTX 680 GPU. 
+
+
+\SubSection{RNA polymerase II example}
+
+The crystal structure of the RNA polymerase II was downloaded from the Protein
+Databank (PDB ID: 1WCM). The largest subunit (chain A) and the 27kDa
+polypeptide (chain E) were extracted from the PDB-file. Six BS3 cross-links
+were available and taken from XLdb \cite[Kahraman2013]. To investigate the
+detection of false-positive restraints, two virtual cross-links were added with
+a distance of 35.7 and 42.2\Angstrom\ using the Xwalk webserver
+\cite[Kahraman2011]. The maximum allowed distance of the BS3 cross-links was
+set to 30\Angstrom, based on molecular dynamics trajectory analysis
+\cite[Merkley2014]. The restraints used are shown in Table S1. The input files
+are included in the DisVis source code. 
+
+Two disvis runs were performed using a rotational sampling density of 5.27\Deg\ 
+(53256 orientations) and 9.72\Deg\ (7416 orientations) with a grid spacing of
+1\Angstrom\ and 2\Angstrom, respectively. All parameters were left to there
+default values (interaction radius 3\Angstrom, minimum required volume of
+interaction 300\Angstrom\high{3} and maximum allowed volume of clashes
+200\Angstrom\high{3}). The amount of accessible complexes consistent with each
+number of cross-links is shown in Table S2 and S4, and the relative occurrence
+of restraint violations in Table S3 and S5 for the fine and coarse run,
+respectively.
+
+
+\SubSection{26S proteasome PRE5-PUP2 example}
+
+Homology models were downloaded from the SWIS-MODEL Repository
+\cite[Kiefer2009] via the Protein Model Portal (http://proteinmodelportal.org)
+using their Uniprot identifiers (O14250 and Q9UT97). Cross-links were taken
+from \cite[authoryear][Leitner2014] Dataset S1 (Table S6), which consist of 4
+ADH and 3 zero-length ZL cross-links. The maximum ADH- and ZL linker length
+were set to 23\Angstrom\ and 26\Angstrom, respectively, since 95\% of all found
+distances in a benchmark were smaller. All input files are included in the
+DisVis source code. 
+
+Again, two \disvis\ runs were performed using a rotational sampling density of
+5.27\Deg\ (53256 orientations) and 9.72\Deg\ (7416 orientations) with a grid
+spacing of 1\Angstrom\ and 2\Angstrom, respectively, with default parameter
+values. The sum of accessible complexes consistent with each number of
+restraints is shown in Table S7 and S9, and their normalized restraint
+violation occurrence in Table S8 and S10. 
+
+

@@ -1,14 +1,40 @@
-
 \startproduct thesis
 
 \environment layout
 
+\startfrontmatter
+
+\Chapter{Table of Contents}
+\placelist[Chapter][criterium=all]
+
 %\component titlepage
+\stopfrontmatter
+
+\startbodymatter
 %\component chapter1
-\component chapter2/chapter2
-\component chapter3/chapter3
-%\component chapter4
-%\component chapter5
+\component chapter2
+%\component chapter3
+\component chapter4
+\component chapter5
 %\component chapter6
 
-\stopproduct product
+\chapter{References}
+
+\placepublications[criterium=all]
+\stopbodymatter
+
+\startbackmatter
+\Chapter{Summary}
+
+\Chapter{Samenvatting}
+
+\Chapter{Acknowledgements}
+
+\Chapter{Publications}
+
+\Chapter{Curriculum Vitae}
+
+
+\stopbackmatter
+
+\stopproduct

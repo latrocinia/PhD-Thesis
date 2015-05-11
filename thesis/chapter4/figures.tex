@@ -1,4 +1,4 @@
-\useexternalfigure[fig:it0-protocol][Figure1]
+\useexternalfigure[fig:it0-protocol][it0-protocol]
 \startbuffer[cap:it0-protocol]
 \caption{Representation of the rigid-body docking protocol in HADDOCK-EM.} 
 {(A) Simulated 15Å cryo-EM data of the 7CEI complex. 
@@ -12,7 +12,7 @@ The orientation with the highest cross correlation value is chosen.
 \stopbuffer
 
 
-\useexternalfigure[fig:it0-results][Figure2]
+\useexternalfigure[fig:it0-results][it0-results]
 \startbuffer[cap:it0-results]
 \caption{Quality and number of generated acceptable models after rigid-body docking (it0).}
 {(A) Interface RMSD (i-RMSD) of the best model generated after the it0-stage for the 17 complexes of the benchmark. White bar: HADDOCK-CM (ab initio docking mode with center-of-mass restraints); Light-grey, grey and dark-grey bar: HADDOCK-EM using 20Å, 15Å and 10Å simulated cryo-EM data, respectively; Black bar: minimal i-RMSD of unbound compared to bound complex. The complexes are ordered according to their difficulty level. The dashed line represents the cutoff for a solution to be acceptable (i-RMSD ≤ 4Å).
@@ -20,7 +20,7 @@ The orientation with the highest cross correlation value is chosen.
 \stopbuffer
         
 
-\useexternalfigure[fig:impact-refinement][Figure3]
+\useexternalfigure[fig:impact-refinement][impact-refinement]
 \startbuffer[cap:impact-refinement]
 \caption{Effect of the flexible refinement stage with cryo-EM restraints on i-RMSD.}
 {The i-RMSD improvement (i-RMSD it0 – i-RMSD itw) for all refined complexes after itw when using 20Å (A), 15Å (B), and 10Å (C) data plotted as a histogram. 
@@ -28,7 +28,7 @@ Positive values indicate a decrease in i-RMSD toward the native structure. The d
 \stopbuffer
 
 
-\useexternalfigure[fig:1884-docking][Figure4]
+\useexternalfigure[fig:1884-docking][1884-docking]
 \startbuffer[cap:1884-docking]
 \caption{Cryo-EM driven HADDOCKing docking of the ribosomal proteins S7 and S19 onto the 30S E. coli ribosome.}
 {(A) 30S E. coli ribosome structure (2YKR) as it is currently fitted in the 9.8Å cryo-EM map (EMD-1884). The ribosomal proteins S7 (cyan) and S19 (magenta) and their corresponding density (yellow) are highlighted. 
@@ -37,7 +37,7 @@ Positive values indicate a decrease in i-RMSD toward the native structure. The d
 \stopbuffer
 
 
-\useexternalfigure[fig:2017-current][Figure5]
+\useexternalfigure[fig:2017-current][2017-current]
 \startbuffer[cap:2017-current]
 \caption{Cryo-EM and mutagenesis data of the 30S maturing E. coli ribosome and its current model.}
 {(A) The 13.5Å cryo-EM map of the maturing 30S E. coli ribosome with its current PDB model fitted inside. The density of KsgA is shown in blue, and the helices of the rRNA are shown in orange (h24), green (h27) and pink (h45). The binding site of KsgA is shown below enlarged.
@@ -46,7 +46,7 @@ Positive values indicate a decrease in i-RMSD toward the native structure. The d
 \stopbuffer
 
 
-\useexternalfigure[fig:2017-haddock][Figure6]
+\useexternalfigure[fig:2017-haddock][2017-haddock]
 \startbuffer[cap:2017-haddock]
 \caption{Cryo-EM driven HADDOCKing of KsgA ontop the 16S rRNA of E. coli.}
 {(A) The HADDOCK-EM score of the 400 refined models plotted versus the i-RMSD compared to the 4adv-model. 
@@ -55,7 +55,7 @@ Positive values indicate a decrease in i-RMSD toward the native structure. The d
 \stopbuffer
 
 
-\useexternalfigure[fig:virus-haddock][Figure7]
+\useexternalfigure[fig:virus-haddock][virus-haddock]
 \startbuffer[cap:virus-haddock]
 \caption{Virus-antibody HADDOCKing using 8.5Å and 21Å cryo-EM data.}
 { (A) The HADDOCK-EM score of the 400 generated models of the adeno-associated virus 2-antibody complex versus their i-RMSD using 3j1s as a reference.
@@ -65,7 +65,7 @@ Positive values indicate a decrease in i-RMSD toward the native structure. The d
 \stopbuffer
 
 
-\useexternalfigure[fig:symmetry-protocol-and-results][Figure8]
+\useexternalfigure[fig:symmetry-protocol-and-results][symmetry-protocol-and-results]
 \startbuffer[cap:symmetry-protocol-and-results]
 \caption{HADDOCK-EM with symmetry protocol applied on the trypsin inhibitor and large terminase pentamer.}
 {(A) Protocol of HADDOCK-EM with symmetry during the rigid body stage. After determining the centroids in the density, each subunit is placed on a circle with its center on the midpoint of the centroids. C5-symmetry is imposed on the system from the beginning and ambiguous distance restraints are generated between the COM of each subunit and each centroid. An initial complex is formed by a rigid body energy minimization (EM). To orient the complex properly in the density, we calculate the cross correlation of two orientations of the complex with the cryo-EM data. A second round of rigid body energy minimization is performed on the orientation with the highest cross correlation directly against the cryo-EM data. 
@@ -75,5 +75,5 @@ Positive values indicate a decrease in i-RMSD toward the native structure. The d
  \stopbuffer
 
 % supplemental figures
-\useexternalfigure[fig:lcc-scores][FigureS1]
+\useexternalfigure[fig:lcc-scores][lcc-scores]
 %\use

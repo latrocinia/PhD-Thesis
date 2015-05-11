@@ -4,27 +4,30 @@
 % setup everything
 \environment layout
 
-\input figures
-\input tables
+\setupexternalfigures[factor=broad, directory={chapter2/figures}]
+\input chapter2/figures
+\input chapter2/tables
+
 \def\powerfit{{\it powerfit}}
 
-\setupbibtex[database={references}, sort=author]
+
+%\setupbibtex[database={chapter2/references}, sort=author]
 
 \Chapter{Fast and sensitive rigid-body fitting into cryo-EM density maps with PowerFit}
 
 \Section{Introduction}
-\input introduction
+\input chapter2/introduction
 
 \Section{Methods}
-\input methods
+\input chapter2/methods
 
 \Section{Results}
-\input results
+\input chapter2/results
 
 \Section{Conclusion}
-\input conclusion
+\input chapter2/conclusion
 
-\Subject{References}
-\placepublications[criterium=all]
+%\Subject{References}
+%\placepublications[criterium=all]
 
 \stopcomponent
