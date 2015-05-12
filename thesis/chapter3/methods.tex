@@ -1,0 +1,56 @@
+\Section{Methods}
+
+\Subsection{Exploring the limits of rigid-body fitting}
+
+To explore the resolution limit of successful rigid-body fitting, we gathered a
+benchmark of six ribosome complexes for which high-resolution cryo-EM data were
+available, ranging in resolution from 5.5 to 8.9\Angstrom\, and a deposited
+atomic structure in the Protein Databank (PDB). Each individual chain was
+fitted independently in their respective density map with PowerFit using four
+different scoring functions: the local cross-correlation (LCC), the
+core-weighted (CW)-LCC, and their Laplace pre-filtered versions, the L-LCC and
+L-CW-LCC, respectively, given by
+
+\placeformula[eq:correlation-equation]
+\startformula
+\text{CC} = \frac{1}{N} 
+\stopformula
+
+After each fitting round, the resolution of the cryo-EM density was lowered by
+1\Angstrom\ using the following procedure.  Assuming that the density is
+described by a collection of atoms with a spherical Gaussian density
+distribution, where the width of the Gaussian depends on the resolution of the
+density, it is given by
+
+\placeformula[eq:density]
+\startformula
+\rho \left( \vec{r}| R \right) = \sum^N_i A_i \exp\left( \frac{\left| \vec{r} - \vec{r}_i \right|^2 }{\sigma_R^2} \right)
+\stopformula
+
+Here the summation is over all \m{N} atoms indexed by \m{i}, where the
+amplitude of the density is given by the atom number of the the element
+\m{A_i}, and \m{\vec{r}_i} is the position of atom \m{i}, and the spread
+\m{sigma_R} is a function of the resolution \m{R} given by
+
+\placeformula[eq:sigma-to-resolution]
+\startformula
+\sigma\left( R \right) = \frac{1}{\sqrt{2} \pi} R
+\stopformula
+
+This definition of the resolution ensures that the amplitude of the specified resolution is at \m{1/e} of the maximum. In order to lower the resolution of the map to the specific resolution
+
+\placeformula[eq:target-density]
+\startformula
+\rho_{\text{target}}\left( \vec{r} \right) = G\left( \sigma_k \right) \ast \rho_{\text{init}}
+\stopformula
+
+\placeformula[eq:sigma-kernel]
+\startformula
+\sigma_k = \sqrt{\sigma^2_{\text{target}} - \sigma^2_{\text{init} }}
+\stopformula
+
+
+\Subsection{Leveraging the limits using multi-scale image pyramids}
+
+
+

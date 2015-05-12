@@ -1,0 +1,51 @@
+\Section{Introduction}
+
+A structural understanding of large macromolecular complexes is of fundamental
+importance to explain and manipulate cellular processes. Cryo-electron
+microscopy (cryo-EM) is quickly becoming the method of choice for studying
+these macromolecular machines, as recent advances have enabled unprecedented
+levels of detail to be visualized. Consequently, sub-nanometer resolution maps
+are no exception anymore, though the level of detail is usually still too low
+for de novo building of atomic structures. When possible, cryo-EM data are
+therefore combined with high-resolution atomic models of subunits for a proper
+structural understanding of the data. Typically, the first step in the modeling
+is placing the subunits in the density as a rigid body, after which the models
+can be refined using flexible fitting.
+
+Many tools and software exist to help users in the rigid body fitting, both for
+manual and automatic placement. Though manual placement is frequently
+performed, most notably using UCSF Chimera, it is subjective and can lead to
+over-interpretation of the data as there is no objective target function to be
+optimized. The problem is exacerbated when flexible fitting is applied
+afterwards, as it requires an initial local cross-correlation minimum between
+the model and the density, else the model would drift away from its fitted
+location. 
+
+An automatic and objective method to determine the placement of the subunits is
+by performing a full-exhaustive systematic cross-correlation search of the
+three translational and three rotational degrees of freedom of the model in the
+density. Many advances have been made in the sensitivity and speed of
+cross-correlation based rigid body fitting. Recently, we introduced the
+core-weighted local cross-correlation scores, based on work from Wu et al, in
+our rigid body fitting package PowerFit. However, no thorough investigation
+into the limits of rigid body fitting has been performed so far, nor has the
+resolution requirements to fit a subunit of a certain size in the density been
+quantified. In addition, the size of cryo-EM data has been steadily increasing
+as a result of the higher information content, which unfortunately slows down
+the exhaustive search considerably, as the search is usually performed using
+FFT-techniques for fast translational scans.
+
+Here we report on a comprehensive exploration of cross-correlation based rigid
+body fitting in cryo-EM densities, using 6 high-resolution ribosome maps in the
+range of 5.5 to 8.9\Angstrom\ for which high-resolution models have been fitted in the
+density. We analyzed the success rate of fitting all XXX subunits in these maps
+as a function of resolution by progressively lowering the resolution of the
+initial data down to 30\Angstrom\ using four different scoring functions. Furthermore,
+we show how the size of the subunit influences the success rate of fitting and
+how over-interpreted regions of the map can be identified. Ultimately, we
+leverage this information by using the concept of multi-scale image pyramids,
+well known in the field of image analysis, to significantly reduce the
+computational resources and time required to perform a fit up to two orders of
+magnitude. We have implemented this in our PowerFit package, which can be
+freely downloaded, for fast rigid body fitting in cryo-EM data.
+
