@@ -33,7 +33,8 @@
 %\setuplabeltext[en][Chapter={Chapter}]
 %\definecombinedlist[toc][Chapter]
 
-
+% abbreviations
+\definesynonyms[abbreviation][abbreviations][\infull]
 
 
 % figures
@@ -49,12 +50,22 @@
 % references
 \definereferenceformat[infigure][left=Figure ]
 \definereferenceformat[intable][left=Table ]
+\definereferenceformat[inchapter][left=Chapter ]
 
 % shortcuts
 \define[0]\disvis{\emph{disvis}}
 
 % bibtex
 \setuppublications[alternative=apa]
-\setupbibtex[database={chapter2/references,chapter4/references,chapter5/references}, sort=author]
+\setupbibtex[database={chapter2/references,chapter4/references,chapter5/references}, %
+             sort=author]
+\setuppublicationlayout[article]{%
+    \insertartauthors{}{ }{\inserthekey{}{ }}%
+    \insertpubyear{(}{). }{\unskip. }%
+    \insertarttitle{\bgroup }{ \egroup}{}%
+    \insertjournal{\bgroup \it}{\egroup}{\insertcrossref{In }{}{}}%
+    \insertvolume{, \bgroup \bf}{\egroup}{}%
+    \insertpages{, }{.}{.}%
+    }
 
 \stopenvironment

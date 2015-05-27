@@ -17,32 +17,50 @@ L-CW-LCC, respectively, given by
 \stopformula
 
 After each fitting round, the resolution of the cryo-EM density was lowered by
-1\Angstrom\ using the following procedure.  Assuming that the density is
+1\Angstrom\ using the following procedure. Assuming that the density is
 described by a collection of atoms with a spherical Gaussian density
 distribution, where the width of the Gaussian depends on the resolution of the
-density, it is given by
+density, the density at each point in space is given by
 
 \placeformula[eq:density]
 \startformula
-\rho \left( \vec{r}| R \right) = \sum^N_i A_i \exp\left( \frac{\left| \vec{r} - \vec{r}_i \right|^2 }{\sigma_R^2} \right)
+\rho \left( \vec{r}| R \right) = \sum^N_i A_i \exp\left( -\frac{\left| \vec{r} - \vec{r}_i \right|^2 }{2 \sigma_R^2} \right)
 \stopformula
 
 Here the summation is over all \m{N} atoms indexed by \m{i}, where the
 amplitude of the density is given by the atom number of the the element
 \m{A_i}, and \m{\vec{r}_i} is the position of atom \m{i}, and the spread
-\m{sigma_R} is a function of the resolution \m{R} given by
+\m{\sigma_R} is a function of the resolution \m{R} given by
 
 \placeformula[eq:sigma-to-resolution]
 \startformula
 \sigma\left( R \right) = \frac{1}{\sqrt{2} \pi} R
 \stopformula
 
-This definition of the resolution ensures that the amplitude of the specified resolution is at \m{1/e} of the maximum. In order to lower the resolution of the map to the specific resolution
+This definition of the resolution ensures that the amplitude of the specified
+resolution is at \m{1/e} of the maximum. In order to lower the resolution of
+the map to the specific resolution, we can simply convolute the density with
+another Gaussian kernel thus
 
 \placeformula[eq:target-density]
 \startformula
-\rho_{\text{target}}\left( \vec{r} \right) = G\left( \sigma_k \right) \ast \rho_{\text{init}}
+\rho_{\text{target}}\left( \vec{r} \right) = G_k \ast \rho_{\text{init}}
 \stopformula
+
+where \m{\rho_{\text{init}}} and \m{\rho_{\text{target}}} are the initial and
+target density, respectively, and \m{G_k} is the Gaussian kernel with standard
+deviation \m{\sigma_k}, and \m{\ast} is the convolution operator. The
+convolution of two Gaussians results in another Gaussian, and is given by
+
+\placeformula[eq:gaussian-convolution]
+\startformula
+G_1 \ast G_2 = A \exp\left[ - \frac{\left| \vec{r} - \left( \vec{r}_1 +
+\vec{r}_2 \right)\right|^2} {2 \left(\sigma_1^2 + \sigma_2^2 \right)}\right]
+\stopformula
+
+where \m{G_1} and \m{G_2} are two Gaussian functions with center \m{\vec{r}_1}
+and \m{\vec{r}_2} and width \m{\sigma_1} and \m{\sigma_2}, and \m{A} a
+normalization constant of no interest here. Thus, \m{\sigma_k} is then simply
 
 \placeformula[eq:sigma-kernel]
 \startformula
@@ -50,7 +68,47 @@ This definition of the resolution ensures that the amplitude of the specified re
 \stopformula
 
 
+
 \Subsection{Leveraging the limits using multi-scale image pyramids}
+
+The rapid advancement of the cryo-EM field has resulted in an impressive
+increase in the number of high-resolution density maps and corresponding atomic
+models. The increase in level of detail, however, also requires the number of
+voxels to represent the data to rise. Consequently, the time required for an
+exhaustive search can increase dramatically as the fitting algorithms typically
+use the Fast Fourier Transform (FFT) for rapid translation correlation scans,
+which scale with \m{N \log(N)} with \m{N} the number of voxels. The level of
+detail that is present in current high-resolution maps may be far surpassing
+the minimal required information to unambiguously fit a subunit in the density.
+
+In addition, current correlation based fitting software acutally take longer to fit bigger subunits, 
+This phenomenon can be leveraged by building a multi-scale image pyramid to
+speed up the search: by progressively lowering the resolution and subsampling
+the data, the size of the density is limited and the computational resources
+and time markedly reduced. 
+
+For the image-pyramid concept to work effectively, resolution bounds on fitting
+a particular subunits need to be established. A natural parameter to
+investigate is the size of the subunit, as bigger chains carry more information
+and thus require a lower level of detail to be properly fitted in the density.
+Paradoxically, current correlation based fitting software
+actually take longer to fit bigger subunits. After determining the success rate for correctly fitting differently
+sized chains, this information can be used to extract the average required
+resolution for the data for a specific chain. An image-pyramid can then be
+setup by creating densities at different scales to fit subunits of various
+sizes.
+
+Here we investigated the size influence based on the number of residues of a
+subunit, and divided them in 0 -- 50, 50 -- 100, 100 -- 200, 200 -- 300, 300 --
+500, and 500+ categories. 
+
+
+\Subsection{Implementation details}
+
+We extended the PowerFit package by including an additional script to create an
+image-pyramid from an initial density together with its resolution. 
+
+
 
 
 
