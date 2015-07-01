@@ -1,0 +1,18 @@
+\Section{Conclusions}
+
+Here we have explored the resolution limits of rigid body fitting in
+high-resolution cryo-EM densities, ranging between 5.5 and 6.9\Angstrom\ resolution,
+using 5 different ribosome cases. We have shown that also for experimental data
+the L-CW-LCC score is the most sensitive of the 4 correlation-based scores
+tested and that it can unambiguously fit most chains objectively at the correct
+location. In addition, we quantified the success rate of fitting subunits based
+on their size represented by their number of residues. As expected, larger
+subunits require a lower level of detail to be unambiguously fitted into the
+density. This phenomenon can be leveraged by building an image pyramid, i.e.
+representing the data at different resolutions, and subsequently fitting a
+subunit in the smaller, lower-resolution density dataset. The resulting speed
+increase can be up to 30-fold for CPUs and 40-fold for GPUs with virtually no
+loss in the success rate of fitting. We have implemented the use of
+image-pyramids in PowerFit for fast objective fitting of high-resolution
+structures in lower-resolution density maps. 
+

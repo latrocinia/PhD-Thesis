@@ -1,12 +1,117 @@
-\Section{Results}
+\Section{Results and discussion}
+
+\Subsection{Success rate of different scoring functions}
+
+We first determined the best performing cross correlation score for fitting
+subunits in the experimental maps. As fine rotational searches are
+computationally demanding, we performed at this stage solely a translational
+correlation scan with the correct orientation of each chain. If no correct
+local cross correlation minimum can be found here, a fine search is futile. The
+success rate of fitting a subunit correctly is plotted against the resolution
+of the data in \infigure[fig:fit-results]{A}. A fit is considered successful if
+the subunit is placed within 2 voxels of the true solution, and we only
+considered the best-ranked fit, i.e. the fit with the highest correlation
+score. Congruent with an earlier analysis of noise-free simulated data, the
+L-CW-LCC score performs the best of the four, followed by the L-LCC, CW-LCC and
+LCC (see \inchapter[chapter:powerfit].  Remarkably, the L-CW-LCC is capable of
+fitting about 90\% of the 379 subunits unambiguously down to a resolution of
+13\Angstrom. Inclusion of the Laplace pre-filter has the biggest impact and
+increases the applicable resolution extent by about 5\Angstrom. The
+core-weighted approach has a smaller impact and extents the resolutions 1 to
+2\Angstrom further. 
+
+\placefigure[top][fig:fit-results] {\getbuffer[cap:fit-results]}
+{\externalfigure[fig:fit-results]}
 
 
-\Subsection{Most subunits can be fitted automatically}
+\Subsection{Size dependence of success rate}
+
+To quantify the success rate of the L-CW-LCC further, we performed a fine
+rotational search (6.6\Deg\ interval, 27672 orientations) for each subunit.  We
+divided the chains in 7 categories based on their size represented by their
+number of residues (\intable[tab:size-categories]). The success rate of fitting
+each category of subunits is shown in \infigure[fig:fit-results]{B}. We again
+only considered unambiguous fits, i.e.  the top ranked fit. As expected, the
+smallest chains have the lowest success rate. Even when fitting in 8\Angstrom\
+resolution data the success rate is smaller than 50\%. This increases to around
+80\% already for subunits with a residue count of 50 to 100. The success rate
+stabilizes to 90\% for larger sized chains and is stable down to 12\Angstrom\
+resolution data. After the 12\Angstrom\ point, the success rate drops rapidly,
+though less strongly for larger chains. For subunits larger than 500 residues,
+which also include the rather large rRNA chains, the success rate remains
+stable down to 20\Angstrom.  We conclude from this analysis that the bulk of
+the subunits can be unambiguously fitted in the density down to 12\Angstrom\
+resolution. 
+
+\placetable[top][tab:size-categories] {\getbuffer[cap:size-categories]}
+{\getbuffer[tab:size-categories]}
+
+Interestingly the success rate spikes locally at 16\Angstrom\ resolution, and
+is more pronounced for larger chains. This can also be observed in
+\infigure[fig:fit-results]{A} only for the L-CW-LCC score. The reason for this
+is not fully apparent. It might be an artifact of the core-weighted procedure:
+the core-indices of subunits consisting of multiple subunits may shift suddenly
+and coalesce, locally increasing the sensitivity of the score. Another reason
+might be that for those subunits the local resolution is significantly lower,
+and that fitting with a high-resolution template of the subunit results in too
+much noise entering the correlation score, which is remedied by filtering the
+template further down to lower resolutions. Although this has no impact on the
+main finding of the fitting analysis, the observation is intriguing. 
 
 
-\Subsection{Success rate of fitting increases with subunit size}
+\Subsection{Detecting over-interpreted regions of the density}
+
+The advantage of objectively fitting subunits in the density and characterizing
+the success rate is that it allows the identification of possibly
+over-interpreted regions of the density. For example, in the largest size
+category the elF3c chain (543 residues) of EMD-2845 was placed incorrectly in
+the density. When inspecting the current fit
+(\infigure[fig:overinterpreted-density]), we can see that the global features
+of the chain are present in the density, although it is not of sufficient
+resolution to identify the secondary structure elements, and that some parts
+are sticking outside the density. This was also implicated by the authors, as
+the local resolution of the density drops to around 10 to 15\Angstrom\ in that
+region \cite[Aylett2015]. Interestingly, the chain is unambiguously fitted when
+the resolution of the data is filtered to 21\Angstrom\ resolution, indicating
+that the global features of the chains are indeed consistent with the data, but
+the high-resolution structure might be over-interpreting the data. 
+
+\placefigure[top][fig:overinterpreted-density]
+{\getbuffer[cap:overinterpreted-density]}
+{\externalfigure[fig:overinterpreted-density]}
 
 
-\Subsection{Multi-scale image-pyramids speed up the fitting up to two orders of magnitude}
+\Subsection{Fast fitting with multi-scale image pyramids}
 
+Now that resolution indicators are defined for reliably fitting a particular
+size chain into the density, this knowledge can be leveraged through building a
+multi-scale image pyramid to speed up the search. To demonstrate the speedup
+that can be achieved, we applied our approach to another ribosome case with a
+reported resolution of 5.7\Angstrom\ (EMD-2917, 5AKA)
+\cite[vonLoeffelholz2015]. We constructed an image pyramid by filtering and
+resampling the original data down to 9, 12, 13 and 20\Angstrom\ resolution
+(\infigure[fig:image-pyramid-application]). We fitted chains larger than 50
+residues: chains consisting of 50 to 100 residues were fitted in the
+9\Angstrom\ resolution density, chains consisting of 100 to 300 residues in the
+12\Angstrom\ data, chains consisting of 300 to 500 residues the 13\Angstrom\
+map, and for subunits bigger than 500 residues we used the 20\Angstrom\ data.
 
+All 31 chains could be unambiguously fitted considering only the top solution
+with the best cross-correlation, with the exception of the 4.5S RNA consisting
+of 74 residues. A local cross correlation maximum can be found at the correct
+location, with the successful fit placed at rank 17. This is probably due to
+the local resolution of the data dropping to around 10 to 12\Angstrom\ in that
+region, indicating flexibility of the chain \cite[vonLoeffelholz2015]. The time
+required to fit one subunit into the original map (\m{180 \times 180 \times
+180} voxels) is approximately 10 hours using a single AMD Opteron 6320 CPU
+processor and 40m for an NVIDIA GTX680 GPU. This reduces to 6h and 29m for the
+9\Angstrom\ resolution data (\m{160 \times 160 \times 160}), 2h and 7m for the
+12\Angstrom\ data (108 \times 100 \times 120), 1.5h and 5m for the 13\Angstrom\
+data (\m{96 \times 96 \times 108}), and 20m and 1m for the 20\Angstrom\ data
+(\m{64 \times 64 \times 72}), respectively. Thus, the speed increase is up to
+30 times for CPU and 40 times for GPU calculations for the larger subunits, at
+only a small cost in the success rate of fitting.
+
+\placefigure[top][fig:image-pyramid-application]
+{\getbuffer[cap:image-pyramid-application]}
+{\externalfigure[fig:image-pyramid-application]}

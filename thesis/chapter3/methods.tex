@@ -1,36 +1,54 @@
 \Section{Methods}
 
+
 \Subsection{Exploring the limits of rigid-body fitting}
 
-To explore the resolution limit of successful rigid-body fitting, we gathered a
-benchmark of six ribosome complexes for which high-resolution cryo-EM data were
-available, ranging in resolution from 5.5 to 8.9\Angstrom\, and a deposited
-atomic structure in the Protein Databank (PDB). Each individual chain was
-fitted independently in their respective density map with PowerFit using four
-different scoring functions: the local cross-correlation (LCC), the
-core-weighted (CW)-LCC, and their Laplace pre-filtered versions, the L-LCC and
-L-CW-LCC, respectively, given by
+To explore the resolution limit for successful rigid body fitting, we selected
+five high-resolution cryo-EM ribosome maps from the EMDatabank \cite[Lawson2011], ranging in
+resolution from 5.5 to 6.9\Angstrom, for which structural models were deposited in the
+Protein Databank \cite[Gutmanas2014] (\intable[tab:ribosome-cases]). The ribosome is an excellent case study as it
+contains many chains of various sizes and types. Subsequently, we tried to fit
+each separate chain independently in their respective density map with
+PowerFit, using four different scoring functions: the local cross-correlation
+(LCC), the core-weighted (CW-) LCC, and their Laplace pre-filtered versions the
+L-LCC and L-CW-LCC, respectively, given by the master equation
+
+\placetable[top][tab:ribosome-cases]
+{\getbuffer[cap:ribosome-cases]}
+{\getbuffer[tab:ribosome-cases]}
 
 \placeformula[eq:correlation-equation]
 \startformula
-\text{CC} = \frac{1}{N} 
+\text{CC} = \frac{1}{N} \frac{\sum_i^N \left( w_i \rho_c - \overline{\rho_c} \right) \cdot \left( w_i \rho_o - \overline{\rho_o} \right)}{\sigma_c^w \sigma_o^w}
 \stopformula
 
-After each fitting round, the resolution of the cryo-EM density was lowered by
-1\Angstrom\ using the following procedure. Assuming that the density is
-described by a collection of atoms with a spherical Gaussian density
-distribution, where the width of the Gaussian depends on the resolution of the
-density, the density at each point in space is given by
+where the summation is over all \m{N} voxels that are within half a resolution
+distance of any atom of the search object indexed by \m{i}; \m{w_i} is a weight
+factor given to voxel \m{i}; \m{\rho_c} and \m{\rho_o} are the intensities of
+the search object and the cryo-EM density at voxel \m{i}, respectively;
+\m{\overline{\rho_c^w}} and \m{\overline{\rho_o^w}} are the weighted density
+average for the search object and the local cryo-EM data, respectively, given
+by \m{\overline{\rho_x^w} = 1/N \sum_i^N w_i \rho_x}. Finally, \m{\sigma_c^w}
+and \m{\sigma_o^w} are the weighted density standard deviations for the search
+object and EM-data. The LCC-score is defined by setting \m{w_i} to 1, while for
+the CW-LCC \m{w_i} is given by the core-index (\cite[authoryear][Wu2003], \inchapter[chapter:powerfit]), a measure for how close
+the voxel is to the core of the search object. The Laplacian enhanced scoring
+functions are defined by mapping \m{\rho \to \nabla^2 \rho_x} \cite[Chacon2002]. 
+
+After each round of fitting, the resolution of the cryo-EM data was lowered by
+1\Angstrom using the following procedure. Assuming that the density is described by a
+collection of atoms with a spherical Gaussian density distribution, where the
+width of the Gaussian depends on the resolution of the data, the density at
+each point \m{\vec{r}} in space is given by
 
 \placeformula[eq:density]
 \startformula
 \rho \left( \vec{r}| R \right) = \sum^N_i A_i \exp\left( -\frac{\left| \vec{r} - \vec{r}_i \right|^2 }{2 \sigma_R^2} \right)
 \stopformula
 
-Here the summation is over all \m{N} atoms indexed by \m{i}, where the
-amplitude of the density is given by the atom number of the the element
-\m{A_i}, and \m{\vec{r}_i} is the position of atom \m{i}, and the spread
-\m{\sigma_R} is a function of the resolution \m{R} given by
+Here the summation is over all \m{N} atoms indexed by \m{i}, where the amplitude of the
+density is given by the atom number of the element \m{A_i}, \m{\vec{r}} is the position of
+atom \m{i}, and the spread \m{\sigma_R} is a function of the resolution \m{R} given by
 
 \placeformula[eq:sigma-to-resolution]
 \startformula
@@ -38,19 +56,19 @@ amplitude of the density is given by the atom number of the the element
 \stopformula
 
 This definition of the resolution ensures that the amplitude of the specified
-resolution is at \m{1/e} of the maximum. In order to lower the resolution of
-the map to the specific resolution, we can simply convolute the density with
-another Gaussian kernel thus
+resolution is at \m{1/e} of the maximum in Fourier space. In order to lower the
+resolution of the map to a lower target resolution, the density can simply be
+convoluted with a Gaussian kernel as
 
 \placeformula[eq:target-density]
 \startformula
 \rho_{\text{target}}\left( \vec{r} \right) = G_k \ast \rho_{\text{init}}
 \stopformula
 
-where \m{\rho_{\text{init}}} and \m{\rho_{\text{target}}} are the initial and
-target density, respectively, and \m{G_k} is the Gaussian kernel with standard
-deviation \m{\sigma_k}, and \m{\ast} is the convolution operator. The
-convolution of two Gaussians results in another Gaussian, and is given by
+where \m{\rho_{\text{init}}} and \m{\rho_{\text{target}}} are the initial and target density,
+respectively, and \m{G_k} is the Gaussian kernel with standard deviation \m{\sigma_k}, and \m{*}
+is the convolution operator. The convolution of two Gaussians results in
+another Gaussian \cite[Weisstein2015] as follows
 
 \placeformula[eq:gaussian-convolution]
 \startformula
@@ -67,48 +85,41 @@ normalization constant of no interest here. Thus, \m{\sigma_k} is then simply
 \sigma_k = \sqrt{\sigma^2_{\text{target}} - \sigma^2_{\text{init} }}
 \stopformula
 
+This procedure gives a handle and tool to lower the resolution of a map to a
+specified target resolution. After lowering the resolution, the data were
+resampled such that the voxel spacing was 1/4\high{th} of the new resolution using
+simple tri-linear interpolation. 
 
 
 \Subsection{Leveraging the limits using multi-scale image pyramids}
 
 The rapid advancement of the cryo-EM field has resulted in an impressive
 increase in the number of high-resolution density maps and corresponding atomic
-models. The increase in level of detail, however, also requires the number of
-voxels to represent the data to rise. Consequently, the time required for an
-exhaustive search can increase dramatically as the fitting algorithms typically
-use the Fast Fourier Transform (FFT) for rapid translation correlation scans,
-which scale with \m{N \log(N)} with \m{N} the number of voxels. The level of
-detail that is present in current high-resolution maps may be far surpassing
-the minimal required information to unambiguously fit a subunit in the density.
+models. The increase in the level of detail, however, also requires the number
+of voxels to represent the data to rise. Consequently, the time required for an
+exhaustive search can increase dramatically as fitting algorithms typically use
+the Fast Fourier Transform (FFT) for rapid translation correlation scans, which
+scale with N log⁡N where N is the number of voxels. 
 
-In addition, current correlation based fitting software acutally take longer to fit bigger subunits, 
-This phenomenon can be leveraged by building a multi-scale image pyramid to
-speed up the search: by progressively lowering the resolution and subsampling
-the data, the size of the density is limited and the computational resources
-and time markedly reduced. 
+The actual level of detail present in current high-resolution maps may,
+however, be far surpassing the minimal required information to unambiguously
+fit a subunit into the density. The superfluous amount of information can be
+leveraged by building a multi-scale image pyramid to speed up the search: by
+progressively lowering the resolution and subsampling the data, the size of the
+density is reduced, which subsequently results in lower computational resources
+and time requirements. However, for the image-pyramid concept to work
+effectively, the resolution boundaries to perform a successful fitting of a
+particular subunit must be established. A natural parameter to investigate is
+the size of the subunit, expressed here simply as the number of residues, since
+larger chains carry more information and thus require a lower level of detail
+to be properly fitted in the density. Once the success rate for correct fitting
+of differently sized chains has been established, this information can be used
+to extract the required resolution for a specific chain. An image-pyramid can
+then be built by creating densities at different scales to fit subunits of
+various sizes. An example of such an image pyramid is shown in
+\infigure[fig:image-pyramid-example].
 
-For the image-pyramid concept to work effectively, resolution bounds on fitting
-a particular subunits need to be established. A natural parameter to
-investigate is the size of the subunit, as bigger chains carry more information
-and thus require a lower level of detail to be properly fitted in the density.
-Paradoxically, current correlation based fitting software
-actually take longer to fit bigger subunits. After determining the success rate for correctly fitting differently
-sized chains, this information can be used to extract the average required
-resolution for the data for a specific chain. An image-pyramid can then be
-setup by creating densities at different scales to fit subunits of various
-sizes.
-
-Here we investigated the size influence based on the number of residues of a
-subunit, and divided them in 0 -- 50, 50 -- 100, 100 -- 200, 200 -- 300, 300 --
-500, and 500+ categories. 
-
-
-\Subsection{Implementation details}
-
-We extended the PowerFit package by including an additional script to create an
-image-pyramid from an initial density together with its resolution. 
-
-
-
-
+\placefigure[top][fig:image-pyramid-example]
+{\getbuffer[cap:image-pyramid-example]}
+{\externalfigure[fig:image-pyramid-example]}
 
