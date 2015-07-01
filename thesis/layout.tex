@@ -38,7 +38,7 @@
 
 
 % figures
-%\setupexternalfigures[factor=broad, directory=figures]
+\setupexternalfigures[factor=broad, directory={chapter6/figures}]
 
 % tables
 
@@ -57,7 +57,7 @@
 
 % bibtex
 \setuppublications[alternative=apa]
-\setupbibtex[database={chapter2/references,chapter4/references,chapter5/references}, %
+\setupbibtex[database={chapter2/references,chapter3/references,chapter4/references,chapter5/references},
              sort=author]
 \setuppublicationlayout[article]{%
     \insertartauthors{}{ }{\inserthekey{}{ }}%
@@ -67,5 +67,14 @@
     \insertvolume{, \bgroup \bf}{\egroup}{}%
     \insertpages{, }{.}{.}%
     }
-
+\setuppublicationlayout[book]{%
+    \insertartauthors{}{ }{\insertthekey{}{ }}%
+    \insertpubyear{(}{). }{\unskip. }%
+    \insertarttitle{\bgroup }{ \egroup}{}%
+    }
+\setuppublicationlayout[electronic]{%
+    \insertartauthors{}{ }{\insertthekey{}{ }}%
+    \insertpubyear{(}{). }{\unskip. }%
+    \insertarttitle{\bgroup }{ \egroup}{}%
+    }
 \stopenvironment
