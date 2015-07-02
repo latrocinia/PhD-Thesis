@@ -64,17 +64,19 @@
     \insertpubyear{(}{). }{\unskip. }%
     \insertarttitle{\bgroup }{ \egroup}{}%
     \insertjournal{\bgroup \it}{\egroup}{\insertcrossref{In }{}{}}%
-    \insertvolume{, \bgroup \bf}{\egroup}{}%
+    \insertvolume{ \bgroup \bf}{\egroup}{}%
     \insertpages{, }{.}{.}%
     }
 \setuppublicationlayout[book]{%
-    \insertartauthors{}{ }{\insertthekey{}{ }}%
+    \insertauthors{}{ }{\insertthekey{}{ }}%
     \insertpubyear{(}{). }{\unskip. }%
-    \insertarttitle{\bgroup }{ \egroup}{}%
+    \inserttitle{\bgroup }{ \egroup}{}%
+    \insertpubname{}{}{}%
     }
 \setuppublicationlayout[electronic]{%
-    \insertartauthors{}{ }{\insertthekey{}{ }}%
+    \insertauthors{}{ }{\insertthekey{}{ }}%
     \insertpubyear{(}{). }{\unskip. }%
-    \insertarttitle{\bgroup }{ \egroup}{}%
+    \inserttitle{\bgroup }{ \egroup}{}
+    \insertbiburl{}{.}{}%%
     }
 \stopenvironment
