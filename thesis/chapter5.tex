@@ -1,29 +1,33 @@
 \startcomponent chapter5
 
 \environment layout
-
+\showframe
 \setupexternalfigures[factor=broad, directory={chapter5/figures}]
 \input chapter5/figures
-%\input chapter5/tables
+\input chapter5/tables
 
+\define\rvdW{r_{\text{vdW}}}
 
-\define[0]\rvdW{r_{\text{vdW}}}
-
-\Chapter{DisVis: Quantifying and Visualizing the Accessible Interaction Space of
-Distance-Restrained Biomolecular Complexes}
-
-
-\Section{Introduction}
+\Chapter{DisVis: Quantifying and visualizing the accessible interaction space of
+distance-restrained biomolecular complexes}
 
 \input chapter5/introduction
-
-
 \input chapter5/methods
-
 \input chapter5/examples
-
-\Section{Conclusions}
-
 \input chapter5/conclusions
+
+\Subsubject{Supplementary Tables}
+
+\placetable[tab:RPII-crosslinks]
+{\getbuffer[cap:RPII-crosslinks]}
+{\getbuffer[tab:RPII-crosslinks]}
+
+\placetable[tab:RPII-accessible-complexes-fine]
+{\getbuffer[cap:RPII-accessible-complexes-fine]}
+{\getbuffer[tab:RPII-accessible-complexes-fine]}
+
+\placetable[tab:RPII-violations-fine]
+{\getbuffer[cap:RPII-violations-fine]}
+{\getbuffer[tab:RPII-violations-fine]}
 
 \stopcomponent

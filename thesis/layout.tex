@@ -5,9 +5,10 @@
 \usemodule[units]
 \usemodule[bibtex]
 
-\definepapersize[ThesisPrintSize][width=17cm, height=24cm]
+\definepapersize[ThesisSize][width=17cm, height=24cm]
+\definepapersize[ThesisSizeLandscape][ThesisSize,landscape][ThesisSize,landscape]
 
-\setuppapersize[ThesisPrintSize]
+\setuppapersize[ThesisSize]
 
 \setuplayout[location=middle, width=13.0cm, height=18.6cm, 
              topspace=2.7cm, bottomspace=2.7cm, margin=2.0cm, 
@@ -25,6 +26,7 @@
 \definehead[Subsubsection][subsubsection]
 
 \definehead[Subject][subject]
+\definehead[Subsubject][subsubject]
 
 % table of contents
 %\definelist[Chapter, Section, Subsection, Subsubsection]
@@ -51,6 +53,7 @@
 \definereferenceformat[infigure][left=Figure ]
 \definereferenceformat[intable][left=Table ]
 \definereferenceformat[inchapter][left=Chapter ]
+\definereferenceformat[ineq][left=Eq. ]
 
 % shortcuts
 \define[0]\disvis{\emph{disvis}}

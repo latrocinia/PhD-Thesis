@@ -27,7 +27,7 @@ spacing (default). These have long been used in the docking field
 \cite[Katchalski-Katzir1992].  One chain is fixed in space and considered the
 receptor molecule, while translational scans are performed for each rotation of
 the ligand molecule. Two atoms \m{i} and \m{j} are considered to be interacting if
-the distance, \m{d}, between them is \m{\rvdW < d \leq \rvdW + 3\Angstrom} (by default),
+the distance, \m{d}, between them is \m{\rvdW < d \leq \rvdW +} 3\Angstrom (by default),
 where \m{\rvdW} is the combined van der Waals radius of the two atoms \m{\rvdW^i +
 \rvdW^j}, and clashing if \m{d \leq \rvdW}. A conformation is deemed a complex if
 the volume of interaction is above- and the volume of clashes below threshold
@@ -151,12 +151,13 @@ of the center of this sphere \m{\rvec_c}, which is given by
 \rvec_c \left( R \right) = \rvecF - \left( \rvecS \left( R \right) - \rveccomS \left( R \right) \right)
 \stopformula
 
-where \m{\rvecF} and \m{\rvecS} are the coordinates of the restrained atoms of the fixed and
-scanning chain, respectively, and \m{\rveccomS} is the center of mass of the scanning
-chain. The equation can be simplified by initially placing the center of mass
-of the scanning chain on the origin, and rotating the scanning chain around its
-center of mass. Furthermore, realizing that \m{\rvecF} is fixed and \m{\rvecS} now only depends
-on the rotation of the scanning chain, Eq. 5 reduces to
+where \m{\rvecF} and \m{\rvecS} are the coordinates of the restrained atoms of
+the fixed and scanning chain, respectively, and \m{\rveccomS} is the center of
+mass of the scanning chain. The equation can be simplified by initially placing
+the center of mass of the scanning chain on the origin, and rotating the
+scanning chain around its center of mass. Furthermore, realizing that
+\m{\rvecF} is fixed and \m{\rvecS} now only depends on the rotation of the
+scanning chain, \ineq[eq:center-of-sphere] reduces to
 
 \placeformula[eq:simple-center-of-sphere]
 \startformula
@@ -175,11 +176,11 @@ scan \m{\boldL_R} is defined then as
 \stopmathcases
 \stopformula
 
-where \m{\dmin} and \m{\dmax} are the minimum and maximum allowed distance, respectively.
-Note that the function describing \m{\boldL_R} can be freely chosen, under the
-restriction that it should be spherical symmetric, which opens up the use of
-more complex distance restraints in FFT-docking software. The reduced
-accessible interaction space \m{\redais} is then simply given by
+where \m{\dmin} and \m{\dmax} are the minimum and maximum allowed distance,
+respectively.  Note that the function describing \m{\boldL_R} can be freely
+chosen, under the restriction that it should be spherical symmetric, which
+opens up the use of more complex distance restraints in FFT-docking software.
+The reduced accessible interaction space \m{\redais} is then simply given by
 
 \placeformula[eq:reduced-ais]
 \startformula
@@ -193,11 +194,11 @@ In the case of multiple available distance restraints, this generalizes to
 \redais = \boldA_R \times \sum_n^{N_d} \boldL_{R,n}
 \stopformula
 
-where the summation is over all distance restraints \m{N_d} and \m{\boldL_{R,n}} is the space
-conforming to distant restraint \m{n}. The value found at a specific coordinate in
-\m{\redais} represents the number of conforming distance restraints at that
-location in space. The restraints are defined in a separate text file as input
-for disvis in the following format
+where the summation is over all distance restraints \m{N_d} and
+\m{\boldL_{R,n}} is the space conforming to distant restraint \m{n}. The value
+found at a specific coordinate in \m{\redais} represents the number of
+conforming distance restraints at that location in space. The restraints are
+defined in a separate text file as input for disvis in the following format
 
 
 where <chain-1>, <resi-1> and <atomname-1> are the chainID, residue number, and
@@ -234,10 +235,10 @@ addition, for each complex that is consistent with at least one restraint, all
 restraints that are violated are calculated and stored during the search. This
 ultimately results in a violation matrix where every row represents the number
 of consistent restraints 𝑁 and every column indicates how often a specific
-restraint is violated for complexes consistent with at least \m{N} restraints (e.g.
-Table S3). Lastly, to give the user an indication which restraints are most
-likely to be false-positives, the z-score is calculated for each restraint
-based on the violation matrix given by
+restraint is violated for complexes consistent with at least \m{N} restraints
+(e.g.  \intable[tab:RPII-violations-fine]). Lastly, to give the user an
+indication which restraints are most likely to be false-positives, the z-score
+is calculated for each restraint based on the violation matrix given by
 
 \placeformula[eq:z-score]
 \startformula
@@ -272,17 +273,19 @@ detection of false-positive restraints, two virtual cross-links were added with
 a distance of 35.7 and 42.2\Angstrom\ using the Xwalk webserver
 \cite[Kahraman2011]. The maximum allowed distance of the BS3 cross-links was
 set to 30\Angstrom, based on molecular dynamics trajectory analysis
-\cite[Merkley2014]. The restraints used are shown in Table S1. The input files
-are included in the DisVis source code. 
+\cite[Merkley2014]. The restraints used are shown in
+\intable[tab:RPII-crosslinks]. The input files are included in the DisVis
+source code. 
 
-Two disvis runs were performed using a rotational sampling density of 5.27\Deg\ 
-(53256 orientations) and 9.72\Deg\ (7416 orientations) with a grid spacing of
-1\Angstrom\ and 2\Angstrom, respectively. All parameters were left to there
-default values (interaction radius 3\Angstrom, minimum required volume of
-interaction 300\Angstrom\high{3} and maximum allowed volume of clashes
+Two disvis runs were performed using a rotational sampling density of 5.27\Deg\
+(53256 orientations) and 9.72\Deg\ (7416 orientations) with a grid spacing of 1
+and 2\Angstrom, respectively. All parameters were left to there default values
+(interaction radius 3\Angstrom, minimum required volume of interaction
+300\Angstrom\high{3} and maximum allowed volume of clashes
 200\Angstrom\high{3}). The amount of accessible complexes consistent with each
-number of cross-links is shown in Table S2 and S4, and the relative occurrence
-of restraint violations in Table S3 and S5 for the fine and coarse run,
+number of cross-links is shown in \intable[tab:RPII-accessible-complexes-fine]
+and \in[tab:RPII-accessible-complexes-coarse], and the relative occurrence of
+restraint violations in Table S3 and S5 for the fine and coarse run,
 respectively.
 
 
@@ -292,16 +295,16 @@ Homology models were downloaded from the SWIS-MODEL Repository
 \cite[Kiefer2009] via the Protein Model Portal (http://proteinmodelportal.org)
 using their Uniprot identifiers (O14250 and Q9UT97). Cross-links were taken
 from \cite[authoryear][Leitner2014] Dataset S1 (Table S6), which consist of 4
-ADH and 3 zero-length ZL cross-links. The maximum ADH- and ZL linker length
-were set to 23\Angstrom\ and 26\Angstrom, respectively, since 95\% of all found
-distances in a benchmark were smaller. All input files are included in the
-DisVis source code. 
+ADH and 3 zero-length ZL cross-links. The maximum ADH- and ZL-linker length
+were set to 23 and 26\Angstrom, respectively, since 95\% of all found distances
+in a benchmark were smaller. All input files are included in the DisVis source
+code. 
 
 Again, two \disvis\ runs were performed using a rotational sampling density of
 5.27\Deg\ (53256 orientations) and 9.72\Deg\ (7416 orientations) with a grid
-spacing of 1\Angstrom\ and 2\Angstrom, respectively, with default parameter
-values. The sum of accessible complexes consistent with each number of
-restraints is shown in Table S7 and S9, and their normalized restraint
-violation occurrence in Table S8 and S10. 
+spacing of 1 and 2\Angstrom, respectively, with default parameter values. The
+sum of accessible complexes consistent with each number of restraints is shown
+in Table S7 and S9, and their normalized restraint violation occurrence in
+Table S8 and S10. 
 
 
