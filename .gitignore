@@ -9,6 +9,7 @@
 *.tuc
 *.pdf
 *.tmp
+.DS_Store
 
 ## Intermediate documents:
 *.dvi
