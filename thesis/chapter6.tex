@@ -10,54 +10,82 @@
 \define\boldP{{\bf P}}
 \define\boldC{{\bf C}}
 
-\Chapter{Inferring interface residues from distance-restraints for
+\Chapter{Inferring interface residues from distance restraints for
 high-resolution HADDOCKing}
 
 
 \Section{Introduction}
 
+Uncovering the precise atomic structures of protein complexes is a highly
+soughtafter enterprise. Experimental techniques that provide atomic resolution
+, mainly X-ray crystallography and NMR spectroscopy, have, unfortunately, so
+far only revealed a fraction of the whole interactome, the set of all
+interacting proteins \cite[Stein2011]. Protein-protein docking aims to predict
+the structure of the complex from their individual proteins \cite[Moreira2010].
+However, the success rate using solely first-principles is generally low
+\cite[Huang2015]. Integrating additional information during the docking
+increases the confidence in the resulting models, especially with knowledge on
+the location of the interface \cite[Rodrigues2014]. Knowledge of the interface
+is also of prime importance in the rational development of protein-protein
+inhibitors \cite[Sable2015]. 
 
-In this Chapter, we introduce a method to infer residues that are likely to be
-at the interface when distance-restraints are available in addition to
-high-resolution atomic models of the chains. The method is benchmarked on 125
-complexes taken from the protein-protein docking benchmark 4.0 when 3, 5 and 7
-restraints are available with an upper distance of 30\Angstrom, caparable to
-the information content that is provided by DSS/BS3 mass spectrometry/crosslink
-data. Finally, we show how the results can be combined with HADDOCK to
-complement the docking runs with regular unambiguous distance-restraints.
+Mass spectrometry/cross-linking is an upcoming and promising biochemical method
+that provides inter-residue distance restraints \cite[Rappsilber2011]. 
+Multiple chemistries are being developed, making the approach more robust and
+increasing the information content \cite[Leitner2014]. Inclusion of cross-linker
+based distance restraints has already shown to improve the modeling of
+both proteins and protein-complexes with the Rosetta software
+\cite[Kahraman2013], and heavily decreases the number of accessible complexes
+(see \inchapter[disvis]). Our data-driven docking software HADDOCK is also
+capable of directly incorporating distance restraints during the docking
+\cite[Domingues2003, deVries2007], though no benchmark study has been performed
+to measure the impact and effectiveness.
+
+In \inchapter[disvis] we developed a method to visualize the accessible
+interaction space to aid the structural biologist. Here we will develop the
+approach further by introducing a method to infer interface residues when
+distance restraints are available in addition to high-resolution atomic models
+of the chains. The method is benchmarked on 91 complexes taken from the
+protein-protein docking benchmark 4.0 (PPDB4.0) \cite[Hwang2010] for 3, 5 and 7
+restraints with an upper distance of 30\Angstrom, comparable to the information
+content that is provided by DSS/BS3 mass spectrometry/crosslink data
+\cite[Merkley2014]. Finally, we show how the results can be combined with
+HADDOCK to complement the docking runs with regular unambiguous distance
+restraints by additionally benchmarking it using 24 cases of the PPDB4.0.
 
 
 \Section{Methods}
 
 
-\Subsection{Inferring interface residues from distance-restraints}
+\Subsection{Inferring interface residues from distance restraints}
 
 In the previous Chapter, we have introduced the concept of the accessible
-interaction space, the set of all possible complexes that are consistent with
-a certain number of distance-restraints. Indeed, the presence of distance-restraints between
-two interacting macromolecular biomolecules can significantly reduce the
-accessible interaction space. To infer residues that are likely to be at the
-interface, we assume that these residues are often found to be interacting in
-the whole interaction space. By performing a full-exhaustive 6 dimensional
-search of the three translational and three rotational degrees of freedom and
-counting the number of interactions that each solvent accessible residue forms
-in complexes consistent with a certain number of restraints, important residues
-can be determined. We define two residues to be interacting when the \CA--\
-\CA\ distance is smaller than 10\Angstrom. We only consider the \CA-atoms of
-solvent accessible residues of both chains to make the computations more
-tractable. The average number of interactions per complex that a residue \m{i}
-forms is given by
+interaction space, the set of all possible complexes that are consistent with a
+certain number of distance restraints. Indeed, the presence of distance
+restraints between two interacting macromolecular biomolecules can
+significantly reduce the accessible interaction space. To infer residues that
+are likely to be at the interface, we assume that these residues are often
+found to be interacting in the whole interaction space. By performing a
+full-exhaustive 6 dimensional search of the three translational and three
+rotational degrees of freedom and counting the number of interactions that each
+solvent accessible residue forms in complexes consistent with a certain number
+of restraints, important residues can be determined. We define two residues to
+be interacting when the \CA\ --\ \CA\ distance is smaller than 10\Angstrom. We
+only consider the \CA-atoms of solvent accessible residues of both chains to
+make the computations more tractable as the number of possible interactions
+scales with \m{A^2} with \m{A} the number of atoms involved. The average number
+of interactions per complex that a residue \m{i} forms is given by
 
-\placeformula[eq:count-interactions]
+\placeformula[eq:count-interactions] 
 \startformula
-\overline{N}_{\text{inter}}^i = \frac{\sum_R^{\bf P} w_R \sum_C^{\boldC_R} I_{C}}
-{\sum_R^\boldP w_R \boldC_R}
+\overline{N}_i = \frac{\sum_R^{\bf P} w_R \sum_C^{\boldC_R}
+I_{C}} {\sum_R^\boldP w_R \boldC_R} 
 \stopformula
 
 where the first summation is over all rotations \m{\boldP} indexed by \m{R};
 \m{w_R} is a weight factor to unbias certain rotations/orientations; the second
 summation is over all complexes \m{\boldC_R} that are formed within a
-translational scan indexed by \m{c}; and \m{I_{C}} is the number of
+translational scan indexed by \m{C}; and \m{I_{C}} is the number of
 interactions that are formed by residue \m{i} in each sampled complex.
 
 This approach has been implemented in DisVis, which requires for the
@@ -69,37 +97,39 @@ complexes consistent with at least \m{N} restraints.
 
 \Subsection{Benchmarking interface residue extraction}
 
-We benchmarked our approach on 125 complexes taken from the protein-protein
+We benchmarked our approach on 91 complexes taken from the protein-protein
 docking benchmark 4.0. The complexes were taken such that at least 7 virtual
-cross-links were available, determined by the XWalk software.  The virtual
+cross-links were available, determined by the XWalk software \cite[Kahraman2011]. The virtual
 crosslinks were picked such that the solvent accessible surface (SAS) distance
-was shorter or equal than 34\Angstrom, and the Euclidean distance smaller or
-equal than 30\Angstrom.  The cross-links were randomly picked from the list
-using the probability distribution as was used by Kahraman: 0 --
-10\Angstrom.... to mimic cross-link data.
+was shorter or equal than 34\Angstrom\ \cite[Kahraman2013], and the Euclidean
+distance smaller or equal than 30\Angstrom \cite[Merkley2014]. The cross-links
+were randomly picked from the list using the probability distribution as was
+used by \cite[authoryear][Kahraman2013] to mimic cross-link data: 0 --
+10\Angstrom\ 9\%; 10 -- 15\Angstrom\ 18\%; 15 -- 20\Angstrom\ 34\%; 20 --
+25\Angstrom\ 22\%; and 25 -- 34\Angstrom\ 16\%.
 
-The solvent accessible residues were determined by running naccess on the two
+The solvent accessible residues were determined by running {\it naccess} \cite[Hubbard1992] on the two
 unbound proteins. Residues that had a relative solvent accessiblity of the main
 or side chain of 50 were used as surface residues. DisVis runs were performed
-for each complex using 3, 5, and 7 random restraints with a 5.27\Deg\
-rotational sampling, and default values for the voxelspacing voxelspacing
-(1\Angstrom), and maximum clashing volume (200\Angstrom\high3) and minimum
-interaction volume (300\Angstrom\high3). The average interactions per complex
-were calculated for complexes consistent with all restraints. 
+for each complex using 3, 5, and 7 random restraints with a 5.27\Deg\ 
+rotational sampling, and default values for the voxelspacing (1\Angstrom), and
+maximum clashing volume (200\Angstrom\high3) and minimum interaction volume
+(300\Angstrom\high3). The average interactions per complex were calculated for
+complexes consistent with all restraints. 
 
 Correct interface residues were taken from the complex structure using the
 above definition of interaction, under the restriction that the residue was
-also present in the unbound proteins. To analyse the success, the precision and
-recall were calculated, given by
+also present in the unbound proteins. To analyse the predictive capabilities the
+precision and recall were calculated, given by
 
-\placeformula[eq:precision]
-\startformula
-\text{P} = \frac{\text{TP}}{\text{TP} + \text{FP}}
+\placeformula[eq:precision] 
+\startformula \text{P} = \frac{\text{TP}}{\text{TP}
++ \text{FP}} 
 \stopformula
 
-\placeformula[eq:recall]
-\startformula
-\text{R} = \frac{\text{TP}}{\text{TP} + \text{FN}}
+\placeformula[eq:recall] 
+\startformula \text{R} = \frac{\text{TP}}{\text{TP} +
+\text{FN}} 
 \stopformula
 
 where TP, FP and FN stand for True Positive, False Positive, and False
@@ -116,14 +146,14 @@ Negative, respectively.
 \Section{Results}
 
 
-\Subsection{Residues with many interactions are more likely to be at the interface}
+\Subsection{Residues with many interactions are more likely to be at the
+interface}
 
-\placefigure[top][fig:precision-recall]
-{\getbuffer[cap:precision-recall]}
+\placefigure[top][fig:precision-recall] {\getbuffer[cap:precision-recall]}
 {\externalfigure[fig:precision-recall]}
 
 
-\Subsection{HADDOCKing with distance-restraints}
+\Subsection{HADDOCKing with distance restraints}
 
 
 \Section{Conclusions}
