@@ -17,41 +17,50 @@ high-resolution HADDOCKing}
 \Section{Introduction}
 
 Uncovering the precise atomic structures of protein complexes is a highly
-soughtafter enterprise. Experimental techniques that provide atomic resolution
-, mainly X-ray crystallography and NMR spectroscopy, have, unfortunately, so
+soughtafter enterprise. Experimental techniques that provide atomic resolution,
+mainly X-ray crystallography and NMR spectroscopy, have, unfortunately, so
 far only revealed a fraction of the whole interactome, the set of all
 interacting proteins \cite[Stein2011]. Protein-protein docking aims to predict
-the structure of the complex from their individual proteins \cite[Moreira2010].
-However, the success rate using solely first-principles is generally low
-\cite[Huang2015]. Integrating additional information during the docking
-increases the confidence in the resulting models, especially with knowledge on
-the location of the interface \cite[Rodrigues2014]. Knowledge of the interface
-is also of prime importance in the rational development of protein-protein
-inhibitors \cite[Sable2015]. 
+the structure of the complex from their individual proteins to close the
+knowledge gap \cite[Moreira2010]. However, the success rate using solely
+first-principles is generally low \cite[Huang2015]. Integrating additional
+information during the docking increases the confidence in the resulting
+models, especially with knowledge on the location of the interface
+\cite[Rodrigues2014].
 
 Mass spectrometry/cross-linking is an upcoming and promising biochemical method
-that provides inter-residue distance restraints \cite[Rappsilber2011]. 
+that provides inter-residue distance restraints \cite[Rappsilber2011].
 Multiple chemistries are being developed, making the approach more robust and
-increasing the information content \cite[Leitner2014]. Inclusion of cross-linker
-based distance restraints has already shown to improve the modeling of
-both proteins and protein-complexes with the Rosetta software
-\cite[Kahraman2013], and heavily decreases the number of accessible complexes
-(see \inchapter[disvis]). Our data-driven docking software HADDOCK is also
-capable of directly incorporating distance restraints during the docking
-\cite[Domingues2003, deVries2007], though no benchmark study has been performed
-to measure the impact and effectiveness.
+increasing the information content \cite[Leitner2014]. Several software
+packages have already been developed for visualizing crosslinks, and
+calculating their path length \cite[Kahraman2011]. In the previous chapter we
+introduced DisVis to quantify and visualize the information content of distance
+restraints. However, interpreting multiple long-range distance restraints
+between components from a structural perspective and deducing the interaction
+surface remains tedious. A simpler interpretation is gained if interface
+residues can be deduced from the data, as these map directly onto the
+individual chains and offer a straightforward prediction of the active site. In
+addition, in the development of protein-protein inhibitors mainly the
+protein interfaces are of importance, and less so the precise complex's structure
+\cite[Sable2015]. 
 
-In \inchapter[disvis] we developed a method to visualize the accessible
-interaction space to aid the structural biologist. Here we will develop the
-approach further by introducing a method to infer interface residues when
-distance restraints are available in addition to high-resolution atomic models
-of the chains. The method is benchmarked on 91 complexes taken from the
-protein-protein docking benchmark 4.0 (PPDB4.0) \cite[Hwang2010] for 3, 5 and 7
-restraints with an upper distance of 30\Angstrom, comparable to the information
-content that is provided by DSS/BS3 mass spectrometry/crosslink data
-\cite[Merkley2014]. Finally, we show how the results can be combined with
-HADDOCK to complement the docking runs with regular unambiguous distance
-restraints by additionally benchmarking it using 24 cases of the PPDB4.0.
+Inclusion of cross-linker based distance restraints has already shown to
+improve the modeling of both proteins and protein-complexes with the Rosetta
+software \cite[Kahraman2013], by heavily decreases the number of accessible
+complexes (see \inchapter[disvis]). Our data-driven docking software HADDOCK is
+also capable of directly incorporating distance restraints during the docking
+\cite[Dominguez2003, deVries2007], though no thorough benchmark study has been
+performed to measure the impact and effectiveness.
+
+Here we will introduce a method to infer interface residues when distance
+restraints are available in addition to models of the chains. The method is
+benchmarked on 90 complexes taken from the protein-protein docking benchmark
+4.0 (PPDB4.0) \cite[Hwang2010] for 3, 5 and 7 restraints with an upper distance
+of 30\Angstrom, comparable to the information content that is provided by
+DSS/BS3 mass spectrometry/crosslink data \cite[Merkley2014]. Finally, we show
+how the results can be combined with HADDOCK to complement the docking runs
+with regular unambiguous distance restraints by additionally benchmarking it
+using 24 cases of the PPDB4.0.
 
 
 \Section{Methods}
@@ -64,17 +73,18 @@ interaction space, the set of all possible complexes that are consistent with a
 certain number of distance restraints. Indeed, the presence of distance
 restraints between two interacting macromolecular biomolecules can
 significantly reduce the accessible interaction space. To infer residues that
-are likely to be at the interface, we assume that these residues are often
-found to be interacting in the whole interaction space. By performing a
-full-exhaustive 6 dimensional search of the three translational and three
-rotational degrees of freedom and counting the number of interactions that each
-solvent accessible residue forms in complexes consistent with a certain number
-of restraints, important residues can be determined. We define two residues to
-be interacting when the \CA\ --\ \CA\ distance is smaller than 10\Angstrom. We
-only consider the \CA-atoms of solvent accessible residues of both chains to
-make the computations more tractable as the number of possible interactions
-scales with \m{A^2} with \m{A} the number of atoms involved. The average number
-of interactions per complex that a residue \m{i} forms is given by
+are most likely to be at the interface, we assume that these residues are often
+found to be interacting in the interaction space consistent with the
+restraints. By performing a full-exhaustive 6 dimensional search of the three
+translational and three rotational degrees of freedom and counting the number
+of interactions that each solvent accessible residue forms in complexes
+consistent with a certain number of restraints, important residues may be
+determined. We define two residues to be interacting when the \CA\ -- \CA\ 
+distance is smaller than 10\Angstrom. We only consider the \CA-atoms of solvent
+accessible residues of both chains to make the computations more tractable as
+the number of possible interactions scales with \m{A^2} with \m{A} the number
+of atoms involved. The average number of interactions per complex that a
+residue \m{i} forms is given by
 
 \placeformula[eq:count-interactions] 
 \startformula
@@ -86,7 +96,7 @@ where the first summation is over all rotations \m{\boldP} indexed by \m{R};
 \m{w_R} is a weight factor to unbias certain rotations/orientations; the second
 summation is over all complexes \m{\boldC_R} that are formed within a
 translational scan indexed by \m{C}; and \m{I_{C}} is the number of
-interactions that are formed by residue \m{i} in each sampled complex.
+interactions that are formed by residue \m{i} in each sampled complex \m{C}.
 
 This approach has been implemented in DisVis, which requires for the
 interaction analysis an extra input file containing the residue numbers for the
@@ -97,25 +107,27 @@ complexes consistent with at least \m{N} restraints.
 
 \Subsection{Benchmarking interface residue extraction}
 
-We benchmarked our approach on 91 complexes taken from the protein-protein
-docking benchmark 4.0. The complexes were taken such that at least 7 virtual
-cross-links were available, determined by the XWalk software \cite[Kahraman2011]. The virtual
-crosslinks were picked such that the solvent accessible surface (SAS) distance
-was shorter or equal than 34\Angstrom\ \cite[Kahraman2013], and the Euclidean
-distance smaller or equal than 30\Angstrom \cite[Merkley2014]. The cross-links
-were randomly picked from the list using the probability distribution as was
-used by \cite[authoryear][Kahraman2013] to mimic cross-link data: 0 --
-10\Angstrom\ 9\%; 10 -- 15\Angstrom\ 18\%; 15 -- 20\Angstrom\ 34\%; 20 --
-25\Angstrom\ 22\%; and 25 -- 34\Angstrom\ 16\%.
+We benchmarked our approach on 90 complexes taken from the protein-protein
+PPD4.0, of which 58 were Easy, 14 Medium, and 18 Difficult. Virtual cross-links
+were calculated using a local version of the XWalk software
+\cite[Kahraman2011] on the bound complex. The virtual crosslinks were picked
+such that the solvent accessible surface (SAS) distance was shorter or equal
+than 34\Angstrom\ \cite[Kahraman2013], and the Euclidean distance smaller or
+equal than 30\Angstrom \cite[Merkley2014] and the cross-linked residues should
+be present in both the bound and unbound proteins. The cross-links were
+randomly picked from the list using the probability distribution as was used by
+\cite[authoryear][Kahraman2013] to mimic cross-link data: 0 -- 10\Angstrom\
+9\%; 10 -- 15\Angstrom\ 18\%; 15 -- 20\Angstrom\ 34\%; 20 -- 25\Angstrom\ 22\%;
+and 25 -- 34\Angstrom\ 16\%.
 
-The solvent accessible residues were determined by running {\it naccess} \cite[Hubbard1992] on the two
-unbound proteins. Residues that had a relative solvent accessiblity of the main
-or side chain of 50 were used as surface residues. DisVis runs were performed
-for each complex using 3, 5, and 7 random restraints with a 5.27\Deg\ 
-rotational sampling, and default values for the voxelspacing (1\Angstrom), and
-maximum clashing volume (200\Angstrom\high3) and minimum interaction volume
-(300\Angstrom\high3). The average interactions per complex were calculated for
-complexes consistent with all restraints. 
+The solvent accessible residues were determined by running {\it naccess}
+\cite[Hubbard1992] on the two unbound proteins. Residues that had a relative
+solvent accessiblity of the main or side chain of 50 were used as surface
+residues. DisVis runs were performed for each complex using 3, 5, and 7 random
+restraints with a 5.27\Deg\ rotational sampling, and default values for the
+voxelspacing (1\Angstrom), and maximum clashing volume (200\Angstrom\high3) and
+minimum interaction volume (300\Angstrom\high3). The average interactions per
+complex were calculated for complexes consistent with all restraints. 
 
 Correct interface residues were taken from the complex structure using the
 above definition of interaction, under the restriction that the residue was
@@ -123,39 +135,157 @@ also present in the unbound proteins. To analyse the predictive capabilities the
 precision and recall were calculated, given by
 
 \placeformula[eq:precision] 
-\startformula \text{P} = \frac{\text{TP}}{\text{TP}
-+ \text{FP}} 
+\startformula 
+\text{P} = \frac{\text{TP}}{\text{TP} + \text{FP}} 
 \stopformula
 
 \placeformula[eq:recall] 
-\startformula \text{R} = \frac{\text{TP}}{\text{TP} +
-\text{FN}} 
+\startformula 
+\text{R} = \frac{\text{TP}}{\text{TP} + \text{FN}} 
 \stopformula
 
 where TP, FP and FN stand for True Positive, False Positive, and False
 Negative, respectively.
 
 
-\Subsection{HADDOCKing with distance-restraints}
+\Subsection{HADDOCKing with distance restraints}
+
+To determine whether the inclusion of DisVis-determined likely interface
+residues aids the docking process of HADDOCK, we additionally benchmarked
+HADDOCK using 24 complexes of the PPDB4.0 of which 16 were the same as used by
+\cite[authoryear][Kahraman2013]. The remaining 8 were randomly picked Easy
+complexes, as the 16 consisted of 7 Medium and 9 Difficult cases. HADDOCK was
+benchmarked with 4 different procedures: using the restraints directly as
+unambiguous distance restraints (unambig); using the unambig restraints in
+combination with center-of-mass restraints \cite[Karaca2013]; using solely
+DisVis-based ambiguous interaction restraints (AIRs); and using a combination
+of the unambig restraints and DisVis-based AIRs.  Each procedure was performed
+again with 3, 5 and 7 generated virtual cross-link restraints, as described in
+the prvevious section. The DisVis-based AIRs were determined as follows: a
+DisVis run was performed as described above using the unbound structures of the
+complex together with the virtual cross-links; active residues were chosen such
+that the average number of interactions per complex consistent with all
+restraints had to be bigger than 1; passive residues were chosen with a to be
+determined average number of interactions based on the analysis in the previous
+section. Per HADDOCK 1000 it0-structures were written to file, using 5 trials
+per file and 180\Deg\ sampling, resulting in 10000 sampled solutions (\m{1000
+\times 5 \times 2}), of which the 200 best scoring solutions were refined in
+it1 and itw. The solutions were analyzed by calculating the ligand-RMSD (l-RMSD) against
+the native complex, by first optimally fitting the receptor chain and
+afterwards calculating the RMSD of the ligand chain. Models with an l-RMSD lower
+than 10\Angstrom\ were considered acceptable.
 
 
+\Section{Results and discussion}
 
 
+\Subsection{Inferring interface residues from distance restraints}
 
 
-\Section{Results}
-
-
-\Subsection{Residues with many interactions are more likely to be at the
-interface}
+The analysis of the DisVis benchmark is shown in
+\infigure[fig:precision-recall] for all complexes and for each difficulty
+category.  Plotted are the precision and recall against the
+average-interactions-per-complex (AIC) cutoff of a residue.  This shows for
+example that for all complexes when using 7 cross-links, on average, for residues
+that have a higher AIC of 1.0 the precision is approximateley 60\%, i.e. 60\%
+of all residues with a higher AIC of 1.0 are true interface residues; the
+recall at 1.0 AIC is around 40\%, meaning that 40\% of all true interface residues is
+still retained in the set of residues satisfying the AIC condition.
 
 \placefigure[top][fig:precision-recall] {\getbuffer[cap:precision-recall]}
 {\externalfigure[fig:precision-recall]}
 
+As expected, the precision increases with increasing AIC, while the recall
+drops steadily. Also, the precision and recall rise with more available
+cross-links, reflecting the higher information content of the distance
+restraints. For all complexes the precision starts at 30\% regardless of the
+number of available restraints and rises to 50, 70 and 80\% for 3, 5, and 7
+restraints, respectively. For Easy complexes this increases even to 60, and 85
+and 90\%, while for Medium and Difficult complexes the precision rate is
+significantly lower up to 70\% for Difficult complexes in the presence of 7 restraints. 
+We attribute the noisy behaviour of the precision rate, especially for medium
+complexes, to the smaller number of complexes sampled, resulting in bigger
+jumps.
+
+The starting recall percentage averaged over all complexes starts around 90\%,
+a consequence of chosing the surface residues: because of small conformational
+changes between the bound and unbound chains, residues that are regarded as
+solvent accessible in the bound form might not be accessible in the unbound
+form. This also explains the lower starting recall rate of Medium and Difficult
+complexes, with the latter being lower than 80\%. Not surprisingly, the recall
+rate decreases steadily with increasing AIC, as less residues will be
+satisfying the AIC cutoff condition. However, the recall rate does increase
+significantly with the inclusion of more restraints. 
+
 
 \Subsection{HADDOCKing with distance restraints}
 
+The HADDOCK benchmark results for the 8 Easy complexes, and the 16 Medium and
+Hard complexes are displayed in \infigure[fig:benchmark-easy] and
+\in[fig:benchmark-rosetta], respectively, in terms of the structure with the
+lowest l-RMSD after the water-refinement stage. For the DisVis-based AIRs the
+cutoff AIC for passive residues was set to 0.1, as the precision increase is
+steeper approximately untill that point, while still keeping a reasonable
+recall rate. For the Easy complexes the unambiguous restraints approach was
+successful in 50, 37.5 and 75\% of the cases when using 3, 5 and 7 cross-links.
+Adding the center-of-mass restraints this changed to 62.5, 50, and 62.5\%.
+Using the DisVis-based AIRs resulted in a success rate of 25, 62.5, and 75\%,
+and combined with the unambiguous restraints this was 50, 75 and 75\% success
+rate.  Interestingly, increasing the number of cross-links does not
+neccessarily result in better structures using solely the unambiguous
+restraints, as the success rate with 5 cross-links is markedly lower than using
+3. Also, the unambiguous approach with included center-of-mass restraints is
+the only method for which no acceptable solutions are generated for the 1QA9
+complex, even with 7 restraints included. The results of the DisVis-based
+approaches, however, are improving with more cross-links available.
+
+\placefigure[top][fig:benchmark-easy]
+{\getbuffer[cap:benchmark-easy]}
+{\externalfigure[fig:benchmark-easy]}
+
+\placefigure[top][fig:benchmark-rosetta]
+{\getbuffer[cap:benchmark-rosetta]}
+{\externalfigure[fig:benchmark-rosetta]}
+
+In the 16 Medium and Difficult complexes the unambiguous approach is successful
+in 18.75, 62.5 and 50\% of the cases for 3, 5 and 7 cross-links, respectively;
+with inclusion of the center-of-mass restraints this is 37.5, 56.25, and 75\%.
+The DisVis-based AIRs result in 12.5, 50 and 50\% successful cases; including
+the unambiguous restraints this increases to 12.5, 56.25 and 62.5\%. As with
+the Easy complexes, the success rate of the unambiguous restraints shows no
+steady improvement with an increased number of cross-links. Furthermore, the
+combination of DisVis-based AIRs and unambiguous restraints is superior in
+general to using only DisVis-based AIRs. 
+
+The HADDOCK results when using 7 cross-links are compared against Rosetta in
+\infigure[fig:benchmark-rosetta]{C}. Rosetta was successful in 68.75\% of the
+cases, slightly higher than the HADDOCK using DisVis-based AIRs with
+unambiguous restraints, but lower than when using unambiguous with
+center-of-mass restraints. However, in general the results are comparable.
+
+Taking all 24 complexes together we conclude that using the ambiguous
+restraints solely results in a success rate of 29, 54 and 58\%; using ambiguous
+restraints with center-of-mass restraints this is 46, 54 and 71\%; using solely
+DisVis-based AIRs 17, 54 and 58\%; and DisVis-based AIRs combined with
+unambiguous restraints 25, 63 and 67\%. Based on these results we conclude that
+if only 3 cross-links are available, the best protocol to use is to combine
+unambiguous restraints with center-of-mass restraints. If 5 or more cross-links
+are available it is best to either again combine the unambiguous restraints
+with the center-of-mass restaints, or combine them with DisVis-based AIRs.
+
 
 \Section{Conclusions}
+
+In this Chapter we have introduced a method to infer interface residues by
+enumerating all interactions a residue forms in the interaction space
+consistent with all restraints and normalizing it against the number of
+accessible complexes. It was shown that residues with a higher AIC are more
+likely to be interface residues with precision reaching almost 90\% for rigid
+complexes. In addition, we benchmarked several protocols within HADDOCK that
+incorporated cross-link based distance restraints. Based on the analysis using
+the cross-links directly as unambiguous restraints is sub-optimal, and instead
+should be complemented with either center-of-mass restraints or DisVis-based
+AIRs. Furtermore, we have shown that HADDOCK and Rosetta are very comparable in
+their docking performance when including the distance restraints.
 
 \stopcomponent

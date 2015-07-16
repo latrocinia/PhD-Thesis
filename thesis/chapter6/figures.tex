@@ -1,4 +1,34 @@
 \useexternalfigure[fig:precision-recall][precision-recall]
 \startbuffer[cap:precision-recall]
-\caption{}{}
+\caption{Precision and recall rates.}
+{The precision and recall rates are plotted against the
+average-interactions-per-complex cutoff. The results are shown averaged over
+all 90 benchmarked complexes, 58 Easy, 14 Medium, and 18 Difficult complexes.}
+\stopbuffer
+
+
+\useexternalfigure[fig:benchmark-easy][benchmark-easy]
+\startbuffer[cap:benchmark-easy]
+\caption{Benchmark results on Easy complexes.}
+{For each complex the best structure is plotted in terms, of the l-RMSD, for
+the four procedures tested using (A) 3, (B) 5, and (C) 7 cross-links. The
+dotted line is the cutoff for an acceptable model. Unambig: unambiguous
+distance restraints; unambig + com: unambiguous restraints combined with
+center-of-mass restraints; disvis: DisVis-based ambiguous interaction
+restraints (AIRs); disvis + unambig: unambiguous restraints combined with
+DisVis-based AIRs.} 
+\stopbuffer
+
+
+\useexternalfigure[fig:benchmark-rosetta][benchmark-rosetta]
+\startbuffer[cap:benchmark-rosetta]
+\caption{Benchmark results on Medium and Difficult complexes.}
+{For each complex the best structure is plotted in terms, of the l-RMSD, for
+the four procedures tested using (A) 3, (B) 5, and (C) 7 cross-links. The
+dotted line is the cutoff for an acceptable model. Unambig: unambiguous
+distance restraints; unambig + com: unambiguous restraints combined with
+center-of-mass restraints; disvis: DisVis-based ambiguous interaction
+restraints (AIRs); disvis + unambig: unambiguous restraints combined with
+DisVis-based AIRs. In (C) also the best structures of the Rosetta benchmark are
+shown.}
 \stopbuffer
