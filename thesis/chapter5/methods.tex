@@ -58,7 +58,7 @@ the molecules as rigid entities. This results in a 6 dimensional (3
 translational and 3 rotational degrees of freedom) space of possible
 conformations that need to be considered. To determine within this 6D space
 whether the two chains are interacting and forming a complex, we use
-FFT-techniques as used originally in \cite[authoryear][Katchalski-Katzir1992].
+FFT-techniques as used originally in \citeauthor[Katchalski-Katzir1992].
 We keep one chain fixed during the search while we perform FFT-accelerated
 translational scans with the other chain. The fixed chain is separated into a
 core and interaction region. The core region is the space that is occupied by
@@ -118,7 +118,7 @@ at every rotation all states where \m{{\bf A}_R} equals 1.  Care should be
 taken here that rotation space is as evenly and optimally sampled as possible
 to minimize redundancy and biasing certain orientations in the counting. To
 take this into account, we used the optimal rotation sets developed by
-\cite[authoryear][Karney2007], which include a weight factor for every rotation
+\citeauthor{Karney2007}, which include a weight factor for every rotation
 to average out redundancy. The total number of accessible states \m{N_A} is
 thus given by
 
@@ -294,11 +294,10 @@ respectively.
 Homology models were downloaded from the SWIS-MODEL Repository
 \cite[Kiefer2009] via the Protein Model Portal (http://proteinmodelportal.org)
 using their Uniprot identifiers (O14250 and Q9UT97). Cross-links were taken
-from \cite[authoryear][Leitner2014] Dataset S1 (Table S6), which consist of 4
-ADH and 3 zero-length ZL cross-links. The maximum ADH- and ZL-linker length
-were set to 23 and 26\Angstrom, respectively, since 95\% of all found distances
-in a benchmark were smaller. All input files are included in the DisVis source
-code. 
+from \citeauthor{Leitner2014} Dataset S1 (Table S6), which consist of 4 ADH and
+3 zero-length ZL cross-links. The maximum ADH- and ZL-linker length were set to
+23 and 26\Angstrom, respectively, since 95\% of all found distances in a
+benchmark were smaller. All input files are included in the DisVis source code. 
 
 Again, two \disvis\ runs were performed using a rotational sampling density of
 5.27\Deg\ (53256 orientations) and 9.72\Deg\ (7416 orientations) with a grid

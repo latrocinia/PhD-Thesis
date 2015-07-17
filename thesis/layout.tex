@@ -56,12 +56,15 @@
 \definereferenceformat[ineq][left=Eq. ]
 
 % shortcuts
-\define[0]\disvis{\emph{disvis}}
+\define \disvis {\emph{disvis}}
 
 % bibtex
-\setuppublications[alternative=apa]
-\setupbibtex[database={chapter2/references,chapter3/references,chapter4/references,chapter5/references,chapter6/references},
+\define[1] \citeauthor {\cite[authornum][#1]}
+\setupbibtex[database={chapter1/references,chapter2/references,chapter3/references,chapter4/references,chapter5/references,chapter6/references},
              sort=author]
+
+\setuppublications[alternative=apa, refcommand=num, sorttype=cite, criterium=cite, numbering=yes]
+
 \setuppublicationlayout[article]{%
     \insertartauthors{}{ }{\inserthekey{}{ }}%
     \insertpubyear{(}{). }{\unskip. }%

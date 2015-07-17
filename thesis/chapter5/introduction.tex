@@ -23,17 +23,18 @@ has been reported that quantifies this reduction or allows to visualize this
 accessible interaction space. 
 
 To aid in this task, we have developed DisVis, a GPU-accelerated Python
-software package and command line tool (\disvis) for quantifying and visualizing
-the accessible interaction space of distance-restrained binary complexes.
-Disvis takes as input two atomic structures and a file with distance
-restraints, and outputs the sum of complexes complying with a given number of
-restraints together with a density showing the maximum number of consistent
-restraints at every position in space. This indicates whether all data are
-consistent and can be combined without violations, and allows identification of
-false positives, quantification of the information content of the restraints
-and visualization of interesting regions in the interaction space. The method
-is generic and can easily be incorporated into existing Fast Fourier Transform
-(FFT)-accelerated docking programs as a distance-dependent energy function,
-allowing the ‘marriage made in heaven’ of direct sampling and scoring of
-FFT-generated docking poses \cite[Vajda2013] at a small computational cost.
+software package and command line tool (\disvis) for quantifying and
+visualizing the accessible interaction space of distance-restrained binary
+complexes.  Disvis takes as input two atomic structures and a file with
+distance restraints, and outputs the sum of complexes complying with a given
+number of restraints together with a density showing the maximum number of
+consistent restraints at every position in space. This indicates whether all
+data are consistent and can be combined without violations, and allows
+identification of false positives, quantification of the information content of
+the restraints and visualization of interesting regions in the interaction
+space. The method is generic and can easily be incorporated into existing Fast
+Fourier Transform (FFT)-accelerated docking programs as a distance-dependent
+energy function, allowing the ‘marriage made in heaven’ of direct sampling and
+scoring of FFT-generated docking poses \cite[Vajda2013] at a small
+computational cost.
 

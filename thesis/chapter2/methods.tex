@@ -12,17 +12,17 @@ fitted by performing a systematic, full-exhaustive search of the 6D space and
 saving locations corresponding to high cross-correlation values. Predictably,
 the problems with this approach are sensitivity of the scoring function and
 speed of the search.  The sensitivity of the global cross-correlation score as
-originally used by \cite[authoryear][Volkmann1999] is often compromised as, typically,
+originally used by \citeauthor{Volkmann1999} is often compromised as, typically,
 subunits instead of the whole complex are fitted into the density. To make
 things worse, at lower resolution the local densities of neighboring subunits
 are overlapping, resulting in systemic noise mainly at the edges of the search
-model. To overcome the first problem, \cite[authoryear][Roseman2000] introduced the local
+model. To overcome the first problem, \citeauthor{Roseman2000} introduced the local
 cross-correlation function, which effectively is the cross-correlation
 normalized under the running footprint of the shape of the model. This
 localizes the score to only the region of interest, making the fitting of
 subunits feasible. As for the effect of overlapping densities of neighboring
 subunits, this can be minimized by biasing the density toward the core of the
-search object. \cite[authoryear][Wu2003] incorporated this concept by calculating the
+search object. \citeauthor{Wu2003} incorporated this concept by calculating the
 core-index of each voxel of the search object, where the core-index is a
 measure for how far the voxel is from an edge. To further enhance the
 sensitivity of the scoring function, a Laplace pre-filter can be applied to the
@@ -94,7 +94,7 @@ complex shapes.
 \Subsubsection{Using Fourier techniques to calculate the CW-LCC}
 
 Starting from \in{Eq.}[eq:cw-lcc] and following in the spirit of
-\cite[authoryear][Roseman2003], we can normalize the core-weighted density $w_i
+\citeauthor{Roseman2003}, we can normalize the core-weighted density $w_i
 \rho_c$ of the template by setting $\overline{\rho_c^w} = 0$ and $\sigma_c^w =
 1$, which simplifies \in{Eq.}[eq:cw-lcc] to
 
@@ -130,8 +130,8 @@ calculated using FFTs as follows
 \mathcal{F} \left( w^2 \right)^* \times \mathcal{F}\left( \rho_o^2 \right) \right]
 \stopformula
 
-where $\mathcal{F}$ and $\mathcal{F}^{-1}$ are the Fast Fourier transform and
-its inverse, respectively, $^*$ is the complex conjugate operator, $\times$ is
+where \m{\mathcal{F}} and \m{\mathcal{F}^{-1}} are the Fast Fourier transform and
+its inverse, respectively, $^*$ is the complex conjugate operator, \m{\times} is
 the element wise multiplication operator, $w$ is the core-weighted mask,
 $\rho_c$ and $\rho_o$ are the calculated and experimental densities,
 respectively. In \in{Eq.}[eq:cw-gcc] it is the search object that is multiplied
@@ -159,7 +159,7 @@ icosahedral tessellation to generate rotations \cite[Hoang2013], resulting in
 for a fine 5° search, respectively. 
 
 In our implementation, we make use of the optimal rotation sets determined by
-\cite[authoryear][Karney2007], originally developed for solid state NMR. These
+\citeauthor{Karney2007}, originally developed for solid state NMR. These
 sets were pre-calculated by enclosing the hypersphere of unit quaternions and
 require only 648 orientations for a 20.83° search and 70728 orientations at a
 4.71° sampling rate. This is an enhancement of the sampling efficiency of at
@@ -169,7 +169,7 @@ sampling interval.
 \Subsubsection{Decreasing the map size by resampling and trimming the density}
 
 In addition to the number of rotations sampled, the computational complexity of
-the search scales with $N \log\left( N \right)$ where $N$ is the number of
+the search scales with \m{N \log\left( N \right)} where \m{N} is the number of
 voxels of the data. This is the major determinant for the computational
 resources required. Limiting the density size is thus key to limiting the time
 required for a search. Cryo-EM data are often oversampled with respect to their
@@ -229,7 +229,7 @@ found cross correlation score for all sampled rotations, is segmented using a
 3D watershed algorithm \cite[Volkmann2002] in order to remove redundant
 solutions. The location of each maximum together with its correlation score and
 corresponding rotation are written to file as well as the corresponding PDB
-coordinates of the top $N$ solutions (where $N$ is a user-defined parameter). 
+coordinates of the top \m{N} solutions (where \m{N} is a user-defined parameter). 
 
 PowerFit is written in the Python language (Python2.7) and requires the NumPy,
 SciPy and Cython packages. The CPU version can be further accelerated by

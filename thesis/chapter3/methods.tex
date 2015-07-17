@@ -4,9 +4,10 @@
 \Subsection{Exploring the limits of rigid-body fitting}
 
 To explore the resolution limit for successful rigid body fitting, we selected
-five high-resolution cryo-EM ribosome maps from the EMDatabank \cite[Lawson2011], ranging in
-resolution from 5.5 to 6.9\Angstrom, for which structural models were deposited in the
-Protein Databank \cite[Gutmanas2014] (\intable[tab:ribosome-cases]). The ribosome is an excellent case study as it
+five high-resolution cryo-EM ribosome maps from the EMDatabank
+\cite[Lawson2011], ranging in resolution from 5.5 to 6.9\Angstrom, for which
+structural models were deposited in the Protein Databank \cite[Gutmanas2014]
+(\intable[tab:ribosome-cases]). The ribosome is an excellent case study as it
 contains many chains of various sizes and types. Subsequently, we tried to fit
 each separate chain independently in their respective density map with
 PowerFit, using four different scoring functions: the local cross-correlation
@@ -19,7 +20,9 @@ L-LCC and L-CW-LCC, respectively, given by the master equation
 
 \placeformula[eq:correlation-equation]
 \startformula
-\text{CC} = \frac{1}{N} \frac{\sum_i^N \left( w_i \rho_c - \overline{\rho_c} \right) \cdot \left( w_i \rho_o - \overline{\rho_o} \right)}{\sigma_c^w \sigma_o^w}
+\text{CC} = \frac{1}{N} \frac{\sum_i^N \left( w_i \rho_c - \overline{\rho_c}
+\right) \cdot \left( w_i \rho_o - \overline{\rho_o} \right)}{\sigma_c^w
+\sigma_o^w}
 \stopformula
 
 where the summation is over all \m{N} voxels that are within half a resolution
@@ -31,24 +34,27 @@ average for the search object and the local cryo-EM data, respectively, given
 by \m{\overline{\rho_x^w} = 1/N \sum_i^N w_i \rho_x}. Finally, \m{\sigma_c^w}
 and \m{\sigma_o^w} are the weighted density standard deviations for the search
 object and EM-data. The LCC-score is defined by setting \m{w_i} to 1, while for
-the CW-LCC \m{w_i} is given by the core-index (\cite[authoryear][Wu2003], \inchapter[chapter:powerfit]), a measure for how close
-the voxel is to the core of the search object. The Laplacian enhanced scoring
-functions are defined by mapping \m{\rho \to \nabla^2 \rho_x} \cite[Chacon2002]. 
+the CW-LCC \m{w_i} is given by the core-index (\citeauthor{Wu2003},
+\inchapter[chapter:powerfit]), a measure for how close the voxel is to the core
+of the search object. The Laplacian enhanced scoring functions are defined by
+mapping \m{\rho \to \nabla^2 \rho_x} \cite[Chacon2002]. 
 
 After each round of fitting, the resolution of the cryo-EM data was lowered by
-1\Angstrom using the following procedure. Assuming that the density is described by a
-collection of atoms with a spherical Gaussian density distribution, where the
-width of the Gaussian depends on the resolution of the data, the density at
-each point \m{\vec{r}} in space is given by
+1\Angstrom using the following procedure. Assuming that the density is
+described by a collection of atoms with a spherical Gaussian density
+distribution, where the width of the Gaussian depends on the resolution of the
+data, the density at each point \m{\vec{r}} in space is given by
 
 \placeformula[eq:density]
 \startformula
-\rho \left( \vec{r}| R \right) = \sum^N_i A_i \exp\left( -\frac{\left| \vec{r} - \vec{r}_i \right|^2 }{2 \sigma_R^2} \right)
+\rho \left( \vec{r}| R \right) = \sum^N_i A_i \exp\left( -\frac{\left| \vec{r}
+- \vec{r}_i \right|^2 }{2 \sigma_R^2} \right)
 \stopformula
 
-Here the summation is over all \m{N} atoms indexed by \m{i}, where the amplitude of the
-density is given by the atom number of the element \m{A_i}, \m{\vec{r}} is the position of
-atom \m{i}, and the spread \m{\sigma_R} is a function of the resolution \m{R} given by
+Here the summation is over all \m{N} atoms indexed by \m{i}, where the
+amplitude of the density is given by the atom number of the element \m{A_i},
+\m{\vec{r}} is the position of atom \m{i}, and the spread \m{\sigma_R} is a
+function of the resolution \m{R} given by
 
 \placeformula[eq:sigma-to-resolution]
 \startformula
@@ -65,10 +71,10 @@ convoluted with a Gaussian kernel as
 \rho_{\text{target}}\left( \vec{r} \right) = G_k \ast \rho_{\text{init}}
 \stopformula
 
-where \m{\rho_{\text{init}}} and \m{\rho_{\text{target}}} are the initial and target density,
-respectively, and \m{G_k} is the Gaussian kernel with standard deviation \m{\sigma_k}, and \m{*}
-is the convolution operator. The convolution of two Gaussians results in
-another Gaussian \cite[Weisstein2015] as follows
+where \m{\rho_{\text{init}}} and \m{\rho_{\text{target}}} are the initial and
+target density, respectively, and \m{G_k} is the Gaussian kernel with standard
+deviation \m{\sigma_k}, and \m{*} is the convolution operator. The convolution
+of two Gaussians results in another Gaussian \cite[Weisstein2015] as follows
 
 \placeformula[eq:gaussian-convolution]
 \startformula

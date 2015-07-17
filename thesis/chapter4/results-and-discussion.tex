@@ -7,15 +7,15 @@ map is represented by a centroid.  The positions of these centroids can be
 determined in multiple ways: subunits can first be placed manually in the
 density to the correct position after which the COM can be calculated; a
 full-exhaustive cross correlation search of the chains in the density using
-rigid body fitting software can be used (e.g. \cite[authoryear][Hoang2013]) to
+rigid body fitting software can be used (e.g. \citeauthor{Hoang2013}) to
 extract positions corresponding to high cross correlation values; several
 automatic methods have been devised for simultaneous centroid placement
 \cite[Birmanns2007, Lasker2010, Wriggers1998, Zhang2010]; a more elaborate
 approach combines cross-link data with the cryo-EM map to infer the positions
 of the subunits \cite[Murakami2013].
 
-Once the centroids have been determined the docking can start. First the
-chains are separated in space at an approximate minimal distance of 25\Angstrom\ from
+Once the centroids have been determined the docking can start. First the chains
+are separated in space at an approximate minimal distance of 25\Angstrom\ from
 each other and given a random orientation.  Distance restraints are defined
 between the COM of each protein to either a specific centroid if one is able to
 distinguish the two chains in the density, or ambiguously to all centroids if
@@ -48,11 +48,11 @@ calculations are performed with CNS (Crystallography and NMR System)
 After the rigid body stage, the generated solutions are scored with the
 HADDOCK-EM-it0 score, which correspond to the original HADDOCK score (see
 \in{Eq.}[eq:haddock-it0]) complemented with a local cross correlation-based
-energy (see Experimental Procedures, Eq.
-\in[eq:haddock-em-it0]-\in[eq:haddock-em-itw]).  The 400 best scoring models
-are then refined using the standard HADDOCK refinement protocol with an
-additional correlation-based potential to further fit the chains into the
-density, while reckoning with the energetics of the system. 
+energy (see Experimental Procedures, \ineq[eq:haddock-em-it0] --
+\in[eq:haddock-em-itw]).  The 400 best scoring models are then refined using
+the standard HADDOCK refinement protocol with an additional correlation-based
+potential to further fit the chains into the density, while reckoning with the
+energetics of the system. 
 
 \placefigure[top][fig:it0-protocol]
 {\getbuffer[cap:it0-protocol]}
@@ -99,12 +99,13 @@ HADDOCK-EM protocol generates at least one acceptable solution in 13 out of 17
 cases, independent of the resolution of the simulated density maps used for the
 docking, of which all 10 easy targets, 2 medium and 1 hard target.  The quality
 of the best-generated model improves for all complexes compared to HADDOCK-CM,
-except for the smallest 2OOB complex when using 15 and 20\Angstrom\ resolution data.
-The average i-RMSD improvement is 1.2, 1.5 and 1.6\Angstrom\ when using 20, 15 and
-10\Angstrom\ data, respectively.  Even for complexes for which no acceptable solutions
-were generated, there is a considerable increase of quality, e.g. the i-RMSD of
-the hard 1JMO complex decreases from 6.13 for HADDOCK-CM to 4.66, 4.35 and
-4.51\Angstrom\ when using 20, 15 and 10\Angstrom\ data, respectively. 
+except for the smallest 2OOB complex when using 15 and 20\Angstrom\ resolution
+data.  The average i-RMSD improvement is 1.2, 1.5 and 1.6\Angstrom\ when using
+20, 15 and 10\Angstrom\ data, respectively.  Even for complexes for which no
+acceptable solutions were generated, there is a considerable increase of
+quality, e.g. the i-RMSD of the hard 1JMO complex decreases from 6.13 for
+HADDOCK-CM to 4.66, 4.35 and 4.51\Angstrom\ when using 20, 15 and 10\Angstrom\
+data, respectively. 
 
 Moreover, not only the quality of the interface of the best model benefits from
 the use of cryo-EM data, but the number of generated acceptable solutions also
@@ -155,7 +156,7 @@ compared to 38\%, 39\% and 41\% when using the regular HADDOCK score at 20Å,
 
 The discriminative ability of the LCC-term increases with the resolution, as
 expected.  When plotting the LCC versus the i-RMSD (see
-\in{Figure}[fig:lcc-scores]), we observe a funnel shape for most complexes,
+\infigure[fig:lcc-scores]), we observe a funnel shape for most complexes,
 with high LCC values found for complexes with low i-RMSD values.  This becomes
 even more pronounced as the resolution of the data increases.  For higher
 i-RMSD the correlation is lost and the LCC is no longer indicative of the
@@ -314,7 +315,7 @@ indeed has the best (lowest) HADDOCK-EM score.
 
 We applied the symmetrical HADDOCK-EM protocol to model the pentameric large
 terminase complex of bacteriophage T7 using 16Å negative stain EM data
-(EMD-2355, \cite[authoryear][Dauden2013]).  As in the previous cases, the
+(EMD-2355, \citeauthor{Dauden2013}).  As in the previous cases, the
 corresponding deposited model (4BIJ) shows clashes at the interfaces (Figure
 S9).  The 400 generated HADDOCK models resulted in 33 clusters, with the best
 scoring cluster having an i-RMSD of 2.9Å compared to the 4BIJ-model.  Again,
