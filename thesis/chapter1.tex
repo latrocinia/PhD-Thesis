@@ -122,24 +122,44 @@ discuss them more in-depth.
 
 Cryo-EM is a set of various transmission electron-microscopy techniques, namely
 cryo-electron tomography (cryo-ET), electron crystallography, and
-single-particle cryo-EM \cite[Milne2013]. In cryo-ET whole cell slices are
+single-particle cryo-EM, that all ultimately results in a three-dimensional
+density of the sample \cite[Milne2013]. In cryo-ET whole cell slices are
 studied by systematically tilting the sample and imaging projections from
 different tilt angles; electron crystallography is mainly aimed at
 investigating membrane proteins that can form two-dimensional crystals or
 helices; single-particle cryo-EM is used to study individual macromolecular
 assemblages by imaging many projections of random orientations of the assembly.
 
-The major drawback of imaging with electrons is the extensive radiation damage
-that is imposed on the tissue under study, reminisent to the damage of a
-nuclear bomb. To diminish this effect, the tissue is typically plunge-freezed
-in liquid ethonal to instantly vitrify it. However, the allowed electron dose
-is still severely limited resulting in very noisy projections, well below
+However, all three approaches are are limited by the same phenomenon: the
+irradiation of the specimen with electrons results in extensive damage,
+reminiscent of the impact of a nuclear bomb.  To diminish this effect, the
+sample is typically plunge-freezed in liquid ethanol to instantly vitrify it
+and resulting in a near-native hydrated state.  However, the allowed electron
+dose is still severely limited, resulting in very noisy projections, well below
 atomic resolution. Electron crystallography tries to improve on this by
 combining the well-defined phases of the images with the high-resolution
-electron diffraction pattern, to attain atomic-resolution. Cryo-ET can
+electron diffraction pattern to attain atomic-resolution.  Cryo-ET can
 signicantly increase the resolution of particular assemblages by subtomogram
 averaging: a process where similar particles are aligned and averaged,
-resulting in an increased signal-to-noise ratio. 
+resulting in an increased signal-to-noise ratio. Singe-particle cryo-EM in turn
+images many particles on a grid, each with a random orientation. By aligning
+similarly oriented projections, class averages can be obtained with a highly
+improved signal-to-noise ratio. If enough class averages are available, the
+three-dimensional density can be reconstructed through several iterative
+approaches. 
+
+Thanks to recent dramatic advances in direct electron detectors and improved
+particle processing software, the resolution of cryo-EM has impressively
+increased and sky-rocketed the cryo-EM field from blob-ology \cite[Smith2014]
+to the rising star in structural biology (subtitle of the cryo-EM Gordon
+Research Conference 2014), to revolutionizing structural biology
+\cite[Bai2015]. Although electron diffraction resolution has remained the same
+at around 2\Angstrom, cryo-ET's subtomogram averaging now attains sub-nanometer
+resolution, and the single-particle cryo-EM resolution record for a
+non-symmetric particle now stands at 2.2\Angstrom.
+
+Still, despite all the advances, the resolution of cryo-EM densities are
+typically too low for ab initio structural modeling. 
 
 \Subsubsection{Chemical cross-linking/mass spectrometry}
 
@@ -169,15 +189,18 @@ accelerate the procedure through the use of multi-scale image pyramids.
 \inchapter[chapter:haddock-em] describes the incorporation of cryo-EM data in
 the HADDOCK software. The approach can be fully combined with all other
 available sources of information in HADDOCK, resulting in a truly integrative
-approach. \inchapter[chapter:disvis] deals with quantifying and visualizing the
-information content of distance restraints in general, and cross-link data in
-particular. It introduces the concept of the accessible interaction space, the
-set of all possible solutions of a complex, and sets out a way to exhaustively
-enumerate this, implemented in the another software package DisVis. We extent
-the approach further in \inchapter[chapter:inferring-interface-residues], where
-interface residues are inferred from the distance restraints. The inferred
-residues can subsequently be used in the HADDOCK software to complement the
-docking. In the final Chapter, we present a perspective on the field of
-integrative modeling and propose further lines of research.
+approach. Next, in \inchapter[chapter:haddock2.2-webserver], I present the
+HADDOCK2.2 webserver, an upgrade of the HADDOCK webserver, for user-friendly
+integrative modeling of biomolecular complexes. \inchapter[chapter:disvis]
+deals with quantifying and visualizing the information content of distance
+restraints in general, and cross-link data in particular. It introduces the
+concept of the accessible interaction space, the set of all possible solutions
+of a complex, and sets out a way to exhaustively enumerate this, implemented in
+the another software package DisVis. We extent the approach further in
+\inchapter[chapter:inferring-interface-residues], where interface residues are
+inferred from the distance restraints. The inferred residues can subsequently
+be used in the HADDOCK software to complement the docking. In the final
+Chapter, we present a perspective on the field of integrative modeling and
+propose further lines of research.
 
 \stopcomponent
