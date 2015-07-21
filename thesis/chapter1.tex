@@ -1,6 +1,8 @@
 \startcomponent chapter1
 
-\product thesis \environment layout
+\product thesis 
+
+\environment layout
 
 
 \Chapter{Introduction}
@@ -10,53 +12,143 @@
 
 Since the start of modern-day Western science, Man is on a mission to
 thoroughly study Nature in order to understand, manipulate, and overcome her
-\cite[Nietzsche1891]. Above all a fundamental insight into life is a hallmark
-in the whole scientific enterprise, which is biologically represented in its
-irreducable form by the cell. The cell is a highly complex system that is
-regarded as the building block of life and is able to reproduce itself
-indepently. Even though DNA holds a full blueprint of an organism, cells
-themselves are mainly organized by proteins and their interactions
+\cite[Nietzsche1891]. Above all, a fundamental insight into life is a hallmark
+in the whole scientific enterprise, biologically represented in its irreducable
+form by the cell. The cell is a highly complex system that is regarded as the
+building block of life and is able to reproduce itself independently. Even
+though DNA holds a full blueprint of an organism, studied by the field of
+genomics, cells themselves are mainly organized by proteins, giving rise to the
+field of proteomics, and their interactions, the field of interactomics
 \cite[Braun2012]. Recent technological and methodological advances have enabled
 the inquiry of the interaction networks that are formed by proteins, and showed
 that the set of all interacting protein-complexes, the interactome, is several
 orders of magnitude larger than the total number of proteins that the genome
-encodes for, the proteome \cite[Stein2011].
+encodes for, the proteome \cite[Stein2011]. In addition, inhibiters of
+protein-protein interactions are an upcoming class of molecules with a profound
+impact on drug-development \cite[Wells2007]. 
 
 The field of structural biology tries to understand the workings of the
 molecules of life by studying their structure, preferable up to atomic
 resolution, as this provides a functional and mechanical description of the
-system \cite[Campbell2002]. The latter can be achieved by high-resolution
+system \cite[Campbell2002] and a basis for rational drug design
+\cite[Bienstock2012, Sable2015]. The latter can be achieved by high-resolution
 methods, mainly X-ray crystallography and NMR spectroscopy. Unfortunately, both
-methods are hampered by several limitions. X-ray crystallography is mainly
+methods are hampered by several limitations. X-ray crystallography is mainly
 limited by the production of high-quality crystals, an undertaking that becomes
-more difficult with increasing structure size and flexiblity of the
+more difficult with increasing structure size and flexibility of the
 macromolecules; for NMR spectroscopy it is mainly the size of proteins that is
 limiting structure determination, as spectra become heavily congested for
-larger complexes, making peak assignment unfeasable. Furthermore, neither
-method is amenable for high-througput investigations, a necessary requirement
+larger complexes, making peak assignment infeasible. Furthermore, neither
+method is amenable for high-throughput investigations, a necessary requirement
 for the structural elucidation of the interactome.
 
 In order to close the structure knowledge gap, computational methods have been
-deviced to aid in this quest. Homology modeling is a successful approach to
+devised to aid in this quest. Homology modeling is a successful approach to
 predict the structure of a complex with high-sequence identity to another
 already known structure, and heavily extends the structural knowledge of the
-proteome. Macromolecular docking is the field that occupies itself with
-predicting the structure of a complex starting from their individual components \cite[Moreira2010]. 
+proteome \cite[Marti-Renom2000]. Macromolecular docking is the field that
+occupies itself with predicting the structure of a complex starting from their
+individual components \cite[Moreira2010], and can be divided in two main
+approaches: template based docking, similar to homology modeling, and free
+docking. It has been shown recently that templates are available for most
+complexes of structurally characterized proteins \cite[Kundrotas2012]. However,
+this approach is only amenable for complexes for which co-crystallized
+templates are available \cite[Vakser2013]. The free docking approach can be
+further subdivided in ab initio docking and data-driven docking. The former
+solely uses shape matching and physico-chemical principles to predict the
+structure of complexes with a limited success rate \cite[Huang2015]; the
+data-driven approach tries to increase the success rate by including additional
+information from biophysical and biochemical methods during the docking
+\cite[Karaca2013, Rodrigues2014].  Data-driven docking is also more popularly
+known as hybrid or integrative modeling of biomolecular complexes.
 
 
+\Section{Integrative modeling of biomolecular complexes}
 
-\Section{Integrative modeling}
+Integrative modeling is a procedure in which data from diverse sources are
+combined to accurately predict a model of a biomolecular complex
+\cite[Alber2007]. The procedure can be abstracted in four stages
+\cite[Schneidman-Duhovny2014]:
+
+\startitemize[n]
+
+\item Gathering information: collect information in the form of e.g.
+experimental data, bioinformatics predictions, statistical inference, anything
+that can be of use during the modeling.
+
+\item Model representation and evaluation: the degrees of freedom of the model
+should be chosen, such as an all-atom model or a more coarse-grained
+representation, depending on the information content the data are providing.
+The data can be used here to actively search for proper models and should be
+transformed accordingly.
+
+\item Sampling and optimization: the sampling and optimization protocols should
+be chosen depending on the degrees of freedom of the system. For a 6
+dimensional system, corresponding to the relative placement of two 3D rigid
+bodies, an exhaustive search might be performed, while for higher-dimensional
+systems Monte Carlo and simulated annealing approaches might be more efficient.
+
+\item Scoring and analysis: the resulting models needs to be scored, ranked and
+clustered based based on their congruency with the data to acertain model
+precision and accuracy.
+
+\stopitemize
+
+In the remainder of this section we will mainly describe sources of data to use
+during the modeling, and describe software packages that are geared towards
+integrative modeling.
+
 
 \Subsection{Sources of information}
 
+In addition to the high-resolution techniques, many other experimental methods
+have been devised to extract structural or low-resolution information from
+biomolecular complexes. NMR spectroscopy is also capable of pinpointing
+interface residues through the use of chemical shift perturbations (CSPs), and
+the relative orientation of subunits to each other by residual dipolar
+couplings (RDCs), among several other methods. Small angle X-ray scattering
+(SAXS) experiments result in a 1D scattering curve, from which a diverse set of
+parameters can be determined with structural interpretation, e.g. radius of
+gyration, and even complete shapes, though with low-resolution. Biochemical
+methods such as mutagenesis and radical footprinting provide information on the
+binding interface. Bioinformatics prediction methods can also deliver this
+information by analyzing sequences and extract conserved interface residues
+through co-evolution \cite[Hopf2014]. Two other experimental approaches that
+provide shape data and distance restraints are cryo-electron microscopy
+(cryo-EM) and chemical cross-linking coupled with mass-spectrometry and we will
+discuss them more in-depth.
+
 \Subsubsection{Cryo-electron microscopy}
 
-\Subsubsection{Cross-links/mass spectrometry}
+Cryo-EM is a set of various transmission electron-microscopy techniques, namely
+cryo-electron tomography (cryo-ET), electron crystallography, and
+single-particle cryo-EM \cite[Milne2013]. In cryo-ET whole cell slices are
+studied by systematically tilting the sample and imaging projections from
+different tilt angles; electron crystallography is mainly aimed at
+investigating membrane proteins that can form two-dimensional crystals or
+helices; single-particle cryo-EM is used to study individual macromolecular
+assemblages by imaging many projections of random orientations of the assembly.
+
+The major drawback of imaging with electrons is the extensive radiation damage
+that is imposed on the tissue under study, reminisent to the damage of a
+nuclear bomb. To diminish this effect, the tissue is typically plunge-freezed
+in liquid ethonal to instantly vitrify it. However, the allowed electron dose
+is still severely limited resulting in very noisy projections, well below
+atomic resolution. Electron crystallography tries to improve on this by
+combining the well-defined phases of the images with the high-resolution
+electron diffraction pattern, to attain atomic-resolution. Cryo-ET can
+signicantly increase the resolution of particular assemblages by subtomogram
+averaging: a process where similar particles are aligned and averaged,
+resulting in an increased signal-to-noise ratio. 
+
+\Subsubsection{Chemical cross-linking/mass spectrometry}
+
 
 \Subsection{Software packages and platforms}
 
+\Subsubsection{IMP}
 
-\Subsection{HADDOCK}
+\Subsubsection{HADDOCK}
 
 
 \Section{Explorative modeling}
@@ -64,5 +156,28 @@ predicting the structure of a complex starting from their individual components 
 
 \Section{Overview of thesis}
 
+This thesis primarely describes new computational methods to handle cryo-EM and
+distance restraints data for integrative and explorative modeling. In
+\inchapter[chapter:powerfit] we introduce a high-performance cross-correlation
+based rigid-body fitting software package to automatically fit high-resolution
+structures in low-resolution cryo-EM density maps, called PowerFit. In addition
+to algorithm optimizations, it provides a new, more sensitive scoring function
+to further extent the applicable resolution range.  In
+\inchapter[chapter:image-pyramids] we explore the resolution limits of
+rigid-body fitting in cryo-EM data and leverage this information to heavily
+accelerate the procedure through the use of multi-scale image pyramids.
+\inchapter[chapter:haddock-em] describes the incorporation of cryo-EM data in
+the HADDOCK software. The approach can be fully combined with all other
+available sources of information in HADDOCK, resulting in a truly integrative
+approach. \inchapter[chapter:disvis] deals with quantifying and visualizing the
+information content of distance restraints in general, and cross-link data in
+particular. It introduces the concept of the accessible interaction space, the
+set of all possible solutions of a complex, and sets out a way to exhaustively
+enumerate this, implemented in the another software package DisVis. We extent
+the approach further in \inchapter[chapter:inferring-interface-residues], where
+interface residues are inferred from the distance restraints. The inferred
+residues can subsequently be used in the HADDOCK software to complement the
+docking. In the final Chapter, we present a perspective on the field of
+integrative modeling and propose further lines of research.
 
 \stopcomponent
