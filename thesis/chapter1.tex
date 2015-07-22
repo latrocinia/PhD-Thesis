@@ -67,20 +67,20 @@ known as hybrid or integrative modeling of biomolecular complexes.
 
 Integrative modeling is a procedure in which data from diverse sources are
 combined to accurately predict a model of a biomolecular complex
-\cite[Alber2007]. The procedure can be abstracted in four stages
+\cite[Alber2007, Ward2013]. The procedure can be abstracted in four stages
 \cite[Schneidman-Duhovny2014]:
 
 \startitemize[n]
 
 \item Gathering information: collect information in the form of e.g.
-experimental data, bioinformatics predictions, statistical inference, anything
-that can be of use during the modeling.
+experimental data, bioinformatics predictions, statistical inference, just
+about anything that can be of use during the modeling.
 
 \item Model representation and evaluation: the degrees of freedom of the model
 should be chosen, such as an all-atom model or a more coarse-grained
 representation, depending on the information content the data are providing.
-The data can be used here to actively search for proper models and should be
-transformed accordingly.
+The data can be used to actively search for proper models and its information
+content should be transformed accordingly.
 
 \item Sampling and optimization: the sampling and optimization protocols should
 be chosen depending on the degrees of freedom of the system. For a 6
@@ -88,7 +88,7 @@ dimensional system, corresponding to the relative placement of two 3D rigid
 bodies, an exhaustive search might be performed, while for higher-dimensional
 systems Monte Carlo and simulated annealing approaches might be more efficient.
 
-\item Scoring and analysis: the resulting models needs to be scored, ranked and
+\item Scoring and analysis: the resulting models need to be scored, ranked and
 clustered based based on their congruency with the data to acertain model
 precision and accuracy.
 
@@ -131,22 +131,22 @@ helices; single-particle cryo-EM is used to study individual macromolecular
 assemblages by imaging many projections of random orientations of the assembly.
 
 However, all three approaches are are limited by the same phenomenon: the
-irradiation of the specimen with electrons results in extensive damage,
-reminiscent of the impact of a nuclear bomb.  To diminish this effect, the
-sample is typically plunge-freezed in liquid ethanol to instantly vitrify it
-and resulting in a near-native hydrated state.  However, the allowed electron
-dose is still severely limited, resulting in very noisy projections, well below
-atomic resolution. Electron crystallography tries to improve on this by
-combining the well-defined phases of the images with the high-resolution
-electron diffraction pattern to attain atomic-resolution.  Cryo-ET can
-signicantly increase the resolution of particular assemblages by subtomogram
-averaging: a process where similar particles are aligned and averaged,
-resulting in an increased signal-to-noise ratio. Singe-particle cryo-EM in turn
-images many particles on a grid, each with a random orientation. By aligning
-similarly oriented projections, class averages can be obtained with a highly
-improved signal-to-noise ratio. If enough class averages are available, the
-three-dimensional density can be reconstructed through several iterative
-approaches. 
+prolonged irradiation of the specimen with electrons results in extensive
+damage, reminiscent of the impact of a nuclear bomb \cite[Glaeser1978].  To
+diminish this effect, the sample is typically plunge-freezed in liquid ethanol
+to instantly vitrify it, resulting in a near-native hydrated state.  However,
+the allowed electron dose is still severely limited, resulting in very noisy
+projections, well below atomic resolution. Electron crystallography tries to
+improve on this by combining the well-defined phases of the images with the
+high-resolution electron diffraction pattern to attain atomic resolution.
+Cryo-ET can signicantly increase the resolution of particular assemblages by
+subtomogram averaging: a process where similar particles are aligned and
+averaged, resulting in an increased signal-to-noise ratio. Singe-particle
+cryo-EM in turn images many particles on a grid, each with a random
+orientation. By aligning similarly oriented projections, class averages can be
+obtained with a highly improved signal-to-noise ratio. If enough class averages
+are available, the three-dimensional density can be reconstructed through
+several iterative approaches. 
 
 Thanks to recent dramatic advances in direct electron detectors and improved
 particle processing software, the resolution of cryo-EM has impressively
@@ -154,14 +154,25 @@ increased and sky-rocketed the cryo-EM field from blob-ology \cite[Smith2014]
 to the rising star in structural biology (subtitle of the cryo-EM Gordon
 Research Conference 2014), to revolutionizing structural biology
 \cite[Bai2015]. Although electron diffraction resolution has remained the same
-at around 2\Angstrom, cryo-ET's subtomogram averaging now attains sub-nanometer
-resolution, and the single-particle cryo-EM resolution record for a
-non-symmetric particle now stands at 2.2\Angstrom.
+at around 2\Angstrom\ \cite[Gonen2005], cryo-ET's subtomogram averaging now
+attains sub-nanometer resolution \cite[Schur2013], and the single-particle
+cryo-EM resolution record for a now stands at 2.2\Angstrom\
+\cite[Bartesaghi2015].
 
 Still, despite all the advances, the resolution of cryo-EM densities are
-typically too low for ab initio structural modeling. 
+typically too low for ab initio structural modeling. The information content of
+cryo-EM data is highly dependent on the resolution, with individual domains
+becoming visible at 10\Angstrom, secondary structure elements at 9\Angstrom,
+the separation of beta-sheets and bulky side-chains at around 4\Angstrom\ 
+\cite[Baker2010]. Thus, for typical cryo-EM data of 7\Angstrom\ resolution and
+lower, additional data need to be incorporated in an integrative approach to
+attain an atomic model of the macromolecular assembly.
 
-\Subsubsection{Chemical cross-linking/mass spectrometry}
+
+\Subsubsection{Chemical cross-linking coupled with mass spectrometry}
+
+A very different method from cryo-EM is chemical cross-linking coupled with
+mass spectrometry (CXMS). Here, 
 
 
 \Subsection{Software packages and platforms}
