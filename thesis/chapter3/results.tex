@@ -13,12 +13,12 @@ the subunit is placed within 2 voxels of the true solution, and we only
 considered the best-ranked fit, i.e. the fit with the highest correlation
 score. Congruent with an earlier analysis of noise-free simulated data, the
 L-CW-LCC score performs the best of the four, followed by the L-LCC, CW-LCC and
-LCC (see \inchapter[chapter:powerfit].  Remarkably, the L-CW-LCC is capable of
+LCC (see \inchapter[chapter:powerfit]).  Remarkably, the L-CW-LCC is capable of
 fitting about 90\% of the 379 subunits unambiguously down to a resolution of
 13\Angstrom. Inclusion of the Laplace pre-filter has the biggest impact and
 increases the applicable resolution extent by about 5\Angstrom. The
 core-weighted approach has a smaller impact and extents the resolutions 1 to
-2\Angstrom further. 
+2\Angstrom\ further. 
 
 \placefigure[top][fig:fit-results] {\getbuffer[cap:fit-results]}
 {\externalfigure[fig:fit-results]}
@@ -90,10 +90,10 @@ that can be achieved, we applied our approach to another ribosome case with a
 reported resolution of 5.7\Angstrom\ (EMD-2917, 5AKA)
 \cite[vonLoeffelholz2015]. We constructed an image pyramid by filtering and
 resampling the original data down to 9, 12, 13 and 20\Angstrom\ resolution
-(\infigure[fig:image-pyramid-application]). We fitted chains larger than 50
+(\infigure[fig:image-pyramid-application]). We only fitted chains larger than 50
 residues: chains consisting of 50 to 100 residues were fitted in the
 9\Angstrom\ resolution density, chains consisting of 100 to 300 residues in the
-12\Angstrom\ data, chains consisting of 300 to 500 residues the 13\Angstrom\
+12\Angstrom\ data, chains consisting of 300 to 500 residues in the 13\Angstrom\
 map, and for subunits bigger than 500 residues we used the 20\Angstrom\ data.
 
 All 31 chains could be unambiguously fitted considering only the top solution
@@ -104,7 +104,7 @@ the local resolution of the data dropping to around 10 to 12\Angstrom\ in that
 region, indicating flexibility of the chain \cite[vonLoeffelholz2015]. The time
 required to fit one subunit into the original map (\m{180 \times 180 \times
 180} voxels) is approximately 10 hours using a single AMD Opteron 6320 CPU
-processor and 40m for an NVIDIA GTX680 GPU. This reduces to 6h and 29m for the
+processor and 40m for an NVIDIA GTX 680 GPU. This reduces to 6h and 29m for the
 9\Angstrom\ resolution data (\m{160 \times 160 \times 160}), 2h and 7m for the
 12\Angstrom\ data (108 \times 100 \times 120), 1.5h and 5m for the 13\Angstrom\
 data (\m{96 \times 96 \times 108}), and 20m and 1m for the 20\Angstrom\ data

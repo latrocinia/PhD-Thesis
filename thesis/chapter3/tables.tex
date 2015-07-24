@@ -1,15 +1,20 @@
 
 \startbuffer[cap:ribosome-cases]
-\caption{}
-{The five ribosome cases with high-resolution data and deposited structural
-models used in this work.}
+\caption{The five high-resolution ribosome cases with deposited atomic models.}
+{}
 \stopbuffer
 
 \startbuffer[tab:ribosome-cases]
 \bTABLE
+\setupTABLE[width=broad, align=middle, frame=off]
+\setupTABLE[r][1, 2][topframe=on]
+\setupTABLE[r][6][bottomframe=on]
+\bTABLEhead
 \bTR
 \bTD EMDB-ID  \eTD \bTD  Resolution (\Angstrom)  \eTD \bTD  PDB-ID  \eTD \bTD  Number of subunits \eTD
 \eTR
+\eTABLEhead
+\bTABLEbody
 \bTR
 \bTD 1780 \cite[Armache2010]  \eTD \bTD       5.5   \eTD \bTD    4V7E   \eTD \bTD  88 \eTD
 \eTR
@@ -25,21 +30,28 @@ models used in this work.}
 \bTR
 \bTD 5976 \cite[Svidritskiy2014]  \eTD \bTD       6.2   \eTD \bTD    3J77   \eTD \bTD  83 \eTD
 \eTR
+\eTABLEbody
 \eTABLE
 \stopbuffer
 
 
 \startbuffer[cap:size-categories]
-\caption{}
-{Size categories used during the size-dependent fitting analysis together with
-the number of corresponding subunits.}
+\caption{Size categories used during the analysis with the number of
+corresponding subunits.}
+{}
 \stopbuffer
 
 \startbuffer[tab:size-categories]
 \bTABLE
+\setupTABLE[width=broad, align=middle, frame=off]
+\setupTABLE[r][1, 2][topframe=on]
+\setupTABLE[r][8][bottomframe=on]
+\bTABLEhead
 \bTR
 \bTD Number of residues   \eTD \bTD     Number of subunits \eTD
 \eTR
+\eTABLEhead
+\bTABLEbody
 \bTR
 \bTD 0 – 50       \eTD \bTD      9 \eTD
 \eTR
@@ -61,5 +73,6 @@ the number of corresponding subunits.}
 \bTR
 \bTD 500+         \eTD \bTD      12 \eTD
 \eTR
+\eTABLEbody
 \eTABLE
 \stopbuffer

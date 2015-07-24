@@ -19,23 +19,15 @@
 \setuppagenumbering[alternative=doublesided, location=right]
 
 % heads
+% numbered
 \definehead[Chapter][chapter]
-
 \definehead[Section][section]
-
 \definehead[SubSection][subsection]
 \definehead[Subsection][subsection]
 \definehead[Subsubsection][subsubsection]
-
+% unnumbered
 \definehead[Subject][subject]
 \definehead[Subsubject][subsubject]
-
-% table of contents
-%\definelist[Chapter, Section, Subsection, Subsubsection]
-%\definelist[Chapter]
-%\setuplist[Chapter][left={(},right={)}, label=yes]
-%\setuplabeltext[en][Chapter={Chapter}]
-%\definecombinedlist[toc][Chapter]
 
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
@@ -43,12 +35,22 @@
 
 % figures
 \setupexternalfigures[factor=broad, directory={chapter6/figures}]
+% supplemental figures
+\definefloat[sfigure][sfigures]
 
 % tables
+% supplemental tables
+\definefloat[stable][stables]
+
+% labeltexts
+\setuplabeltext[sfigure={Figure S}]
+\setuplabeltext[stable={Table S}]
+\setuplabeltext[chapter={Chapter }]
 
 % captions
-\setupcaptions[style=small]
+\setupcaptions[style=small, width=0.9\textwidth]
 \setupcaption[table][location=top]
+\setupcaption[stable][location=top]
 \define[2]\caption{{\bf #1} #2}
 
 % references
@@ -56,9 +58,12 @@
 \definereferenceformat[intable][left=Table ]
 \definereferenceformat[inchapter][left=Chapter ]
 \definereferenceformat[ineq][left=Eq. ]
+\definereferenceformat[insfigure][left=Figure S]
+\definereferenceformat[instable][left=Table S]
 
 % shortcuts
 \define \disvis {\emph{disvis}}
+\define\powerfit{{\emph powerfit}}
 
 % bibtex
 \define[1] \citeauthor {\cite[authornum][#1]}

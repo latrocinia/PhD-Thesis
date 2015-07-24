@@ -40,7 +40,7 @@ of the search object. The Laplacian enhanced scoring functions are defined by
 mapping \m{\rho \to \nabla^2 \rho_x} \cite[Chacon2002]. 
 
 After each round of fitting, the resolution of the cryo-EM data was lowered by
-1\Angstrom using the following procedure. Assuming that the density is
+1\Angstrom\ using the following procedure. Assuming that the density is
 described by a collection of atoms with a spherical Gaussian density
 distribution, where the width of the Gaussian depends on the resolution of the
 data, the density at each point \m{\vec{r}} in space is given by
@@ -104,8 +104,8 @@ increase in the number of high-resolution density maps and corresponding atomic
 models. The increase in the level of detail, however, also requires the number
 of voxels to represent the data to rise. Consequently, the time required for an
 exhaustive search can increase dramatically as fitting algorithms typically use
-the Fast Fourier Transform (FFT) for rapid translation correlation scans, which
-scale with N log⁡N where N is the number of voxels. 
+the FFT for rapid translation correlation scans, which scale with \m{N \log N} where
+\m{N} is the number of voxels. 
 
 The actual level of detail present in current high-resolution maps may,
 however, be far surpassing the minimal required information to unambiguously

@@ -1,3 +1,5 @@
+\Section{Methods}
+
 \SubSection{State of the art of rigid body cross-correlation based fitting}
 
 The goal of cross-correlation rigid body fitting is to determine the three
@@ -35,7 +37,7 @@ main innovation was the use of the cross-correlation theorem in combination
 with FFTs. By discretizing the model density on a grid with the same voxel
 spacing and size as the cryo-EM grid, a translational scan can be performed
 using the FFT-accelerated approach. This reduces the computational complexity
-from $N^2$ to $N \log\left(N\right)$, where $N$ is the total number of voxels
+from \m{N^2} to \m{N \log\left(N\right)}, where \m{N} is the total number of voxels
 of the cryo-EM data.  After each translational scan, the model density is
 rotated and the process is repeated until a pre-set rotational sampling density
 is achieved, meaning that the time required for a search depends linearly on
@@ -61,31 +63,30 @@ core-weighted LCC (CW-LCC) scoring function:
 {\sigma_c^w \sigma_o^w}
 \stopformula
 
-where the summation is over all the $N$ voxels that are within a distance of
-half the resolution of any atom of the search object indexed by $i$, $w_i$ is
-the core-index of voxel $i$, $\rho_c$ and $\rho_o$ are the intensities of the
-search object and the cryo-EM density at voxel $i$, respectively,
-$\overline{\rho_c^w}$ and $\overline{\rho_o^w}$ are the core-weighted density
+where the summation is over all the \m{N} voxels that are within a distance of
+half the resolution of any atom of the search object indexed by \m{i}, \m{w_i} is
+the core-index of voxel \m{i}, \m{\rho_c} and \m{\rho_o} are the intensities of the
+search object and the cryo-EM density at voxel\m{i}, respectively,
+\m{\overline{\rho_c^w}} and \m{\overline{\rho_o^w}} are the core-weighted density
 average for the search object and the local cryo-EM density, respectively. They
-are given by $\overline{\rho_x^w} = 1/N \sum_i^N w_i \rho_x$. $\sigma_c^w$ and
-$\sigma_o^w$ correspond to the core-weighted density standard deviation given
-by $\sigma_x^w = \sqrt{\left( \overline{\rho_x^w} \right)^2 - \overline{\left(
-\rho_x^w \right)^2}}$ with $\overline{\left( \rho_x^w \right)^2} = 1/N
-\sum_i^N\left( w_i \rho_x\right)^2$.  The CW-LCC reduces to the regular LCC by
-setting $w_i = 1$. The Laplace pre-filtered scoring function is defined by
-performing the mapping $\rho_x \to \nabla^2\rho_x$ in \in{Eq.}[eq:cw-lcc]. In
+are given by \m{\overline{\rho_x^w} = 1/N \sum_i^N w_i \rho_x}. \m{\sigma_c^w} and
+\m{\sigma_o^w} correspond to the core-weighted density standard deviation given
+by \m{\sigma_x^w = \sqrt{\left( \overline{\rho_x^w} \right)^2 - \overline{\left(
+\rho_x^w \right)^2}}} with \m{\overline{\left( \rho_x^w \right)^2} = 1/N
+\sum_i^N\left( w_i \rho_x\right)^2}.  The CW-LCC reduces to the regular LCC by
+setting \m{w_i = 1}. The Laplace pre-filtered scoring function is defined by
+performing the mapping \m{\rho_x \to \nabla^2\rho_x} in \ineq[eq:cw-lcc]. In
 order to calculate the CW-LCC we first need to define the core-index of each
 voxel.  
 
-\Subsubsection{Determining the core-index $w_i$}
+\Subsubsection{Determining the core-index \m{w_i}}
 
 The core-index is a measure for how close a voxel is to the core of the density
 of the subunit that is being fitted. We calculate the core-index by
 progressively eroding a binary mask of the search object and summing each
-eroded mask together, see \in{Figure}{A}[fig:core-index_resampling-trimming]
-for a 2D example. This guarantees that voxels at the surface have a low
-core-index value, while voxels deeply buried get a higher value, even for
-complex shapes.  
+eroded mask together, see \infigure[fig:core-index_resampling-trimming]{A} for
+a 2D example. This guarantees that voxels at the surface have a low core-index
+value, while voxels deeply buried get a higher value, even for complex shapes.  
 
 \placefigure[top][fig:core-index_resampling-trimming]
 {\getbuffer[cap:core-index_resampling-trimming]}
@@ -93,10 +94,10 @@ complex shapes.
 
 \Subsubsection{Using Fourier techniques to calculate the CW-LCC}
 
-Starting from \in{Eq.}[eq:cw-lcc] and following in the spirit of
-\citeauthor{Roseman2003}, we can normalize the core-weighted density $w_i
-\rho_c$ of the template by setting $\overline{\rho_c^w} = 0$ and $\sigma_c^w =
-1$, which simplifies \in{Eq.}[eq:cw-lcc] to
+Starting from \ineq[eq:cw-lcc] and following in the spirit of
+\citeauthor{Roseman2003}, we can normalize the core-weighted density \m{w_i
+\rho_c} of the template by setting \m{\overline{\rho_c^w} = 0} and
+\m{\sigma_c^w = 1}, which simplifies \ineq[eq:cw-lcc] to
 
 \placeformula[eq:cw-lcc-simplified]
 \startformula
@@ -105,13 +106,12 @@ Starting from \in{Eq.}[eq:cw-lcc] and following in the spirit of
 {\sqrt{\left( \overline{\rho_o^w} \right)^2 - \overline{\left( \rho_o^w \right)^2}}}
 \stopformula
 
-where $\rho_c^n$ indicates the normalized core-weighted density. This leaves
+where \m{\rho_c^n} indicates the normalized core-weighted density. This leaves
 three terms to be determined: the nominator, which we refer to as the
 core-weighted global cross-correlation (CW-GCC); the square of the average
-core-weighted density, $\left(\overline{\rho_o^w}\right)^2$, and the average of
-the squared core-weighted density, $\overline{\left( \rho_o^w\right)^2}$, of
-the cryo-EM data. These can be
-calculated using FFTs as follows 
+core-weighted density, \m{\left(\overline{\rho_o^w}\right)^2}, and the average
+of the squared core-weighted density, \m{\overline{\left( \rho_o^w\right)^2}},
+of the cryo-EM data. These can be calculated using FFTs as follows 
 
 \placeformula[eq:cw-gcc]
 \startformula
@@ -131,10 +131,10 @@ calculated using FFTs as follows
 \stopformula
 
 where \m{\mathcal{F}} and \m{\mathcal{F}^{-1}} are the Fast Fourier transform and
-its inverse, respectively, $^*$ is the complex conjugate operator, \m{\times} is
-the element wise multiplication operator, $w$ is the core-weighted mask,
-$\rho_c$ and $\rho_o$ are the calculated and experimental densities,
-respectively. In \in{Eq.}[eq:cw-gcc] it is the search object that is multiplied
+its inverse, respectively, \m{^*} is the complex conjugate operator, \m{\times} is
+the element wise multiplication operator, \m{w} is the core-weighted mask,
+\m{\rho_c} and \m{\rho_o} are the calculated and experimental densities,
+respectively. In \ineq[eq:cw-gcc] it is the search object that is multiplied
 with the core-weighted mask, instead of the cryo-EM density. It is this trick
 which allows the CW-GCC to be calculated using FFTs. Note that even though
 there are 9 Fourier transforms required to calculate the CW-LCC, only 6 need to
@@ -189,14 +189,14 @@ number of voxels in each direction by a factor of 2 or more. This comes at a
 considerable cost when performing an exhaustive search as the number of voxels
 grows by a factor of 8 or more. To eliminate the computational cost incurred by
 this padding, we trim the padded voxels. The effect of resampling and trimming
-is shown in \in{Figure}{B}[fig:core-index_resampling-trimming] on a slice of
+is shown in \infigure[fig:core-index_resampling-trimming]{B} on a slice of
 the GroEL/GroES complex (EMD-1046). 
 
 \SubSection{Implementation and availability}
 
 We implemented our methods in a Python package named PowerFit that comes with a
 command line tool eponymously named \powerfit. A flowchart of the \powerfit\
-algorithm is shown in \in{Figure}[fig:powerfit-flowchart]. It requires as input
+algorithm is shown in \infigure[fig:powerfit-flowchart]. It requires as input
 a PDB structure, a cryo-EM map and its resolution. Optional parameters are the
 rotational sampling density (default=10.83°), whether to resample and/or trim
 the density and use the Laplace pre-filter and/or core-weighted procedure, and
@@ -220,7 +220,7 @@ the cryo-EM and template densities, if requested. A core-weighted mask is
 calculated from the initial binary mask using the procedure described above.
 The data necessary for the search are offloaded to the GPU if requested. The
 template and mask are rotated using tri-linear interpolation, where texture
-memory acceleration as described by Hoang et al. is used when possible. For
+memory acceleration as described by \citeauthor{Hoang2013} is used when possible. For
 each rotation sampled, a translational correlation scan is performed using
 FFTs. The rotational solution with the highest score is saved at every grid
 position. This continues until the requested rotational sampling density is
@@ -234,7 +234,7 @@ coordinates of the top \m{N} solutions (where \m{N} is a user-defined parameter)
 PowerFit is written in the Python language (Python2.7) and requires the NumPy,
 SciPy and Cython packages. The CPU version can be further accelerated by
 installing the FFTW3.3 library together with pyFFTW. To offload the
-computationally intense search to the GPU, we used the OpenCL framework
+computationally intensive search to the GPU, we used the OpenCL framework
 together with the clFFT library, a high-performance FFT library for OpenCL.
 Python bindings were available through the pyopencl and gpyfft packages.
 PowerFit is licensed under the MIT license and can be downloaded from

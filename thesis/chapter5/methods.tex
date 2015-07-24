@@ -27,27 +27,24 @@ spacing (default). These have long been used in the docking field
 \cite[Katchalski-Katzir1992].  One chain is fixed in space and considered the
 receptor molecule, while translational scans are performed for each rotation of
 the ligand molecule. Two atoms \m{i} and \m{j} are considered to be interacting if
-the distance, \m{d}, between them is \m{\rvdW < d \leq \rvdW +} 3\Angstrom (by default),
+the distance, \m{d}, between them is \m{\rvdW < d \leq \rvdW +} 3\Angstrom\ (by default),
 where \m{\rvdW} is the combined van der Waals radius of the two atoms \m{\rvdW^i +
 \rvdW^j}, and clashing if \m{d \leq \rvdW}. A conformation is deemed a complex if
 the volume of interaction is above- and the volume of clashes below threshold
 values (300 and 200\Angstrom\high{3} by default, respectively). 
 
-after every translational scan, all conformations that comply with each
-restraint are determined. Next, disvis counts the number of accessible
+After every translational scan, all conformations that comply with each
+restraint are determined. Next, \disvis\ counts the number of accessible
 complexes consistent with each number of restraints, as well as which
 restraints are violated. This is repeated until the rotational sampling density
 reaches a pre-set value (default 9.72\Deg, 7416 orientations). During the
-rotational search, disvis stores the maximum number of consistent restraints
+rotational search, \disvis\ stores the maximum number of consistent restraints
 found at every scanned position of the ligand’s center of mass, which
 ultimately results in a discrete ‘density’ map. The output thus consists of the
 sum of accessible interaction statescomplexes complying with each number of
 restraints, a percentage of how often each restraint is violated, and a
 discrete-valued density map.
 
-We implemented DisVis in Python2.7, using the OpenCL framework to offload
-computations to the GPU. The code can be downloaded freely from
-https://github.com/haddocking/disvis together with documentation and examples.
 
 \SubSection{Calculating the accessible interaction space of two interaction
 macromolecules}
@@ -134,21 +131,21 @@ coordinates.
 
 \SubSection{Incorporating distance restraints into the search}
 
-As mentioned in the main text, if some distances or distance ranges are known
-between the subunits of the complex, this can significantly reduce the
-accessible interaction space as this puts extra restraints on the requirement
-for a conformation to be considered a complex. To combine this information with
-FFT-accelerated translational scans, the whole space of conformations that
-comply with the distance restraint should be demarcated for every rotation at
-once. As the distance of the restraint depends only on the coordinates of two
-atoms (or points, more generally), the space consistent with the restraint must
-be represented by a sphere with a radius corresponding to the distance
-restraint. The remaining parameter that needs to be determined is the position
-of the center of this sphere \m{\rvec_c}, which is given by
+If some distances or distance ranges are known between the subunits of the
+complex, this can significantly reduce the accessible interaction space as it
+puts extra restraints on the requirement for a conformation to be considered a
+complex. To combine this information with FFT-accelerated translational scans,
+the whole space of conformations that comply with the distance restraint should
+be demarcated for every rotation at once. As the distance of the restraint
+depends only on the coordinates of two atoms (or points, more generally), the
+space consistent with the restraint must be represented by a sphere with a
+radius corresponding to the distance restraint. The remaining parameter that
+needs to be determined is the position of the center of this sphere
+\m{\rvec_c}, which is given by
 
 \placeformula[eq:center-of-sphere]
 \startformula
-\rvec_c \left( R \right) = \rvecF - \left( \rvecS \left( R \right) - \rveccomS \left( R \right) \right)
+\rvec_c \left( R \right) = \rvecF - \left[ \rvecS \left( R \right) - \rveccomS \left( R \right) \right]
 \stopformula
 
 where \m{\rvecF} and \m{\rvecS} are the coordinates of the restrained atoms of
@@ -258,9 +255,11 @@ packages \cite[Behnel2011]. The OpenCL framework \cite[Stone2010] was used to
 offload the computations to the GPU. Python bindings were available through the
 pyopencl package \cite[Klockner2012]. We used the high-performance clFFT
 library (https://github.com/clMathLibraries/clFFT) together with gpyfft for
-Python bindings (https://github.com/geggo/gpyfft) to calculate the FFT’s.
+Python bindings (https://github.com/geggo/gpyfft) to calculate the FFTs.
 Computations were performed on AMD Opteron 6344 CPU processors and on an AMD
-Radeon HD 7730M and NVIDIA GeForce GTX 680 GPU. 
+Radeon HD 7730M and NVIDIA GeForce GTX 680 GPU. DisVis code can be downloaded
+freely from https://github.com/haddocking/disvis together with documentation
+and examples.
 
 
 \SubSection{RNA polymerase II example}
@@ -274,7 +273,7 @@ a distance of 35.7 and 42.2\Angstrom\ using the Xwalk webserver
 \cite[Kahraman2011]. The maximum allowed distance of the BS3 cross-links was
 set to 30\Angstrom, based on molecular dynamics trajectory analysis
 \cite[Merkley2014]. The restraints used are shown in
-\intable[tab:RPII-crosslinks]. The input files are included in the DisVis
+\instable[tab:RPII-crosslinks]. The input files are included in the DisVis
 source code. 
 
 Two disvis runs were performed using a rotational sampling density of 5.27\Deg\
@@ -282,11 +281,11 @@ Two disvis runs were performed using a rotational sampling density of 5.27\Deg\
 and 2\Angstrom, respectively. All parameters were left to there default values
 (interaction radius 3\Angstrom, minimum required volume of interaction
 300\Angstrom\high{3} and maximum allowed volume of clashes
-200\Angstrom\high{3}). The amount of accessible complexes consistent with each
-number of cross-links is shown in \intable[tab:RPII-accessible-complexes-fine]
-and \in[tab:RPII-accessible-complexes-coarse], and the relative occurrence of
-restraint violations in Table S3 and S5 for the fine and coarse run,
-respectively.
+200\Angstrom\high{3}). The number of accessible complexes consistent with each
+number of cross-links is shown in \instable[tab:RPII-accessible-complexes-fine]
+and S\in[tab:RPII-accessible-complexes-coarse], and the relative occurrence of
+restraint violations in \instable[tab:RPII-violations-fine] and
+S\in[tab:RPII-violations-coarse] for the fine and coarse run, respectively.
 
 
 \SubSection{26S proteasome PRE5-PUP2 example}

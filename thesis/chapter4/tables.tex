@@ -4,14 +4,19 @@
 The complexes were taken from the protein-protein docking benchmark 4.0 \cite[Hwang2010].}
 \stopbuffer
 
-
 \startbuffer[tab:benchmark]
 \startlocalfootnotes
 \bTABLE
+\setupTABLE[align=middle, frame=off, width=broad]
+\setupTABLE[r][1][topframe=on, bottomframe=on]
+\setupTABLE[r][18][bottomframe=on]
+\bTABLEhead
 \bTR \bTD PDB Code \eTD \bTD Category\footnote{The category of the complex: E = Enzyme/Inhibitor or Enzyme/Substrate; A = Antibody/Antigen; O = Others.} 
 \eTD \bTD Difficulty\footnote{The difficulty of the complex according to CAPRI standard}
-\eTD \bTD i-RMSD\footnote{i-RMSD: RMSD of Cα atoms of interface residues calculated after finding the best superposition of bound and unbound interfaces}
+\eTD \bTD i-RMSD\footnote{i-RMSD: RMSD of C\m{_\alpha} atoms of interface residues calculated after finding the best superposition of bound and unbound interfaces}
 \eTD \bTD Residues A \eTD \bTD Residues B \eTD \eTR
+\eTABLEhead
+\bTABLEbody
 \bTR \bTD 1AVX     \eTD \bTD E        \eTD \bTD Easy       \eTD \bTD 0.47   \eTD \bTD 233        \eTD \bTD 176        \eTD \eTR
 \bTR \bTD 2OUL     \eTD \bTD E        \eTD \bTD Easy       \eTD \bTD 0.53   \eTD \bTD 241        \eTD \bTD 110        \eTD \eTR
 \bTR \bTD 1AY7     \eTD \bTD E        \eTD \bTD Easy       \eTD \bTD 0.54   \eTD \bTD  96        \eTD \bTD  89        \eTD \eTR
@@ -29,6 +34,7 @@ The complexes were taken from the protein-protein docking benchmark 4.0 \cite[Hw
 \bTR \bTD 1JK9     \eTD \bTD O        \eTD \bTD Hard       \eTD \bTD 2.51   \eTD \bTD 220        \eTD \bTD 153        \eTD \eTR
 \bTR \bTD 1BKD     \eTD \bTD O        \eTD \bTD Hard       \eTD \bTD 2.86   \eTD \bTD 479        \eTD \bTD 166        \eTD \eTR
 \bTR \bTD 1JMO     \eTD \bTD O        \eTD \bTD Hard       \eTD \bTD 3.21   \eTD \bTD 385        \eTD \bTD 280        \eTD \eTR
+\eTABLEbody
 \eTABLE
 \placelocalfootnotes
 \stoplocalfootnotes
@@ -45,9 +51,17 @@ The i-RMSD is calculated by fitting the solution on the backbone atoms of the re
 
 \startbuffer[tab:benchmark-quality]
 \bTABLE
+\setupTABLE[align=middle, frame=off, width=broad]
+\setupTABLE[r][1,3][topframe=on]
+\setupTABLE[r][19][bottomframe=on]
+\bTABLEhead
 %\bTR \bTD[nr=3] PDB \eTD \bTD[nc=6] i-RMSD of best solution (Å) \eTD \eTR
-\bTR \bTD[nr=2] PDB \eTD  \bTD[nc=2] 20Å data  \eTD       \bTD[nc=2] 15Å data  \eTD         \bTD[nc=2] 10Å data \eTD \eTR
-\bTR \bTD It0  \eTD \bTD   Itw  \eTD \bTD   It0  \eTD \bTD   Itw  \eTD \bTD   It0  \eTD \bTD   Itw   \eTD \eTR
+\bTR \bTD[nr=2] PDB \eTD  \bTD[nc=2] 20\Angstrom\ data  \eTD       
+\bTD[nc=2] 15\Angstrom\ data  \eTD         \bTD[nc=2] 10\Angstrom\ data \eTD \eTR \bTR
+\bTD It0  \eTD \bTD   Itw  \eTD \bTD   It0  \eTD \bTD   Itw  \eTD \bTD   It0
+\eTD \bTD   Itw   \eTD \eTR
+\eTABLEhead
+\bTABLEbody
 \bTR \bTD 1AVX \eTD \bTD   1.32 \eTD \bTD   1.20 \eTD \bTD   1.04 \eTD \bTD   0.84 \eTD \bTD   0.96  \eTD \bTD  0.67 \eTD \eTR 
 \bTR \bTD 2OUL \eTD \bTD   0.68 \eTD \bTD   0.89 \eTD \bTD   0.66 \eTD \bTD   0.70 \eTD \bTD   0.66  \eTD \bTD  0.63 \eTD \eTR
 \bTR \bTD 1AY7 \eTD \bTD   1.45 \eTD \bTD   1.05 \eTD \bTD   0.75 \eTD \bTD   0.73 \eTD \bTD   0.72  \eTD \bTD  0.66 \eTD \eTR
@@ -65,5 +79,6 @@ The i-RMSD is calculated by fitting the solution on the backbone atoms of the re
 \bTR \bTD 1JK9 \eTD \bTD   3.04 \eTD \bTD   2.83 \eTD \bTD   2.84 \eTD \bTD   2.37 \eTD \bTD   2.83  \eTD \bTD  2.32 \eTD \eTR
 \bTR \bTD 1BKD \eTD \bTD   4.56 \eTD \bTD   4.21 \eTD \bTD   4.43 \eTD \bTD   3.82 \eTD \bTD   4.37  \eTD \bTD  3.62 \eTD \eTR
 \bTR \bTD 1JMO \eTD \bTD   4.66 \eTD \bTD   4.55 \eTD \bTD   4.35 \eTD \bTD   4.20 \eTD \bTD   4.51  \eTD \bTD  4.23 \eTD \eTR
+\eTABLEbody
 \eTABLE
 \stopbuffer
