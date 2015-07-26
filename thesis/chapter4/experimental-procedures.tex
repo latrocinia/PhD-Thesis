@@ -1,24 +1,13 @@
+\define\EvdW{E_{\text{vdW}}}
+\define\Eelec{E_{\text{elec}}}
+\define\EAIR{E_{\text{AIR}}}
+\define\Edesolv{E_{\text{desolv}}}
+\define\Eitr{E_{\text{it0}}}
+\define\Eitf{E_{\text{it1}}}
+\define\Eitw{E_{\text{itw}}}
+
+
 \Section{Experimental procedures}
-
-\SubSection{Generation of simulated cryo-EM maps}
-
-For the generation of the simulated cryo-EM maps we wrote a Python script based
-on the molmap function in UCSF Chimera. The resulting density is described by:
-
-\placeformula[eq:density]
-\startformula
-\rho\left(\vec{r}\right) = \sum_{i}^{N} A_i \cdot \exp\left( - \frac{\left| \vec{r} - \vec{r}_i \right|^2}{2\sigma^2} \right)
-\stopformula
-
-where \m{\rho} is the density value at position \m{\vec{r}}, the summation is over
-all the atoms $N$, $A_i$ is the atom number of atom $i$, $\vec{r}_i$  is the
-position of atom $i$, and $\sigma$  is the standard deviation given by
-\m{\frac{\pi}{\sqrt{2}} \cdot R} , where $R$ is the resolution.  This definition
-of the standard deviation ensures that the magnitudes of the Fourier
-coefficients are at 1/e of its maximum value at the specified resolution.  The
-extent of the Gaussian kernel was four times the standard deviation and the
-voxel spacing one-fourth of the resolution.  An example of a resulting 10, 15
-and 20\Angstrom\ map is given in \insfigure[fig:simulated-densities].
 
 \SubSection{HADDOCK protocol}
 
@@ -46,24 +35,26 @@ After each stage the models are scored with the following pseudo-energy function
 
 \placeformula[eq:haddock-it0]
 \startformula
-E_{it0} = 0.1 \cdot E_{vdW} + 1.0 \cdot E_{elec} + 0.01 \cdot E_{AIR} + 1.0 \cdot E_{desolv} - 0.01 \cdot \mathrm{BSA}
-\stopformula
-\placeformula[eq:haddock-it1]
-\startformula
-E_{it1} = 1.0 \cdot E_{vdW} + 0.2 \cdot E_{elec} + 0.1 \cdot E_{AIR} + 1.0 \cdot E_{desolv} - 0.01 \cdot \mathrm{BSA}
-\stopformula
-\placeformula[eq:haddock-itw]
-\startformula
-E_{itw} = 1.0 \cdot E_{vdW} + 0.2 \cdot E_{elec} + 0.1 \cdot E_{AIR} + 1.0 \cdot E_{desolv}
+\Eitr = 0.1 \cdot \EvdW + 1.0 \cdot \Eelec + 0.01 \cdot \EAIR + 1.0 \cdot \Edesolv - 0.01 \cdot \text{BSA}
 \stopformula
 
-where $E_{it0}$, $E_{it1}$ and $E_{itw}$ are the scoring functions after the
-it0, it1 and itw stage, respectively, $E_{vdW}$ the intermolecular van der
-Waals energy,   $E_{elec}$ the intermolecular electrostatic energy,   $E_{AIR}$
-the ambiguous interaction restraints energy, $E_{desolv}$ an empirical
+\placeformula[eq:haddock-it1]
+\startformula
+\Eitf = 1.0 \cdot \EvdW + 0.2 \cdot \Eelec + 0.1 \cdot \EAIR + 1.0 \cdot \Edesolv - 0.01 \cdot \text{BSA}
+\stopformula
+
+\placeformula[eq:haddock-itw]
+\startformula
+\Eitw = 1.0 \cdot \EvdW + 0.2 \cdot \Eelec + 0.1 \cdot \EAIR + 1.0 \cdot \Edesolv
+\stopformula
+
+where \m{\Eitr}, \m{\Eitf} and \m{\Eitw} are the scoring functions after the
+it0, it1 and itw stage, respectively, \m{\EvdW} the intermolecular van der
+Waals energy, \m{\Eelec} the intermolecular electrostatic energy,  \m{\EAIR}
+the ambiguous interaction restraints energy, \m{\Edesolv} an empirical
 desolvation energy \cite[Fernandez-Recio2004] and BSA is the buried surface
-area in Å$^2$.  The energies are calculated with an 8.5Å cutoff based on OPLS
-parameters \cite[Jorgensen1988].
+area in \Angstrom\high{2}.  The energies are calculated with an 8.5\Angstrom\
+cutoff based on OPLS parameters \cite[Jorgensen1988].
 
 \SubSection{HADDOCK-EM protocol}
 
@@ -141,7 +132,8 @@ the LCC is given by
 
 \placeformula[eq:lcc-definition]
 \startformula
-\mathrm{LCC} = \frac{\sum_i \left( \rho_{em} - \bar{\rho}_{em} \right) \cdot \left( \rho_c - \bar{\rho}_c \right)}{\sigma_{em} \sigma_c}
+\mathrm{LCC} = \frac{\sum_i \left( \rho_{em} - \bar{\rho}_{em} \right) \cdot
+\left( \rho_c - \bar{\rho}_c \right)}{\sigma_{em} \sigma_c}
 \stopformula
 
 where the summation is over the voxels $i$ which are maximally 3Å away from an
@@ -155,19 +147,19 @@ respectively.  The HADDOCK-EM scores are thus given by
 
 \placeformula[eq:haddock-em-it0]
 \startformula
-E_{\text{it0,EM}} = E_{it0} - w_{it0} \cdot \mathrm{LCC}
+E_{\text{it0,EM}} = \Eitr - w_{\text{it0}} \cdot \text{LCC}
 \stopformula
 \placeformula[eq:haddock-em-itw]
 \startformula
-E_{\text{itw,EM}} = E_{itw} - w_{itw} \cdot \mathrm{LCC}
+E_{\text{itw,EM}} = \Eitf - w_{\text{itw}} \cdot \text{LCC}
 \stopformula
 
-where $w_{it0}$ and $w_{itw}$ are weight terms for the LCC pseudo energy that
-need to be determined (see below).  The top 400 best scoring structures are
-selected for further flexible refinement in it1 and itw.  The refinement
-protocols are similar to the standard HADDOCK protocol, however the energy now
-also contains the additional cross correlation based energy term in addition to
-the other force field and restraint energy terms. 
+where \m{w_{\text{it0}}} and \m{w_{\text{itw}}} are weight terms for the LCC
+pseudo energy that need to be determined (see below). The top 400 best scoring
+structures are selected for further flexible refinement in it1 and itw.  The
+refinement protocols are similar to the standard HADDOCK protocol, however the
+energy now also contains the additional cross correlation based energy term in
+addition to the other force field and restraint energy terms. 
 
 It should be noted that the maximum number of subunits that can be docked
 simultaneously currently is restricted to 6 (this limitation will be lifted in
@@ -180,6 +172,28 @@ density should be converted to CNS/XPLOR format.  For the latter two tasks,
 Python scripts are included in the HADDOCK distribution.  Finally, the time
 required for a HADDOCK-EM run decreases with decreasing map size, since this
 speeds up the calculations of the FFTs.
+
+
+\SubSection{Generation of simulated cryo-EM maps}
+
+For the generation of the simulated cryo-EM maps we wrote a Python script based
+on the molmap function in UCSF Chimera. The resulting density is described by:
+
+\placeformula[eq:density]
+\startformula
+\rho\left(\vec{r}\right) = \sum_{i}^{N} A_i \cdot \exp\left( - \frac{\left| \vec{r} - \vec{r}_i \right|^2}{2\sigma^2} \right)
+\stopformula
+
+where \m{\rho} is the density value at position \m{\vec{r}}, the summation is over
+all the atoms $N$, $A_i$ is the atom number of atom $i$, $\vec{r}_i$  is the
+position of atom $i$, and $\sigma$  is the standard deviation given by
+\m{\frac{1}{\pi\sqrt{2}} \cdot R} , where $R$ is the resolution.  This definition
+of the standard deviation ensures that the magnitudes of the Fourier
+coefficients are at \m{1/e} of its maximum value at the specified resolution.  The
+extent of the Gaussian kernel was four times the standard deviation and the
+voxel spacing one-fourth of the resolution.  An example of a resulting 10, 15
+and 20\Angstrom\ map is given in \insfigure[fig:simulated-densities].
+
 
 \SubSection{Optimizing and benchmarking HADDOCK-EM}
 
@@ -197,38 +211,39 @@ at different values for the force constant, creating 10000 models for each
 complex in it0.  Since the force constant is only used in it0, the structures
 were not scored nor refined.  The value for the force constant that gave the
 most acceptable solutions, where an acceptable solution is defined as having an
-i-RMSD <= 4.0\Angstrom\ compared to the native complex, was chosen (results not shown).
-The i-RMSDs were calculated using ProFit (Martin, A.C.R.,
-http://www.bioinf.org.uk/software/profit/).  For the determination of the
-weight factor for the cross correlation term we followed the same protocol but
-with the optimized force constant for the centroid based distance restraints
-using simulated data at 10, 15 and 20\Angstrom\ which were generated as described above.
-This gave a value of 50 for the force constant and a weight factor of 15000 for
-the cross correlation based energy term, independent of the resolution (results
-not shown). 
+i-RMSD <= 4.0\Angstrom\ compared to the native complex, was chosen (results not
+shown).  The i-RMSDs were calculated using ProFitV3.1 \cite[Martin2009].  For
+the determination of the weight factor for the cross correlation term we
+followed the same protocol but with the optimized force constant for the
+centroid based distance restraints using simulated data at 10, 15 and
+20\Angstrom\ which were generated as described above.  This gave a value of 50
+for the force constant and a weight factor of 15000 for the cross correlation
+based energy term, independent of the resolution (results not shown). 
 
 The weight factor for the LCC in the it0-HADDOCK-EM score was determined by
 running the benchmark using the optimized parameters and varying the LCC weight
 in order to maximize the number of acceptable solutions in the top 400 at the
-three resolutions of 10, 15 and 20\Angstrom. This gave a value of -400.  The LCC weight
-factor in the itw score was determined by maximizing the number of acceptable
-solutions in the top 20, which gave a weight factor of -10000.
+three resolutions of 10, 15 and 20\Angstrom. This gave a value of -400.  The
+LCC weight factor in the itw score was determined by maximizing the number of
+acceptable solutions in the top 20, which gave a weight factor of -10000.
 
 To investigate the sensitivity of the protocol to incorrectly placed centroids,
 we ran 5 cases of the benchmark with displaced centroids.  Each centroid was
 moved in a random direction by taking a random point on the unit sphere with a
-displacement of 3, 5 and 7\Angstrom.  The solutions were analyzed as explained above.
+displacement of 3, 5 and 7\Angstrom.  The solutions were analyzed as explained
+above.
 
 \SubSection{HADDOCK-EM with symmetry}
 
 To leverage Cn-symmetry in cyclical symmetric complexes a few adjustments were
-made to the non-symmetric HADDOCK-EM protocol (\infigure[fig:symm-protocol]{A}).  The main difference
-is in the initial placement of the subunits in the it0-stage.  Instead of
-placing the subunits on a sphere, we place them on a circle with its center
-placed on the middle-point of the centroids and parallel to the plane of the
-centroids.  The radius of the circle is chosen such that the minimal distance
-between two subunits is at least 25\Angstrom.  The requested Cn- symmetry is imposed on
-the system from the start. 
+made to the non-symmetric HADDOCK-EM protocol
+(\infigure[fig:symm-protocol]{A}).  The main difference is in the initial
+placement of the subunits in the it0-stage.  Instead of placing the subunits on
+a sphere, we place them on a circle with its center placed on the middle-point
+of the centroids and parallel to the plane of the centroids.  The radius of the
+circle is chosen such that the minimal distance between two subunits is at
+least 25\Angstrom.  The requested Cn- symmetry is imposed on the system from
+the start. 
 
 After the initial placement, ambiguous centroid based distance restraints are
 generated, i.e. we create a distance restraint between the COM of each subunit
@@ -252,41 +267,43 @@ For the 30S E. coli ribosome the cryo-EM data were downloaded from the EMDB
 (EMD-1884) with its corresponding fitted PDB file (2YKR).  The density
 belonging to the interacting ribosomal proteins S7 and S19, was masked out as
 follows.  First we subtracted the density of the 16S rRNA modeled at the
-specified resolution of 9.8\Angstrom\ from the map.  The density belonging to the S7 and
-S19 proteins was masked out by creating a binary mask around the two proteins
-with a shell of 7\Angstrom.  The centroids were determined by calculating the COM of
-each chain as they were fitted in the density in the 2YKR-model.  We followed
-the standard HADDOCK-EM protocol as described above using ambiguous centroid
-distance restraints.  During the docking 10000 models were generated in it0 and
-the top 400 best scoring solutions were refined in it1 and itw.  The solutions
-were clustered using a cutoff of 7.5\Angstrom\ and the i-RMSDs were calculated against
-the 2YKR-model, using ProFit.
+specified resolution of 9.8\Angstrom\ from the map.  The density belonging to
+the S7 and S19 proteins was masked out by creating a binary mask around the two
+proteins with a shell of 7\Angstrom.  The centroids were determined by
+calculating the COM of each chain as they were fitted in the density in the
+2YKR-model.  We followed the standard HADDOCK-EM protocol as described above
+using ambiguous centroid distance restraints.  During the docking 10000 models
+were generated in it0 and the top 400 best scoring solutions were refined in
+it1 and itw.  The solutions were clustered using a cutoff of 7.5\Angstrom\ and
+the i-RMSDs were calculated against the 2YKR-model, using ProFit.
 
 \SubSection{Modeling the interaction of KsgA with the 16S rRNA of the 30S E.
 coli ribosome}
 
 In order to model the interaction of KsgA with the 16S rRNA of the 30S E. coli
-ribosome, we downloaded the 13.5\Angstrom\ cryo-EM map from the EMDB (EMD-2017) with its
-corresponding fitted PDB file (4ADV).  Since the 16S rRNA chain can be
+ribosome, we downloaded the 13.5\Angstrom\ cryo-EM map from the EMDB (EMD-2017)
+with its corresponding fitted PDB file (4ADV).  Since the 16S rRNA chain can be
 unambiguously placed in the cryo-EM map, we used the 16S rRNA as it was fitted
 and kept the chain fixed during the it0 stage.  The centroid for KsgA was
 determined by performing a full-exhaustive local cross correlation search using
-a local version of software similar as described by
-\citeauthor{Hoang2013}, with an angular sampling interval of 5\Deg. The
-resulting local cross correlation map is shown in \insfigure[fig:KsgA-centroids].  The centroid was
+a local version of software similar as described by \citeauthor{Hoang2013},
+with an angular sampling interval of 5\Deg. The resulting local cross
+correlation map is shown in \insfigure[fig:KsgA-centroids].  The centroid was
 placed at the position in the cryo-EM map with the highest local cross
 correlation.  We created an initial setup for the rigid body docking by
 manually placing KsgA at an approximate distance of 25\Angstrom\ away from the
 interaction surface of the 16S rRNA.  During the generation of each solution in
-it0, KsgA was given a random orientation and a random translation in a 10\Angstrom\ box.
-The initial docking setup with the determined centroid is shown in \insfigure[fig:KsgA-initial-placement].
+it0, KsgA was given a random orientation and a random translation in a
+10\Angstrom\ box.  The initial docking setup with the determined centroid is
+shown in \insfigure[fig:KsgA-initial-placement].
 
 Mutagenesis data shows that the residues R221, R222 and K223 of KsgA are vital
 in the binding of KsgA to the 16S rRNA, and hydroxyl radical footprinting and
 the cryo-EM map show that the helices 24, 27 and 45 of the 16S rRNA are
 involved in the binding.  As such, the residues 221 to 223 of KsgA and residues
 768 – 773, 781, 782, 801 – 803, 899 – 902, 1512 – 1516 and 1523 of the 16S rRNA
-were considered active residues in HADDOCK (\insfigure[fig:KsgA-initial-placement]{C}).
+were considered active residues in HADDOCK
+(\insfigure[fig:KsgA-initial-placement]{C}).
 
 We generated 10000 models in the rigid body docking stage.  The top 400 scoring
 models were only refined in it1.  The water refinement stage was skipped since
@@ -303,10 +320,11 @@ For the adeno-associated virus-2 in complex with antibody A20 the 8.5\Angstrom\
 resolution cryo-EM data were obtained from the EMDB (EMD-5424) together with
 the fitted PDB (3J1S).  As the resolution allows an unambiguous rigid body fit
 of both the capsid protein and the anti-body, the centroids were determined by
-calculating the COM of each chain in the 3J1S-model.  Residues within 5\Angstrom\
-distance of the other interacting chain were used as active residues in
-HADDOCK.  To speed-up the calculation, the density within a 50\Angstrom\ shell was
-masked out.  I-RMSDs were calculated using 3J1S as a reference. 
+calculating the COM of each chain in the 3J1S-model.  Residues within
+5\Angstrom\ distance of the other interacting chain were used as active
+residues in HADDOCK.  To speed-up the calculation, the density within a
+50\Angstrom\ shell was masked out.  I-RMSDs were calculated using 3J1S as a
+reference. 
 
 \SubSection{Modeling the interaction between Dengue virus and 2H2 antibody}
 

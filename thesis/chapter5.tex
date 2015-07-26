@@ -4,35 +4,25 @@
 
 \setupexternalfigures[factor=broad, directory={chapter5/figures}]
 \input chapter5/figures
-\input chapter5/tables
+\input chapter5/supplementary-tables
 
 \define\rvdW{r_{\text{vdW}}}
 
 \Chapter[chapter:disvis]{DisVis: quantifying and visualizing accessible
 interaction space of distance-restrained biomolecular complexes}
 
-{\em Based on: G.C.P. van Zundert and A.M.J.J. Bonvin. DisVis: Quantifying and
+\emph{Based on: G.C.P. van Zundert and A.M.J.J. Bonvin. DisVis: quantifying and
 visualizing accessible interaction space of distance-restrained biomolecular
 complexes. Bioinformatics, Advanced Online Publication (2015).}
 
-\input chapter5/introduction
-\input chapter5/methods
-\input chapter5/examples
-\input chapter5/conclusions
+%\input chapter5/introduction
+%\input chapter5/methods
+%\input chapter5/examples
+%\input chapter5/conclusions
 
 \page
-\Subsubject{Supplementary Tables}
+\input chapter5/supplementary-information
 
-\placestable[][tab:RPII-crosslinks]
-{\getbuffer[cap:RPII-crosslinks]}
-{\getbuffer[tab:RPII-crosslinks]}
-
-\placestable[page, top][tab:RPII-accessible-complexes-fine]
-{\getbuffer[cap:RPII-accessible-complexes-fine]}
-{\getbuffer[tab:RPII-accessible-complexes-fine]}
-
-\placestable[page, 90][tab:RPII-violations-fine]
-{\getbuffer[cap:RPII-violations-fine]}
-{\getbuffer[tab:RPII-violations-fine]}
+\page
 
 \stopcomponent

@@ -1,0 +1,8 @@
+Residue PRE5    |Residue PUP2    |Cross-linker   |Distance in complex (Å)
+27      |18      |ADH     |5.9
+122     |125     |ADH     |12.1
+122     |127     |ADH     |5.7
+122     |128     |ADH     |7.8
+54      |179     |ZL      |9.1
+55      |169     |ZL      |10.8
+55      |179     |ZL      |10.9

@@ -210,18 +210,19 @@ in \instable[tab:enrichment].
 cryo-EM data}
 
 As a test case using experimental cryo-EM data, we docked the S7 and S19
-proteins of the 30S E. coli ribosome using a 9.8\Angstrom\ cryo-EM map (EMD-1884).  The
-map has a corresponding atomic structure (2YKR), which has been modeled by
-manual fitting a crystal structure of the full ribosome in the map as a rigid
-body.%TODO maybe add figure
+proteins of the 30S E. coli ribosome using a 9.8\Angstrom\ cryo-EM map
+(EMD-1884).  The map has a corresponding atomic structure (2YKR), which has
+been modeled by manual fitting a crystal structure of the full ribosome in the
+map as a rigid body.%TODO maybe add figure
 
 We docked the two proteins using only the fraction of the cryo-EM density that
-can be attributed to the two proteins. The centroids were determined by
-calculating the position of the COM of each protein as they were currently
-placed in the density (\infigure[fig:1884-results]{A}). Applying HADDOCK-EM
+can be attributed to the two proteins (\infigure[fig:1884-results]{A}). The
+centroids were determined by calculating the position of the COM of each
+protein as they were currently placed in the density. Applying HADDOCK-EM
 resulted in 15 clusters, with the best scoring cluster containing 105 of the
 400 generated solutions of which the best scoring complex has an i-RMSD of
-1.56\Angstrom\ compared to the crystal structure (\infigure[fig:1884-results]{B}).
+1.56\Angstrom\ compared to the crystal structure
+(\infigure[fig:1884-results]{B}).
 
 
 \SubSection{Integrative modeling of KsgA with rRNA using 13.5\Angstrom\ cryo-EM
@@ -320,6 +321,10 @@ When using 10\Angstrom\ data only a single near-native cluster is observed. At
 20\Angstrom\ resolution, multiple clusters appear and require the HADDOCK-EM
 score to discriminate the near-native cluster, which indeed has the best
 (lowest) HADDOCK-EM score. 
+
+\placefigure[top][fig:2355-results]
+{\getbuffer[cap:2355-results]}
+{\externalfigure[fig:2355-results]}
 
 We applied the symmetrical HADDOCK-EM protocol to model the pentameric large
 terminase complex of bacteriophage T7 using 16\Angstrom\ negative stain EM data
