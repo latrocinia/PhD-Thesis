@@ -1,23 +1,25 @@
 % math definitions
-\define[0]\Cmax{{\bf C}_{\text{max}}}
-\define[0]\Imin{{\bf I}_{\text{min}}}
-\define[0]\rvec{\vec{r}}
-\define[0]\rvecF{\rvec_{\text{F}}}
-\define[0]\rvecS{{\rvec}_{\text{S}}}
-\define[0]\rveccomS{{\rvec}_{\text{comS}}}
-\define[0]\boldL{{\bf L}}
-\define[0]\boldC{{\bf C}}
-\define[0]\boldI{{\bf I}}
-\define[0]\boldS{{\bf S}}
-\define[0]\boldF{{\bf F}}
-\define[0]\boldA{{\bf A}}
-\define[0]\redais{{\bf A}_{R, \text{red.}}}
-\define[0]\dmin{d_{\text{min}}}
-\define[0]\dmax{d_{\text{max}}}
-\define[0]\boldV{{\bf V}}
-\define[0]\boldP{{\bf P}}
+\define\Cmax{{\bf C}_{\text{max}}}
+\define\Imin{{\bf I}_{\text{min}}}
+\define\rvec{\vec{r}}
+\define\rvecF{\rvec_{\text{F}}}
+\define\rvecS{{\rvec}_{\text{S}}}
+\define\rveccomS{{\rvec}_{\text{comS}}}
+\define\boldL{{\bf L}}
+\define\boldC{{\bf C}}
+\define\boldI{{\bf I}}
+\define\boldS{{\bf S}}
+\define\boldF{{\bf F}}
+\define\boldA{{\bf A}}
+\define\redais{{\bf A}_{R, \text{red.}}}
+\define\dmin{d_{\text{min}}}
+\define\dmax{d_{\text{max}}}
+\define\boldV{{\bf V}}
+\define\boldP{{\bf P}}
 
 \Section{Methods}
+
+\Subsection{Overview}
 
 We discretely sample the accessible interaction space by treating the two
 biomolecules as rigid bodies and performing a 6 dimensional search over the
@@ -46,7 +48,7 @@ restraints, a percentage of how often each restraint is violated, and a
 discrete-valued density map.
 
 
-\SubSection{Calculating the accessible interaction space of two interaction
+\Subsection{Calculating the accessible interaction space of two interaction
 macromolecules}
 
 As a first approximation to calculate the accessible interaction space of two
@@ -55,7 +57,7 @@ the molecules as rigid entities. This results in a 6 dimensional (3
 translational and 3 rotational degrees of freedom) space of possible
 conformations that need to be considered. To determine within this 6D space
 whether the two chains are interacting and forming a complex, we use
-FFT-techniques as used originally in \citeauthor[Katchalski-Katzir1992].
+FFT-techniques as used originally in \citeauthor{Katchalski-Katzir1992}.
 We keep one chain fixed during the search while we perform FFT-accelerated
 translational scans with the other chain. The fixed chain is separated into a
 core and interaction region. The core region is the space that is occupied by
@@ -98,9 +100,9 @@ size. The accessible interaction space per translational space is then given by
 \placeformula[eq:ais-trans]
 \startformula
 {\bf A}_R \left( \rvec \right) = \startmathcases
-\NC \text{if}\ \boldC_R \left(\rvec \right) \leq \Cmax\ \text{and}\ \boldI_R\left(\rvec \right) \geq \Imin:  \MC 1 \NR
+\NC 1 \MC \text{if}\ \boldC_R \left(\rvec \right) \leq \Cmax\ \text{and}\ \boldI_R\left(\rvec \right) \geq \Imin \NR
 \NC \NC \NR
-\NC \text{else:} \MC 0 \NR
+\NC 0 \MC \text{else} \NR
 \stopmathcases
 \stopformula
 
@@ -129,7 +131,7 @@ summation is over all rotations \m{\boldP}, and the second summation over all gr
 coordinates.
 
 
-\SubSection{Incorporating distance restraints into the search}
+\Subsection{Incorporating distance restraints into the search}
 
 If some distances or distance ranges are known between the subunits of the
 complex, this can significantly reduce the accessible interaction space as it
@@ -167,9 +169,9 @@ scan \m{\boldL_R} is defined then as
 \placeformula[eq:distance-restraint-space]
 \startformula
 \boldL_R \left( \rvec \right) = \startmathcases
-\NC \text{if}\ \dmin \leq |\rvec - \rvec_c | \leq \dmax: \NC 1 \NR
+\NC 1 \MC \text{if}\ \dmin \leq |\rvec - \rvec_c | \leq \dmax \NR
 \NC \NC \NR
-\NC \text{else}: \NC 0\NR
+\NC 0 \MC \text{else} \NR
 \stopmathcases
 \stopformula
 
@@ -194,21 +196,10 @@ In the case of multiple available distance restraints, this generalizes to
 where the summation is over all distance restraints \m{N_d} and
 \m{\boldL_{R,n}} is the space conforming to distant restraint \m{n}. The value
 found at a specific coordinate in \m{\redais} represents the number of
-conforming distance restraints at that location in space. The restraints are
-defined in a separate text file as input for disvis in the following format
+conforming distance restraints at that location in space. 
 
 
-where <chain-1>, <resi-1> and <atomname-1> are the chainID, residue number, and
-atom name of the fixed chain, respectively; <chain-2>, <resi-2> and
-<atomname-2> are the chainID, residue number, and atom name of the scanning
-chain; and <min-dis> and<max-dis> are the minimal and maximal distance of the
-restraints in angstrom, respectively. As an example, the line
-
-would put a restraint between the CA-atom of residue 18 of chain A of the fixed
-model and the CB-atom of residue 27 of the F chain of the scanning model that
-should be longer of equal to 10\Angstrom\ and shorter or equal to 20\Angstrom.
-
-\SubSection{Quantifying and visualizing the accessible interaction space}
+\Subsection{Quantifying and visualizing the accessible interaction space}
 
 To quantify the accessible interaction space consistent with a certain number
 of distance restraints, the number of occurrences that \m{\redais} is equal to
@@ -248,7 +239,7 @@ violation matrix. {\emph{Disvis}} reports restraints with a z-score higher
 than 1.0 explicitly.
 
 
-\SubSection{Implementation details}
+\Subsection{Implementation details}
 
 We implemented DisVis in Python2.7 using the NumPy \cite[Walt2011] and Cython
 packages \cite[Behnel2011]. The OpenCL framework \cite[Stone2010] was used to
@@ -262,7 +253,7 @@ freely from https://github.com/haddocking/disvis together with documentation
 and examples.
 
 
-\SubSection{RNA polymerase II example}
+\Subsection{RNA polymerase II example}
 
 The crystal structure of the RNA polymerase II was downloaded from the Protein
 Databank (PDB ID: 1WCM). The largest subunit (chain A) and the 27kDa
@@ -288,21 +279,24 @@ restraint violations in \instable[tab:RPII-violations-fine] and
 S\in[tab:RPII-violations-coarse] for the fine and coarse run, respectively.
 
 
-\SubSection{26S proteasome PRE5-PUP2 example}
+\Subsection{26S proteasome PRE5-PUP2 example}
 
 Homology models were downloaded from the SWIS-MODEL Repository
 \cite[Kiefer2009] via the Protein Model Portal (http://proteinmodelportal.org)
 using their Uniprot identifiers (O14250 and Q9UT97). Cross-links were taken
-from \citeauthor{Leitner2014} Dataset S1 (Table S6), which consist of 4 ADH and
-3 zero-length ZL cross-links. The maximum ADH- and ZL-linker length were set to
-23 and 26\Angstrom, respectively, since 95\% of all found distances in a
-benchmark were smaller. All input files are included in the DisVis source code. 
+from \citeauthor{Leitner2014} Dataset S1 (\instable[tab:PRE5-PUP2-crosslinks]),
+which consist of 4 ADH and 3 zero-length ZL cross-links. The maximum ADH- and
+ZL-linker length were set to 23 and 26\Angstrom, respectively, since
+95\percent\ of all found distances in a benchmark were smaller. All input files
+are included in the DisVis source code. 
 
 Again, two \disvis\ runs were performed using a rotational sampling density of
 5.27\Deg\ (53256 orientations) and 9.72\Deg\ (7416 orientations) with a grid
 spacing of 1 and 2\Angstrom, respectively, with default parameter values. The
 sum of accessible complexes consistent with each number of restraints is shown
-in Table S7 and S9, and their normalized restraint violation occurrence in
-Table S8 and S10. 
+in \instable[tab:PRE5-PUP2-accessible-complexes-fine] and
+\ins[tab:PRE5-PUP2-accessible-complexes-coarse], and their normalized restraint
+violation occurrence in \instable[tab:PRE5-PUP2-violations-fine] and
+\ins[tab:PRE5-PUP2-violations-coarse]. 
 
 

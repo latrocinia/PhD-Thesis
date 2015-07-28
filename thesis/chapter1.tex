@@ -23,7 +23,7 @@ field of proteomics, and their interactions, the field of interactomics
 the inquiry of the interaction networks that are formed by proteins, and showed
 that the set of all interacting protein-complexes, the interactome, is several
 orders of magnitude larger than the total number of proteins that the genome
-encodes for, the proteome \cite[Stein2011]. In addition, inhibiters of
+encodes for, the proteome \cite[Stein2011]. In addition, inhibitors of
 protein-protein interactions are an upcoming class of molecules with a profound
 impact on drug-development \cite[Wells2007]. 
 
@@ -89,7 +89,7 @@ bodies, an exhaustive search might be performed, while for higher-dimensional
 systems Monte Carlo and simulated annealing approaches might be more efficient.
 
 \item Scoring and analysis: the resulting models need to be scored, ranked and
-clustered based based on their congruency with the data to acertain model
+clustered based based on their congruency with the data to ascertain model
 precision and accuracy.
 
 \stopitemize
@@ -116,7 +116,7 @@ interface. Bioinformatics prediction methods can also deliver this information
 by analyzing sequences and extract conserved interface residues through
 co-evolution \cite[Hopf2014]. Two other experimental approaches that provide
 shape data and distance restraints are cryo-electron microscopy (cryo-EM) and
-chemical cross-linking coupled with mass-spectrometry and we will discuss them
+chemical cross-linking coupled with mass-spectrometry (CXMS) and we will discuss them
 more in-depth.
 
 
@@ -124,24 +124,24 @@ more in-depth.
 
 Cryo-EM is a set of various transmission electron-microscopy techniques, namely
 cryo-electron tomography (cryo-ET), electron crystallography, and
-single-particle cryo-EM, that all ultimately results in a three-dimensional
+single-particle cryo-EM, that all ultimately results in a three dimensional
 density of the sample \cite[Milne2013]. In cryo-ET whole cell slices are
 studied by systematically tilting the sample and imaging projections from
-different tilt angles; electron crystallography is mainly aimed at
+different angles; electron crystallography is mainly aimed at
 investigating membrane proteins that can form two-dimensional crystals or
 helices; single-particle cryo-EM is used to study individual macromolecular
 assemblages by imaging many projections of random orientations of the assembly.
 
-However, all three approaches are are limited by the same phenomenon: the
+However, all three approaches are limited by the same phenomenon: the
 prolonged irradiation of the specimen with electrons results in extensive
 damage, reminiscent of the impact of a nuclear bomb \cite[Glaeser1978].  To
-diminish this effect, the sample is typically plunge-freezed in liquid ethanol
+diminish this effect, the sample is typically plunge-frozen in liquid ethanol
 to instantly vitrify it, resulting in a near-native hydrated state.  However,
 the allowed electron dose is still severely limited, resulting in very noisy
 projections, well below atomic resolution. Electron crystallography tries to
 improve on this by combining the well-defined phases of the images with the
 high-resolution electron diffraction pattern to attain atomic resolution.
-Cryo-ET can signicantly increase the resolution of particular assemblages by
+Cryo-ET can significantly increase the resolution of particular assemblages by
 subtomogram averaging: a process where similar particles are aligned and
 averaged, resulting in an increased signal-to-noise ratio. Singe-particle
 cryo-EM in turn images many particles on a grid, each with a random
@@ -158,7 +158,7 @@ Research Conference 2014), to revolutionizing structural biology
 \cite[Bai2015]. Although electron diffraction resolution has remained the same
 at around 2\Angstrom\ \cite[Gonen2005], cryo-ET's subtomogram averaging now
 attains sub-nanometer resolution \cite[Schur2013], and the single-particle
-cryo-EM resolution record for a now stands at 2.2\Angstrom\
+cryo-EM resolution record for now stands at 2.2\Angstrom\
 \cite[Bartesaghi2015].
 
 Still, despite all the advances, the resolution of cryo-EM densities are
@@ -174,10 +174,10 @@ attain an atomic model of the macromolecular assembly.
 \Subsubsection{Chemical cross-linking coupled with mass spectrometry}
 
 A very different method from cryo-EM is chemical cross-linking coupled with
-mass spectrometry (CXMS). Here, proteins complexes are covalently linked with
+mass spectrometry. Here, protein complexes are covalently linked with
 chemical cross-links to determine spatial proximity between components. A
 standard CXMS experiment consists of six stages \cite[Tran2015]. First the
-cross-links are added to the sample after optimizing the reaction parameters,
+cross-links are added to the sample after optimizing the reaction conditions,
 and the cross-linked proteins are isolated to reduce the number of
 false-positives. The third step is to digest the cross-linked proteins into
 peptides using trypsine or other chemical agents, after which the peptides are
@@ -192,7 +192,7 @@ the major bottleneck is the final data analysis as millions to billions of
 fragments can be produced and need to be considered \cite[Tran2015]. After a
 successful analysis, the cross-linked peptides can be mapped back on the
 proteins and distance restraints between components can be derived, where the
-length of the linker is an idicator for the acceptable range of the restraint.
+length of the linker is an indicator for the acceptable range of the restraint.
 The shorter the linker the more information the restraint provides, though at
 the price of a reduced number of formed links. So again, the inclusion of the
 low-resolution long-range distance restraints provided by CXMS require an
@@ -205,18 +205,18 @@ Performing integrative modeling requires dedicated high-end software packages
 with powerful minimization, optimization and sampling algorithms. Currently,
 there are two main software packages and platforms available that can handle
 data from a substantial number of experimental methods. One is the Integrative
-Modeling Platfrom (IMP) developed by the Sali lab \cite[Russel2012], and the
+Modeling Platform (IMP) developed by the Sali lab \cite[Russel2012], and the
 other is our in-house data-driven docking software HADDOCK (High Ambiguity
 Driven DOCKing) \cite[Dominguez2003, deVries2007]. 
 
 
 \Subsubsection{IMP}
 
-The IMP software package is consists of several layers, each given more control
+The IMP software package consists of several layers, each giving more control
 to the user \cite[Russel2012, Webb2011]. The base layer is written in C++ for
 speed, where each class is encapsulated for use in Python. This provides a
 scripting interface to setup an integrative modeling approach with data derived
-from diverse sources translated to restraints. A level higher are direct user
+from diverse sources translated to restraints. One level higher are the direct user
 applications, such as MultiFit for cryo-EM \cite[Lasker2009, Lasker2010] and
 FoXS for the calculation of SAXS curves \cite[Schneidman-Duhovny2010]. In
 addition, the IMP package is also integrated into the molecular graphics
@@ -226,33 +226,33 @@ licenced under the LGPL and GPL.
 
 \Subsubsection{HADDOCK}
 
-The HADDOCK software's inception was in 2003, starting out as a binary protein
-docking program originally capable of incorporating CSP data and bioinformatics
-predictions on the interface during in the form of ambiguous interaction
-restraints (AIRs) \cite[Dominguez2003]. Since then HADDOCK's capabilities have
-steadily increased, and now also supports the use of RDCs \cite[vanDijk2005],
-protein-DNA docking \cite[vanDijk2006], solvated docking using explicit water
-\cite[vanDijk2006a, Kastritis2012], docking up to 6 components
-\cite[Karaca2010], NMR pseudocontact shifts \cite[Schmitz2011], SAXS and
-collision cross sections derived from MS \cite[Karaca2013], and protein-peptide
-docking \cite[Trellet2013]. The HADDOCK webserver was introduced in 2010
-\cite[deVries2010] for easy usage to the science community. The HADDOCK
-software is free to use for academic purposes and ships with its source code. 
+The first version of HADDOCK was created in 2003, starting out as a binary
+protein docking program originally capable of incorporating CSP data and
+bioinformatics predictions \cite[Dominguez2003]. Since then, HADDOCK's
+capabilities have steadily increased, and now also supports the use of RDCs
+\cite[vanDijk2005], protein-DNA docking \cite[vanDijk2006], solvated docking
+using explicit water \cite[vanDijk2006a, Kastritis2012], docking up to 6
+components \cite[Karaca2010], NMR pseudocontact shifts \cite[Schmitz2011], SAXS
+and collision cross sections derived from MS \cite[Karaca2013], and
+protein-peptide docking \cite[Trellet2013]. The HADDOCK webserver was
+introduced in 2010 \cite[deVries2010] to provide a user-friendly interface to
+the science community. The HADDOCK software is free to use for academic
+purposes and ships with its source code. 
 
 
 \Section{Explorative modeling}
 
-
-The goal of integrative modeling ultimately is to produce representing
-biomolecular assemblies that are consistent with the data, thus putting the
-emphasis on the model. We can also turn this around, and instead put the
-emphasis on the data and aim at quantifying the information content. This
-different paradigm I call explorative modeling. A hallmark of this approach is
-to systamatically sample a decent representative portion of the degrees of
+The goal of integrative modeling ultimately is to produce representative
+biomolecular assemblies that are consistent with the acquired data, thus
+putting the emphasis on the model. We can also turn this around, and instead
+put the emphasis on the data and aim at quantifying the information content by
+counting accessible states consistent with the data. This different paradigm
+and associated field I call explorative modeling. A hallmark of this approach
+is to systematically sample a decent representative portion of the degrees of
 freedom of the system under investigation, and calculating for each sampled
-point the fit with the data, ultimately given a distribution of fits. The
+point the fit with the data, ultimately given a distribution of fits.  The
 method is inherently computationally demanding as the number of points to
-sample is sizeable by itself and increases exponentially with the number of
+sample is sizable by itself and increases exponentially with the number of
 degrees of system being investigated. However, for two-body systems,
 corresponding to 6 degrees of freedom, the approach can still be applied. The
 goal of explorative modeling is thus to provide the information content of the
@@ -263,27 +263,28 @@ insight into model uncertainty.
 
 \Section{Overview of thesis}
 
-This thesis primarely describes new computational methods to handle cryo-EM and
+This thesis primarily describes new computational methods to handle cryo-EM and
 distance restraints data for integrative and explorative modeling. In
-\inchapter[chapter:powerfit] we introduce a high-performance cross-correlation
+\inchapter[chapter:powerfit] I introduce a high-performance cross-correlation
 based rigid-body fitting software package to automatically fit high-resolution
 structures in low-resolution cryo-EM density maps, called PowerFit. In addition
 to algorithm optimizations, it provides a new, more sensitive scoring function
 to further extend the applicable resolution range.  In
-\inchapter[chapter:image-pyramids] we explore the resolution limits of
+\inchapter[chapter:image-pyramids] I explore the resolution limits of
 rigid-body fitting in cryo-EM data and leverage this information to heavily
 accelerate the procedure through the use of multi-scale image pyramids.
 \inchapter[chapter:haddock-em] describes the incorporation of cryo-EM data in
 the HADDOCK software. The approach can be fully combined with all other
 available sources of information in HADDOCK, resulting in a truly integrative
-approach. Next, in \inchapter[chapter:haddock2.2-webserver], I present the
+approach. Next, in \inchapter[chapter:haddock2.2-webserver] I present the
 HADDOCK2.2 webserver, an upgrade of the HADDOCK webserver, for user-friendly
 integrative modeling of biomolecular complexes. \inchapter[chapter:disvis]
 deals with quantifying and visualizing the information content of distance
 restraints in general, and cross-link data in particular. It introduces the
 concept of the accessible interaction space, the set of all possible solutions
 of a complex, and sets out a way to exhaustively enumerate this, implemented in
-the another software package DisVis. We extend the approach further in
+another software package DisVis, and represents a first step into
+explorative modeling. I extend the approach further in
 \inchapter[chapter:inferring-interface-residues], where interface residues are
 inferred from the distance restraints. The inferred residues can subsequently
 be used in the HADDOCK software to complement the docking. In the final

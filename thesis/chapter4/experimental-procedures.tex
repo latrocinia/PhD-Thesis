@@ -113,8 +113,8 @@ Each orientation is scored by the vector residual energy term in CNS, given by
 E_{\mathrm{vector}} = \frac{\sum_H \left( F_{em} - F_c \right) ^2}{\sum_H F_{em}^2}
 \stopformula
 
-where the summation is over all the Miller indices $H$ up to the specified
-resolution of the cryo-EM map, and $F_{em}$ and $F_c$ are the complex-valued
+where the summation is over all the Miller indices \m{H} up to the specified
+resolution of the cryo-EM map, and \m{F_{em}} and \m{F_c} are the complex-valued
 Fourier coefficients of the cryo-EM map and the calculated density,
 respectively.  It should be noted that minimizing the vector residual in
 reciprocal space is mathematically the same as maximizing the cross correlation
@@ -127,7 +127,7 @@ electrostatic energy terms.  For each complex typically 10000 models are
 generated this way. 
 
 The models are then scored by adding a local cross correlation (LCC) term to
-the regular HADDOCK score (Eq. \in[eq:haddock-it0]-\in[eq:haddock-itw]), where
+the regular HADDOCK score (\ineq[eq:haddock-it0] -- \in[eq:haddock-itw]), where
 the LCC is given by 
 
 \placeformula[eq:lcc-definition]
@@ -136,19 +136,20 @@ the LCC is given by
 \left( \rho_c - \bar{\rho}_c \right)}{\sigma_{em} \sigma_c}
 \stopformula
 
-where the summation is over the voxels $i$ which are maximally 3Å away from an
-atom of the model, $\rho_{em}$ is the density value at voxel $i$ of the cryo-EM
-map, $\bar{\rho}_{em}$ is the average density value of all the voxels $i$,
-$\rho_c$ is the density value at voxel $i$ of the calculated density,
-$\bar{\rho}_c$ is the average density value of all the voxels $i$ of the
-calculated density, and $\sigma_{em}$ and $\sigma_c$ are the standard
-deviations of the cryo-EM and calculated density over the voxels $i$,
-respectively.  The HADDOCK-EM scores are thus given by
+where the summation is over the voxels \m{i} which are maximally 3\Angstrom\ away from an
+atom of the model; \m{\rho_{em}} is the density value at voxel \m{i} of the cryo-EM
+map; \m{\bar{\rho}_{em}} is the average density value of all the voxels \m{i};
+\m{\rho_c} is the density value at voxel \m{i} of the calculated density,
+\m{\bar{\rho}_c} is the average density value of all the voxels \m{i} of the
+calculated density, and \m{\sigma_{em}} and \m{\sigma_c} are the standard
+deviations of the cryo-EM and calculated density over the voxels \m{i},
+respectively. The HADDOCK-EM scores are thus given by
 
 \placeformula[eq:haddock-em-it0]
 \startformula
 E_{\text{it0,EM}} = \Eitr - w_{\text{it0}} \cdot \text{LCC}
 \stopformula
+
 \placeformula[eq:haddock-em-itw]
 \startformula
 E_{\text{itw,EM}} = \Eitf - w_{\text{itw}} \cdot \text{LCC}
@@ -184,14 +185,14 @@ on the molmap function in UCSF Chimera. The resulting density is described by:
 \rho\left(\vec{r}\right) = \sum_{i}^{N} A_i \cdot \exp\left( - \frac{\left| \vec{r} - \vec{r}_i \right|^2}{2\sigma^2} \right)
 \stopformula
 
-where \m{\rho} is the density value at position \m{\vec{r}}, the summation is over
-all the atoms $N$, $A_i$ is the atom number of atom $i$, $\vec{r}_i$  is the
-position of atom $i$, and $\sigma$  is the standard deviation given by
-\m{\frac{1}{\pi\sqrt{2}} \cdot R} , where $R$ is the resolution.  This definition
+where \m{\rho} is the density value at position \m{\vec{r}}; the summation is over
+all the atoms \m{N}; \m{A_i} is the atom number of atom \m{i}; \m{\vec{r}_i}  is the
+position of atom \m{i}; and \m{\sigma}  is the standard deviation given by
+\m{\frac{1}{\pi\sqrt{2}} \cdot R} , where \m{R} is the resolution.  This definition
 of the standard deviation ensures that the magnitudes of the Fourier
 coefficients are at \m{1/e} of its maximum value at the specified resolution.  The
 extent of the Gaussian kernel was four times the standard deviation and the
-voxel spacing one-fourth of the resolution.  An example of a resulting 10, 15
+voxel spacing one-fourth of the resolution. An example of a resulting 10, 15
 and 20\Angstrom\ map is given in \insfigure[fig:simulated-densities].
 
 

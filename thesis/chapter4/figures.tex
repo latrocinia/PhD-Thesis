@@ -29,15 +29,12 @@ mode with center-of-mass restraints); Light-grey, grey and dark-grey bar:
 HADDOCK-EM using 20, 15 and 10\Angstrom\ simulated cryo-EM data, respectively; Black
 bar: minimal i-RMSD of unbound compared to bound complex. The complexes are
 ordered according to their difficulty level. The dashed line represents the
-cutoff for a solution to be acceptable (i-RMSD ≤ 4\Angstrom).
-(B) Number of generated acceptable solutions after the it0-stage and number of
-acceptable solutions in the 400 best scoring models. The height of each bar
-represents the number of acceptable solutions generated in the 10000 models;
-the height of the inner solid bars represents the number of acceptable
-solutions that are in the top 400 after scoring. Only complexes for which
-acceptable solutions were generated are displayed. Light-grey: HADDOCK-CM;
-Grey, dark-grey and black bar: HADDOCK-EM using 20, 15 and 10\Angstrom
-simulated cryo-EM data.}
+cutoff for an accetable solution (i-RMSD ≤ 4\Angstrom).
+(B) Number of acceptable solutions in the 10000 generated models after the
+it0-stage (bar height) and number of acceptable solutions in the 400 best
+scoring models (inner solid bar). Only complexes for which acceptable solutions
+were generated are displayed. Light-grey: HADDOCK-CM; Grey, dark-grey and black
+bar: HADDOCK-EM using 20, 15 and 10\Angstrom\ simulated cryo-EM data.}
 \stopbuffer
         
 
@@ -45,7 +42,7 @@ simulated cryo-EM data.}
 \startbuffer[cap:impact-refinement]
 \caption{Effect of the flexible refinement stage with cryo-EM restraints on i-RMSD.}
 {The i-RMSD improvement (i-RMSD it0 – i-RMSD itw) for all refined complexes
-after itw when using 20 (A), 15 (B), and 10\Angstrom\ (C) data plotted as a histogram. 
+after itw when using 10 (A), 15 (B), and 20\Angstrom\ (C) data plotted as a histogram. 
 Positive values indicate a decrease in i-RMSD toward the native structure. The
 dashed vertical line in the figures represents the average i-RMSD improvement.}
 \stopbuffer
@@ -59,7 +56,7 @@ onto the 30S E. coli ribosome.}
 protein, the centroids and the density (yellow). 
 (B) The HADDOCK-EM score of the 400 refined models plotted versus their i-RMSD
 from the 2YKR-structure. Next to it the solution with the best HADDOCK score
-and an i-RMSD of 1.56\Angstrom is shown in the cryo-EM density.} 
+and an i-RMSD of 1.56\Angstrom\ is shown in the cryo-EM density.} 
 \stopbuffer
 
 
@@ -103,7 +100,7 @@ protein (blue) forms favorable interactions with the antibody A20 chains
 (C) The HADDOCK-EM score of the 400 generated models of the Dengue
 virus-antibody complex versus their i-RMSD using 3J42 as a reference results
 in two clusters.
-(D) Best scoring HADDOCK model shown in the cryo-EM density. The Dengue
+(D) Best scoring HADDOCK model shown in the density. The Dengue
 envelope protein (green) with the prM protein (blue) forms favorable
 interactions with the 2H2 Fab-fragment (orange and pink).}
 \stopbuffer
@@ -115,15 +112,15 @@ interactions with the 2H2 Fab-fragment (orange and pink).}
 large terminase pentamer.}
 {(A) Protocol of HADDOCK-EM with symmetry during the rigid body stage. After
 determining the centroids in the density, each subunit is placed on a circle
-with its center on the midpoint of the centroids. C5-symmetry is imposed on the
+concentric with the centroids' midpoint. C5-symmetry is imposed on the
 system from the beginning and ambiguous distance restraints are generated
-between the COM of each subunit and each centroid. An initial complex is formed
-by a rigid body energy minimization (EM). To orient the complex properly in the
+between the center of mass of each subunit and each centroid. An initial complex is formed
+by rigid body energy minimization (EM). To orient the complex properly in the
 density, we calculate the cross correlation of two orientations of the complex
-with the cryo-EM data. A second round of rigid body energy minimization is
-performed on the orientation with the highest cross correlation directly
-against the cryo-EM data. 
-(B) The HADDOCK-EM score versus the i-RMSD compared to the native complex
+with the cryo-EM data. A second round of rigid body EM is performed on the
+orientation with the highest cross correlation directly against the cryo-EM
+data. 
+(B) The HADDOCK-EM score versus the interface-RMSD compared to the native complex
 (1B0C) are plotted for the 400 refinement complexes using 20, 15 and 10\Angstrom\
 simulated data.}
 \stopbuffer
@@ -132,9 +129,9 @@ simulated data.}
 \startbuffer[cap:2355-results]
 \caption{}
 {(A) The HADDOCK-EM score of the 400 generated large terminase models versus
-the i-RMSD. The 16\Angstrom\ negative stain data together with the centroids is shown
+the interface-RMSD. The 16\Angstrom\ negative stain data with centroids are shown
 in the left corner.
-(B) Best scoring HADDOCK model shown in the cryo-EM density. Two close-ups of
-the interface are displayed to the right of it.}
+(B) Best scoring HADDOCK model shown in the density. Close-ups of
+the interface are displayed to the right.}
 \stopbuffer
 

@@ -10,8 +10,8 @@ cryo-EM data were created using a Python script based on the molmap function in
 UCSF Chimera \cite[Pettersen2004]. Subsequently, we fitted each subunit using the LCC and CW-LCC
 score and also together with the Laplace pre-filter (L-LCC and L-CW-LCC)
 resulting in four different scoring functions. As there are 86 subunits in the
-assembly, we performed 8600 exhaustive searches in total (\m{86 \text{subunits} \times
-25 \text{resolutions} \times 4} different scores). The voxel spacing of the simulated
+assembly, we performed 8600 exhaustive searches in total (\m{86\ \text{subunits} \times
+25\ \text{resolutions} \times 4} different scores). The voxel spacing of the simulated
 data was 1/4th of the resolution with a maximum of 4\Angstrom\ using a rotational
 sampling density of 20.83\Deg\ (648 rotations). We defined a fit as successful if
 the positional RMSD of a solution in the top 10 was smaller than 8\Angstrom\ compared to
@@ -33,7 +33,7 @@ better, only starting to drop at 10\Angstrom\ resolution. After that, it follows
 similar pattern as the LCC with a quick drop first and a more stable region in
 the end. The core-weighted approach extends the applicable resolution range of
 the LCC by a respectable 3\Angstrom. The scoring functions combined with the Laplace
-pre-filter are evidently performing better. The L-LCC score is almost 100\%
+pre-filter are evidently performing better. The L-LCC score is almost 100\percent\
 successful up to 12\Angstrom\ resolution. The success rate drops at lower resolutions,
 though not as fast as the LCC and CW-LCC score and follows a rather linear
 trend, which is in contrast with the other scoring methods. The best performing
@@ -85,7 +85,7 @@ scan in the fitted orientation with the regular voxel spacing, similar results
 are obtained, but at a markedly lower computational cost (see next section).
 The fitting results from \powerfit\ (RMSD of 3.4, 3.8 and 4.2\Angstrom) are competitive
 compared to previous published ones: gEMfitter reported an RMSD of 2.8, 4.0 and
-5.3\Angstrom for the trans, cis and GroES ring \cite[Hoang2013], respectively, and
+5.3\Angstrom\ for the trans, cis and GroES ring \cite[Hoang2013], respectively, and
 Segger 3.1, 5.1 and 6.0\Angstrom\ \cite[Pintilie2010].
 
 
@@ -112,7 +112,7 @@ already requires more than 6 hours. Using a GPU (NVIDIA Geforce GTX 680) to
 accelerate the search reduces the time required to approximately 30 minutes.
 When trimming the density before the search, which in the GroEL/GroES case
 reduces the map size to \m{72 \times 72 \times 90}, the time required for a fine
-search drops to \~1.5 to 2 hours on a single processor and only 5 minutes on a
+search drops to \textasciitilde1.5 to 2 hours on a single processor and only 5 minutes on a
 GPU. It should be emphasized that trimming the map does not have any impact on
 the search accuracy and thus should always be applied for a faster search.
 Further minimizing the map size by resampling the density results in \m{36 \times
@@ -144,7 +144,7 @@ systems with NVIDIA GPUs and was not at the authors’ disposal. However, the
 gEMfitter article reports 11 minutes running time using a NVIDIA C2075 GPU,
 which is significantly shorter than \powerfit\ without trimming and resampling.
 With the latter two options turned on, the \powerfit\ timings drop to close to 1
-minute on a GTX680 GPU card.  Again, since the bulk of the time is spent on
+minute on a GTX 680 GPU card.  Again, since the bulk of the time is spent on
 computing FFTs, the difference probably arises in the efficiency of the FFT
 implementation: the CUDA FFT implementation is specifically optimized for
 NVIDIA GPUs while the clFFT implementation is mainly optimized for AMD

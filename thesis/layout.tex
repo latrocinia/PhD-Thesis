@@ -5,14 +5,24 @@
 \usemodule[units]
 \usemodule[bibtex]
 
+\definemode[thesis][keep]
+\definemode[draft][keep]
+
 \definepapersize[ThesisSize][width=17cm, height=24cm]
 \definepapersize[ThesisSizeLandscape][ThesisSize,landscape][ThesisSize,landscape]
 
+\startmode[thesis]
 \setuppapersize[ThesisSize]
-
 \setuplayout[location=middle, width=13.0cm, height=18.6cm, 
              topspace=2.7cm, bottomspace=2.7cm, margin=2.0cm, 
              header=0.0cm, footer=1cm]
+\stopmode
+
+\startmode[draft]
+\setuppapersize[A4]
+\setupinterlinespace[big]
+\stopmode
+\setupindenting[yes, big, first]
 
 %\setuppapersize[A4,A4]
 
@@ -29,31 +39,48 @@
 \definehead[Subject][subject]
 \definehead[Subsubject][subsubject]
 
+\setupheads[indentnext=yes, style=bold]
+\setbreakpoints[compound]
+
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
 
-
 % figures
 \setupexternalfigures[factor=broad, directory={chapter6/figures}]
-% supplemental figures
+
+% extra floats
+% landscape
+\definefloat[lfigure][lfigures][figure]
+\definefloat[ltable][ltable][table]
+% supplemental
+\definefloat[stable][stables]
 \definefloat[sfigure][sfigures]
+% supplemental landscape
+\definefloat[sltable][sltables][stable]
+\definefloat[slfigure][slfigures][sfigure]
 
 % tables
-\setupTABLE[align={middle,lohi}]
-
-% supplemental tables
-\definefloat[stable][stables]
+\setupTABLE[width=broad, style=small, align={middle,lohi}]
+%\setupTABLEhead[width=broad, style=smallbold, align={middle,lohi}]
 
 % labeltexts
 \setuplabeltext[sfigure={Figure S}]
 \setuplabeltext[stable={Table S}]
-\setuplabeltext[chapter={Chapter }]
+\setuplabeltext[slfigure={Figure S}]
+\setuplabeltext[sltable={Table S}]
 
 % captions
-\setupcaptions[style=small, width=0.9\textwidth]
+\setupcaptions[style=small, minwidth=0.9\textwidth]
 \setupcaption[table][location=top]
 \setupcaption[stable][location=top]
+% landscape captions
+\setupcaption[lfigure][width=0.9\textheight]
+\setupcaption[ltable][width=0.9\textheight]
+\setupcaption[slfigure][width=0.9\textheight]
+\setupcaption[sltable][width=0.9\textheight]
 \define[2]\caption{{\bf #1} #2}
+
+\setupfootnotes[width=0.9\textwidth, rule=off,distance=0pt]
 
 % references
 \definereferenceformat[infigure][left=Figure ]
@@ -62,6 +89,7 @@
 \definereferenceformat[ineq][left=Eq. ]
 \definereferenceformat[insfigure][left=Figure S]
 \definereferenceformat[instable][left=Table S]
+\definereferenceformat[ins][left=S]
 
 % shortcuts
 \define \disvis {\emph{disvis}}
@@ -69,8 +97,7 @@
 
 % bibtex
 \define[1] \citeauthor {\cite[authornum][#1]}
-\setupbibtex[database={chapter1/references,chapter2/references,chapter3/references,chapter4/references,chapter5/references,chapter6/references},
-             sort=author]
+\setupbibtex[database={chapter1/references,chapter2/references,chapter3/references,chapter4/references,chapter5/references,chapter6/references,haddock2.2-webserver/references}, sort=author]
 
 \setuppublications[alternative=apa, refcommand=num, sorttype=cite, criterium=cite, numbering=yes]
 

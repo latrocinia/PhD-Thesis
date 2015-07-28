@@ -1,13 +1,12 @@
+{\switchtobodyfont[10pt]
 \bTABLE
 \setupTABLE[align={middle,lohi}, width=broad]
 \setupTABLE[c][width=2.5em]
 \setupTABLE[c][1][width=4em]
+\setupTABLE[r][1][height=1.5em]
 \bTABLEhead
 \bTR
-\bTD[nr=3] PDB \eTD \bTD[nc=16] Number of acceptable solutions after itw \eTD
-\eTR
-\bTR
-\bTD[nc=4] HADDOCK-CM \eTD \bTD[nc=4] HADDOCK-EM 20\Angstrom \eTD \bTD[nc=4] HADDOCK-EM 15\Angstrom \eTD \bTD[nc=4] HADDOCK-EM 10\Angstrom \eTD
+\bTD[nr=2] PDB \eTD \bTD[nc=4] HADDOCK-CM \eTD \bTD[nc=4] HADDOCK-EM 20\Angstrom \eTD \bTD[nc=4] HADDOCK-EM 15\Angstrom \eTD \bTD[nc=4] HADDOCK-EM 10\Angstrom \eTD
 \eTR
 \bTR
 \dorecurse{4}{\bTD Total \eTD \bTD Top 400 \eTD \bTD Top 10 \eTD \bTD Top 1 \eTD}
@@ -67,3 +66,4 @@
 \eTR
 \eTABLEbody
 \eTABLE
+}

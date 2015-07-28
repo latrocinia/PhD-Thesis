@@ -64,20 +64,20 @@ core-weighted LCC (CW-LCC) scoring function:
 \stopformula
 
 where the summation is over all the \m{N} voxels that are within a distance of
-half the resolution of any atom of the search object indexed by \m{i}, \m{w_i} is
-the core-index of voxel \m{i}, \m{\rho_c} and \m{\rho_o} are the intensities of the
-search object and the cryo-EM density at voxel\m{i}, respectively,
-\m{\overline{\rho_c^w}} and \m{\overline{\rho_o^w}} are the core-weighted density
-average for the search object and the local cryo-EM density, respectively. They
-are given by \m{\overline{\rho_x^w} = 1/N \sum_i^N w_i \rho_x}. \m{\sigma_c^w} and
-\m{\sigma_o^w} correspond to the core-weighted density standard deviation given
-by \m{\sigma_x^w = \sqrt{\left( \overline{\rho_x^w} \right)^2 - \overline{\left(
-\rho_x^w \right)^2}}} with \m{\overline{\left( \rho_x^w \right)^2} = 1/N
-\sum_i^N\left( w_i \rho_x\right)^2}.  The CW-LCC reduces to the regular LCC by
-setting \m{w_i = 1}. The Laplace pre-filtered scoring function is defined by
-performing the mapping \m{\rho_x \to \nabla^2\rho_x} in \ineq[eq:cw-lcc]. In
-order to calculate the CW-LCC we first need to define the core-index of each
-voxel.  
+half the resolution of any atom of the search object indexed by \m{i}; \m{w_i}
+is the core-index of voxel \m{i}; \m{\rho_c} and \m{\rho_o} are the intensities
+of the search object and the cryo-EM density at voxel\m{i}, respectively,
+\m{\overline{\rho_c^w}} and \m{\overline{\rho_o^w}} are the core-weighted
+density average for the search object and the local cryo-EM density,
+respectively, given by \m{\overline{\rho_x^w} = 1/N \sum_i^N w_i \rho_x}.
+\m{\sigma_c^w} and \m{\sigma_o^w} correspond to the core-weighted density
+standard deviation given by \m{\sigma_x^w = \sqrt{\left( \overline{\rho_x^w}
+\right)^2 - \overline{\left( \rho_x^w \right)^2}}} with \m{\overline{\left(
+\rho_x^w \right)^2} = 1/N \sum_i^N\left( w_i \rho_x\right)^2}.  The CW-LCC
+reduces to the regular LCC by setting \m{w_i = 1}. The Laplace pre-filtered
+scoring function is defined by performing the mapping \m{\rho_x \to
+\nabla^2\rho_x} in \ineq[eq:cw-lcc]. In order to calculate the CW-LCC we first
+need to define the core-index of each voxel.  
 
 \Subsubsection{Determining the core-index \m{w_i}}
 
@@ -204,7 +204,7 @@ the number of PDBs that should be written to file after the search. In
 addition, the number of CPU processors available to the search can be specified
 or whether the computations should be off-loaded to the GPU. 
 
-\placefigure[top][fig:powerfit-flowchart]
+\placefigure[page][fig:powerfit-flowchart]
 {\getbuffer[cap:powerfit-flowchart]}
 {\externalfigure[fig:powerfit-flowchart]}
 
