@@ -24,8 +24,6 @@
 \stopmode
 \setupindenting[yes, big, first]
 
-%\setuppapersize[A4,A4]
-
 \setuppagenumbering[alternative=doublesided, location=right]
 
 % heads
@@ -100,6 +98,7 @@
 \setupbibtex[database={chapter1/references,chapter2/references,chapter3/references,chapter4/references,chapter5/references,chapter6/references,haddock2.2-webserver/references}, sort=author]
 
 \setuppublications[alternative=apa, refcommand=num, sorttype=cite, criterium=cite, numbering=yes]
+%\setuppublicationlist[style=small]
 
 \setuppublicationlayout[article]{%
     \insertartauthors{}{ }{\inserthekey{}{ }}%

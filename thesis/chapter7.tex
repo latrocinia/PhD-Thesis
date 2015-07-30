@@ -1,30 +1,92 @@
 \startcomponent chapter7
 
-\environment layout
 \product thesis
 
-\Chapter{Perspective}
-
-\Section{Challenges in the field}
+\environment layout 
 
 
-\Subsection{Scoring and validation}
+\Chapter{Summary and perspectives}
+
+\Section{Summary}
+
+The previous Chapters have mainly introduced and showcased novel approaches for
+explorative and integrative modeling in the presence of cryo-EM data and
+distance restraints.  In \inchapter[chapter:powerfit] I presented the PowerFit
+software, a Python package for fast cross correlation based rigid body fitting
+of high-resolution structures in low-resolution densities. PowerFit comes with
+a new more sensitive scoring function, the core-weighted local cross
+correlation, in addition to an optimized protocol for fast fitting. In
+\inchapter[chapter:image-pyramids] I reported results of an extensive benchmark
+of the PowerFit software using 379 subunits of 5 ribosome density maps. The
+success rate of unambiguously fitting subunits bigger than 100 residues reached
+approximately 90\% up to 12\Angstrom\ resolution, showing that objective
+fitting methods have matured to aid in structural modeling. The limits of rigid
+body fitting can be leveraged through the use of image pyramids to gain a
+speedup of a factor of 30 on CPUs and 40 on GPUs, and it allows the
+identification of possible over-interpreted regions of the density on an
+objective basis. 
+
+\inchapter[chapter:haddock-em] describes incorporation and benchmarking of
+cryo-EM data into the data-driven docking program HADDOCK. The approach is
+flexible and can be fully combined with other available sources of data in
+HADDOCK. The approach was demonstrated on two ribosome systems, two
+virus-antibody systems, and a symmetric pentamer. An update of the HADDOCK
+webserver was presented in \inchapter[chapter:haddock2.2], and shows the
+extensive usage of the software all over the world. 
+
+\inchapter[chapter:disvis] dealt with explorative modeling using distance
+restraints in general, and cross-link data specifically. I introduced the
+concept of the accessible interaction space and presented a method to quantify
+and visualize it. This directly indicates the information content of distance
+restraints and shows whether all data is self-consistent and, if not, it gives
+an indication of which restraint is a false-positive. The approach was
+implemented in the DisVis software, another Python package, even though the
+approach is general and can easily incorporated into FFT-based docking programs
+for the incorporation of distance restraints. I extended the approach further
+in \inchapter[chapter:inferring-interface-residues], and presented a method to
+infer interface residues from distance restraints with the concept of the
+average-interactions-per-complex (AIC). The AIC provides an objective
+probability for a residue being at the interface in respect of the data.
+Furthermore, I benchmarked the use of cross-link based distance restraints in
+HADDOCK using four different approaches. It was shown that the unambiguous
+distance restraints should either be complemented with center-of-mass
+restraints or DisVis based ambiguous interactions restraints.
+
+
+\Section{Challenges of integrative modeling}
+
+The field of integrative modeling is still relatively young, and several
+challenges are ahead that the whole structural biology community should face,
+as integrative approaches are increasingly applied to solve the structure of
+large macromolecular assemblies. Recently a task force was assigned by the
+Worldwide PDB (wwPDB) to make recommendations for the field to follow in order
+to consistently progress, resulting in the First wwPDB Hybrid/Integrative
+Methods Task Force Workshop \cite[Sali2015]. The task force ultimately came up
+with 5 recommendations for involving data-representation, model validation and
+data-archives.  The 5 recommendations were that: 1) the experimental and
+computational protocols in addition to the structural models should be
+deposited; 2) multiple model representations should be allowed for multi-scale
+and multi-temporal models; 3) new procedures should be developed to ascertain
+model uncertainty and accuracy; 4) a federated system of data archives should
+be created; and 5) publications standards need to be developed for integrative
+models as is already the case for X-ray and NMR structures.
+
+Thus point 1, 4 and 5 are mainly about the reproducibility of integrative
+structural models, point 2 is about what data-structures and format standards
+to use, so far all more practical matters reflecting the current immature
+status of the field than real inherent scientific challenges, except for point
+3 that explicitly deals with the precision and accuracy together with
+validation of integrative models. 
 
 
 \Subsection{Quid pro quo}
 
 
-
-\Section{Additional fields of research}
+\Section{Future guidelines and additional fields of research}
 
 \Subsection{Explorative modeling}
 
 \Subsection{Formal structural biology}
 
-
-\Section{Valorization}
-
-
-\Section{Conclusion}
 
 \stopcomponent
