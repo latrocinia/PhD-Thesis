@@ -57,7 +57,7 @@ restraints or DisVis based ambiguous interactions restraints.
 
 The field of integrative modeling is still relatively young, and several
 challenges are ahead that the whole structural biology community should face,
-as integrative approaches are increasingly applied to solve the structure of
+since integrative approaches are increasingly applied to solve the structure of
 large macromolecular assemblies. Recently a task force was assigned by the
 Worldwide PDB (wwPDB) to make recommendations for the field to follow in order
 to consistently progress, resulting in the First wwPDB Hybrid/Integrative
@@ -76,17 +76,53 @@ structural models, point 2 is about what data-structures and format standards
 to use, so far all more practical matters reflecting the current immature
 status of the field than real inherent scientific challenges, except for point
 3 that explicitly deals with the precision and accuracy together with
-validation of integrative models. 
-
-
-\Subsection{Quid pro quo}
+validation of integrative models. Even though for several experimental methods
+cross-validation (SAXS) and confidence intervals (cryo-EM) have been developed,
+they have been sparsely used and thus far not been combined. For other methods
+such as cross-links coupled with mass-spectrometry (CXMS) the statistical
+propensities of derived distance restraints have only been sparsely studied
+with small benchmark and sample sizes. To gain deeper insight into the
+uncertainty of integrative models and current validation approaches, requires
+new high-quality elaborate benchmarks on systems for which both high-resolution
+structures are available for the bound state and the unbound state, of which
+the protein-protein docking benchmark is a prime example. Thus, for the
+integrative structural biology field to properly move forward a quid pro quo
+mentality needs to be established of both experimental and computational
+scientists. Especially for upcoming promising techniques as SAXS and CXMS
+experimental data on multiple well-investigated systems is missing even for
+binary protein interactions. Though there are data-bases for CXMS, they are
+relatively small, e.g. the XLdb reports 62 intra-chain cross-links of which 34
+are coming from a single RNA polymerase II system. The small sample size and
+questionable reproducibility of the results are major inhibitors in the
+development of robust validation and uncertainty protocols.
 
 
 \Section{Future guidelines and additional fields of research}
 
 \Subsection{Explorative modeling}
 
+To adequately model the uncertainty of integrative models the emphasis should
+be turned more towards the data itself by investigating the amount of
+information the data carry by searching and quantifying the whole interaction
+space, for which the methodology was presented in \inchapter[chapter:disvis].
+The approach for appreciating the information content of distance restraints
+can be further extended by using a statistical distance preference function,
+i.e. a knowledge based potential, inferred from experimental data to better
+investigate the probability distribution of the accessible interaction space.
+Similar approaches can be developed for SAXS (though computationally more
+expensive as the scattering curve needs to calculated millions to billions of
+times), and other biochemical and biophyscial based potentials, such as surface
+overlap/van der Waals interactions. Thus instead of saving the top X solutions
+and heuristically optimizing the number acceptable models within it using a
+linear combination of (pseudo-)energies, as is common in the docking field,
+with a linear scoring function, the energy distributions can be analyzed to
+give further indication of the reliability of each measure and from there on
+define confidence intervals in models. 
+
+
 \Subsection{Formal structural biology}
+
+
 
 
 \stopcomponent
