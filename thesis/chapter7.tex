@@ -4,12 +4,11 @@
 
 \environment layout 
 
-
 \Chapter{Summary and perspectives}
 
 \Section{Summary}
 
-The previous Chapters have mainly introduced and showcased novel approaches for
+The previous Chapters have introduced and showcased novel approaches for
 explorative and integrative modeling in the presence of cryo-EM data and
 distance restraints.  In \inchapter[chapter:powerfit] I presented the PowerFit
 software, a Python package for fast cross correlation based rigid body fitting
@@ -26,7 +25,7 @@ speedup of a factor of 30 on CPUs and 40 on GPUs, and it allows the
 identification of possible over-interpreted regions of the density on an
 objective basis. 
 
-\inchapter[chapter:haddock-em] describes incorporation and benchmarking of
+\inchapter[chapter:haddock-em] describes the incorporation and benchmarking of
 cryo-EM data into the data-driven docking program HADDOCK. The approach is
 flexible and can be fully combined with other available sources of data in
 HADDOCK. The approach was demonstrated on two ribosome systems, two
@@ -40,17 +39,21 @@ concept of the accessible interaction space and presented a method to quantify
 and visualize it. This directly indicates the information content of distance
 restraints and shows whether all data is self-consistent and, if not, it gives
 an indication of which restraint is a false-positive. The approach was
-implemented in the DisVis software, another Python package, even though the
-approach is general and can easily incorporated into FFT-based docking programs
-for the incorporation of distance restraints. I extended the approach further
-in \inchapter[chapter:inferring-interface-residues], and presented a method to
-infer interface residues from distance restraints with the concept of the
-average-interactions-per-complex (AIC). The AIC provides an objective
-probability for a residue being at the interface in respect of the data.
-Furthermore, I benchmarked the use of cross-link based distance restraints in
-HADDOCK using four different approaches. It was shown that the unambiguous
-distance restraints should either be complemented with center-of-mass
-restraints or DisVis based ambiguous interactions restraints.
+implemented in another Python package, DisVis. However, the approach is general
+and can easily be incorporated into FFT-based docking programs allowing the use
+of distance restraints by combining the 'marriage made in heaven' of sampling
+and scoring \cite[Vajda2013]. 
+
+I extended the approach further in
+\inchapter[chapter:inferring-interface-residues], and presented a method to
+infer interface residues from distance restraints using the concept of the
+average-interactions-per-complex (AIC) statistic. The AIC provides an objective
+frequentist probability for a residue to be at interface in respect of the
+data.  Furthermore, I benchmarked the use of cross-link based distance
+restraints in HADDOCK using four different approaches. It was shown that using
+the solely the unambiguous distance restraints is suboptimal, and they should
+either be complemented with center-of-mass restraints or DisVis-based ambiguous
+interactions restraints.
 
 
 \Section{Challenges of integrative modeling}
@@ -62,7 +65,7 @@ large macromolecular assemblies. Recently a task force was assigned by the
 Worldwide PDB (wwPDB) to make recommendations for the field to follow in order
 to consistently progress, resulting in the First wwPDB Hybrid/Integrative
 Methods Task Force Workshop \cite[Sali2015]. The task force ultimately came up
-with 5 recommendations for involving data-representation, model validation and
+with 5 recommendations involving data-representation, model validation and
 data-archives.  The 5 recommendations were that: 1) the experimental and
 computational protocols in addition to the structural models should be
 deposited; 2) multiple model representations should be allowed for multi-scale
@@ -74,27 +77,35 @@ models as is already the case for X-ray and NMR structures.
 Thus point 1, 4 and 5 are mainly about the reproducibility of integrative
 structural models, point 2 is about what data-structures and format standards
 to use, so far all more practical matters reflecting the current immature
-status of the field than real inherent scientific challenges, except for point
+status of the field than real inherent scientific challenges; except for point
 3 that explicitly deals with the precision and accuracy together with
-validation of integrative models. Even though for several experimental methods
-cross-validation (SAXS) and confidence intervals (cryo-EM) have been developed,
-they have been sparsely used and thus far not been combined. For other methods
-such as cross-links coupled with mass-spectrometry (CXMS) the statistical
-propensities of derived distance restraints have only been sparsely studied
-with small benchmark and sample sizes. To gain deeper insight into the
-uncertainty of integrative models and current validation approaches, requires
-new high-quality elaborate benchmarks on systems for which both high-resolution
-structures are available for the bound state and the unbound state, of which
-the protein-protein docking benchmark is a prime example. Thus, for the
-integrative structural biology field to properly move forward a quid pro quo
-mentality needs to be established of both experimental and computational
-scientists. Especially for upcoming promising techniques as SAXS and CXMS
-experimental data on multiple well-investigated systems is missing even for
-binary protein interactions. Though there are data-bases for CXMS, they are
-relatively small, e.g. the XLdb reports 62 intra-chain cross-links of which 34
-are coming from a single RNA polymerase II system. The small sample size and
-questionable reproducibility of the results are major inhibitors in the
-development of robust validation and uncertainty protocols.
+validation of integrative models. Even though for several experimental
+techniques cross-validation (SAXS, \cite[Rambo2013]) and confidence interval
+(cryo-EM, \cite[Volkmann2009]) measures have been developed, they have been
+infrequently used and thus far not been combined. For other methods such as
+cross-links coupled with mass-spectrometry (CXMS) the statistical propensities
+of derived distance restraints have only been sparsely studied with small
+benchmark and sample sizes \cite[Kahraman2013, Leitner2014]. 
+
+To gain deeper insight into the uncertainty of integrative models and current
+validation approaches, requires new high-quality elaborate benchmarks on
+systems for which both high-resolution structures are available for the bound
+state and the unbound state, of which the protein-protein docking benchmark is
+a prime example \cite[Vreven2015], together with additional experimental data.
+Especially for upcoming promising techniques as SAXS and CXMS, experimental
+data on multiple well-investigated systems is missing even for binary protein
+interactions.  Though there are data-bases for CXMS \cite[Zheng2013,
+Kahraman2013], they are relatively small, e.g. the XLdb reports 62 intra-chain
+cross-links of which 34 are coming from a single RNA polymerase II system
+\cite[Rappsilber2011, Kahraman2013], and . The small sample size and questionable
+reproducibility of the results are major inhibitors in the development of
+robust validation and uncertainty protocols.  Thus, for the integrative
+structural biology field to properly move forward a \emph{quid pro quo}
+mentality needs to be established between both experimental and computational
+scientists: additional experiments should also be performed solely to further
+understanding of the scope and limitations the data are providing, so that in
+turn computational models can be delivered to answer important biological
+questions.
 
 
 \Section{Future guidelines and additional fields of research}
@@ -112,17 +123,44 @@ investigate the probability distribution of the accessible interaction space.
 Similar approaches can be developed for SAXS (though computationally more
 expensive as the scattering curve needs to calculated millions to billions of
 times), and other biochemical and biophyscial based potentials, such as surface
-overlap/van der Waals interactions. Thus instead of saving the top X solutions
-and heuristically optimizing the number acceptable models within it using a
-linear combination of (pseudo-)energies, as is common in the docking field,
-with a linear scoring function, the energy distributions can be analyzed to
-give further indication of the reliability of each measure and from there on
-define confidence intervals in models. 
+overlap/van der Waals interactions. Thus instead of heuristically optimizing
+the number of acceptable models within the top X best scoring structures using
+a linear combination of (pseudo-)energies, as is common in the docking field
+\cite[Vajda2009], the energy distributions can be analyzed to give further
+indication of the reliability of each measure and from there on define
+confidence intervals in models. Established probability distributions can
+afterwards be used as Bayesian priors in an effort to move to Bayesian
+statistical models.
 
 
 \Subsection{Formal structural biology}
 
+Further investigations into the accuracy of individual experimental methods
+require scientist that are accostumed to both computational and experimental
+techniques, the \emph{hybrid scientist}. This allows the scientist to perform
+experiments to further guide and validate the computational models, ultimately
+resulting in a \emph{formal structural biology}, where instead of directly
+advancing biological insight, the emphasis shifts towards investigating the
+accuracy and precision of the models and experimental methods \emph{an sich}.
+In the semi-long run this approach will become a fertile and stabile foundation
+to build upon for in-depth structural research in challenging and interesting
+biological systems and networks and resulting in a more formal approach in
+structure determination from multiple data sources.
 
 
+\Section{Conclusion}
+
+The (integrative) structural biology field is a fast moving and exciting field
+of research, with many experimental and computational advances.  The most
+recent dramatic example is of course the spectacular improvement of the cryo-EM
+field due to direct electron detectors. Even though atomic resolution can now
+be achieved for stable complexes, the bulk of the resulting densities need
+additional data from diverse sources for a structural interpretation, requiring
+high-end integrative methods. However, there are still significant challenges
+to overcome for integrative modeling, mainly aimed at reproducibility of the
+results and determining the uncertaintly of models. This thesis has laid out
+advances for the field to move forward to by showcasing integrative modeling
+approaches and introducing new methods for quantifying the information content
+of experimental data. 
 
 \stopcomponent

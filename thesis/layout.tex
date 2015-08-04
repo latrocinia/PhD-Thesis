@@ -13,9 +13,9 @@
 
 \startmode[thesis]
 \setuppapersize[ThesisSize]
-\setuplayout[location=middle, width=13.0cm, height=18.6cm, 
-             topspace=2.7cm, bottomspace=2.7cm, margin=2.0cm, 
-             header=0.0cm, footer=1cm]
+\setuplayout[location=middle, width=13.0cm, height=19.6cm, 
+             topspace=1.7cm, bottomspace=1.7cm, margin=2.0cm, 
+             header=1.0cm, footer=1cm]
 \stopmode
 
 \startmode[draft]
@@ -25,6 +25,8 @@
 \setupindenting[yes, big, first]
 
 \setuppagenumbering[alternative=doublesided, location=right]
+%\setupheader[style=small]
+%\setupheadertexts[][{\getmarking[chapter]}][{Chapter \getmarking[chapternumber]}][]
 
 % heads
 % numbered
