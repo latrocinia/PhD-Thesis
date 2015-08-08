@@ -2,8 +2,9 @@
 \startbuffer[cap:precision-recall]
 \caption{Precision and recall rates.}
 {The precision and recall rates are plotted against the
-average-interactions-per-complex cutoff. The results are shown averaged over
-all 90 benchmarked complexes, 58 Easy, 14 Medium, and 18 Difficult complexes.}
+average-interactions-per-complex (AIC) cutoff. The results are shown averaged
+over all 90 benchmarked complexes, and each difficulty category (58 Easy, 14
+Medium, and 18 Difficult).}
 \stopbuffer
 
 
@@ -12,11 +13,11 @@ all 90 benchmarked complexes, 58 Easy, 14 Medium, and 18 Difficult complexes.}
 \caption{Benchmark results on Easy complexes.}
 {For each complex the best structure is plotted in terms, of the l-RMSD, for
 the four procedures tested using (A) 3, (B) 5, and (C) 7 cross-links. The
-dotted line is the cutoff for an acceptable model. Unambig: unambiguous
-distance restraints; unambig + com: unambiguous restraints combined with
-center-of-mass restraints; disvis: DisVis-based ambiguous interaction
+dotted line is the ligand-RMSD cutoff for an acceptable model. Unambig:
+unambiguous distance restraints; unambig + com: unambiguous restraints combined
+with center-of-mass restraints; disvis: DisVis-based ambiguous interaction
 restraints (AIRs); disvis + unambig: unambiguous restraints combined with
-DisVis-based AIRs.} 
+DisVis-based AIRs.}
 \stopbuffer
 
 
@@ -25,10 +26,10 @@ DisVis-based AIRs.}
 \caption{Benchmark results on Medium and Difficult complexes.}
 {For each complex the best structure is plotted in terms, of the l-RMSD, for
 the four procedures tested using (A) 3, (B) 5, and (C) 7 cross-links. The
-dotted line is the cutoff for an acceptable model. Unambig: unambiguous
-distance restraints; unambig + com: unambiguous restraints combined with
-center-of-mass restraints; disvis: DisVis-based ambiguous interaction
+dotted line is the ligand-RMSD cutoff for an acceptable model. Unambig:
+unambiguous distance restraints; unambig + com: unambiguous restraints combined
+with center-of-mass restraints; disvis: DisVis-based ambiguous interaction
 restraints (AIRs); disvis + unambig: unambiguous restraints combined with
 DisVis-based AIRs. In (C) also the best structures of the Rosetta benchmark are
-shown.}
+shown \cite[Kahraman2013].}
 \stopbuffer
