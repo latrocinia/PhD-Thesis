@@ -99,7 +99,9 @@
 
 % bibtex
 \define[1] \citeauthor {\cite[authornum][#1]}
-\setupbibtex[database={chapter1/references,chapter2/references,chapter3/references,chapter4/references,chapter5/references,chapter6/references,haddock2.2-webserver/references,chapter7/references}, sort=author]
+%\setupbibtex[database={chapter1/references,chapter2/references,chapter3/references,chapter4/references,chapter5/references,chapter6/references,haddock2.2-webserver/references,chapter7/references}, sort=author]
+
+\setupbibtex[database={backmatter/all-references.bib}, sort=author]
 
 \setuppublications[alternative=apa, refcommand=num, sorttype=cite, criterium=cite, numbering=yes]
 %\setuppublicationlist[style=small]
