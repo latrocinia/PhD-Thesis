@@ -1,5 +1,4 @@
 \startenvironment layout
-
 \product thesis
 
 \usepath[{./,frontmatter,backmatter}]
@@ -17,7 +16,7 @@
 \setuppapersize[ThesisSize]
 \setuplayout[location=middle, width=13.0cm, height=19.6cm, 
              topspace=1.7cm, bottomspace=1.7cm, margin=2.0cm, 
-             header=1.0cm, footer=1cm]
+             header=0.5cm, footer=0.5cm]
 \stopmode
 
 \startmode[draft]
@@ -29,6 +28,47 @@
 \setuppagenumbering[alternative=doublesided, location=right]
 %\setupheader[style=small]
 %\setupheadertexts[][{\getmarking[chapter]}][{Chapter \getmarking[chapternumber]}][]
+
+\definecolor[chap_frame][g=1,t=1,a=12]
+\definecolor[textcolor] [r=1,t=1,a=12]
+\startuseMPgraphic{rightthumbindex}
+  path chap_frame ;
+  pair pos, a, b ;  
+  picture labeltext ;
+
+  if  \somenamedheadnumber{Chapter}{current} > 0 :
+     curr_chap := \somenamedheadnumber{Chapter}{current} ; 
+  else :
+     curr_chap := 1 ;
+  fi;
+  if \somenamedheadnumber{Chapter}{last} > 0 :
+     last_chap := \somenamedheadnumber{Chapter}{last} ;
+  else :
+     last_chap := 1 ;
+  fi;
+
+  marginwidth := RightMarginWidth ;
+  skip   := TextHeight * (curr_chap - 1) / 8 ;
+  height := TextHeight / 8 ;
+  width  := marginwidth / 2 ;
+ 
+  labeltext := textext("\ssbfb\textcolor \getmarking[chapternumber]");
+
+  StartPage ;
+      chap_frame := fullsquare xyscaled(marginwidth, height) ;
+
+      pos := urcorner Field[Text][RightMarginSeparator] -
+             ulcorner chap_frame - (0, skip);
+
+      fill chap_frame shifted pos withcolor \MPcolor{chap_frame};
+      draw labeltext shifted pos withcolor \MPcolor{textcolor};
+  StopPage ;
+\stopuseMPgraphic
+
+\defineoverlay[rightthumbindex][\useMPgraphic{rightthumbindex}]
+
+\setupbackgrounds[rightpage][background=rightthumbindex]
+%\setupbackgrounds[leftpage][background=leftthumbindex]
 
 % heads
 % numbered
@@ -42,7 +82,7 @@
 \definehead[Subsubject][subsubject]
 
 \setupheads[indentnext=yes, style=bold]
-\setbreakpoints[compound]
+\setupheads[align={flushleft,nothyphenated}, tolerance=verytolerant]
 
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
