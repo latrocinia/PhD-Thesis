@@ -10,65 +10,61 @@
 \definemode[draft][keep]
 
 \definepapersize[ThesisSize][width=17cm, height=24cm]
-\definepapersize[ThesisSizeLandscape][ThesisSize,landscape][ThesisSize,landscape]
 
-\startmode[thesis]
+\setupinteraction[state=start]
+%\startmode[thesis]
 \setuppapersize[ThesisSize]
 \setuplayout[location=middle, width=13.0cm, height=19.6cm, 
              topspace=1.7cm, bottomspace=1.7cm, margin=2.0cm, 
              header=0.5cm, footer=0.5cm]
-\stopmode
+%\stopmode
 
-\startmode[draft]
-\setuppapersize[A4]
-\setupinterlinespace[big]
-\stopmode
+%\startmode[draft]
+%\setuppapersize[A4]
+%\setupinterlinespace[big]
+%\stopmode
 \setupindenting[yes, big, first]
 
 \setuppagenumbering[alternative=doublesided, location=right]
-%\setupheader[style=small]
-%\setupheadertexts[][{\getmarking[chapter]}][{Chapter \getmarking[chapternumber]}][]
 
-\definecolor[chap_frame][g=1,t=1,a=12]
-\definecolor[textcolor] [r=1,t=1,a=12]
-\startuseMPgraphic{rightthumbindex}
-  path chap_frame ;
-  pair pos, a, b ;  
-  picture labeltext ;
+% thumb index code
+\definecolor[gray][s=0.25]
+\definecolor[lightgray][s=0.75]
+\startuseMPgraphic{thumbindex}
+    path chap_frame ;
+    pair pos;  
+    picture labeltext ;
+  
+    nchapters := 8;
+    curr_chap := \somenamedheadnumber{Chapter}{current} ; 
+  
+    if (curr_chap > 0):
+       marginwidth := RightMarginWidth ;
+       skip   := TextHeight * (curr_chap - 1) / nchapters ;
+       height := TextHeight / nchapters ;
+       width  := marginwidth * 0.75;
+       offset := marginwidth - width;
+       labeltext := textext("\ssbfb \lightgray \getmarking[chapternumber]");
+       chap_frame := fullsquare xyscaled(width, height) ;
 
-  if  \somenamedheadnumber{Chapter}{current} > 0 :
-     curr_chap := \somenamedheadnumber{Chapter}{current} ; 
-  else :
-     curr_chap := 1 ;
-  fi;
-  if \somenamedheadnumber{Chapter}{last} > 0 :
-     last_chap := \somenamedheadnumber{Chapter}{last} ;
-  else :
-     last_chap := 1 ;
-  fi;
+       if (PageNumber mod 2) = 1:
+           pos := ulcorner Field[Text][RightMarginSeparator] -
+                  ulcorner chap_frame - (-offset, skip);
+       else:
+           pos := urcorner Field[Text][LeftMarginSeparator] -
+                  urcorner chap_frame - (offset, skip);
+       fi;
 
-  marginwidth := RightMarginWidth ;
-  skip   := TextHeight * (curr_chap - 1) / 8 ;
-  height := TextHeight / 8 ;
-  width  := marginwidth / 2 ;
- 
-  labeltext := textext("\ssbfb\textcolor \getmarking[chapternumber]");
-
-  StartPage ;
-      chap_frame := fullsquare xyscaled(marginwidth, height) ;
-
-      pos := urcorner Field[Text][RightMarginSeparator] -
-             ulcorner chap_frame - (0, skip);
-
-      fill chap_frame shifted pos withcolor \MPcolor{chap_frame};
-      draw labeltext shifted pos withcolor \MPcolor{textcolor};
-  StopPage ;
+        StartPage;
+            fill chap_frame shifted pos withcolor \MPcolor{gray};
+            draw labeltext shifted pos withcolor \MPcolor{lightgray};
+        StopPage;
+    fi;
 \stopuseMPgraphic
 
-\defineoverlay[rightthumbindex][\useMPgraphic{rightthumbindex}]
-
-\setupbackgrounds[rightpage][background=rightthumbindex]
-%\setupbackgrounds[leftpage][background=leftthumbindex]
+% place thumb index
+\defineoverlay[thumbindex][\useMPgraphic{thumbindex}]
+\setupbackgrounds[page][background=thumbindex]
 
 % heads
 % numbered
@@ -81,8 +77,14 @@
 \definehead[Subject][subject]
 \definehead[Subsubject][subsubject]
 
-\setupheads[indentnext=yes, style=bold]
-\setupheads[align={flushleft,nothyphenated}, tolerance=verytolerant]
+\setupheads[indentnext=yes]
+\setupheads[align={flushleft,nothyphenated,verytolerant}, tolerance=verytolerant]
+
+% chapter page
+\define[2]\MyChapter
+    {\framed[frame=off, width=broad, align=flushleft]{#1 \\ #2}}
+\setuplabeltext[chapter=Chapter~]
+\setuphead[Chapter][command=\MyChapter, style=\bf\ss]
 
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
@@ -93,7 +95,7 @@
 % extra floats
 % landscape
 \definefloat[lfigure][lfigures][figure]
-\definefloat[ltable][ltable][table]
+\definefloat[ltable][ltables][table]
 % supplemental
 \definefloat[stable][stables]
 \definefloat[sfigure][sfigures]
@@ -103,7 +105,6 @@
 
 % tables
 \setupTABLE[width=broad, style=small, align={middle,lohi}]
-%\setupTABLEhead[width=broad, style=smallbold, align={middle,lohi}]
 
 % labeltexts
 \setuplabeltext[sfigure={Figure S}]
@@ -133,18 +134,21 @@
 \definereferenceformat[instable][left=Table S]
 \definereferenceformat[ins][left=S]
 
+% urls
+\useURL[url:powerfit][https://github.com/haddocking/powerfit]
+\useURL[url:disvis][https://github.com/haddocking/disvis]
+
 % shortcuts
 \define \disvis {\emph{disvis}}
 \define\powerfit{{\emph powerfit}}
 
 % bibtex
+
+\setuppublications[alternative=apa, refcommand=num, sorttype=cite, 
+        criterium=cite, numbering=yes]
+\setupcite[lastpubsep={,}]
 \define[1] \citeauthor {\cite[authornum][#1]}
-%\setupbibtex[database={chapter1/references,chapter2/references,chapter3/references,chapter4/references,chapter5/references,chapter6/references,haddock2.2-webserver/references,chapter7/references}, sort=author]
-
 \setupbibtex[database={backmatter/all-references.bib}, sort=author]
-
-\setuppublications[alternative=apa, refcommand=num, sorttype=cite, criterium=cite, numbering=yes]
-%\setuppublicationlist[style=small]
 
 \setuppublicationlayout[article]{%
     \insertartauthors{}{ }{\inserthekey{}{ }}%
