@@ -9,7 +9,7 @@
 
 \Section{Experimental procedures}
 
-\SubSection{HADDOCK protocol}
+\Subsection{HADDOCK protocol}
 
 HADDOCK has been described in details in previous work \cite[Dominguez2003,
 deVries2010a].  Its docking protocol consists of three stages: an initial rigid
@@ -56,7 +56,7 @@ desolvation energy \cite[Fernandez-Recio2004] and BSA is the buried surface
 area in \Angstrom\high{2}.  The energies are calculated with an 8.5\Angstrom\
 cutoff based on OPLS parameters \cite[Jorgensen1988].
 
-\SubSection{HADDOCK-EM protocol}
+\Subsection{HADDOCK-EM protocol}
 
 As HADDOCK uses CNS (Crystallography and NMR System) \cite[Brunger2007] as
 computational engine, all crystallographic tools and energy function available
@@ -175,7 +175,7 @@ required for a HADDOCK-EM run decreases with decreasing map size, since this
 speeds up the calculations of the FFTs.
 
 
-\SubSection{Generation of simulated cryo-EM maps}
+\Subsection{Generation of simulated cryo-EM maps}
 
 For the generation of the simulated cryo-EM maps we wrote a Python script based
 on the molmap function in UCSF Chimera. The resulting density is described by:
@@ -196,7 +196,7 @@ voxel spacing one-fourth of the resolution. An example of a resulting 10, 15
 and 20\Angstrom\ map is given in \insfigure[fig:simulated-densities].
 
 
-\SubSection{Optimizing and benchmarking HADDOCK-EM}
+\Subsection{Optimizing and benchmarking HADDOCK-EM}
 
 The HADDOCK-EM protocol relies on the optimization of two parameters for the
 docking, namely the force constant for the centroid based distance restraints
@@ -234,7 +234,7 @@ moved in a random direction by taking a random point on the unit sphere with a
 displacement of 3, 5 and 7\Angstrom.  The solutions were analyzed as explained
 above.
 
-\SubSection{HADDOCK-EM with symmetry}
+\Subsection{HADDOCK-EM with symmetry}
 
 To leverage Cn-symmetry in cyclical symmetric complexes a few adjustments were
 made to the non-symmetric HADDOCK-EM protocol
@@ -262,7 +262,7 @@ scored with the it0-HADDOCK-EM and 400 models are refined in the it1 and itw
 stage.  The refinement protocol is similar to the non-symmetric HADDOCK-EM
 protocol, but with added symmetry restraints.
 
-\SubSection{Modeling protein S7 and S19 of the 30S E. coli ribosome}
+\Subsection{Modeling protein S7 and S19 of the 30S E. coli ribosome}
 
 For the 30S E. coli ribosome the cryo-EM data were downloaded from the EMDB
 (EMD-1884) with its corresponding fitted PDB file (2YKR).  The density
@@ -278,7 +278,7 @@ were generated in it0 and the top 400 best scoring solutions were refined in
 it1 and itw.  The solutions were clustered using a cutoff of 7.5\Angstrom\ and
 the i-RMSDs were calculated against the 2YKR-model, using ProFit.
 
-\SubSection{Modeling the interaction of KsgA with the 16S rRNA of the 30S E.
+\Subsection{Modeling the interaction of KsgA with the 16S rRNA of the 30S E.
 coli ribosome}
 
 In order to model the interaction of KsgA with the 16S rRNA of the 30S E. coli
@@ -315,7 +315,7 @@ were used to keep helix-45 in its place, since it was disconnected from the
 main chain but does take part in the interaction.  The i-RMSDs of the refined
 models were calculated against the current 4ADV-model.
 
-\SubSection{Modeling the adeno-associated virus-2 complexed with antibody}
+\Subsection{Modeling the adeno-associated virus-2 complexed with antibody}
 
 For the adeno-associated virus-2 in complex with antibody A20 the 8.5\Angstrom\
 resolution cryo-EM data were obtained from the EMDB (EMD-5424) together with
@@ -327,7 +327,7 @@ residues in HADDOCK.  To speed-up the calculation, the density within a
 50\Angstrom\ shell was masked out.  I-RMSDs were calculated using 3J1S as a
 reference. 
 
-\SubSection{Modeling the interaction between Dengue virus and 2H2 antibody}
+\Subsection{Modeling the interaction between Dengue virus and 2H2 antibody}
 
 Cryo-EM data of 21\Angstrom\ resolution were downloaded from the EMDB
 (EMD-5674) and its current model (3J42).  For docking, the antibody was taken
@@ -340,7 +340,7 @@ within 5\Angstrom\ of the other chain in the 3J42 model were used as active
 residues during the docking.  The i-RMSDs were calculated using the 3J42 model
 as a reference.  
 
-\SubSection{Modeling the large terminase complex}
+\Subsection{Modeling the large terminase complex}
 
 The 16\Angstrom\ resolution negative stain data were obtained from the EMDB
 (EMD-2355) together with its deposited model (4BIJ).  Centroids were determined

@@ -1,38 +1,75 @@
-\environment layout
-
 \startcomponent titlepage
+
+\environment layout
 
 \product thesis
 
+\definehead[ThesisEnglishTitle][title]
+\definehead[ThesisDutchTitle][title]
+\setuphead[ThesisEnglishTitle][style=\tfb\bf\ss, align={middle,nothyphenated,verytolerant}, page=no, before={\blank[2em, force]}, after={\blank[4em]}]
+\setuphead[ThesisDutchTitle][style=\tfb\bf\ss, align={middle,nothyphenated,verytolerant}, page=no, before={\blank[1.5em, force]}, after={\blank[0.5em]}]
+
+\defineparagraphs[TitlePageParagraph][n=1]
+\setupparagraphs[TitlePageParagraph][each][width=0.9\textwidth, align={last, nothyphenated}]
+
+\setupindenting[no]
+
+\def\MySpace{2em}
+\noheaderandfooterlines
 \startalignment[middle]
-{\switchtobodyfont[22pt] \bf On Explorative and Integrative Modeling of Biomolecular Complexes}
 
+%\blank[1.5em, force]
 
-%Translation of title\crlf
-%
-%Over Explorerend en Integratief Modeleren van Biomoleculaire Complexen\crlf
-%(met een samenvatting in het Nederlands)
-%
-%Proefschrift\crlf
-%
-%ter verkrijging van de graad van doctor aan de Universiteit Utrecht op gezag
-%van de rector magnificus, prof. dr. G.J. van der Zwaan, ingevolge het besluit
-%van het college voor promoties in het openbaar te verdedigen op maandag 23
-%november 2015 des middags te 16:15 uur\crlf
-%door\crlf
-\blank[8cm]
+\ThesisEnglishTitle{On Explorative and Integrative Modeling of Biomolecular Complexes}
 
-{\itb Gydo Cornelis Petrus van Zundert}
+\ThesisDutchTitle{Over Explorerend en Integratief Modeleren van Biomoleculaire Complexen}
 
+(met een samenvatting in het Nederlands)
 
-%geboren op 12 juni 1987\crlf 
-%te Oud Gastel
+\blank[5em]
+
+{\ss\bf Proefschrift}
+
+\blank[\MySpace]
+
+\startTitlePageParagraph
+ter verkrijging van de graad van doctor aan de Universiteit Utrecht op gezag
+van de rector magnificus, prof. dr. G.J. van der Zwaan, ingevolge het besluit
+van het college voor promoties in het openbaar te verdedigen op woensdag 25 
+november 2015 des middags te 4.15 uur
+\stopTitlePageParagraph
+
+\blank[\MySpace]
+
+door
+
+\blank[\MySpace]
+
+{\ss\bf Gydo Cornelis Petrus van Zundert}
+
+\blank[\MySpace]
+
+geboren op 12 juni 1987\crlf 
+te Oud Gastel
+\stopalignment
 
 \page
 
+\noheaderandfooterlines
+%\setupinterlinespace[medium]
+
 {\bf Promotor:}\crlf
-Prof.dr. A.M.J.J. Bonvin\crlf
+Prof. Dr. A.M.J.J. Bonvin
 
-\stopalignment
-
+%\blank[2em]
+%
+%{\bf Beoordelings- en verdedigingscommissie:}\crlf
+%\startitemize[joinedup, packed]
+%\nop Prof. Dr. Piet Gros
+%\nop Prof. Dr. Remco Veltkamp
+%\nop Prof. Dr. Marc Baldus
+%\nop Prof. Dr. Sander Vajda
+%\nop Dr. Maya Topf
+%\nop Dr. Friedrich Foerster
+%\stopitemize
 \stopcomponent

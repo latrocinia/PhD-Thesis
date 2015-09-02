@@ -1,7 +1,12 @@
-\startchapter[title={Table of contents}]
+\startcomponent titlepage
 
-\setuplabeltext[chapter={Chapter }]
+\definehead[tochead][Chapter]
+\setuphead[tochead][sectionnumber=no]
+\starttochead[title={Table of contents}]
 
+\setuplabeltext[chapter={Chapter~}]
 \placelist[Chapter][criterium=all, label=yes, width=6em, numberstyle=bold, aligntitle=yes]
 
-\stopchapter
+\stoptochead
+
+\stopcomponent

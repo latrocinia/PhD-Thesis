@@ -1,6 +1,6 @@
 \Section{Methods}
 
-\SubSection{State of the art of rigid body cross-correlation based fitting}
+\Subsection{State of the art of rigid body cross-correlation based fitting}
 
 The goal of cross-correlation rigid body fitting is to determine the three
 translational and three rotational degrees of freedom of the model that
@@ -47,7 +47,7 @@ rotating the high-resolution model and blurring it afterwards. The
 GPU-architecture especially is suited for this task as tri-linear interpolation
 can be done with high-efficiency \cite[Hoang2013].
 
-\SubSection{Increasing the sensitivity by combining the LCC with the core-weighted approach}
+\Subsection{Increasing the sensitivity by combining the LCC with the core-weighted approach}
 
 Originally the core-weighted procedure was combined with the global
 cross-correlation, which significantly extended the resolution range in which a
@@ -143,7 +143,7 @@ cryo-EM data can be calculated just once before the search. So the
 FFT-accelerated CW-LCC effectively costs only one Fourier transform more than
 the regular LCC \cite[Hoang2013].
 
-\SubSection{Speeding up the search}
+\Subsection{Speeding up the search}
 
 \Subsubsection{Using optimized rotation sets to limit rotational degeneracy}
 
@@ -192,7 +192,7 @@ this padding, we trim the padded voxels. The effect of resampling and trimming
 is shown in \infigure[fig:core-index_resampling-trimming]{B} on a slice of
 the GroEL/GroES complex (EMD-1046). 
 
-\SubSection{Implementation and availability}
+\Subsection{Implementation and availability}
 
 We implemented our methods in a Python package named PowerFit that comes with a
 command line tool eponymously named \powerfit. A flowchart of the \powerfit\

@@ -38,6 +38,7 @@
     nchapters := 8;
     curr_chap := \somenamedheadnumber{Chapter}{current} ; 
   
+    % only do it for proper chapters
     if (curr_chap > 0):
        marginwidth := RightMarginWidth ;
        skip   := TextHeight * (curr_chap - 1) / nchapters ;
@@ -50,9 +51,13 @@
        if (PageNumber mod 2) = 1:
            pos := ulcorner Field[Text][RightMarginSeparator] -
                   ulcorner chap_frame - (-offset, skip);
+           % take care of bleeding
+           chap_frame := chap_frame rightenlarged 2mm;
        else:
            pos := urcorner Field[Text][LeftMarginSeparator] -
                   urcorner chap_frame - (offset, skip);
+           % take care of bleeding
+           chap_frame := chap_frame leftenlarged 2mm;
        fi;
 
         StartPage;
@@ -70,21 +75,29 @@
 % numbered
 \definehead[Chapter][chapter]
 \definehead[Section][section]
-\definehead[SubSection][subsection]
 \definehead[Subsection][subsection]
 \definehead[Subsubsection][subsubsection]
 % unnumbered
-\definehead[Subject][subject]
-\definehead[Subsubject][subsubject]
 
 \setupheads[indentnext=yes]
 \setupheads[align={flushleft,nothyphenated,verytolerant}, tolerance=verytolerant]
 
 % chapter page
 \define[2]\MyChapter
-    {\framed[frame=off, width=broad, align=flushleft]{#1 \\ #2}}
+    {\framed[frame=off, width=broad, align=flushleft]{#1 \blank[2em] #2}}
 \setuplabeltext[chapter=Chapter~]
-\setuphead[Chapter][command=\MyChapter, style=\bf\ss]
+\setuphead[Chapter][command=\MyChapter, style=\tfb\bf\ss]
+
+% other heads
+\setuphead[Section][style=\tfa\bf\ss]
+\setuphead[Subsection][style=\tf\bf\ss]
+\setuphead[Subsubsection][number=no, style=\tf\it\ss]
+
+% unnumber sections
+\definehead[Subject][Section]
+\definehead[Subsubject][Subsection]
+\setuphead[Subject][number=no]
+\setuphead[Subsubject][number=no]
 
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
@@ -146,7 +159,7 @@
 
 \setuppublications[alternative=apa, refcommand=num, sorttype=cite, 
         criterium=cite, numbering=yes]
-\setupcite[lastpubsep={,}]
+\setupcite[lastpubsep={,~}]
 \define[1] \citeauthor {\cite[authornum][#1]}
 \setupbibtex[database={backmatter/all-references.bib}, sort=author]
 
