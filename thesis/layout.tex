@@ -80,13 +80,14 @@
 % unnumbered
 
 \setupheads[indentnext=yes]
-\setupheads[align={flushleft,nothyphenated,verytolerant}, tolerance=verytolerant]
+\setupheads[align={flushleft,nothyphenated,verytolerant}, 
+    tolerance=verytolerant]
 
 % chapter page
 \define[2]\MyChapter
     {\framed[frame=off, width=broad, align=flushleft]{#1 \blank[2em] #2}}
 \setuplabeltext[chapter=Chapter~]
-\setuphead[Chapter][command=\MyChapter, style=\tfb\bf\ss]
+\setuphead[Chapter][command=\MyChapter, style=\tfb\bf\ss, indentnext=no]
 
 % other heads
 \setuphead[Section][style=\tfa\bf\ss]
