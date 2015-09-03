@@ -245,11 +245,11 @@ We implemented DisVis in Python2.7 using the NumPy \cite[Walt2011] and Cython
 packages \cite[Behnel2011]. The OpenCL framework \cite[Stone2010] was used to
 offload the computations to the GPU. Python bindings were available through the
 pyopencl package \cite[Klockner2012]. We used the high-performance clFFT
-library (https://github.com/clMathLibraries/clFFT) together with gpyfft for
-Python bindings (https://github.com/geggo/gpyfft) to calculate the FFTs.
-Computations were performed on AMD Opteron 6344 CPU processors and on an AMD
-Radeon HD 7730M and NVIDIA GeForce GTX 680 GPU. DisVis code can be downloaded
-freely from \from[url:disvis] together with documentation and examples.
+library (\from[url:clfft]) together with gpyfft for Python bindings
+(\from[url:gpyfft]) to calculate the FFTs.  Computations were performed on AMD
+Opteron 6344 CPU processors and on an AMD Radeon HD 7730M and NVIDIA GeForce
+GTX 680 GPU. DisVis code can be downloaded freely from \from[url:disvis]
+together with documentation and examples.
 
 
 \Subsection{RNA polymerase II example}
@@ -281,7 +281,7 @@ S\in[tab:RPII-violations-coarse] for the fine and coarse run, respectively.
 \Subsection{26S proteasome PRE5-PUP2 example}
 
 Homology models were downloaded from the SWIS-MODEL Repository
-\cite[Kiefer2009] via the Protein Model Portal (http://proteinmodelportal.org)
+\cite[Kiefer2009] via the Protein Model Portal (\from[url:proteinmodelportal])
 using their Uniprot identifiers (O14250 and Q9UT97). Cross-links were taken
 from \citeauthor{Leitner2014} Dataset S1 (\instable[tab:PRE5-PUP2-crosslinks]),
 which consist of 4 ADH and 3 zero-length ZL cross-links. The maximum ADH- and
