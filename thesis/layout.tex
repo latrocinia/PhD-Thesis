@@ -34,6 +34,7 @@
 \definealternativestyle[style:subsection][\tf\bf\ss]
 \definealternativestyle[style:subsubsection][\tf\it\ss]
 \definealternativestyle[style:caption][\ss\tfx]
+\definealternativestyle[style:reference][\ss\tfx]
 
 % thumb index code
 \definecolor[tableheadcolor][darkgray]
@@ -70,7 +71,7 @@
 
             StartPage;
                 fill chap_frame shifted pos withcolor \MPcolor{gray};
-                draw labeltext shifted pos withcolor \MPcolor{white};
+                draw labeltext shifted pos;
             StopPage;
     fi;
 \stopuseMPgraphic
@@ -127,9 +128,10 @@
 
 % tables
 \setupTABLE[width=broad, style=table:body]
-\setupTABLE[r][align=middle]
+\setupTABLE[r][align={middle, lohi}]
 \setupTABLE[r][odd][background=color, backgroundcolor=tableoddrow]
-\setupTABLE[r][1][background=color, backgroundcolor=tableheadcolor, style=table:head]
+\setupTABLE[r][1][background=color, backgroundcolor=tableheadcolor, 
+    style=table:head]
 
 % labeltexts
 \setuplabeltext[sfigure={Figure S}]
@@ -148,7 +150,7 @@
 \setupcaption[sltable][width=0.9\textheight]
 \define[2]\caption{{\bf #1} #2}
 
-\setupfootnotes[width=0.9\textwidth, rule=off,distance=0pt]
+\setupfootnotes[width=0.9\textwidth, rule=off]
 
 % references
 \definereferenceformat[infigure][left=Figure ]
@@ -178,7 +180,7 @@
 
 \setuppublications[alternative=apa, refcommand=num, sorttype=cite, 
         criterium=cite, numbering=yes]
-\setuppublicationlist[style=\tfx\ss]
+\setuppublicationlist[style=style:reference]
 \setupcite[lastpubsep={,~}]
 \define[1] \citeauthor {\cite[authornum][#1]}
 \setupbibtex[database={backmatter/all-references.bib}, sort=author]
