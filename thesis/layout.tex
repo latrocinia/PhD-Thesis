@@ -14,9 +14,9 @@
 \setupinteraction[state=start]
 %\startmode[thesis]
 \setuppapersize[ThesisSize]
-\setuplayout[location=middle, width=13.0cm, height=19.6cm, 
-             topspace=1.7cm, bottomspace=1.7cm, margin=2.0cm, 
-             header=0.5cm, footer=0.5cm]
+\setuplayout[location=middle, width=13.0cm, height=22cm, 
+             topspace=1.0cm, bottomspace=1.0cm, margin=2.0cm, 
+             header=1.0cm, footer=1.0cm]
 %\stopmode
 
 %\startmode[draft]
@@ -27,9 +27,17 @@
 
 \setuppagenumbering[alternative=doublesided, location=right]
 
+% fontstyles
+\definealternativestyle[table:head][\white\bf\tfx\ss]
+\definealternativestyle[table:body][\tfx\ss]
+\definealternativestyle[style:section][\tfa\bf\ss]
+\definealternativestyle[style:subsection][\tf\bf\ss]
+\definealternativestyle[style:subsubsection][\tf\it\ss]
+\definealternativestyle[style:caption][\ss\tfx]
+
 % thumb index code
-\definecolor[gray][s=0.25]
-\definecolor[lightgray][s=0.75]
+\definecolor[tableheadcolor][darkgray]
+\definecolor[tableoddrow][gray]
 \startuseMPgraphic{thumbindex}
     path chap_frame ;
     pair pos;  
@@ -40,30 +48,30 @@
   
     % only do it for proper chapters
     if (curr_chap > 0):
-       marginwidth := RightMarginWidth ;
-       skip   := TextHeight * (curr_chap - 1) / nchapters ;
-       height := TextHeight / nchapters ;
-       width  := marginwidth * 0.75;
-       offset := marginwidth - width;
-       labeltext := textext("\ssbfb \lightgray \getmarking[chapternumber]");
-       chap_frame := fullsquare xyscaled(width, height) ;
+           marginwidth := RightMarginWidth ;
+           skip   := TextHeight * (curr_chap - 1) / nchapters ;
+           height := TextHeight / nchapters ;
+           width  := marginwidth * 0.75;
+           offset := marginwidth - width;
+           labeltext := textext("\ssbfd \white \getmarking[chapternumber]");
+           chap_frame := fullsquare xyscaled(width, height) ;
 
-       if (PageNumber mod 2) = 1:
-           pos := ulcorner Field[Text][RightMarginSeparator] -
-                  ulcorner chap_frame - (-offset, skip);
-           % take care of bleeding
-           chap_frame := chap_frame rightenlarged 2mm;
-       else:
-           pos := urcorner Field[Text][LeftMarginSeparator] -
-                  urcorner chap_frame - (offset, skip);
-           % take care of bleeding
-           chap_frame := chap_frame leftenlarged 2mm;
-       fi;
+           if (PageNumber mod 2) = 1:
+               pos := ulcorner Field[Text][RightMarginSeparator] -
+                      ulcorner chap_frame - (-offset, skip);
+               % take care of bleeding
+               chap_frame := chap_frame rightenlarged 3mm;
+           else:
+               pos := urcorner Field[Text][LeftMarginSeparator] -
+                      urcorner chap_frame - (offset, skip);
+               % take care of bleeding
+               chap_frame := chap_frame leftenlarged 3mm;
+           fi;
 
-        StartPage;
-            fill chap_frame shifted pos withcolor \MPcolor{gray};
-            draw labeltext shifted pos withcolor \MPcolor{lightgray};
-        StopPage;
+            StartPage;
+                fill chap_frame shifted pos withcolor \MPcolor{gray};
+                draw labeltext shifted pos withcolor \MPcolor{white};
+            StopPage;
     fi;
 \stopuseMPgraphic
 
@@ -90,9 +98,9 @@
 \setuphead[Chapter][command=\MyChapter, style=\tfb\bf\ss, indentnext=no]
 
 % other heads
-\setuphead[Section][style=\tfa\bf\ss]
-\setuphead[Subsection][style=\tf\bf\ss]
-\setuphead[Subsubsection][number=no, style=\tf\it\ss]
+\setuphead[Section][style=style:section]
+\setuphead[Subsection][style=style:subsection]
+\setuphead[Subsubsection][number=no, style=style:subsubsection]
 
 % unnumber sections
 \definehead[Subject][Section]
@@ -118,7 +126,10 @@
 \definefloat[slfigure][slfigures][sfigure]
 
 % tables
-\setupTABLE[width=broad, style=small, align={middle,lohi}]
+\setupTABLE[width=broad, style=table:body]
+\setupTABLE[r][align=middle]
+\setupTABLE[r][odd][background=color, backgroundcolor=tableoddrow]
+\setupTABLE[r][1][background=color, backgroundcolor=tableheadcolor, style=table:head]
 
 % labeltexts
 \setuplabeltext[sfigure={Figure S}]
@@ -127,7 +138,7 @@
 \setuplabeltext[sltable={Table S}]
 
 % captions
-\setupcaptions[style=small, minwidth=0.9\textwidth]
+\setupcaptions[style=style:caption, minwidth=0.9\textwidth]
 \setupcaption[table][location=top]
 \setupcaption[stable][location=top]
 % landscape captions
@@ -151,15 +162,23 @@
 % urls
 \useURL[url:powerfit][https://github.com/haddocking/powerfit]
 \useURL[url:disvis][https://github.com/haddocking/disvis]
+\useURL[url:wenmr][http://www.wenmr.eu]
+\useURL[url:egi][http://gstat.egi.eu/gstat/geo/openlayers\#/VO/enmr.eu]
+\useURL[url:haddock2.2][http://haddock.science.uu.nl/services/HADDOCK2.2]
+\useURL[url:proteinmodelportal][http://proteinmodelportal.org]
+\useURL[url:gpyfft][https://github.com/geggo/gpyfft]
+\useURL[url:clfft][https://github.com/clMathLibraries/clFFT]
 
 % shortcuts
 \define \disvis {\emph{disvis}}
 \define\powerfit{{\emph powerfit}}
 
+
 % bibtex
 
 \setuppublications[alternative=apa, refcommand=num, sorttype=cite, 
         criterium=cite, numbering=yes]
+\setuppublicationlist[style=\tfx\ss]
 \setupcite[lastpubsep={,~}]
 \define[1] \citeauthor {\cite[authornum][#1]}
 \setupbibtex[database={backmatter/all-references.bib}, sort=author]
