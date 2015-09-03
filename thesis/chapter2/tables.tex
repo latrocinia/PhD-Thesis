@@ -6,9 +6,7 @@ score.}
 
 \startbuffer[tab:fitting-performance]
 \bTABLE
-\setupTABLE[width=broad, align=middle]
-\setupTABLE[r][1,2,3][style={smallbold}]
-\setupTABLE[c][1][style={smallbold}]
+\setupTABLE[r][1,2,3][style={\white\tfx\ss\bf}, background=color, backgroundcolor=darkgray]
 \setupTABLE[c][1][width=8em]
 \bTABLEhead
 \bTR \bTD[nr=3] \eTD \bTD[nc=6] Average RMSD of fitted subunits (\Angstrom) \eTD \eTR
@@ -32,11 +30,10 @@ GroEL/GroES complex using the local cross-correlation score.}
 
 \startbuffer[tab:time-required-lcc]
 \bTABLE
-\setupTABLE[width=broad, align=middle]
-\setupTABLE[r][1,2][style={smallbold}]
-\setupTABLE[c][1][style={smallbold}]
+\bTABLEhead
 \bTR \bTD[nr=2]  \eTD \bTD[nc=2] Coarse \eTD \bTD[nc=2] Fine \eTD \eTR
 \bTR \bTD CPU \eTD \bTD GPU \eTD \bTD CPU \eTD \bTD  GPUe \eTD \eTR
+\eTABLEhead
 \bTR \bTD Full map \eTD \bTD 3m 32s  \eTD \bTD 18s \eTD \bTD 6h 23m  \eTD \bTD 23m 50s \eTD \eTR
 \bTR \bTD Trimmed  \eTD \bTD 58s     \eTD \bTD 7s  \eTD \bTD 1h 37m  \eTD \bTD 3m 54s  \eTD \eTR
 \bTR \bTD T + R    \eTD \bTD 10s     \eTD \bTD 4s  \eTD \bTD 13m 6s  \eTD \bTD 1m 6s   \eTD \eTR
@@ -51,9 +48,6 @@ GroEL/GroES complex using the local cross-correlation score.}
 
 \startbuffer[tab:timing-comparison]
 \bTABLE
-\setupTABLE[width=broad, align=middle]
-\setupTABLE[r][1, 3][topframe=on]
-\setupTABLE[r][4][bottomframe=on]
 \bTR \bTD \eTD \bTD[nc=2] CPU \eTD \bTD[nc=2] GPU \eTD \eTR
 \bTR \bTD \eTD \bTD gEMfitter \eTD \bTD \powerfit \eTD \bTD gEMfitter \eTD \bTD \powerfit \eTD \eTR
 \bTR \bTD Full map \eTD \bTD 5h 48m \eTD \bTD 6h 23m \eTD \bTD 11m \eTD \bTD 25m 48s \eTD \eTR
@@ -72,11 +66,6 @@ pre-filtered CW-LCC).}
 
 \startbuffer[tab:additional-complexes]
 \bTABLE
-\setupTABLE[width=broad, align={center, lohi}]
-\setupTABLE[r][first][style={smallbold}]
-\setupTABLE[c][first][style={smallbold}]
-%\setupTABLE[c][2][width=3em]
-%\setupTABLE[c][4][width=8em]
 \bTABLEhead
 \bTR \bTD EMDB \eTD \bTD Resolution (\Angstrom) \eTD \bTD PDB \eTD \bTD Score \eTD \bTD RMSD (\Angstrom) \eTD \bTD Rank \eTD \eTR
 \eTABLEhead
