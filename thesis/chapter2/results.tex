@@ -69,7 +69,6 @@ The results are shown in \intable[tab:fitting-performance].
 {\getbuffer[cap:GroEL-GroES]}
 {\externalfigure[fig:GroEL-GroES]}
 
-
 The LCC score was incapable of fitting any subunit properly as was noted
 earlier \cite[Hoang2013]. In case of the GroES lid, it actually places it
 upside-down in the density. The CW-LCC is more successful in this respect, and
@@ -88,14 +87,14 @@ compared to previous published ones: gEMfitter reported an RMSD of 2.8, 4.0 and
 5.3\Angstrom\ for the trans, cis and GroES ring \cite[Hoang2013], respectively, and
 Segger 3.1, 5.1 and 6.0\Angstrom\ \cite[Pintilie2010].
 
-
 \placetable[top][tab:fitting-performance]
 {\getbuffer[cap:fitting-performance]}
 {\getbuffer[tab:fitting-performance]}
 
-\placetable[bottom][tab:timing-comparison]
-{\getbuffer[cap:timing-comparison]}
-{\getbuffer[tab:timing-comparison]}
+\placetable[top][tab:time-required-lcc]
+{\getbuffer[cap:time-required-lcc]}
+{\getbuffer[tab:time-required-lcc]}
+
 
 \Subsubsection{Timing comparison of \powerfit}
 
@@ -122,9 +121,9 @@ search using the resampled option. The resulting solutions can than be refitted
 using a single translational scan on the non-resampled map for an optimal speed
 to accuracy trade-off.
 
-\placetable[top][tab:time-required-lcc]
-{\getbuffer[cap:time-required-lcc]}
-{\getbuffer[tab:time-required-lcc]}
+\placetable[bottom][tab:timing-comparison]
+{\getbuffer[cap:timing-comparison]}
+{\getbuffer[tab:timing-comparison]}
 
 We compared the fitting times of \powerfit\ against another GPU-accelerated rigid
 body fitting software gEMfitter \cite[Hoang2013]. The results are shown in
@@ -163,20 +162,21 @@ resampling enabled, \powerfit\ is still faster.
 
 \Subsubsection{Additional complexes fitted with \powerfit}
 
-To validate our approach further, we applied \powerfit\ on three additional cases
-in the resolution range of 8.9 to 13.5\Angstrom\ (\intable[tab:additional-complexes],
-\infigure[fig:additional-cases]). EMDB entry 2325 is another GroEL/GroES
-complex, but at a considerably higher resolution of 8.9\Angstrom\ compared to the 1046
-density \cite[Chen2013]. The increased level of detail allowed to fit each
-GroES subunit independently in the map, irrespective of the scoring function
-used, with the correct 7 fits found in the top 7. The other two cases are
-ribosomes with a GTPase \cite[Guo2011] and methyltransferase
-\cite[Boehringer2012] bound to it, subunits with comparable size. For entry
-1884 with a reported resolution of 9.8\Angstrom, the RsgA GTPase was correctly fitted
-in the density by all four scoring functions and was found within the top 2
-best scoring solutions. The ribosome map 2017 with the bound KsgA
-methyltransferase has a somewhat lower resolution of 13.5\Angstrom. In this case, the
-LCC was incapable of correctly fitting the subunit in the density. The other
-scoring functions placed the subunit properly in the map, with the correct fit
-found within the top 3 best scoring solutions.
+To validate our approach further, we applied \powerfit\ on three additional
+cases in the resolution range of 8.9 to 13.5\Angstrom\
+(\intable[tab:additional-complexes], \infigure[fig:additional-cases]). EMDB
+entry 2325 is another GroEL/GroES complex, but at a considerably higher
+resolution of 8.9\Angstrom\ compared to the 1046 density \cite[Chen2013]. The
+increased level of detail allowed to fit each GroES subunit independently in
+the map, irrespective of the scoring function used, with the correct 7 fits
+found in the top 7. The other two cases are ribosomes with a GTPase
+\cite[Guo2011] and methyltransferase \cite[Boehringer2012] bound to it,
+subunits with comparable size. For entry 1884 with a reported resolution of
+9.8\Angstrom, the RsgA GTPase was correctly fitted in the density by all four
+scoring functions and was found within the top 2 best scoring solutions. The
+ribosome map 2017 with the bound KsgA methyltransferase has a somewhat lower
+resolution of 13.5\Angstrom. In this case, the LCC was incapable of correctly
+fitting the subunit in the density. The other scoring functions placed the
+subunit properly in the map, with the correct fit found within the top 3 best
+scoring solutions.
 

@@ -6,11 +6,12 @@ score.}
 
 \startbuffer[tab:fitting-performance]
 \bTABLE
-\setupTABLE[r][1,2,3][style={\white\tfx\ss\bf}, background=color, backgroundcolor=darkgray]
+\setupTABLE[r][1,2][style=table:head, background=color, 
+    backgroundcolor=tableheadcolor]
 \setupTABLE[c][1][width=8em]
 \bTABLEhead
-\bTR \bTD[nr=3] \eTD \bTD[nc=6] Average RMSD of fitted subunits (\Angstrom) \eTD \eTR
-\bTR \bTD[nc=2] Trans \eTD \bTD[nc=2] Cis \eTD \bTD[nc=2] GroES \eTD \eTR
+%\bTR \bTD[nr=3] \eTD \bTD[nc=6] Average RMSD of fitted subunits (\Angstrom) \eTD \eTR
+\bTR \bTD[nr=2] \eTD \bTD[nc=2] Trans \eTD \bTD[nc=2] Cis \eTD \bTD[nc=2] GroES \eTD \eTR
 %\bTR \bTD \eTD \bTD L-LCC \eTD \bTD L-CW-LCC \eTD \bTD L-LCC \eTD \bTD L-CW-LCC \eTD \bTD L-LCC \eTD \bTD L-CW-LCC \eTD \eTR
 \bTR \bTD L \eTD \bTD CW \eTD \bTD L \eTD \bTD CW \eTD \bTD L \eTD \bTD CW \eTD \eTR
 \eTABLEhead
@@ -30,13 +31,17 @@ GroEL/GroES complex using the local cross-correlation score.}
 
 \startbuffer[tab:time-required-lcc]
 \bTABLE
+\setupTABLE[r][1,2][style=table:head, background=color, 
+    backgroundcolor=tableheadcolor]
 \bTABLEhead
 \bTR \bTD[nr=2]  \eTD \bTD[nc=2] Coarse \eTD \bTD[nc=2] Fine \eTD \eTR
 \bTR \bTD CPU \eTD \bTD GPU \eTD \bTD CPU \eTD \bTD  GPUe \eTD \eTR
 \eTABLEhead
+\bTABLEbody
 \bTR \bTD Full map \eTD \bTD 3m 32s  \eTD \bTD 18s \eTD \bTD 6h 23m  \eTD \bTD 23m 50s \eTD \eTR
 \bTR \bTD Trimmed  \eTD \bTD 58s     \eTD \bTD 7s  \eTD \bTD 1h 37m  \eTD \bTD 3m 54s  \eTD \eTR
 \bTR \bTD T + R    \eTD \bTD 10s     \eTD \bTD 4s  \eTD \bTD 13m 6s  \eTD \bTD 1m 6s   \eTD \eTR
+\eTABLEbody
 \eTABLE
 \stopbuffer
 
@@ -48,8 +53,10 @@ GroEL/GroES complex using the local cross-correlation score.}
 
 \startbuffer[tab:timing-comparison]
 \bTABLE
-\bTR \bTD \eTD \bTD[nc=2] CPU \eTD \bTD[nc=2] GPU \eTD \eTR
-\bTR \bTD \eTD \bTD gEMfitter \eTD \bTD \powerfit \eTD \bTD gEMfitter \eTD \bTD \powerfit \eTD \eTR
+\setupTABLE[r][1,2][style=table:head, background=color, 
+    backgroundcolor=tableheadcolor]
+\bTR \bTD[nr=2] \eTD \bTD[nc=2] CPU \eTD \bTD[nc=2] GPU \eTD \eTR
+\bTR \bTD gEMfitter \eTD \bTD \powerfit \eTD \bTD gEMfitter \eTD \bTD \powerfit \eTD \eTR
 \bTR \bTD Full map \eTD \bTD 5h 48m \eTD \bTD 6h 23m \eTD \bTD 11m \eTD \bTD 25m 48s \eTD \eTR
 \bTR \bTD Resampled \eTD \bTD 38m 2s \eTD \bTD 41m 25s \eTD \bTD - \eTD \bTD 1m 40s \eTD \eTR
 \eTABLE
@@ -60,12 +67,15 @@ GroEL/GroES complex using the local cross-correlation score.}
 \caption{}
 {Additional complexes fitted with \powerfit\ by performing a fine rotational
 search (4.71\Deg) using the four scoring functions (LCC = local cross correlation;
-CW-LCC = core-weighted LCC; L-LCC; Laplace pre-filtered LCC; L-CW-LCC = Laplace
+CW-LCC = core-weighted LCC; L-LCC = Laplace pre-filtered LCC; L-CW-LCC = Laplace
 pre-filtered CW-LCC).}
 \stopbuffer
 
 \startbuffer[tab:additional-complexes]
 \bTABLE
+\setupTABLE[r][2,3,4,5,10,11,12,13][background=color, 
+    backgroundcolor=tableoddrow]
+\setupTABLE[r][6,7,8,9][background=color, backgroundcolor=white]
 \bTABLEhead
 \bTR \bTD EMDB \eTD \bTD Resolution (\Angstrom) \eTD \bTD PDB \eTD \bTD Score \eTD \bTD RMSD (\Angstrom) \eTD \bTD Rank \eTD \eTR
 \eTABLEhead
