@@ -1,9 +1,10 @@
 {\switchtobodyfont[11pt]
 \bTABLE
-\setupTABLE[align={middle,lohi}, width=broad]
 \setupTABLE[c][width=2.5em]
 \setupTABLE[c][1][width=4em]
 \setupTABLE[r][1][height=1.5em]
+\setupTABLE[r][1,2][background=color, backgroundcolor=tableheadcolor, 
+    style=table:head]
 \bTABLEhead
 \bTR
 \bTD[nr=2] PDB \eTD \bTD[nc=4] HADDOCK-CM \eTD \bTD[nc=4] HADDOCK-EM 20\Angstrom \eTD \bTD[nc=4] HADDOCK-EM 15\Angstrom \eTD \bTD[nc=4] HADDOCK-EM 10\Angstrom \eTD

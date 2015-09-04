@@ -7,7 +7,6 @@ The complexes were taken from the protein-protein docking benchmark 4.0 \cite[Hw
 \startbuffer[tab:benchmark]
 \startlocalfootnotes
 \bTABLE
-\setupTABLE[align=middle, width=broad]
 \bTABLEhead
 \bTR \bTD PDB Code \eTD \bTD Category\footnote{The category of the complex: E = Enzyme/Inhibitor or Enzyme/Substrate; A = Antibody/Antigen; O = Others.} 
 \eTD \bTD Difficulty\footnote{The difficulty of the complex according to CAPRI standard}
@@ -49,9 +48,9 @@ The i-RMSD is calculated by fitting the solution on the backbone atoms of the re
 
 \startbuffer[tab:benchmark-quality]
 \bTABLE
-\setupTABLE[align=middle, width=broad]
+\setupTABLE[r][1,2][background=color, backgroundcolor=tableheadcolor, 
+    style=table:head]
 \bTABLEhead
-%\bTR \bTD[nr=3] PDB \eTD \bTD[nc=6] i-RMSD of best solution (Å) \eTD \eTR
 \bTR \bTD[nr=2] PDB \eTD  \bTD[nc=2] 20\Angstrom\ data  \eTD       
 \bTD[nc=2] 15\Angstrom\ data  \eTD         \bTD[nc=2] 10\Angstrom\ data \eTD \eTR \bTR
 \bTD It0  \eTD \bTD   Itw  \eTD \bTD   It0  \eTD \bTD   Itw  \eTD \bTD   It0

@@ -1,12 +1,10 @@
 \bTABLE
-\setupTABLE[width=broad, align={middle,lohi}]
 \setupTABLE[c][1][width=4em]
+\setupTABLE[r][1,2][background=color, backgroundcolor=tableheadcolor, 
+    style=table:head]
 \bTABLEhead
 \bTR
-\bTD[nr=3] PDB   \eTD \bTD[nc=12]    Acceptable or better after itw \eTD
-\eTR
-\bTR
-\bTD[nc=4]         10\Angstrom   \eTD \bTD[nc=4]   15\Angstrom   \eTD \bTD[nc=4]   20\Angstrom \eTD
+\bTD[nr=2] PDB \eTD \bTD[nc=4]         10\Angstrom   \eTD \bTD[nc=4]   15\Angstrom   \eTD \bTD[nc=4]   20\Angstrom \eTD
 \eTR
 \bTR
 \dorecurse{3}{\bTD 0\Angstrom \eTD \bTD 3\Angstrom \eTD \bTD 5\Angstrom \eTD \bTD 7\Angstrom \eTD} 
