@@ -36,9 +36,13 @@
 \definealternativestyle[style:caption][\ss\tfx]
 \definealternativestyle[style:reference][\ss\tfx]
 
-% thumb index code
+% colors
 \definecolor[tableheadcolor][darkgray]
 \definecolor[tableoddrow][gray]
+\definecolor[thumbindexcolor][darkgray]
+\definecolor[thumbindexfontcolor][white]
+
+
 \startuseMPgraphic{thumbindex}
     path chap_frame ;
     pair pos;  
@@ -54,7 +58,7 @@
            height := TextHeight / nchapters ;
            width  := marginwidth * 0.75;
            offset := marginwidth - width;
-           labeltext := textext("\ssbfd \white \getmarking[chapternumber]");
+           labeltext := textext("\ssbfd \thumbindexfontcolor \getmarking[chapternumber]");
            chap_frame := fullsquare xyscaled(width, height) ;
 
            if (PageNumber mod 2) = 1:
@@ -70,7 +74,7 @@
            fi;
 
             StartPage;
-                fill chap_frame shifted pos withcolor \MPcolor{gray};
+                fill chap_frame shifted pos withcolor \MPcolor{thumbindexcolor};
                 draw labeltext shifted pos;
             StopPage;
     fi;
@@ -94,9 +98,10 @@
 
 % chapter page
 \define[2]\MyChapter
-    {\framed[frame=off, width=broad, align=flushleft]{#1 \blank[2em] #2}}
+    {\framed[frame=off, width=broad, align=flushleft]{#1 \blank[1em] #2}}
 \setuplabeltext[chapter=Chapter~]
-\setuphead[Chapter][command=\MyChapter, style=\tfb\bf\ss, indentnext=no]
+\setuphead[Chapter][command=\MyChapter, style=\tfb\bf,
+    indentnext=no, before={\blank[5em, force]}, after={\blank[4em]}]
 
 % other heads
 \setuphead[Section][style=style:section]
@@ -106,8 +111,8 @@
 % unnumber sections
 \definehead[Subject][Section]
 \definehead[Subsubject][Subsection]
-\setuphead[Subject][number=no]
-\setuphead[Subsubject][number=no]
+\setuphead[Subject][number=no, incrementnumber=no]
+\setuphead[Subsubject][number=no, incrementnumber=no]
 
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
