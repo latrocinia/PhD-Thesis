@@ -1,4 +1,4 @@
-\Section{Results}
+\startSection[title=Results]
 
 \Subsection{Scoring sensitivity of the core-weighted LCC}
 
@@ -56,7 +56,7 @@ As an experimental test case for \powerfit, we used the GroEL/GroES complex
 (EMD-1046, \infigure[fig:GroEL-GroES]) \cite[Ranson2001], which has been
 used in the cryo-EM modeling challenge and makes comparison with other software
 possible \cite[Pintilie2012, Hoang2013]. The crystal structure of GroEL/GroES
-(1GRU) was used as a reference. We fitted a subunit of the trans, cis rings of
+(1GRU) was used as a reference. We fitted a subunit of the trans and cis rings of
 GroEL and the whole GroES ring (as with other software attempts, fitting
 individual subunits of GroES was not successful \cite[Hoang2013]) independently
 in the density, using the four different scoring functions, with and without
@@ -91,7 +91,7 @@ Segger 3.1, 5.1 and 6.0\Angstrom\ \cite[Pintilie2010].
 {\getbuffer[cap:fitting-performance]}
 {\getbuffer[tab:fitting-performance]}
 
-\placetable[top][tab:time-required-lcc]
+\placetable[bottom][tab:time-required-lcc]
 {\getbuffer[cap:time-required-lcc]}
 {\getbuffer[tab:time-required-lcc]}
 
@@ -180,3 +180,4 @@ fitting the subunit in the density. The other scoring functions placed the
 subunit properly in the map, with the correct fit found within the top 3 best
 scoring solutions.
 
+\stopSection

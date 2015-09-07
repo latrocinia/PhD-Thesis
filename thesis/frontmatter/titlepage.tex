@@ -4,6 +4,8 @@
 
 \product thesis
 
+\startstandardmakeup[doublesided=no, align=middle, top=]
+
 \definehead[ThesisEnglishTitle][title]
 \definehead[ThesisDutchTitle][title]
 \setuphead[ThesisEnglishTitle][style=\tfb\bf\ss, align={middle,nothyphenated,verytolerant}, page=no, before={\blank[2em, force]}, after={\blank[4em]}]
@@ -15,7 +17,7 @@
 \setupindenting[no]
 
 \def\MySpace{2em}
-\noheaderandfooterlines
+
 \startalignment[middle]
 
 %\blank[1.5em, force]
@@ -53,10 +55,9 @@ geboren op 12 juni 1987\crlf
 te Oud Gastel
 \stopalignment
 
-\page
+\stopstandardmakeup
 
-\noheaderandfooterlines
-%\setupinterlinespace[medium]
+\startstandardmakeup[page=no, top=]
 
 {\bf Promotor:}\crlf
 Prof. Dr. A.M.J.J. Bonvin
@@ -72,4 +73,6 @@ Prof. Dr. A.M.J.J. Bonvin
 %\nop Dr. Maya Topf
 %\nop Dr. Friedrich Foerster
 %\stopitemize
+\stopstandardmakeup
+
 \stopcomponent
