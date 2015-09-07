@@ -1,0 +1,36 @@
+\startuseMPgraphic{thumbindex}
+    path chap_frame ;
+    pair pos;  
+    picture labeltext ;
+  
+    nchapters := 8;
+    curr_chap := \somenamedheadnumber{Chapter}{current} ; 
+  
+    % only do it for proper chapters
+    if (curr_chap > 0):
+           marginwidth := RightMarginWidth ;
+           skip   := TextHeight * (curr_chap - 1) / nchapters ;
+           height := TextHeight / nchapters ;
+           width  := marginwidth * 0.75;
+           offset := marginwidth - width;
+           labeltext := textext("\ssbfd \thumbindexfontcolor \getmarking[chapternumber]");
+           chap_frame := fullsquare xyscaled(width, height) ;
+
+           if (PageNumber mod 2) = 1:
+               pos := ulcorner Field[Text][RightMarginSeparator] -
+                      ulcorner chap_frame - (-offset, skip);
+               % take care of bleeding
+               chap_frame := chap_frame rightenlarged 3mm;
+           else:
+               pos := urcorner Field[Text][LeftMarginSeparator] -
+                      urcorner chap_frame - (offset, skip);
+               % take care of bleeding
+               chap_frame := chap_frame leftenlarged 3mm;
+           fi;
+
+            StartPage;
+                fill chap_frame shifted pos withcolor \MPcolor{thumbindexcolor};
+                draw labeltext shifted pos;
+            StopPage;
+    fi;
+\stopuseMPgraphic

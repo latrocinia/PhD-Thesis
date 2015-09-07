@@ -1,11 +1,5 @@
 \startcomponent titlepage
 
-\definehead[tochead][Chapter]
-\setuphead[tochead][sectionnumber=no, before=]
-
-\starttochead[title={Table of contents}]
-\setuplabeltext[chapter={Chapter~}]
-\placelist[Chapter][criterium=all, label=yes, width=6em, numberstyle=bold, aligntitle=yes]
-\stoptochead
+\completecontent[criterium=all]
 
 \stopcomponent

@@ -4,23 +4,22 @@
 
 \product thesis
 
-\startstandardmakeup[doublesided=no, align=middle, top=]
 
 \definehead[ThesisEnglishTitle][title]
 \definehead[ThesisDutchTitle][title]
-\setuphead[ThesisEnglishTitle][style=\tfb\bf\ss, align={middle,nothyphenated,verytolerant}, page=no, before={\blank[2em, force]}, after={\blank[4em]}]
-\setuphead[ThesisDutchTitle][style=\tfb\bf\ss, align={middle,nothyphenated,verytolerant}, page=no, before={\blank[1.5em, force]}, after={\blank[0.5em]}]
-
+\setuphead[ThesisEnglishTitle][style=\tfb\bf\ss, 
+    align={middle,nothyphenated,verytolerant}, 
+    page=no, before={\blank[2em, force]}, after={\blank[6em]}]
+\setuphead[ThesisDutchTitle][style=\tfb\bf\ss, 
+    align={middle,nothyphenated,verytolerant}, 
+    page=no, before=, after={\blank[0.5em]}]
 \defineparagraphs[TitlePageParagraph][n=1]
-\setupparagraphs[TitlePageParagraph][each][width=0.9\textwidth, align={last, nothyphenated}]
-
-\setupindenting[no]
+\setupparagraphs[TitlePageParagraph][each]
+    [width=0.9\textwidth, align={last, nothyphenated}]
 
 \def\MySpace{2em}
 
-\startalignment[middle]
-
-%\blank[1.5em, force]
+\startstandardmakeup[doublesided=no, align=middle, top=, footerstate=normal]
 
 \ThesisEnglishTitle{On Explorative and Integrative Modeling of Biomolecular Complexes}
 
@@ -53,11 +52,10 @@ door
 
 geboren op 12 juni 1987\crlf 
 te Oud Gastel
-\stopalignment
 
 \stopstandardmakeup
 
-\startstandardmakeup[page=no, top=]
+\startstandardmakeup[page=no, top=, footerstate=normal]
 
 {\bf Promotor:}\crlf
 Prof. Dr. A.M.J.J. Bonvin

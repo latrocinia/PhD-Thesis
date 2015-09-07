@@ -6,30 +6,30 @@
 \usemodule[units]
 \usemodule[bibtex]
 
-\definemode[thesis][keep]
-\definemode[draft][keep]
-
 \definepapersize[ThesisSize][width=17cm, height=24cm]
 
 \setupinteraction[state=start]
-%\startmode[thesis]
 \setuppapersize[ThesisSize]
 \setuplayout[location=middle, width=13.0cm, height=22cm, 
              topspace=1.0cm, bottomspace=1.0cm, margin=2.0cm, 
              header=1.0cm, footer=1.0cm]
-%\stopmode
-
-%\startmode[draft]
-%\setuppapersize[A4]
-%\setupinterlinespace[big]
-%\stopmode
 \setupindenting[yes, big, first]
 
+% page numbering
 \setuppagenumbering[alternative=doublesided, location=right]
+\setuppagenumber[number=5]
+
+% colors
+\definecolor[tableheadcolor][darkgray]
+\definecolor[tableoddrow][gray]
+\definecolor[tableheadfontcolor][white]
+\definecolor[thumbindexcolor][darkgray]
+\definecolor[thumbindexfontcolor][white]
 
 % fontstyles
-\definealternativestyle[table:head][\white\bf\tfx\ss]
+\definealternativestyle[table:head][\tableheadfontcolor\bf\tfx\ss]
 \definealternativestyle[table:body][\tfx\ss]
+\definealternativestyle[style:chapter][\tfb\bf]
 \definealternativestyle[style:section][\tfa\bf\ss]
 \definealternativestyle[style:subsection][\tf\bf\ss]
 \definealternativestyle[style:subsubsection][\tf\it\ss]
@@ -37,83 +37,29 @@
 \definealternativestyle[style:reference][\ss\tfx]
 \definealternativestyle[style:dedication][\tf\it\ss]
 
-% colors
-\definecolor[tableheadcolor][darkgray]
-\definecolor[tableoddrow][gray]
-\definecolor[thumbindexcolor][darkgray]
-\definecolor[thumbindexfontcolor][white]
-
-
-\startuseMPgraphic{thumbindex}
-    path chap_frame ;
-    pair pos;  
-    picture labeltext ;
-  
-    nchapters := 8;
-    curr_chap := \somenamedheadnumber{Chapter}{current} ; 
-  
-    % only do it for proper chapters
-    if (curr_chap > 0):
-           marginwidth := RightMarginWidth ;
-           skip   := TextHeight * (curr_chap - 1) / nchapters ;
-           height := TextHeight / nchapters ;
-           width  := marginwidth * 0.75;
-           offset := marginwidth - width;
-           labeltext := textext("\ssbfd \thumbindexfontcolor \getmarking[chapternumber]");
-           chap_frame := fullsquare xyscaled(width, height) ;
-
-           if (PageNumber mod 2) = 1:
-               pos := ulcorner Field[Text][RightMarginSeparator] -
-                      ulcorner chap_frame - (-offset, skip);
-               % take care of bleeding
-               chap_frame := chap_frame rightenlarged 3mm;
-           else:
-               pos := urcorner Field[Text][LeftMarginSeparator] -
-                      urcorner chap_frame - (offset, skip);
-               % take care of bleeding
-               chap_frame := chap_frame leftenlarged 3mm;
-           fi;
-
-            StartPage;
-                fill chap_frame shifted pos withcolor \MPcolor{thumbindexcolor};
-                draw labeltext shifted pos;
-            StopPage;
-    fi;
-\stopuseMPgraphic
-
-% place thumb index
-\defineoverlay[thumbindex][\useMPgraphic{thumbindex}]
-\setupbackgrounds[page][background=thumbindex]
-
 % heads
-% numbered
-\definehead[Chapter][chapter]
-\definehead[Section][section]
-\definehead[Subsection][subsection]
-\definehead[Subsubsection][subsubsection]
-% unnumbered
-
 \setupheads[indentnext=yes]
-\setupheads[align={flushleft,nothyphenated,verytolerant}, 
+\setupheads[align={flushleft,nothyphenated},
     tolerance=verytolerant]
+\setuphead[chapter][indentnext=no]
 
-% chapter page
-\define[2]\MyChapter
-    {\framed[frame=off, width=broad, align=flushleft]{#1 \blank[1em] #2}}
-\setuplabeltext[chapter=Chapter~]
-\setuphead[Chapter][command=\MyChapter, style=\tfb\bf,
+% chapter level
+\definehead[FrontmatterHead][chapter][style=style:chapter]
+\definehead[Chapter][chapter]
+\definehead[BackmatterHead][chapter][style=style:chapter]
+% section level
+\definehead[Section][section][style=style:section]
+\definehead[Subject][subject][style=style:section, incrementnumber=no]
+% sub-level
+\definehead[Subsection][subsection][style=style:subsection]
+\definehead[Subsubject][subsubject][style=style:subsection, incrementnumber=no]
+% subsub-level
+\definehead[Subsubsection][subsubsection]
+    [number=no, incrementnumber=no, style=style:subsubsection]
+
+% Chapter head
+\setuphead[Chapter][command=\MyChapter, style=style:chapter,
     indentnext=no, before={\blank[5em, force]}, after={\blank[4em]}]
-
-% other heads
-\setuphead[Section][style=style:section]
-\setuphead[Subsection][style=style:subsection]
-\setuphead[Subsubsection][number=no, incrementnumber=no, style=style:subsubsection]
-
-% unnumber sections
-\definehead[Subject][Section]
-\definehead[Subsubject][Subsection]
-\setuphead[Subject][number=no, incrementnumber=no]
-\setuphead[Subsubject][number=no, incrementnumber=no]
 
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
@@ -140,6 +86,7 @@
     style=table:head]
 
 % labeltexts
+\setuplabeltext[chapter={Chapter~}]
 \setuplabeltext[sfigure={Figure S}]
 \setuplabeltext[stable={Table S}]
 \setuplabeltext[slfigure={Figure S}]
@@ -154,8 +101,8 @@
 \setupcaption[ltable][width=0.9\textheight]
 \setupcaption[slfigure][width=0.9\textheight]
 \setupcaption[sltable][width=0.9\textheight]
-\define[2]\caption{{\bf #1} #2}
 
+% footnotes
 \setupfootnotes[width=0.9\textwidth, rule=off]
 
 % references
@@ -180,10 +127,16 @@
 % shortcuts
 \define \disvis {\emph{disvis}}
 \define\powerfit{{\emph powerfit}}
+\define[2]\caption{{\bf #1} #2}
+\define[2]\MyChapter
+    {\framed[frame=off, width=broad, align=flushleft]{#1 \blank[1em] #2}}
 
+% table of contents
+\setupcombinedlist[content][list={FrontmatterHead, Chapter, BackmatterHead}]
+\setupheadtext[content={\tfb\bf Table of contents}]
+\setuplist[Chapter][width=6em, label=yes, numberstyle=bold]
 
-% bibtex
-
+% references and bibtex
 \setuppublications[alternative=apa, refcommand=num, sorttype=cite, 
         criterium=cite, numbering=yes]
 \setuppublicationlist[style=style:reference]
@@ -211,4 +164,10 @@
     \inserttitle{\bgroup }{ \egroup}{}
     \insertbiburl{}{.}{}%%
     }
+
+% place thumb index
+\input layers/thumbindex
+\defineoverlay[thumbindex][\useMPgraphic{thumbindex}]
+\setupbackgrounds[page][background=thumbindex]
+
 \stopenvironment
