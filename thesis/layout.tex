@@ -44,9 +44,9 @@
 \setuphead[chapter][indentnext=no]
 
 % chapter level
-\definehead[FrontmatterHead][chapter][style=style:chapter]
+\definehead[FrontmatterHead][chapter][style=style:chapter, number=no]
 \definehead[Chapter][chapter]
-\definehead[BackmatterHead][chapter][style=style:chapter]
+\definehead[BackmatterHead][chapter][style=style:chapter, number=no]
 % section level
 \definehead[Section][section][style=style:section]
 \definehead[Subject][subject][style=style:section, incrementnumber=no]
@@ -63,6 +63,31 @@
 
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
+\setupsynonyms[abbreviation][criterium=all]
+\abbreviation{Cryo-EM}{Cryo-electron microsopy}
+\abbreviation{CXMS}{Chemical cross-linking coupled with MS}
+\abbreviation[ND]{{\it N}D}{{\it N}-dimensional}
+\abbreviation{AIC}{Average interactions per complex}
+\abbreviation{NMR}{Nuclear magnetic resonance}
+\abbreviation{SAXS}{Small-angle X-ray scattering}
+\abbreviation{FFT}{Fast Fourier transform}
+\abbreviation{LCC}{Local cross-correlation}
+\abbreviation{CW}{Core-weighted}
+\abbreviation{L}{Laplace}
+\abbreviation{GPU}{Graphics processing unit}
+\abbreviation{CPU}{Central processing unit}
+\abbreviation{DNA}{Deoxyribonucleic acid}
+\abbreviation{RNA}{Ribonucleic acid}
+\abbreviation{CSP}{Chemical shift perturbation}
+\abbreviation{RDC}{Residual dipolar coupling}
+\abbreviation{RMSD}{Root-mean-square deviation}
+\abbreviation{ADH}{Adipic acid dihydrazide}
+\abbreviation{ZL}{Zero-length}
+\abbreviation{BS3}{Bissulfosuccinimidyl suberate}
+\abbreviation{PPDB}{Protein-protein docking benchmark}
+\abbreviation{AIR}{Ambiguous interaction restraint}
+\abbreviation{MS}{Mass spectrometry}
+
 
 % figures
 \setupexternalfigures[factor=broad, directory={chapter6/figures}]
@@ -103,7 +128,8 @@
 \setupcaption[sltable][width=0.9\textheight]
 
 % footnotes
-\setupfootnotes[width=0.9\textwidth, rule=off]
+\setupfootnotes[rule=off, before=]
+\setupnotation[footnote][numberconversion=characters]
 
 % references
 \definereferenceformat[infigure][left=Figure ]
