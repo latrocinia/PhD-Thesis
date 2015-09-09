@@ -5,12 +5,16 @@
 \startfrontmatter
 \component titlepage
 \component dedication
+\setuppagenumber[number=5]
+\setupuserpagenumber[numberconversion=romannumerals]
 \component table-of-contents
 \component list-of-abbreviations
 \component motto
 \stopfrontmatter
 
 \startbodymatter
+\setuppagenumber[number=1]
+\setupuserpagenumber[numberconversion=numbers]
 \component chapter1
 \component chapter2
 \component chapter3

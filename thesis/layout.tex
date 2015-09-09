@@ -17,7 +17,6 @@
 
 % page numbering
 \setuppagenumbering[alternative=doublesided, location=right]
-\setuppagenumber[number=5]
 
 % colors
 \definecolor[tableheadcolor][darkgray]
@@ -44,7 +43,8 @@
 \setuphead[chapter][indentnext=no]
 
 % chapter level
-\definehead[FrontmatterHead][chapter][style=style:chapter, number=no]
+\definehead[TocHead][title][style=style:chapter, page=yes]
+\definehead[FrontmatterHead][chapter][style=style:chapter, number=no, page=yes]
 \definehead[Chapter][chapter]
 \definehead[BackmatterHead][chapter][style=style:chapter, number=no]
 % section level
@@ -63,10 +63,10 @@
 
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
-\setupsynonyms[abbreviation][criterium=all]
+\setupsynonyms[abbreviation][criterium=all, style=\ss]
 \abbreviation{Cryo-EM}{Cryo-electron microsopy}
 \abbreviation{CXMS}{Chemical cross-linking coupled with MS}
-\abbreviation[ND]{{\it N}D}{{\it N}-dimensional}
+\abbreviation[ND]{\emph{N}D}{\emph{N}-dimensional}
 \abbreviation{AIC}{Average interactions per complex}
 \abbreviation{NMR}{Nuclear magnetic resonance}
 \abbreviation{SAXS}{Small-angle X-ray scattering}
@@ -159,7 +159,6 @@
 
 % table of contents
 \setupcombinedlist[content][list={FrontmatterHead, Chapter, BackmatterHead}]
-\setupheadtext[content={\tfb\bf Table of contents}]
 \setuplist[Chapter][width=6em, label=yes, numberstyle=bold]
 
 % references and bibtex
