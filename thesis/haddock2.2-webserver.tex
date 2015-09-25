@@ -3,11 +3,12 @@
 \product thesis
 
 \environment layout
+
 \setupexternalfigures[factor=broad, directory=haddock2.2-webserver/figures]
 \input haddock2.2-webserver/figures
 
-\Chapter[chapter:haddock2.2]{The HADDOCK2.2 webserver: User-friendly integrative modeling of
-biomolecular complexes}
+\startChapter[title={The HADDOCK2.2 web server: User-friendly integrative
+modeling of biomolecular complexes}, reference=chapter:haddock2.2]
 
 
 \Section{Introduction}
@@ -22,10 +23,10 @@ high-resolution methods (X-ray crystallography and NMR spectroscopy) is not
 trivial, as each has its own limitations (e.g. protein flexibility, size,
 strength of the interaction). Considering the magnitude of the interactome,
 complementary high-throughput methods such as computational docking are
-necessary if we aim to close the structure gap \cite[Petrey2014]. The goal of protein-protein
-docking is to predict the structure of a complex starting from the individual
-structures of its components \cite[Rodrigues2014], which can either be experimentally determined
-or predicted \cite[Rodrigues2013].
+necessary if we aim to close the structure gap \cite[Petrey2014]. The goal of
+protein-protein docking is to predict the structure of a complex starting from
+the individual structures of its components \cite[Rodrigues2014], which can
+either be experimentally determined or predicted \cite[Rodrigues2013].
  
 Despite continuous advances in the field, the accuracy of ab initio docking –
 without using any experimental restraints – remains generally low
@@ -45,30 +46,30 @@ experiments (Critical Assessment of Protein Interaction) \cite[Janin2005,
 Lensink2013], as well as in the number of structures deposited (>120) in the
 Protein Data Bank (PDB), which were calculated using our software.
 
-Five years ago, we introduced the HADDOCK web server to provide a
-user-friendly interface to the software and streamline its usage by
-non-expert users in the structural biology field \cite[deVries2010]. Shortly after, it was
-updated to handle multi-body docking \cite[Karaca2010]. The development of new and
+Five years ago, we introduced the HADDOCK web server to provide a user-friendly
+interface to the software and streamline its usage by non-expert users in the
+structural biology field \cite[deVries2010]. Shortly after, it was updated to
+handle multi-body docking \cite[Karaca2010]. The development of new and
 improved protocols and the inclusion of additional sources of restraints
-culminated in the recently released version 2.2 of the software, followed by
-an update of the web server interfaces. Throughout the next section, we will
-provide an overview of the newly updated HADDOCK web server, accessible at
-\from[url:haddock2.2], which is freely accessible to non-profit users upon
-registration, and discuss the most relevant additions. We conclude by
+culminated in the recently released version 2.2 of the software, followed by an
+update of the web server interfaces. Throughout the next section, we will
+provide an overview of the newly updated HADDOCK web server and discuss the
+most relevant additions. The server is freely accessible at
+\from[url:haddock2.2] to non-profit users upon registration. We conclude by
 presenting usage statistics of the server to demonstrate the usefulness and
 power of providing easy and free access to scientific software.
 
 \Section{Overview and advances}
 
 The HADDOCK web server was created to facilitate the use of our docking
-software, by removing the burden of its installation and setup, as well as
-by providing validation routines for input data and options. In addition,
-since HADDOCK runs are computationally demanding, the web server offers the
-users access to sufficient resources - our local cluster(s) - to complete
-their runs within a few hours. A grid-enabled version of the server can be
-accessed via the WeNMR web site (\from[url:wenmr]) \cite[Wassenaar2012], which uses resources
-provided by the European Grid Initiative (EGI) and the associated National
-Grid Initiatives (NGIs). This setup, which currently handles most
+software, by removing the burden of its installation and setup, as well as by
+providing validation routines for input data and options. In addition, since
+HADDOCK runs are computationally demanding, the web server offers the users
+access to sufficient resources - our local cluster(s) - to complete their runs
+within a few hours. A grid-enabled version of the server can be accessed via
+the WeNMR web site (\from[url:wenmr]) \cite[Wassenaar2012], which uses
+resources provided by the European Grid Initiative (EGI) and the associated
+National Grid Initiatives (NGIs). This setup, which currently handles most
 submissions, provides more than 110.000 CPU cores distributed over 41 sites
 worldwide (see \from[url:egi]).
 
@@ -88,46 +89,48 @@ nucleosome complex -- a recent CAPRI target.
 
 The Expert interface builds on the Easy interface and allows the user to
 manually specify the protonation state of each histidine residue in the
-proteins, which is otherwise determined automatically with MolProbity \cite[Chen2010].
-Also, it offers control over which regions of the molecules are semi-flexible
-and fully flexible segments, which has an impact during the refinement stage of
-the docking. Lastly, the user is given the option to define the charge state of
-the N- and C-terminus of the protein. The Expert interface also provides a
-Distance Restraints section, where the user has the option to upload
-user-defined ambiguous and unambiguous restraints files and/or use
+proteins, which is otherwise determined automatically with MolProbity
+\cite[Chen2010].  Also, it offers control over which regions of the molecules
+are semi-flexible and fully flexible segments, which has an impact during the
+refinement stage of the docking. Lastly, the user is given the option to define
+the charge state of the N- and C-terminus of the protein. The Expert interface
+also provides a Distance Restraints section, where the user has the option to
+upload user-defined ambiguous and unambiguous restraints files and/or use
 center-of-mass restraints, useful for blind or ab initio docking when no other
 information is available, but also to ensure compactness of the generated
 models. The center-of-mass restraints are automatically generated by
 calculating the dimensions of each molecule along the x, y and z-axis (\m{d_x,
 d_y, d_z}) and summing the average of the two smallest components per molecule.
 The resulting distance is used to define a restraint between the center of mass
-of each subunit with an additional upper bound corrections of 1\Angstrom\ \cite[Karaca2013]. In
-addition, the Expert interface gives control over the Sampling Parameters,
-including namely the number of structures to generate at each stage and whether
-or not to perform solvated docking \cite[vanDijk2006, Kastritis2013, vanDijk2013]. Finally, it exposes the
-Clustering Parameters that define the clustering algorithm and cutoff. In
-version 2.2, in addition to RMSD-based clustering, there is the option of using
-the Fraction of Common Contacts (FCC) clustering algorithm \cite[Rodrigues2012], which is
+of each subunit with an additional upper bound corrections of 1\Angstrom\
+\cite[Karaca2013]. In addition, the Expert interface gives control over the
+Sampling Parameters, including namely the number of structures to generate at
+each stage and whether or not to perform solvated docking \cite[vanDijk2006,
+Kastritis2013, vanDijk2013]. Finally, it exposes the Clustering Parameters that
+define the clustering algorithm and cutoff. In version 2.2, in addition to
+RMSD-based clustering, there is the option of using the Fraction of Common
+Contacts (FCC) clustering algorithm \cite[Rodrigues2012], which is
 significantly faster and especially useful for symmetric complexes.
 
-The Guru interface gives full access and control to \textasciitilde500 parameters, nearly all
-that are available in HADDOCK. The Distance Restraints section now offers a new
-radius of gyration restraint, information that can be extracted, for example,
-from SAXS experiments. Non-crystallographic Symmetry Restraints and Symmetry
-Restraints are also available at this level and have been extended to handle
-C4- and D2-symmetries in addition to the already available C2-, C3- and
-C5-symmetries. There are additional sections for other types of NMR-based
-restraints, such as Residual Dipolar Couplings \cite[vanDijk2005], Relaxation Anisotropy
-\cite[vanDijk2006b], and the recently added Pseudo Contact Shifts \cite[Schmitz2011]. These latter require a
-tensor distance restraints file and the definition of the rhombic and axial
-components of the anisotropic tensor. Besides the restraints, all the energy
-evaluations, scoring functions and analysis parameters can be tweaked; advanced
-parameters for the sampling protocols are also available at this level,
-offering a greater degree of control, for example, on the extent of each
-refinement stage. There are also dedicated options to the solvated docking
-protocol, which now uses by default propensities based on the Kyte-Doolittle
-hydrophobicity scale, as these have been shown to improve the protocol \cite[Kastritis2013].
-The original statistical-based propensities \cite[vanDijk2006], recently expanded to include
+The Guru interface gives full access and control to \textasciitilde500
+parameters, nearly all that are available in HADDOCK. The Distance Restraints
+section now offers a new radius of gyration restraint, information that can be
+extracted, for example, from SAXS experiments. Non-crystallographic Symmetry
+Restraints and Symmetry Restraints are also available at this level and have
+been extended to handle C4- and D2-symmetries in addition to the already
+available C2-, C3- and C5-symmetries. There are additional sections for other
+types of NMR-based restraints, such as Residual Dipolar Couplings
+\cite[vanDijk2005], Relaxation Anisotropy \cite[vanDijk2006b], and the recently
+added Pseudo Contact Shifts \cite[Schmitz2011]. These latter require a tensor
+distance restraints file and the definition of the rhombic and axial components
+of the anisotropic tensor. Besides the restraints, all the energy evaluations,
+scoring functions and analysis parameters can be tweaked; advanced parameters
+for the sampling protocols are also available at this level, offering a greater
+degree of control, for example, on the extent of each refinement stage. There
+are also dedicated options to the solvated docking protocol, which now uses by
+default propensities based on the Kyte-Doolittle hydrophobicity scale, as these
+have been shown to improve the protocol \cite[Kastritis2013].  The original
+statistical-based propensities \cite[vanDijk2006], recently expanded to include
 nucleotides \cite[vanDijk2013], can still be selected via a dropdown menu.
 
 \placefigure[top][fig:haddock2.2-output]
@@ -145,21 +148,28 @@ Molecule Interaction Matrix section. This new addition displays a table with
 scaling factors to adjust the interaction forces between different subunits,
 allowing molecules to become invisible to each other during the docking, which
 is useful in cases where multiple binding modes are required to satisfy the
-experiment data (see for example \cite[Escobar-Cabrera2011]). The web server also offers a File
-Upload Interface to allow the user to upload a run parameter file, created upon
-successful validation and submission to the queue, and thus easily redo a
-docking run or re-run it with slight changes in the parameters. Finally,
-together with the creation of the Multi-body Interface, we setup an interface
-called Gentbl to facilitate the creation of custom ambiguous interaction
-restraint files between any number of molecules.
+experiment data (see for example \cite[Escobar-Cabrera2011]). 
+The use of ambiguous interaction restraints within this interface requires the
+user to upload a restraints table file in the Distance Restraints section This
+requirement of uploading distance restraint files instead of supplying residue
+lists as in the other interfaces was meant to make users think carefully about
+their system since in multi-body docking multiple interfaces will be defined
+that might not all be supposed to interact. To facilitate the creation of
+custom ambiguous interaction restraint files between any number of molecules,
+an interface called Gentbl was created. Finally, the web server also offers a
+File Upload Interface to allow the user to upload a run parameter file, created
+upon successful validation and submission to the queue, and thus easily redo a
+docking run or re-run it with slight changes in the parameters.
 
 At submission time, once the input data have been properly validated, the
-server offers the option to download a parameter file (also provided with the
-results). Users are encouraged to save this file as it contains all required
-input data and settings to repeat the docking, as recommended in the “Outcome
-of the First wwPDB Hybrid/Integrative Methods Task Force Workshop”
-(Recommendation 1) \cite[Sali2015]. After a successful docking run, the user
-will receive an e-mail redirecting him/her to the results page (see
+server offers the option to download a parameter file, and provides a link to
+the results page, which is also emailed to the user. Users are encouraged to
+save the parameter file since it contains all required input data and settings
+to reproduce the docking, as recommended in the “Outcome of the First wwPDB
+Hybrid/Integrative Methods Task Force Workshop” (Recommendation 1)
+\cite[Sali2015]. The results page allows monitoring of the progress of the
+docking run. After a successful docking run, the user will receive another
+e-mail redirecting him/her to the updated results page (see
 \infigure[fig:haddock2.2-output] for an excerpt of presented results). The page
 indicates how many structures of the water-refined models could be clustered,
 and lists the clusters in the order of their HADDOCK score. For each cluster,
@@ -177,9 +187,36 @@ scoring structure, together with cluster averages and their spreads.
 {\getbuffer[cap:haddock2.2-usage-statistics]}
 {\externalfigure[fig:haddock2.2-usage-statistics]}
 
+
 \Section{Usage statistics}
 
-Since its opening in June 2008, the HADDOCK webserver has seen a sustained
+Since its opening in June 2008, the HADDOCK web server has seen a sustained
+increase in the number of registrations to reach over 6000 registered users to
+date distributed all over the world
+(\infigure[fig:haddock2.2-usage-statistics]). More than 108,000 runs have been
+processed, 28\% of which have run on EGI grid resources. This percentage has
+increased to 75\% for the HADDOCK2.2 server submission. An overview of the
+number of runs processed per month with their distribution over local and grid
+resources is shown in \infigure[fig:haddock2.2-usage-statistics]. Since the
+launch of the HADDOCK2.2 web server in March 2015, an increased fraction of
+runs are handled by the new 2.2 portal.  Statistics over the last year (since
+January 2014) indicate that the portal is processing on average 75 docking runs
+per day. The execution wall time averaged over both local cluster and grid
+resources is around 16 hours per HADDOCK run, as approximately 75 runs are
+handled per day with up to 50 jobs running in parallel (and a maximum of 5
+concurrent jobs per user). The exact run time depends on the size of the system
+being docked and the parameter settings and can vary between half an hour and
+several days. The server home page reports both the number of running and
+pending jobs, allowing users to get an estimate of the waiting time. A majority
+of the docking runs are dealing with protein-protein and protein-peptide
+docking (\textasciitilde61\%), \textasciitilde19\% correspond to
+protein-nucleic acids systems and quite a significant fraction
+(\textasciitilde20\%) is dealing with protein-small molecule docking (both
+small ligand and oligosaccharides). These numbers demonstrate the popularity
+and widespread usage (both in terms of geographic distribution and type of
+systems being studied) of our HADDOCK web server.
+
+Since its opening in June 2008, the HADDOCK web server has seen a sustained
 increase in the number of registrations to reach over 5500 registered users to
 date distributed all over the world
 (\infigure[fig:haddock2.2-usage-statistics]). More than 103,000 runs have been
@@ -187,22 +224,25 @@ processed, 28\percent\ of which have run on EGI grid resources. This percentage
 has increased to 75\percent\ for the HADDOCK2.2 server submission. An overview
 of the number of runs processed per month with their distribution over local
 and grid resources is shown in \infigure[fig:haddock2.2-usage-statistics].
-Since the launch of the HADDOCK2.2 webserver in March 2015, an increased
+Since the launch of the HADDOCK2.2 web server in March 2015, an increased
 fraction of runs are handled by the new 2.2 portal.  Statistics over the last
 year (since January 2014) indicate that the portal is processing on average 75
 docking runs per day. A majority of these runs are dealing with protein-protein
-and protein-peptide docking (\textasciitilde61\percent), \textasciitilde19\percent\ correspond to
-protein-nucleic acids systems and quite a significant fraction (\textasciitilde20\percent) is
-dealing with protein-small molecule docking (both small ligand and
-oligosaccharides). These numbers demonstrate the popularity and widespread
-usage (both in terms of geographic distribution and type of systems being
-studied) of our HADDOCK web server.
+and protein-peptide docking (\textasciitilde61\percent),
+\textasciitilde19\percent\ correspond to protein-nucleic acids systems and
+quite a significant fraction (\textasciitilde20\percent) is dealing with
+protein-small molecule docking (both small ligand and oligosaccharides). These
+numbers demonstrate the popularity and widespread usage (both in terms of
+geographic distribution and type of systems being studied) of our HADDOCK web
+server.
 
 \startSubject[title=Notes]
 This Chapter is based on: G.C.P. van Zundert, J.P.G.L.M. Rodrigues, M. Trellet, C.
 Schmitz, P.L. Kastritis, E. Karaca, A.S.J. Melquiond, M. van Dijk, S.J. de
-Vries and A.M.J.J. Bonvin. The HADDOCK2.2 webserver: User-friendly integrative
-modeling of biomolecular complexes. J. Mol. Biol., submitted (2015).
+Vries and A.M.J.J. Bonvin. The HADDOCK2.2 web server: User-friendly integrative
+modeling of biomolecular complexes. J. Mol. Biol., in press (2015).
 \stopSubject
+
+\stopChapter
 
 \stopcomponent
