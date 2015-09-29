@@ -6,32 +6,32 @@
 The remarkable diversity and complexity of life in all its facets is a source
 of constant wonder and amazement all through the history of humankind. Even
 though every unique individual has their own experience and interpretation on
-how to appraoch life, the scientific inquiry of modern man has resulted in a
+how to approach life, the scientific inquiry of modern man has resulted in a
 paradigm that life is organized on the molecular level, where the typical
-dimension is that of the angstrom (\m{10^{-10}}m), resulting in an intense
-interest in the molecules of life. With the discovery of the double-helix
-structure of DNA, the polymer that holds the genetic code, as a prime example,
-it is postulated that function follows structure, i.e. knowledge of the precise
-three-dimensional (3D) structure of large biomolecules gives an indication of
-their function. Maybe more important, having precise knowledge of the
-biomolecular structure holds the promise of rational drug design by building
-medicinal molecules that specifically interact with particular patches at the
-interface.
+dimension is that of the angstrom (\m{10^{-10}}m). This insight has resulted in
+an intense interest in the molecules of life. With the discovery of the
+double-helix structure of DNA, the polymer that holds the genetic code, as a
+prime example, it is postulated that function follows structure, i.e. knowledge
+of the precise three-dimensional structure of large biomolecules gives an
+indication of their function. Maybe more important, having precise knowledge of
+the biomolecular structure holds the promise of rational drug design by
+designing biologically active molecules that specifically interact with
+particular patches at the interface.
 
 X-ray crystallography and NMR spectroscopy are the classical experimental
 methods that are capable of elucidating the atomic arrangement of large
 biomolecules, such as proteins. The importance of proteins in the cell cannot
 be understated: they are the main actors in almost all cellular processes,
-ranging from muscle contraction to the propagation of nerve impulses.
-Currently, more than 100,000 structures have been solved and deposited in the
-Protein DataBank (\from[url:pdb]). However, the vast majority of the structures
-are single proteins, while proteins typically perform their function through
-interaction with other biomolecules, resulting in larger biomolecular
-complexes. As the difficulty of solving a structure increases exponentially
-with the size of the complex, and the number of biomolecular complexes is
-estimated to be two orders of magnitude bigger than the number of inidividual
-proteins, computational methods are required to close the structure knowledge
-gap.
+ranging from muscle contraction to the building of new other proteins through
+the ribosome.  Currently, more than 100,000 structures have been solved and
+deposited in the Protein DataBank (\from[url:pdb]). However, the vast majority
+of the structures are single proteins, while proteins typically perform their
+function through interaction with other biomolecules, resulting in large
+biomolecular complexes. As the difficulty of solving a structure increases
+exponentially with the size of the complex, and the number of biomolecular
+complexes is estimated to be two orders of magnitude bigger than the number of
+individual proteins, computational methods are required to close the structure
+knowledge gap.
 
 Integrative modeling is a particular approach to computationally predict or
 model the structure of a biomolecular complex by combining all experimental
@@ -48,7 +48,7 @@ orthogonal information.
 
 In \inchapter[chapter:introduction] I layout a more technical introduction into
 integrative modeling and the experimental data used. I introduce the major
-softwares today that offer a wide array of integrative methods for
+softwares used today that offer a wide array of integrative methods for
 macromolecular modeling building, such as our in-house data-driven docking
 software HADDOCK. In addition, I propose a new direction, that of explorative
 modeling, where the emphasis is put on quantifying and preferably visualizing
@@ -60,17 +60,18 @@ biomolecular structures in low-resolution cryo-EM data. PowerFit performs a
 systematic 6 dimensional search of the 3 translational and 3 rotational degrees
 of freedom to find local cross-correlation optima. In addition, it introduces
 the sensitive core-weighted local cross-correlation, to further extend the
-applicable resolution range for successful fitting. PowerFit is a first step
-into combining or integrating X-ray crystallography cryo-EM data.
+applicable resolution range for successful fitting. PowerFit is a first step in
+this thesis into combining or integrating X-ray crystallography with cryo-EM
+data.
 
 Next, in \inchapter[chapter:image-pyramids] I quantify the resolution
 requirements for successfully rigid-body fitting a biomolecular structure of a
 particular size in a cryo-EM map. I furthermore unambiguously show that the
-core-weighted laplacian-enhaced local cross-correlation function is the best
-performing score. Finally, since the resolution limits for successful fitting
-are often remarkably lower than the resolution of current cryo-EM data, these
-limits can leveraged by using the concept of multi-scale image pyramids, to
-significantly accelerate the fitting performance.
+core-weighted Laplacian-enhaced local cross-correlation function is the best
+performing score. Finally, since the resolution limits for successful fitting a
+subunit are often remarkably lower than the resolution of current cryo-EM data,
+these limits can leveraged by using the concept of multi-scale image pyramids,
+to significantly accelerate the fitting performance.
 
 \inchapter[chapter:haddock-em] discusses the incorporation of cryo-EM data in
 HADDOCK, resulting in a truly integrative modeling approach, allowing the
@@ -86,14 +87,14 @@ upgraded HADDOCK2.2 software. Notable features are the introduction of mixed
 molecule types, e.g. protein-DNA complexes, and additional NMR-based
 restraints, such as residual dipolar couplings and pseudocontact shifts,
 opening up new venues for macromolecular docking. The web server can be used
-free-of-charge for academic purposes at \from[url:haddock2.2] after
-registering. 
+free-of-charge for academic purposes at \from[url:haddock2.2] after simple
+registration. 
 
 Starting from \inchapter[chapter:disvis], I shift to the use of distance
 restraints in general and CXMS data in particular. I introduce another software
 package and program, named DisVis for Distance Visualization. DisVis quantifies
 and visualizes the information content of distance restraints through the
-concept of the accessable interaction space. It furthermore allows the
+concept of the accessible interaction space. It furthermore allows the
 identification of possible false-positive restraints, and shows whether all
 restraints are consistent. DisVis is also the effort into the newly defined
 area of explorative modeling.
@@ -101,7 +102,7 @@ area of explorative modeling.
 The approach is further extended in
 \inchapter[chapter:inferring-interface-residues], where explorative modeling is
 used to infer interface residues in a model-free approach. It is shown that
-interface residues can be prediced upto 90\% accurate for rigid binders. The
+interface residues can be predicted up to 90\% accurate for rigid binders. The
 resulting possible interface patches can subsequently used in HADDOCK again, to
 enhance the robustness of the CXMS data. 
 
@@ -113,15 +114,15 @@ computational science, to further computational modeling with diverse data. I
 also argue for a reinterpretation of structural models, as they should not be
 regarded as a single well-defined structure, but instead as a ensemble as is
 already the case in NMR. Especially in integrative modeling where models are
-typically generated using sparse data, the ensemble space is signicicantly more
+typically generated using sparse data, the ensemble space is significantly more
 diffuse. Explorative modeling and the concept of the countable accessible
 interaction space can help in easing the transition, while also quantifying the
 information content of the data.
 
 On the whole, this thesis provides new approaches and computational tools to
-help the structural biologist in interpretating the data coming from ever more
-diverse sources, and introduced a new vantage point to approch modeling through
-explorative modeling.
+help the structural biologist in interpreting the data coming from ever more
+diverse sources, and introduced a new vantage point to approach modeling
+through explorative modeling.
 
 \stopBackmatterHead
 

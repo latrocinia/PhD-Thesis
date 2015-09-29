@@ -37,7 +37,7 @@ biochemical method that provides inter-residue distance restraints
 \cite[Leitner2010, Rappsilber2011].  Multiple chemistries are being developed,
 making the approach more robust and increasing the information content
 \cite[Leitner2014].  Several software packages have already been developed for
-visualizing crosslinks, and calculating their path length \cite[Kahraman2011,
+visualizing cross-links, and calculating their path length \cite[Kahraman2011,
 Holding2013, Kosinski2015].  In the previous chapter we introduced DisVis to
 quantify and visualize the information content of distance restraints. However,
 interpreting multiple long-range distance restraints between components from a
@@ -46,7 +46,7 @@ simpler interpretation is gained if interface residues can be deduced from the
 data, as these map directly onto the individual chains and offer a
 straightforward prediction of the active site. In addition, in the development
 of protein-protein inhibitors, mainly the protein interfaces are of importance,
-and less so the precise complex's structure \cite[Sable2015]. Such interface
+and less so the precise complex' structure \cite[Sable2015]. Such interface
 information might be useful in complementing the cross-linking distance
 restraints, since the allowed distance ranges for the latter can be relatively
 wide (up to 30Å \cite[Merkley2014]).
@@ -68,7 +68,7 @@ are available in addition to models or structures of the components. The method
 is benchmarked on 90 complexes taken from the Protein-Protein Docking Benchmark
 4.0 (PPDB4.0) \cite[Hwang2010] for 3, 5 and 7 cross-links, respectively, with
 an upper distance restraint of 30Å, comparable to the information content that
-is provided by disuccinimidyl suberate (DSS) and and
+is provided by disuccinimidyl suberate (DSS) and
 bis-sulfosuccinimidyl-suberate (BS3) cross-links \cite[Merkley2014]. Finally,
 we show how this can be combined with HADDOCK to complement unambiguous
 distance restraints by derived interface information, benchmarking it on 24
@@ -121,12 +121,12 @@ consistent with at least \m{N} restraints.
 We benchmarked our approach on 90 complexes taken from the 
 PPDB4.0, of which 58 were classified as Easy, 14 as Medium, and 18 as Difficult.
 Virtual cross-links were calculated using a local version of the XWalk software
-\cite[Kahraman2011] on the bound complex. The virtual crosslinks were chosen
+\cite[Kahraman2011] on the bound complex. The virtual cross-links were chosen
 such that the solvent accessible surface (SAS) distance was shorter or equal
 than 34Å \cite[Kahraman2013], and the Euclidean distance smaller or equal than
 30Å \cite[Merkley2014] and the cross-linked residues should be present in both
 the bound and unbound proteins. The cross-links were randomly picked from the
-list of all virtual crosslinks using the SAS-distance dependent probability
+list of all virtual cross-links using the SAS-distance dependent probability
 distribution as was used by \citeauthor{Kahraman2013} to mimic experimental
 cross-link data: 0 -- 10Å 9\%; 10 -- 15Å 18\%; 15 -- 20Å 34\%; 20 -- 25Å 22\%;
 and 25 -- 34Å 16\%.
@@ -136,8 +136,8 @@ The solvent accessible residues were determined by running {\it naccess}
 solvent accessibility of the main or side chain of 50\% or higher were used as
 surface residues. DisVis runs were performed for each complex using 3, 5, and 7
 random restraints, respectively, with a 5.27° rotational sampling, and default
-values for the voxel spacing (1Å), maximum clashing volume (200Å3) and minimum
-interaction volume (300Å3). The AIC was only calculated from the complexes
+values for the voxel spacing (1Å), maximum clashing volume (200Å\high{3}) and minimum
+interaction volume (300Å\high{3}). The AIC was only calculated from the complexes
 consistent with all restraints. 
 
 Correct interface residues were taken from the experimental structure of the
