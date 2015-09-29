@@ -37,16 +37,15 @@
 \definealternativestyle[style:dedication][\tf\it\ss]
 
 % heads
-\setupheads[indentnext=yes]
-\setupheads[align={flushleft,nothyphenated},
+\setupheads[indentnext=yes, align={flushleft,nothyphenated,verytolerant},
     tolerance=verytolerant]
-\setuphead[chapter][indentnext=no]
 
 % chapter level
 \definehead[TocHead][title][style=style:chapter, page=yes]
 \definehead[FrontmatterHead][chapter][style=style:chapter, number=no, page=yes]
-\definehead[Chapter][chapter]
-\definehead[BackmatterHead][chapter][style=style:chapter, number=no, page=yes]
+\definehead[Chapter][chapter][command=\MyChapter, style=style:chapter,
+    before={\blank[5em, force]}, after={\blank[4em]}]
+\definehead[BackmatterHead][chapter][style=style:chapter, number=no, page=yes, indentnext=yes]
 % section level
 \definehead[Section][section][style=style:section]
 \definehead[Subject][subject][style=style:section, incrementnumber=no]
@@ -56,10 +55,6 @@
 % subsub-level
 \definehead[Subsubsection][subsubsection]
     [number=no, incrementnumber=no, style=style:subsubsection]
-
-% Chapter head
-\setuphead[Chapter][command=\MyChapter, style=style:chapter,
-    indentnext=no, before={\blank[5em, force]}, after={\blank[4em]}]
 
 % abbreviations
 \definesynonyms[abbreviation][abbreviations][\infull]
@@ -87,6 +82,9 @@
 \abbreviation{PPDB}{Protein-protein docking benchmark}
 \abbreviation{AIR}{Ambiguous interaction restraint}
 \abbreviation{MS}{Mass spectrometry}
+\abbreviation{EPR}{Electron paramagnetic resonance}
+\abbreviation{FRET}{Förster resonance energy transfer}
+
 
 
 % figures
