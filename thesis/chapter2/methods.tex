@@ -231,12 +231,12 @@ solutions. The location of each maximum together with its correlation score and
 corresponding rotation are written to file as well as the corresponding PDB
 coordinates of the top \m{N} solutions (where \m{N} is a user-defined parameter). 
 
-PowerFit is written in the Python language (Python2.7) and requires the NumPy,
+PowerFit is written in the Python language (Python2.7) and requires the NumPy and
 SciPy packages. The CPU version can be further accelerated by installing the
 FFTW3.3 library together with pyFFTW. To offload the computationally intensive
 search to the GPU, we used the OpenCL framework together with the clFFT
-library, a high-performance FFT library for OpenCL.  Python bindings were
-available through the pyopencl and gpyfft packages.  PowerFit is licensed under
+library, a high-performance FFT library for OpenCL. Python bindings were
+available through the pyopencl and gpyfft packages. PowerFit is licensed under
 the MIT license and can be downloaded from \from[url:powerfit] together with
 instructions on how to install and use it. It has been successfully tested on
 Linux, MacOSX and Windows systems and its GPU-accelerated version can run on
