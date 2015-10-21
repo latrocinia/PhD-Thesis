@@ -47,6 +47,9 @@ Laplace pre-filter seems to have the largest impact, changing the drop rate of
 the curve to a linear one, while the inclusion of the core-weighted approach
 results in a right shift of the curve.
 
+\placefigure[top][fig:GroEL-GroES]
+{\getbuffer[cap:GroEL-GroES]}
+{\externalfigure[fig:GroEL-GroES]}
 
 \Subsection{Fitting performance of \powerfit}
 
@@ -65,9 +68,6 @@ trans rings we took the top 7 best scoring fits and calculated the average RMSD
 to the 1GRU reference structure; for the GroES ring we took the best fit only.
 The results are shown in \intable[tab:fitting-performance].
 
-\placefigure[top][fig:GroEL-GroES]
-{\getbuffer[cap:GroEL-GroES]}
-{\externalfigure[fig:GroEL-GroES]}
 
 The LCC score was incapable of fitting any subunit properly as was noted
 earlier \cite[Hoang2013]. In case of the GroES lid, it actually places it
@@ -155,11 +155,6 @@ resampling enabled, \powerfit\ is still faster.
 {\getbuffer[cap:additional-complexes]}
 {\getbuffer[tab:additional-complexes]}
 
-\placefigure[top][fig:additional-cases]
-{\getbuffer[cap:additional-cases]}
-{\externalfigure[fig:additional-cases]}
-
-
 \Subsubsection{Additional complexes fitted with \powerfit}
 
 To validate our approach further, we applied \powerfit\ on three additional
@@ -179,5 +174,10 @@ resolution of 13.5\Angstrom. In this case, the LCC was incapable of correctly
 fitting the subunit in the density. The other scoring functions placed the
 subunit properly in the map, with the correct fit found within the top 3 best
 scoring solutions.
+
+\placefigure[top][fig:additional-cases]
+{\getbuffer[cap:additional-cases]}
+{\externalfigure[fig:additional-cases]}
+
 
 \stopSection

@@ -10,8 +10,8 @@ geschiedenis. Ook al heeft iedere uniek individu zijn eigen ervaringen en kijk
 op hoe het leven te benaderen, wetenschappelijk onderzoek van de moderne mens
 heeft geresulteerd in een paradigma dat leven is georganiseerd op het
 moleculare niveau, daar waar de typische afstand de ångstrom (10\high{-10}m) is.
-Dit inzicht heeft geleid naar een intense interesse in de molecules van het
-leven. Met de ontdekking van de dubbele-helixstructuur van DNA, het biomolecule
+Dit inzicht heeft geleid naar een intense interesse in de moleculen van het
+leven. Met de ontdekking van de dubbele-helixstructuur van DNA, het biomolecuul
 dat de genetische code vasthoudt, als een voornaam voorbeeld, wordt er
 gepostuleerd dat vanuit structuur de functie volgt, dat wil zeggen dat kennis
 van de precieze drie dimensionale structuur van grote biomoleculen een
@@ -21,7 +21,7 @@ ontwerpen van medicijnen door biologisch actieve moleculen te ontwikkelen die
 specifieke interacties aangaan met bepaalde delen van het oppervlak van een
 biomolecuul of in de actieve locatie van een enzym.
 
-Röntgendiffractie en kernspinresonantie spectroscopie zijn de klassieke
+Röntgendiffractie en kernspinresonantie (NMR) spectroscopie zijn de klassieke
 experimentele methodes die de atomaire rangschikking kunnen onthullen van grote
 biomoleculen, zoals eiwitten. De invloed van eiwitten in de cel kan niet
 overgewaardeerd worden: zij zijn de voornaamste spelers in bijna ieder
@@ -39,7 +39,7 @@ computationele methoden vereist om het gat in de structuurkennis te verkleinen.
 
 Integratief modelleren is een benadering om de structuur van een biomoleculair
 complex te verspellen/modelleren door het combineren van alle experimentele
-kennis dat beschikbaar is van het systeem. Er wordt hierbij vanuit gegaan dat
+kennis die beschikbaar is voor het systeem. Er wordt hierbij vanuit gegaan dat
 dit uiteindelijk leidt tot een accurater and preciezer model, dan wanneer
 iedere data op zich wordt gebruikt. De uitdagingen van deze benadering zijn,
 voorspelbaar, bemonsteren en scoren: vele verschillende mogelijke modellen
@@ -49,10 +49,10 @@ voornamelijk op het incorporeren van cryo-electron microscopie data (cryo-EM)
 en chemische kruisverbindingen gekoppeld met massaspectrometrie (CXMS) in het
 modelleringsproces. Cryo-EM is een snel ontwikkelende methode dat meestal
 lage-resolutie dichtheidsinformatie van grote macromoleculaire complexen
-oplevert, hoewel, met de huidige advances, bijna-atomaire resolutie kan worden
-behaald voor specifieke systemen; CXMS daarentegen levert mogelijke afstanden
-tussen residuen in het complex op. Beide methodes leveren dus aanvullende
-informatie op.
+oplevert, hoewel, met de huidige vooruitgang bijna-atomaire resolutie kan worden
+behaald voor specifieke systemen; CXMS daarentegen verschaft afstanden tussen
+residuen in het complex op. Beide methodes leveren dus elkaar-aanvullende informatie
+op.
 
 In \inhoofdstuk[chapter:introduction] geef ik een meer technische introductie
 tot integratief modelleren en de verschillende experimentele data die gebruikt
@@ -61,10 +61,9 @@ uitgebreid pallet aan integratieve methodes bieden voor macromoleculair
 modelleren, zoals het door data-aangedreven dockingsoftware HADDOCK, dat
 ontwikkeld is in het lab waar ik werk. Naast dit stel ik ook een nieuw concept
 voor, namelijk explorerend modelleren, waar de nadruk ligt op het kwantificeren
-en, indien mogelijk, vizualizeren van de informatiehoeveelheid van de
+en, indien mogelijk, visualizeren van de informatiehoeveelheid van de
 beschikbare data. De nadruk hier constrasteert met die van integratief
-modelleren, dat voornamelijke specifieke data-consistente structuren wil
-leveren.
+modelleren, dat voornamelijke specifieke data-consistente structuren verschaft.
 
 \inhoofdstuk[chapter:powerfit] beschrijft PowerFit, een hoge-prestatie software
 pakket en programma voor het automatisch plaatsen van hoge-resolutie
@@ -72,31 +71,32 @@ starre biomoleculaire structuren in lage-resolutie cryo-EM dichtheidsmappen.
 PowerFit verricht een systematische zes-dimensionale zoektocht van de drie
 translationele en rotationele vrijheidsgraden om locale kruiscorrelatie-optima
 te bepalen voor het objectief plaatsen van structuren in cryo-EM dichtheden.
-Daarnaast introduceer ik een nieuwe en gevoeligere kernverzwaarde locale
-kruiscorrelatie die de bruikbare resolutierijkwijdte verder uitbreid voor het
-succesvol plaatsen. PowerFit is een eerste stap in dit proefschrift om
-hoge-resolutie structuurdata te combineren met lage-resolutie cryo-EM data.
+Daarnaast introduceer ik een nieuwe en gevoeligere correlatiescore, de
+zogeheten kernverzwaarde locale kruiscorrelatie die de bruikbare
+resolutierijkwijdte verder uitbreidt voor het succesvol plaatsen. PowerFit is
+een eerste stap in dit proefschrift om hoge-resolutie structuurdata te
+combineren met lage-resolutie cryo-EM data.
 
 Vervolgens in \inhoofdstuk[chapter:image-pyramids] kwantificeer ik de
 resolutievereiste voor het succesvol plaatsen van starre biomoleculaire
-structuren in een cryo-EM map as functie van de grootte van het biomolecuul.
+structuren in een cryo-EM map als functie van de grootte van het biomolecuul.
 Ook laat ik unambigu zien dat de kernverzwaarde Laplace locale kruiscorrelatie
 de best score is. Als laatste, omdat de resolutievoorwaarde voor het succesvol
 plaatsen van een subeenheid vaak aanzienlijk lager is dan de resolutie van
 huidige cryo-EM data, kan dit uitgebuit worden door het multischaal
-afbeelding-pyramides concept, om de zes-dimensionale zoektocht significant the
+afbeelding-pyramide concept, om de zes-dimensionale zoektocht significant te
 versnellen.
 
 \inhoofdstuk[chapter:haddock-em] bespreekt de implementatie van cryo-EM data in
-HADDOCK, wat resulteerd in een waarlijke integratieve modelleringsbenadering,
+HADDOCK, wat resulteert in een waarlijke integratieve modelleringsbenadering,
 hetgeen de combinatie van alle andere HADDOCK-ondersteunde data toestaat. Het
-centrale concept hier is het gebruik van zwaartepunten, puntent die het
+centrale concept hier is het gebruik van zwaartepunten, punten die het
 zwaartepunt van alle gedockte subeenheden voorstellen. HADDOCK laat het de
 gebruiker vrij om ambigue afstandsbeteugelingen the gebruiken, indien de
 locatie van verschillende eenheden niet kan worden onderscheiden. Het gebruik
-van de lage-resolutie cryo-EM data verhoogd aanzienlijk zowel het aantal alswel
+van de lage-resolutie cryo-EM data verhoogt aanzienlijk zowel het aantal alswel
 de kwaliteit van acceptable oplossingen in onze methode. Verder wordt het
-gebruik van deze krachtige integratieve methode gedemonstreerd op twee ribosome
+gebruik van deze krachtige integratieve methode gedemonstreerd op twee ribosoom
 en twee virus-antilichaam systemen, wat verdere inzichten van het tussenvlak
 oplevert en toekomstige experimenten kan leiden voor verder onderzoek.
 
@@ -104,20 +104,20 @@ De HADDOCK2.2 webserver wordt besproken in \inhoofdstuk[chapter:hadddock2.2].
 De webserver biedt structuurbiologen een gebruiksvriendelijke interface tot het
 gebruik van onze geupgrade HADDOCK2.2 software. Noemenswaardige functies zijn
 de introductie van samengestelde molecuultypes, zoals eiwit-DNA complexen, en
-verdere op KSR-gebaseerde beteugelingen, zoals residuele dipolaire-koppelingen
+verdere op NMR-gebaseerde beteugelingen, zoals residuele dipolaire-koppelingen
 and vals-contact verschuivingen, wat nieuwe wegen opent voor macromoleculair
 docken. De webserver kan gratis gebruikt worden voor academische doeleinden via
 \from[url:haddock2.2] na een simpele registratie.
 
 Vanaf \inhoofdstuk[chapter:disvis] richt ik me op het gebruik van
 afstandsbeteugelingen in het algemeen en het gebruik van CXMS data specifiek.
-Ik introduceer nog een software pakket and programma, genaamd DisVis. DisVis
-kwantificeert en vizualizeert de informatiehoeveelheid van
+Ik introduceer nog een software pakket en programma, genaamd DisVis. DisVis
+kwantificeert en visualizeert de informatiehoeveelheid van
 afstandsbeteugelingen via het concept van de toegankelijke interactieruimte, de
 telbare set van alle data-consistente oplossingen. Bovendien kan deze methode
 vals-positieve afstandsbeteugelingen identificeren, en het toont de
-zelf-consistentie van de data. DisVis is een eerste stap in het nieuwe
-concept van explorerend modelleren. 
+zelf-consistentie van de data. DisVis is een eerste stap in het nieuwe concept
+van explorerend modelleren. 
 
 De methode wordt verder uitgebreid in
 \inhoofdstuk[chapter:inferring-interface-residues], waar explorerend modelleren
@@ -136,16 +136,17 @@ experimentele en computationele wetenschappen om het integratief modelleren
 verder te brengen. Verder bepleit ik een reïnterpretatie van structuurmodellen,
 aangezien zij niet beschouwd moeten worden as een enkele goed-gedefinieerde
 structuur, maar eerder als een ensemble van modellen, zoals al eerder is
-voorgesteld in KSR spectroscopie. Vooral in integratief modelleren, waar de
-modellen meestal zijn gegeneerd met schaarse data, is de ensembleruimte groot
+voorgesteld in NMR spectroscopie. Vooral in integratief modelleren, waar de
+modellen meestal zijn gegenereerd met schaarse data, is de ensembleruimte groot
 en diffuus. Explorerend modelleren en het concept van de telbare toegankelijke
 interactieruimte kan helpen in de transitie naar de ensemble-interpretatie, en
 tegelijkertijd de informatiehoeveelheid van de data kwantificeren.
 
 In het algemeen beschrijft dit proefschrift nieuwe benaderingen en
 computationele hulpmiddelen voor structuurbiologen om de experimentele data te
-interpreteren, dat van toenemende mate komt van diverse bronnen, en beschrijft
-het een frisse kijk op modelleren via explorerend modelleren.
+interpreteren, dat van toenemende mate komt van diverse bronnen, en
+introduceert het een frisse kijk op modelleren via het concept van explorerend
+modelleren.
 
 \stopBackmatterHead
 

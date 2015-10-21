@@ -37,11 +37,11 @@ structural information can be obtained by high-resolution methods, mainly X-ray
 crystallography and NMR spectroscopy. Unfortunately, both methods are hampered
 by several limitations. X-ray crystallography is mainly limited by the
 production of high-quality crystals, an undertaking that becomes more difficult
-with increasing structure size and flexibility of the macromolecules and weak,
+with increasing structure size, flexibility of the macromolecules, and
 transient complexes; for NMR spectroscopy it is mainly the size of proteins
 that is limiting structure determination, as spectra become heavily congested
 for larger complexes, making peak assignment infeasible. Furthermore, neither
-method is amenable for high-throughput investigations of complexes and large
+method is amenable to high-throughput investigations of complexes and large
 assemblies, a necessary requirement for the structural elucidation of the
 interactome.
 
@@ -62,7 +62,7 @@ solely uses shape matching and physico-chemical principles to predict the
 structure of complexes with a limited success rate \cite[Huang2015]; the
 data-driven approach tries to increase the success rate by including additional
 information from biophysical and biochemical methods during the docking
-\cite[Karaca2013a, Rodrigues2014].  Data-driven docking is also more popularly
+\cite[Karaca2013a, Rodrigues2014]. Data-driven docking is also more popularly
 known as hybrid or integrative modeling of biomolecular complexes.
 
 \stopSection
@@ -78,25 +78,25 @@ combined to accurately predict a model of a biomolecular complex
 
 \startitemize[n]
 
-\item Gathering information: collect information in the form of e.g.
-experimental data, bioinformatics predictions, statistical inference, just
+\item \emph{Gathering information:} collect information in the form of
+experimental data, bioinformatics predictions, statistical inference, or just
 about anything that can be of use during the modeling.
 
-\item Model representation and evaluation: the degrees of freedom of the model
-should be chosen, such as an all-atom model or a more coarse-grained
-representation, depending on the information content the data are providing.
-The data can be used to actively search for proper models and its information
-content should be transformed accordingly.
+\item \emph{Model representation and evaluation:} the degrees of freedom of the
+model should be chosen, i.e. using an all-atom model or a more coarse-grained
+representation, depending on how much information the data provide. In
+addition, scoring functions for each data-type need to be determined to indicate
+consistency between the models and the data.
 
-\item Sampling and optimization: the sampling and optimization protocols should
-be chosen depending on the degrees of freedom of the system. For a 6
-dimensional system, corresponding to the relative placement of two 3D rigid
+\item \emph{Sampling and optimization:} the sampling and optimization protocols
+should be chosen depending on the degrees of freedom of the system. For a 6
+dimensional system, corresponding to the relative placement of two three-dimensional rigid
 bodies, an exhaustive search can be performed, while for higher-dimensional
 systems Monte Carlo and simulated annealing approaches would be more efficient.
 
-\item Scoring and analysis: the resulting models need to be scored, ranked and
+\item \emph{Scoring and analysis:} the resulting models need to be scored, ranked and
 clustered based on their congruency with the data to ascertain model precision
-and accuracy.
+and accuracy. 
 
 \stopitemize
 
@@ -109,22 +109,21 @@ integrative modeling.
 
 In addition to the high-resolution structural techniques, many other
 experimental methods have been devised to extract structural or low-resolution
-information about biomolecular complexes. NMR spectroscopy is also capable of
-pinpointing interface residues through the use of chemical shift perturbations
-(CSPs) \cite[Case2013], and the relative orientation of subunits to each other
-by residual dipolar couplings (RDCs) \cite[Chen2012], among several other
-methods \cite[vanIngen2014]. Small angle X-ray scattering (SAXS) experiments
-result in a 1D scattering curve, from which a diverse set of parameters can be
-determined with structural interpretation, e.g. radius of gyration, and even
-complete shapes, though with low-resolution \cite[Putnam2007,
-Schneidman-Duhovny2012, Blanchet2013]. Biochemical methods such as mutagenesis
-and radical footprinting provide information on the binding interface.
-Bioinformatics prediction methods can also deliver this information by
-analyzing sequences and extract conserved interface residues through
-co-evolution \cite[Hopf2014]. Two other experimental approaches that provide
-shape data and distance restraints are cryo-electron microscopy (cryo-EM) and
-chemical cross-linking coupled with mass-spectrometry (CXMS), which we will
-discuss more in-depth in the following.
+information. NMR spectroscopy is also capable of pinpointing interface residues
+through the use of chemical shift perturbations (CSPs) \cite[Case2013], and the
+relative orientation of subunits to each other by residual dipolar couplings
+(RDCs) \cite[Chen2012], among several other methods \cite[vanIngen2014]. Small
+angle X-ray scattering (SAXS) experiments result in a 1D scattering curve, from
+which a diverse set of parameters can be determined with structural
+interpretation, e.g. radius of gyration, and even complete (low-resolution)
+shapes \cite[Putnam2007, Schneidman-Duhovny2012, Blanchet2013]. Biochemical
+methods such as mutagenesis and radical footprinting provide information on the
+binding interface.  Bioinformatics prediction methods can also deliver this
+information by analyzing sequences and extract conserved interface residues
+through co-evolution \cite[Hopf2014]. Two other experimental approaches that
+provide shape data and distance restraints are cryo-electron microscopy
+(cryo-EM) and chemical cross-linking coupled with mass-spectrometry (CXMS),
+which we will discuss more in-depth in the following.
 
 
 \startSubsection[title={Cryo-electron microscopy}]
@@ -133,29 +132,28 @@ Cryo-EM is a set of various transmission electron-microscopy techniques, namely
 cryo-electron tomography (cryo-ET), electron crystallography, and
 single-particle cryo-EM, that all ultimately results in a three dimensional
 density of the sample \cite[Milne2013]. In cryo-ET whole cell slices are
-studied by systematically tilting the sample and imaging projections from
-different angles; electron crystallography is mainly aimed at investigating
-membrane proteins that can form two-dimensional crystals or helices;
-single-particle cryo-EM is used to study individual macromolecular assemblages
-by imaging many projections of random orientations of the assembly.
+studied by systematically tilting and imaging projections of the sample;
+electron crystallography is mainly aimed at investigating membrane proteins
+that can form two-dimensional crystals; single-particle cryo-EM is used to
+study individual macromolecular assemblages by imaging many projections of
+random orientations of the assembly.
 
 However, all three approaches are limited by the same phenomenon: the prolonged
 irradiation of the specimen with electrons results in extensive damage,
 reminiscent of the impact of a nuclear bomb \cite[Glaeser1978].  To diminish
 this effect, the sample is typically plunge-frozen in liquid ethane to
-instantly vitrify it, resulting in a near-native hydrated state.  However, the
-allowed electron dose is still severely limited, resulting in very noisy
-projections, well below atomic resolution. Electron crystallography tries to
-improve on this by combining the well-defined phases of the images with the
-high-resolution electron diffraction pattern to attain atomic resolution.
-Cryo-ET can significantly increase the resolution of particular assemblages by
-subtomogram averaging: a process where similar particles are aligned and
-averaged, resulting in an increased signal-to-noise ratio. Singe-particle
-cryo-EM in turn images many particles on a grid, each with a random
-orientation. By aligning similarly oriented projections, class averages can be
-obtained with a highly improved signal-to-noise ratio. If enough class averages
-are available, the three-dimensional density can be reconstructed through
-several iterative approaches. 
+instantly vitrify and fixate it, resulting in a near-native hydrated state.
+However, the allowed electron dose is still severely limited, resulting in very
+noisy projections, well below atomic resolution. Electron crystallography tries
+to improve on this by using the high-resolution electron diffraction pattern to
+attain atomic resolution. Cryo-ET can significantly increase the resolution of
+particular assemblages by subtomogram averaging: a process where similar
+particles are aligned and averaged, resulting in an increased signal-to-noise
+ratio. Singe-particle cryo-EM in turn images many particles on a grid, each
+with a random orientation. By aligning similarly oriented projections, class
+averages can be obtained with a highly improved signal-to-noise ratio. If
+enough class averages are available, the three-dimensional density can be
+reconstructed through several iterative approaches. 
 
 Thanks to recent dramatic advances in direct electron detectors and improved
 particle processing software, the resolution of cryo-EM has impressively
@@ -170,11 +168,11 @@ resolution record for now stands at 2.2Å \cite[Bartesaghi2015].
 Still, despite all these advances, the resolution of cryo-EM densities are in
 most cases typically too low for ab initio structural modeling. The information
 content of cryo-EM data is highly dependent on the resolution, with individual
-domains becoming visible at 10Å, secondary structure elements at 9Å, the
-separation of beta-sheets and bulky side-chains at around 4Å \cite[Baker2010].
-Thus, for typical cryo-EM data of 7Å resolution and lower, additional data need
-to be incorporated in an integrative approach to attain an atomic model of the
-macromolecular assembly.
+domains becoming visible at 15Å, secondary structure elements at 10Å for
+helices and 7Å for \m{\beta}-strands, and the separation of beta-sheets and bulky
+side-chains at around 4Å \cite[Baker2010]. Thus, for typical cryo-EM data of
+7Å resolution and lower, additional data need to be incorporated in an
+integrative approach to attain an atomic model of the macromolecular assembly.
 
 \stopSubsection
 
@@ -183,15 +181,14 @@ macromolecular assembly.
 A very different method from cryo-EM is chemical cross-linking coupled with
 mass spectrometry. Here, protein complexes are covalently linked with chemical
 cross-links to determine spatial proximity between components. A standard CXMS
-experiment consists of six stages \cite[Tran2015]: 1) the cross-links are
-added to the sample after optimizing the reaction conditions, and 2) the
+experiment consists of six stages \cite[Tran2015]: 1) the cross-links are added
+to the (purified) sample after optimizing the reaction conditions; 2) the
 cross-linked proteins are isolated to reduce the number of false-positives; 3)
-is to digest the cross-linked proteins into peptides using trypsine or other
-proteases, after which 4) the peptides are enriched using physico-chemical
-methods, such as size exclusion chromatography, affinity chromatography, and
-strong cation exchange chromatography. The final two steps are 5) MS
-optimization for peptide detection and 6) data-processing to detect
-cross-linked residues. 
+the cross-linked proteins are subsequently digested using trypsine or other
+proteases; 4) the resulting peptides are enriched using physico-chemical
+methods, such as size exclusion, affinity, and strong cation exchange
+chromatography. The final two steps are 5) MS optimization for peptide
+detection and 6) data-processing to detect cross-linked residues. 
 
 Even though the procedure is straightforward, each step is marked by
 optimization and many parameters need to be chosen, such as which linker to
@@ -227,7 +224,7 @@ deVries2007].
 \startSubsubsection[title=Rosetta]
 
 Rosetta is at its core a structure prediction software package, and is well
-known for its elaborate and accurate force field and conformational sampling
+known for its elaborate and accurate scoring function and conformational sampling
 techniques \cite[Rohl2004]. Although originally a de novo protein prediction
 program \cite[Simons1999], it has ventured into a more integrative approach
 and can now also perform X-ray crystallography refinement (MR-Rosetta)
@@ -284,27 +281,27 @@ and NMR System) for its computational back end \cite[Brunger2007].
 
 \startSection[title={Explorative modeling}]
 
-The goal of integrative modeling ultimately is to produce representative
-models of biomolecular assemblies that are consistent with the acquired data,
-thus putting the emphasis on the structural models, which does not necessarily
-provide insight into the information content of the restraints. We can also
-turn this around, and instead put the emphasis on the data and aim at
-quantifying the information content by counting all accessible states that are
-either consistent or inconsistent with the data. I am referring to this
-different paradigm and associated field as \emph{explorative modeling}. A hallmark
-of this approach is to systematically sample a decent representative portion
-of the degrees of freedom of the system under investigation, and calculating
-for each sampled point the fit with the data, ultimately resulting in a
-distribution of states satisfying the input data.  The method is inherently
-computationally demanding as the number of points to sample is sizable by
-itself and increases exponentially with the number of degrees of system being
-investigated. However, for two-body systems, corresponding to 6 degrees of
-freedom assuming rigid entities, the approach is manageable. The goal of
-explorative modeling is thus to provide the information content of the data,
-and preferably visualize this to the structural biologist, to aid in
-appreciating the impact of the data in restraining the accessible
-conformational/interaction space, to give insight into the model uncertainty,
-and guide future work.
+The goal of integrative modeling ultimately is to produce representative models
+of biomolecular assemblies that are consistent with the acquired data, thus
+putting the emphasis on the structural models. However, this does not
+necessarily provide insight into the information content of the restraints and
+certainty in the models. We can also turn this around, and instead put the
+emphasis on the data and aim at quantifying the information content by counting
+all accessible states that are either consistent or inconsistent with the data.
+I am referring to this different paradigm and associated field as
+\emph{explorative modeling}. A hallmark of this approach is to systematically
+sample a decent representative portion of the degrees of freedom of the system
+under investigation, and calculating for each sampled point the fit with the
+data, ultimately resulting in a distribution of states satisfying the input
+data.  The method is inherently computationally demanding as the number of
+points to sample is sizable by itself and increases exponentially with the
+number of degrees of system being investigated. However, for two-body systems,
+corresponding to 6 degrees of freedom assuming rigid entities, the approach is
+manageable. The goal of explorative modeling is thus to provide the information
+content of the data, and preferably visualize this to the structural biologist,
+to aid in appreciating the impact of the data in restraining the accessible
+conformational/interaction space, to give insight into model uncertainty, and
+guide future work.
 
 \stopSection
 
@@ -317,7 +314,7 @@ and distance restraints data for integrative and explorative modeling. In
 based rigid-body fitting software package called PowerFit to automatically fit
 high-resolution structures in low-resolution cryo-EM density maps. In addition
 to algorithm optimizations, it provides a novel and more sensitive scoring
-function to further extend the applicable resolution range.  In
+function to further extend the applicable resolution range. In
 \inchapter[chapter:image-pyramids] I explore the resolution limits of
 rigid-body fitting in cryo-EM data and leverage this information to heavily
 accelerate the procedure through the use of multi-scale image pyramids.
@@ -328,7 +325,7 @@ approach. Next, in \inchapter[chapter:haddock2.2] I present the
 HADDOCK2.2 web server, an upgrade of the HADDOCK web server, for user-friendly
 integrative modeling of biomolecular complexes. \inchapter[chapter:disvis]
 deals with quantifying and visualizing the information content of distance
-restraints in general, and cross-link data in particular. It introduces the
+restraints in general, and CXMS data in particular. It introduces the
 concept of the accessible interaction space, the set of all possible solutions
 of a complex, and defines a way to exhaustively enumerate the accessible
 space. This is implemented in another software package called DisVis, and
