@@ -20,12 +20,12 @@
                pos := ulcorner Field[Text][RightMarginSeparator] -
                       ulcorner chap_frame - (-offset, skip);
                % take care of bleeding
-               chap_frame := chap_frame rightenlarged 3mm;
+               chap_frame := chap_frame rightenlarged 5mm;
            else:
                pos := urcorner Field[Text][LeftMarginSeparator] -
                       urcorner chap_frame - (offset, skip);
                % take care of bleeding
-               chap_frame := chap_frame leftenlarged 3mm;
+               chap_frame := chap_frame leftenlarged 5mm;
            fi;
 
             StartPage;
