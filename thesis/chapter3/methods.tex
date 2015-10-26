@@ -1,7 +1,10 @@
+\page
+
 \Section{Methods}
 
 
 \Subsection{Exploring the limits of rigid-body fitting}
+
 
 To explore the resolution limit for successful rigid body fitting, we selected
 five high-resolution cryo-EM ribosome maps from the EMDatabank
@@ -99,6 +102,10 @@ simple tri-linear interpolation.
 
 \Subsection{Leveraging the limits using multi-scale image pyramids}
 
+\placefigure[top][fig:image-pyramid-example]
+{\getbuffer[cap:image-pyramid-example]}
+{\externalfigure[fig:image-pyramid-example]}
+
 The rapid advancement of the cryo-EM field has resulted in an impressive
 increase in the number of high-resolution density maps and corresponding atomic
 models. The increase in the level of detail, however, also requires the number
@@ -124,8 +131,4 @@ to extract the required resolution for a specific chain. An image-pyramid can
 then be built by creating densities at different scales to fit subunits of
 various sizes. An example of such an image pyramid is shown in
 \infigure[fig:image-pyramid-example].
-
-\placefigure[top][fig:image-pyramid-example]
-{\getbuffer[cap:image-pyramid-example]}
-{\externalfigure[fig:image-pyramid-example]}
 

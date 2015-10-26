@@ -8,7 +8,7 @@
 
 \definepapersize[ThesisSize][width=17cm, height=24cm]
 
-\setupinteraction[state=start]
+%\setupinteraction[state=start]
 \setuppapersize[ThesisSize]
 \setuplayout[location=middle, width=13.0cm, height=22cm, 
              topspace=1.0cm, bottomspace=0.5cm, margin=2.0cm, 
@@ -131,15 +131,14 @@
 \setupnotation[footnote][numberconversion=characters]
 
 % references
-\definereferenceformat[infigure][left=Figure ]
-\definereferenceformat[intable][left=Table ]
-\definereferenceformat[inchapter][left=Chapter ]
-\definereferenceformat[ineq][left=Eq. ]
-\definereferenceformat[insfigure][left=Figure S]
-\definereferenceformat[instable][left=Table S]
-\definereferenceformat[ins][left=S]
-
-\definereferenceformat[inhoofdstuk][left=Hoodfstuk ]
+\definereferenceformat[infigure][left={Figure }, style=bold]
+\definereferenceformat[intable][left={Table }, style=bold]
+\definereferenceformat[inchapter][left={Chapter }, style=bold]
+\definereferenceformat[ineq][left={Eq. }, style=bold]
+\definereferenceformat[insfigure][left={Figure S}, style=bold]
+\definereferenceformat[instable][left={Table S}, style=bold]
+\definereferenceformat[ins][left=S, style=bold]
+\definereferenceformat[inhoofdstuk][left={Hoodfstuk }, style=bold]
 
 % urls
 \useURL[url:powerfit][https://github.com/haddocking/powerfit]
