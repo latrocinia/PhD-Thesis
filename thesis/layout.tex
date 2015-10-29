@@ -192,12 +192,11 @@
     \insertbiburl{}{.}{}%%
     }
 
-% place thumb index
+% place thumb index and cutlines
 \input layers/thumbindex
 \input layers/cutlines
 \defineoverlay[thumbindex][\useMPgraphic{thumbindex}]
 \defineoverlay[cutlines][\useMPgraphic{cutlines}]
-\setupbackgrounds[page][background=thumbindex]
-\setupbackgrounds[page][background=cutlines]
+\setupbackgrounds[page][background={cutlines, thumbindex}]
 
 \stopenvironment
