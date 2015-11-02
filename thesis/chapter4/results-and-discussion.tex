@@ -58,7 +58,7 @@ HADDOCK-EM-it0 score, which correspond to the original HADDOCK score (see
 \inb[eq:haddock-em-itw]).  The 400 best scoring models are then refined using
 the standard HADDOCK refinement protocol with an additional correlation-based
 potential to further fit the chains into the density, while reckoning with the
-energetics of the system. 
+energetics of the system.
 
 
 \placefigure[top][fig:it0-results]
@@ -71,7 +71,7 @@ energetics of the system.
 Since the HADDOCK protocol consists of several stages (rigid body docking and
 scoring (it0), and flexible refinement stages in vacuum (it1) and explicit
 solvent (itw)), we will separately discuss the impact of incorporation of
-cryo-EM data on each stage.  We investigated the use of 10, 15 and 20Å 
+cryo-EM data on each stage.  We investigated the use of 10, 15 and 20Å
 simulated cryo-EM data on a benchmark consisting of 17 complexes taken from the
 protein-protein docking benchmark 4.0 \cite[Hwang2010].  These complexes
 consist of 10 easy, 4 medium and 3 hard cases (based on the degree of
@@ -108,7 +108,7 @@ data.  The average i-RMSD improvement is 1.2, 1.5 and 1.6Å when using
 acceptable solutions were generated, there is a considerable increase of
 quality, e.g. the i-RMSD of the hard 1JMO complex decreases from 6.13 for
 HADDOCK-CM to 4.66, 4.35 and 4.51Å when using 20, 15 and 10Å
-data, respectively. 
+data, respectively.
 
 Moreover, not only the quality of the interface of the best model benefits from
 the use of cryo-EM data, but the number of generated acceptable solutions also
@@ -143,7 +143,7 @@ the top 400 models for 7 out of the 11 successful cases, where at least one
 acceptable solution was generated.  The HADDOCK-EM models were scored with the
 HADDOCK-EM score, which resulted in at least one acceptable for all 13
 successful cases, irrespective of resolution, with the exception of the 2OOB
-complex using 20Å resolution data. 
+complex using 20Å resolution data.
 
 To investigate the effect of the LCC term in the HADDOCK score, the total
 number of acceptable solutions in the top 400 was calculated for the HADDOCK-EM
@@ -165,8 +165,8 @@ solutions as was observed before \cite[Shacham2007].  It should further be
 noted that the absolute value of the LCC-term is not indicative of the quality
 of the model.  For example, when using 20Å data correlation values of
 > 0.9 are routinely found for non-native models.  As such, the correlation
-> value only has meaning in a comparative setting, urging the need to sample
-> and score multiple conformations. 
+value only has meaning in a comparative setting, urging the need to sample
+and score multiple conformations.
 
 \placefigure[top][fig:impact-refinement]
 {\getbuffer[cap:impact-refinement]}
@@ -287,7 +287,7 @@ i-RMSD less than 1.5Å from the deposited model
 (\infigure[fig:virus-haddock]{A}).  However, when zooming in on the interface
 of the best scoring HADDOCK model, the interactions show an extensive hydrogen
 bond network between the envelope protein and the antibody in contrast to the
-deposited model (\infigure[fig:virus-haddock]{B}). 
+deposited model (\infigure[fig:virus-haddock]{B}).
 
 \placefigure[page][fig:symm-protocol]
 {\getbuffer[cap:symm-protocol]}
@@ -298,7 +298,7 @@ approximate i-RMSD of 2.0Å and 4.5Å with respect to the
 deposited model (\infigure[fig:virus-haddock]{C}).  Inspecting the interface of
 the best scoring HADDOCK model again shows favorable interactions between the
 prM protein of the Dengue virus with the antibody, while the 3J42-model lacks
-side-chains and shows a backbone clash (\infigure[fig:virus-haddock]{D}). 
+side-chains and shows a backbone clash (\infigure[fig:virus-haddock]{D}).
 
 \Subsection{Symmetrical multibody docking with cryo-EM data}
 
@@ -320,7 +320,7 @@ in more compact clusters, i.e. the distribution of i-RMSD values is reduced.
 When using 10Å data only a single near-native cluster is observed. At
 20Å resolution, multiple clusters appear and require the HADDOCK-EM
 score to discriminate the near-native cluster, which indeed has the best
-(lowest) HADDOCK-EM score. 
+(lowest) HADDOCK-EM score.
 
 \placefigure[top][fig:2355-results]
 {\getbuffer[cap:2355-results]}
