@@ -16,6 +16,10 @@ automatic methods have been devised for simultaneous centroid placement
 approach combines cross-link data with the cryo-EM map to infer the positions
 of the subunits \cite[Murakami2013].
 
+\placefigure[top][fig:it0-protocol]
+{\getbuffer[cap:it0-protocol]}
+{\externalfigure[fig:it0-protocol]}
+
 Once the centroids have been determined the docking can start. First the chains
 are separated in space at an approximate minimal distance of 25Å from
 each other and given a random orientation.  Distance restraints are defined
@@ -51,14 +55,11 @@ After the rigid body stage, the generated solutions are scored with the
 HADDOCK-EM-it0 score, which correspond to the original HADDOCK score (see
 \ineq[eq:haddock-it0]) complemented with a local cross correlation-based energy
 (see Experimental Procedures, \ineq[eq:haddock-em-it0] --
-\in[eq:haddock-em-itw]).  The 400 best scoring models are then refined using
+\inb[eq:haddock-em-itw]).  The 400 best scoring models are then refined using
 the standard HADDOCK refinement protocol with an additional correlation-based
 potential to further fit the chains into the density, while reckoning with the
 energetics of the system. 
 
-\placefigure[top][fig:it0-protocol]
-{\getbuffer[cap:it0-protocol]}
-{\externalfigure[fig:it0-protocol]}
 
 \placefigure[top][fig:it0-results]
 {\getbuffer[cap:it0-results]}
@@ -132,9 +133,6 @@ our approach is robust against centroid placement errors up to at least
 
 \Subsection{Impact of cryo-EM data on the scoring of rigid body docking solutions}
 
-\placefigure[top][fig:impact-refinement]
-{\getbuffer[cap:impact-refinement]}
-{\externalfigure[fig:impact-refinement]}
 
 To incorporate the cryo-EM data into the scoring function, we supplemented the
 original HADDOCK score with a local cross correlation (LCC) energy term
@@ -170,6 +168,9 @@ of the model.  For example, when using 20Å data correlation values of
 > value only has meaning in a comparative setting, urging the need to sample
 > and score multiple conformations. 
 
+\placefigure[top][fig:impact-refinement]
+{\getbuffer[cap:impact-refinement]}
+{\externalfigure[fig:impact-refinement]}
 
 \Subsection{Effect of cryo-EM data on the flexible refinement stage}
 
